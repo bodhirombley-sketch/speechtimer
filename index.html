@@ -9,6 +9,12 @@
     body { max-width: 800px; margin: 40px auto; padding: 0 20px; background: #f8fafc; color: #1e293b; }
     h1 { text-align: center; color: #0f172a; margin-bottom: 8px; }
     p.subtitle { text-align: center; color: #64748b; margin-top: 0; margin-bottom: 24px; }
+    
+    .language-selector { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 16px; }
+    .language-selector label { font-weight: 600; color: #334155; }
+    .language-selector select { padding: 8px 12px; font-size: 15px; border-radius: 6px; border: 2px solid #cbd5e1; outline: none; background: white; cursor: pointer; }
+    .language-selector select:focus { border-color: #2563eb; }
+
     textarea { width: 100%; height: 200px; padding: 14px; font-size: 16px; border: 2px solid #cbd5e1; border-radius: 8px; resize: vertical; outline: none; }
     textarea:focus { border-color: #2563eb; }
     
@@ -34,23 +40,34 @@
   <h1>Speech & Presentatie Timer</h1>
   <p class="subtitle">Plak je tekst en bereken direct hoe lang jouw spreekbeurt of presentatie duurt.</p>
 
+  <div class="language-selector">
+    <label for="languageSelect">Kies de taal van je tekst:</label>
+    <select id="languageSelect" onchange="calculateTimes()">
+      <option value="nl" selected>🇳🇱 Nederlands</option>
+      <option value="de">🇩🇪 Duits</option>
+      <option value="en">🇬🇧 Engels</option>
+      <option value="fr">🇫🇷 Frans</option>
+      <option value="es">🇪🇸 Spaans</option>
+    </select>
+  </div>
+
   <textarea id="userInput" placeholder="Plak hier je tekst of speech..."></textarea>
 
   <div class="results-grid">
     <div class="card">
       <h3>🐢 Langzaam spreken</h3>
       <div class="time" id="slowTime">00:00</div>
-      <small>~110 woorden/min</small>
+      <small id="slowWpm">~90 wpm</small>
     </div>
     <div class="card">
       <h3>🚶 Normaal tempo</h3>
       <div class="time" id="normalTime">00:00</div>
-      <small>~130 woorden/min</small>
+      <small id="normalWpm">~100 wpm</small>
     </div>
     <div class="card">
       <h3>🐇 Snel spreken</h3>
       <div class="time" id="fastTime">00:00</div>
-      <small>~160 woorden/min</small>
+      <small id="fastWpm">~125 wpm</small>
     </div>
   </div>
 
@@ -69,6 +86,16 @@
 
   <script>
     const textarea = document.getElementById('userInput');
+    const langSelect = document.getElementById('languageSelect');
+
+    // Gemiddelde snelheden per taal (Langzaam, Normaal, Snel in Woorden Per Minuut)
+    const languageSpeeds = {
+      nl: { slow: 90, normal: 100, fast: 125 },
+      de: { slow: 90, normal: 105, fast: 130 },
+      en: { slow: 110, normal: 130, fast: 160 },
+      fr: { slow: 100, normal: 120, fast: 150 },
+      es: { slow: 120, normal: 145, fast: 175 }
+    };
 
     textarea.addEventListener('input', calculateTimes);
 
@@ -81,11 +108,18 @@
     function calculateTimes() {
       const text = textarea.value.trim();
       const words = text ? text.split(/\s+/).length : 0;
+      const selectedLang = langSelect.value;
+      const speeds = languageSpeeds[selectedLang];
 
-      // Gemiddelde spreektempo's in woorden per minuut (WPM)
-      const slowSecs = (words / 110) * 60;
-      const normalSecs = (words / 130) * 60;
-      const fastSecs = (words / 160) * 60;
+      // Update de WPM tekstjes onder de tijden
+      document.getElementById('slowWpm').innerText = `~${speeds.slow} wpm`;
+      document.getElementById('normalWpm').innerText = `~${speeds.normal} wpm`;
+      document.getElementById('fastWpm').innerText = `~${speeds.fast} wpm`;
+
+      // Bereken seconden
+      const slowSecs = words ? (words / speeds.slow) * 60 : 0;
+      const normalSecs = words ? (words / speeds.normal) * 60 : 0;
+      const fastSecs = words ? (words / speeds.fast) * 60 : 0;
 
       document.getElementById('slowTime').innerText = formatTime(slowSecs);
       document.getElementById('normalTime').innerText = formatTime(normalSecs);
