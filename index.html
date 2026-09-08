@@ -3,282 +3,324 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title id="docTitle">Speech & Presentation Timer</title>
+  <title>Text & Speech Multi-Tool Suite</title>
   <style>
     * { box-sizing: border-box; font-family: system-ui, -apple-system, sans-serif; }
-    body { margin: 0; padding: 0; background: #f8fafc; color: #1e293b; display: flex; min-height: 100vh; }
+    body { margin: 0; padding: 0; background: #f8fafc; color: #1e293b; display: flex; flex-direction: column; min-height: 100vh; }
 
-    /* Zijbalk Styling */
-    .sidebar { width: 220px; background: #0f172a; color: white; padding: 24px 16px; flex-shrink: 0; }
-    .sidebar h2 { font-size: 14px; text-transform: uppercase; color: #94a3b8; letter-spacing: 0.05em; margin-top: 0; margin-bottom: 16px; }
-    .lang-btn { display: flex; align-items: center; gap: 10px; width: 100%; padding: 10px 12px; margin-bottom: 8px; background: transparent; color: #cbd5e1; border: 1px solid transparent; border-radius: 6px; font-weight: 500; cursor: pointer; text-align: left; transition: all 0.2s; }
-    .lang-btn:hover { background: #1e293b; color: white; }
-    .lang-btn.active { background: #2563eb; color: white; border-color: #3b82f6; }
+    /* Top Bar met Hamburger Knop */
+    .topbar { background: #0f172a; color: white; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; }
+    .menu-btn { background: none; border: none; color: white; font-size: 24px; cursor: pointer; display: flex; align-items: center; gap: 8px; }
+    .menu-btn:hover { color: #38bdf8; }
+    .app-title { font-weight: 700; font-size: 18px; }
 
-    /* Main Content Area */
-    .main-content { flex: 1; max-width: 800px; margin: 0 auto; padding: 40px 24px; }
-    h1 { color: #0f172a; margin-top: 0; margin-bottom: 8px; }
-    p.subtitle { color: #64748b; margin-top: 0; margin-bottom: 24px; }
+    /* Navigatie Menu (Slide-out) */
+    .nav-menu { position: fixed; top: 0; left: -280px; width: 280px; height: 100%; background: #0f172a; color: white; padding: 20px; transition: 0.3s; z-index: 100; box-shadow: 2px 0 10px rgba(0,0,0,0.3); }
+    .nav-menu.open { left: 0; }
+    .close-btn { background: none; border: none; color: #94a3b8; font-size: 20px; float: right; cursor: pointer; }
+    .close-btn:hover { color: white; }
+    
+    .menu-section { margin-top: 30px; }
+    .menu-section h3 { font-size: 12px; text-transform: uppercase; color: #64748b; letter-spacing: 0.05em; margin-bottom: 10px; }
+    .nav-item { display: block; width: 100%; padding: 12px; margin-bottom: 6px; background: transparent; color: #cbd5e1; border: none; border-radius: 6px; font-weight: 500; cursor: pointer; text-align: left; }
+    .nav-item:hover, .nav-item.active { background: #2563eb; color: white; }
 
-    textarea { width: 100%; height: 200px; padding: 14px; font-size: 16px; border: 2px solid #cbd5e1; border-radius: 8px; resize: vertical; outline: none; }
+    .lang-selector { width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #334155; background: #1e293b; color: white; margin-top: 5px; outline: none; }
+
+    /* Main Area */
+    .overlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.5); z-index: 90; }
+    .overlay.open { display: block; }
+    
+    .container { max-width: 800px; margin: 0 auto; padding: 30px 20px; flex: 1; width: 100%; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    textarea { width: 100%; height: 180px; padding: 14px; font-size: 16px; border: 2px solid #cbd5e1; border-radius: 8px; resize: vertical; outline: none; margin-bottom: 15px; }
     textarea:focus { border-color: #2563eb; }
-    
-    .results-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
-    .card { background: white; padding: 16px; border-radius: 8px; border: 1px solid #e2e8f0; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-    .card h3 { margin: 0 0 8px 0; font-size: 14px; color: #64748b; font-weight: 600; }
-    .card .time { font-size: 22px; font-weight: 700; color: #2563eb; }
 
-    .timer-box { background: #0f172a; color: white; padding: 20px; border-radius: 8px; text-align: center; margin-top: 20px; }
-    .timer-display { font-size: 36px; font-weight: 700; font-family: monospace; margin: 10px 0; color: #38bdf8; }
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 15px 0; }
+    .card { background: white; padding: 16px; border-radius: 8px; border: 1px solid #e2e8f0; text-align: center; }
+    .card h4 { margin: 0 0 8px 0; color: #64748b; font-size: 14px; }
+    .card .val { font-size: 22px; font-weight: 700; color: #2563eb; }
+
+    .timer-box { background: #0f172a; color: white; padding: 20px; border-radius: 8px; text-align: center; margin-top: 15px; }
+    .timer-display { font-size: 36px; font-weight: 700; font-family: monospace; color: #38bdf8; margin: 10px 0; }
     
-    .button-group { display: flex; justify-content: center; gap: 10px; margin-top: 10px; }
-    button.action-btn { padding: 10px 20px; background: #2563eb; color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; }
-    button.action-btn:hover { background: #1d4ed8; }
-    button.action-btn.stop { background: #ef4444; }
-    button.action-btn.stop:hover { background: #dc2626; }
+    .btn { padding: 10px 18px; background: #2563eb; color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; }
+    .btn:hover { background: #1d4ed8; }
+    .btn.danger { background: #ef4444; }
+
+    /* Spellcheck & AI Results */
+    .issue-list { background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 15px; margin-top: 15px; }
+    .issue-item { padding: 8px 0; border-bottom: 1px solid #f1f5f9; color: #dc2626; font-size: 14px; }
+    .issue-item:last-child { border-bottom: none; }
+    
+    .ai-bar-bg { background: #e2e8f0; height: 20px; border-radius: 10px; overflow: hidden; margin: 15px 0; }
+    .ai-bar-fill { height: 100%; background: #2563eb; width: 0%; transition: width 0.5s; }
 
     .ad-space { margin-top: 30px; padding: 20px; background: #f1f5f9; border: 1px dashed #cbd5e1; text-align: center; color: #94a3b8; border-radius: 8px; }
-
-    /* Responsive layout voor mobiel/iPad */
-    @media (max-width: 640px) {
-      body { flex-direction: column; }
-      .sidebar { width: 100%; padding: 16px; }
-      .lang-btn-group { display: flex; gap: 8px; overflow-x: auto; }
-      .lang-btn { margin-bottom: 0; white-space: nowrap; }
-    }
   </style>
 </head>
 <body>
 
-  <!-- Zijbalk met Talen -->
-  <div class="sidebar">
-    <h2 id="sidebarTitle">Select Taal / Language</h2>
-    <div class="lang-btn-group">
-      <button class="lang-btn active" onclick="setLanguage('nl')">🇳🇱 Nederlands</button>
-      <button class="lang-btn" onclick="setLanguage('de')">🇩🇪 Deutsch</button>
-      <button class="lang-btn" onclick="setLanguage('en')">🇬🇧 English</button>
-      <button class="lang-btn" onclick="setLanguage('fr')">🇫🇷 Français</button>
-      <button class="lang-btn" onclick="setLanguage('es')">🇪🇸 Español</button>
+  <!-- Top Bar -->
+  <div class="topbar">
+    <button class="menu-btn" onclick="toggleMenu()">☰ <span class="app-title">Toolbox</span></button>
+    <div id="activeLangTag">🇳🇱 NL</div>
+  </div>
+
+  <!-- Overlay -->
+  <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+  <!-- Sliding Menu -->
+  <div class="nav-menu" id="navMenu">
+    <button class="close-btn" onclick="toggleMenu()">✕</button>
+    
+    <div class="menu-section">
+      <h3>Kies Tool</h3>
+      <button class="nav-item active" onclick="switchTab('timer', this)">⏱️ Speech & Presentatie Timer</button>
+      <button class="nav-item" onclick="switchTab('checker', this)">✍️ Grammatica & Spelling</button>
+      <button class="nav-item" onclick="switchTab('ai', this)">🤖 AI-Tekst Detector</button>
+    </div>
+
+    <div class="menu-section">
+      <h3>Taal / Language</h3>
+      <select class="lang-selector" id="langSelect" onchange="changeLanguage()">
+        <option value="nl" selected>🇳🇱 Nederlands</option>
+        <option value="de">🇩🇪 Deutsch</option>
+        <option value="en">🇬🇧 English</option>
+        <option value="fr">🇫🇷 Français</option>
+        <option value="es">🇪🇸 Español</option>
+      </select>
     </div>
   </div>
 
-  <!-- Hoofdvenster -->
-  <div class="main-content">
-    <h1 id="mainTitle">Speech & Presentatie Timer</h1>
-    <p class="subtitle" id="subTitle">Plak je tekst en bereken direct hoe lang jouw spreekbeurt of presentatie duurt.</p>
+  <!-- Main Container -->
+  <div class="container">
 
-    <textarea id="userInput" placeholder="Plak hier je tekst of speech..."></textarea>
+    <!-- TAB 1: SPEECH TIMER -->
+    <div id="tab-timer" class="tab-content active">
+      <h2 id="t1-title">Speech & Presentatie Timer</h2>
+      <p style="color:#64748b;" id="t1-sub">Bereken direct hoe lang jouw tekst duurt om voor te lezen.</p>
+      <textarea id="text-timer" placeholder="Plak hier je tekst..." oninput="calcTimer()"></textarea>
 
-    <div class="results-grid">
-      <div class="card">
-        <h3 id="labelSlow">🐢 Langzaam spreken</h3>
-        <div class="time" id="slowTime">00:00</div>
-        <small id="slowWpm">~90 wpm</small>
+      <div class="card-grid">
+        <div class="card"><h4 id="t1-slow">🐢 Langzaam</h4><div class="val" id="timeSlow">00:00</div></div>
+        <div class="card"><h4 id="t1-norm">🚶 Normaal</h4><div class="val" id="timeNorm">00:00</div></div>
+        <div class="card"><h4 id="t1-fast">🐇 Snel</h4><div class="val" id="timeFast">00:00</div></div>
       </div>
-      <div class="card">
-        <h3 id="labelNormal">🚶 Normaal tempo</h3>
-        <div class="time" id="normalTime">00:00</div>
-        <small id="normalWpm">~100 wpm</small>
-      </div>
-      <div class="card">
-        <h3 id="labelFast">🐇 Snel spreken</h3>
-        <div class="time" id="fastTime">00:00</div>
-        <small id="fastWpm">~125 wpm</small>
+
+      <div class="timer-box">
+        <h4 style="margin:0; color:#94a3b8;" id="t1-practice">Oefen je speech live:</h4>
+        <div class="timer-display" id="stopwatch">00:00</div>
+        <button class="btn" id="startBtn" onclick="startTimer()">Start</button>
+        <button class="btn danger" onclick="resetTimer()">Reset</button>
       </div>
     </div>
 
-    <div class="timer-box">
-      <h3 style="margin:0; color:#94a3b8;" id="timerTitle">Oefen je speech live:</h3>
-      <div class="timer-display" id="stopwatch">00:00</div>
-      <div class="button-group">
-        <button class="action-btn" id="startBtn" onclick="startTimer()">Start Timer</button>
-        <button class="action-btn stop" id="resetBtn" onclick="resetTimer()">Reset</button>
+    <!-- TAB 2: SPELLING & GRAMMATICA -->
+    <div id="tab-checker" class="tab-content">
+      <h2 id="t2-title">Grammatica & Spelling Checker</h2>
+      <p style="color:#64748b;" id="t2-sub">Controleer snel op hoofdletters, leestekens en dubbele spaties.</p>
+      <textarea id="text-checker" placeholder="Plak je tekst om te controleren..." oninput="checkSpelling()"></textarea>
+
+      <div class="issue-list">
+        <h4 style="margin-top:0;" id="t2-issues">Gevonden Aandachtspunten:</h4>
+        <div id="issuesContainer">Geen tekst ingevoerd.</div>
+      </div>
+      <br>
+      <button class="btn" onclick="cleanText()">✨ Automatisch Schoonmaken</button>
+    </div>
+
+    <!-- TAB 3: AI DETECTOR -->
+    <div id="tab-ai" class="tab-content">
+      <h2 id="t3-title">AI-Tekst Detector Indicator</h2>
+      <p style="color:#64748b;" id="t3-sub">Analyseer de zinsstructuur op AI-kenmerken (zoals ChatGPT-stijl).</p>
+      <textarea id="text-ai" placeholder="Plak hier een tekst om de AI-score te berekenen..." oninput="checkAI()"></textarea>
+
+      <div class="card">
+        <h4 id="t3-score">Geschatte AI-waarschijnlijkheid</h4>
+        <div class="val" id="aiScore">0%</div>
+        <div class="ai-bar-bg"><div class="ai-bar-fill" id="aiBar"></div></div>
+        <p style="font-size:13px; color:#64748b;" id="aiAnalysis">Plak een langere tekst voor een nauwkeurige analyse.</p>
       </div>
     </div>
 
-    <div class="ad-space" id="adText">
-      Advertentie Ruimte (Google AdSense)
-    </div>
+    <div class="ad-space">Advertentie Ruimte (Google AdSense)</div>
   </div>
 
   <script>
     let currentLang = 'nl';
 
-    // Vertaalwoordenboek & Snelheden
-    const i18n = {
+    const translations = {
       nl: {
-        docTitle: "Speech & Presentatie Timer",
-        sidebarTitle: "Kies Taal",
-        mainTitle: "Speech & Presentatie Timer",
-        subTitle: "Plak je tekst en bereken direct hoe lang jouw spreekbeurt of presentatie duurt.",
-        placeholder: "Plak hier je tekst of speech...",
-        slow: "🐢 Langzaam spreken",
-        normal: "🚶 Normaal tempo",
-        fast: "🐇 Snel spreken",
-        timerTitle: "Oefen je speech live:",
-        start: "Start Timer",
-        pause: "Pauze",
-        resume: "Hervat",
-        reset: "Reset",
-        ad: "Advertentie Ruimte (Google AdSense)",
-        speeds: { slow: 90, normal: 100, fast: 125 }
+        t1Title: "Speech & Presentatie Timer", t1Sub: "Bereken direct hoe lang jouw tekst duurt om voor te lezen.",
+        slow: "🐢 Langzaam", norm: "🚶 Normaal", fast: "🐇 Snel", practice: "Oefen je speech live:",
+        t2Title: "Grammatica & Spelling Checker", t2Sub: "Controleer snel op hoofdletters, leestekens en dubbele spaties.",
+        t2Issues: "Gevonden Aandachtspunten:",
+        t3Title: "AI-Tekst Detector Indicator", t3Sub: "Analyseer de zinsstructuur op AI-kenmerken (zoals ChatGPT-stijl).",
+        t3Score: "Geschatte AI-waarschijnlijkheid",
+        speeds: { slow: 90, norm: 100, fast: 125 }
       },
       de: {
-        docTitle: "Rede & Präsentations-Timer",
-        sidebarTitle: "Sprache wählen",
-        mainTitle: "Rede & Präsentations-Timer",
-        subTitle: "Fügen Sie Ihren Text ein und berechnen Sie sofort die Sprechdauer.",
-        placeholder: "Fügen Sie Ihren Text hier ein...",
-        slow: "🐢 Langsames Sprechen",
-        normal: "🚶 Normales Tempo",
-        fast: "🐇 Schnelles Sprechen",
-        timerTitle: "Uben Sie Ihre Rede live:",
-        start: "Timer Starten",
-        pause: "Pause",
-        resume: "Fortsetzen",
-        reset: "Zurücksetzen",
-        ad: "Werbefläche (Google AdSense)",
-        speeds: { slow: 90, normal: 105, fast: 130 }
+        t1Title: "Rede & Präsentations-Timer", t1Sub: "Berechnen Sie sofort die Sprechdauer Ihres Textes.",
+        slow: "🐢 Langsam", norm: "🚶 Normal", fast: "🐇 Schnell", practice: "Üben Sie Ihre Rede live:",
+        t2Title: "Grammatik & Rechtschreibprüfung", t2Sub: "Prüfen Sie schnell auf Großbuchstaben und doppelte Leerzeichen.",
+        t2Issues: "Gefundene Probleme:",
+        t3Title: "AI-Text-Detektor", t3Sub: "Analysieren Sie die Satzstruktur auf KI-Merkmale.",
+        t3Score: "Geschätzte KI-Wahrscheinlichkeit",
+        speeds: { slow: 90, norm: 105, fast: 130 }
       },
       en: {
-        docTitle: "Speech & Presentation Timer",
-        sidebarTitle: "Select Language",
-        mainTitle: "Speech & Presentation Timer",
-        subTitle: "Paste your text to instantly calculate your speaking time.",
-        placeholder: "Paste your text or speech here...",
-        slow: "🐢 Slow Pace",
-        normal: "🚶 Average Pace",
-        fast: "🐇 Fast Pace",
-        timerTitle: "Practice your speech live:",
-        start: "Start Timer",
-        pause: "Pause",
-        resume: "Resume",
-        reset: "Reset",
-        ad: "Advertisement Space (Google AdSense)",
-        speeds: { slow: 110, normal: 130, fast: 160 }
+        t1Title: "Speech & Presentation Timer", t1Sub: "Instantly calculate your speaking time.",
+        slow: "🐢 Slow Pace", norm: "🚶 Average Pace", fast: "🐇 Fast Pace", practice: "Practice your speech live:",
+        t2Title: "Grammar & Spelling Checker", t2Sub: "Quickly check for caps, double spaces, and punctuation.",
+        t2Issues: "Detected Issues:",
+        t3Title: "AI Text Detector Indicator", t3Sub: "Analyze sentence variation for AI patterns.",
+        t3Score: "Estimated AI Probability",
+        speeds: { slow: 110, norm: 130, fast: 160 }
       },
       fr: {
-        docTitle: "Minuteur de Discours & Présentation",
-        sidebarTitle: "Choisir la langue",
-        mainTitle: "Minuteur de Discours",
-        subTitle: "Collez votre texte pour calculer immédiatement votre temps de parole.",
-        placeholder: "Collez votre texte ici...",
-        slow: "🐢 Rythme lent",
-        normal: "🚶 Rythme normal",
-        fast: "🐇 Rythme rapide",
-        timerTitle: "Entraînez-vous en direct:",
-        start: "Démarrer",
-        pause: "Pause",
-        resume: "Reprendre",
-        reset: "Réinitialiser",
-        ad: "Espace Publicitaire (Google AdSense)",
-        speeds: { slow: 100, normal: 120, fast: 150 }
+        t1Title: "Minuteur de Discours", t1Sub: "Calculez rapidement votre temps de parole.",
+        slow: "🐢 Rythme lent", norm: "🚶 Rythme normal", fast: "🐇 Rythme rapide", practice: "Entraînez-vous en direct:",
+        t2Title: "Vérificateur de Grammaire", t2Sub: "Vérifiez les majuscules et les espaces doubles.",
+        t2Issues: "Problèmes détectés:",
+        t3Title: "Détecteur de Texte IA", t3Sub: "Analysez la structure des phrases.",
+        t3Score: "Probabilité IA estimée",
+        speeds: { slow: 100, norm: 120, fast: 150 }
       },
       es: {
-        docTitle: "Temporizador de Discursos",
-        sidebarTitle: "Seleccionar Idioma",
-        mainTitle: "Temporizador de Discursos",
-        subTitle: "Pega tu texto para calcular al instante tu tiempo de lectura.",
-        placeholder: "Pega tu texto aquí...",
-        slow: "🐢 Ritmo lento",
-        normal: "🚶 Ritmo normal",
-        fast: "🐇 Ritmo rápido",
-        timerTitle: "Practica tu discurso en vivo:",
-        start: "Iniciar",
-        pause: "Pausa",
-        resume: "Continuar",
-        reset: "Reiniciar",
-        ad: "Espacio Publicitario (Google AdSense)",
-        speeds: { slow: 120, normal: 145, fast: 175 }
+        t1Title: "Temporizador de Discursos", t1Sub: "Calcula al instante tu tiempo de lectura.",
+        slow: "🐢 Ritmo lento", norm: "🚶 Ritmo normal", fast: "🐇 Ritmo rápido", practice: "Practica tu discurso en vivo:",
+        t2Title: "Corrector Ortográfico", t2Sub: "Revisa mayúsculas, espacios dobles y puntuación.",
+        t2Issues: "Problemas detectados:",
+        t3Title: "Detector de Texto IA", t3Sub: "Analiza el patrón de oraciones.",
+        t3Score: "Probabilidad estimada de IA",
+        speeds: { slow: 120, norm: 145, fast: 175 }
       }
     };
 
-    const textarea = document.getElementById('userInput');
-
-    function setLanguage(lang) {
-      currentLang = lang;
-      const data = i18n[lang];
-
-      // Update Actieve Knop in Zijbalk
-      const buttons = document.querySelectorAll('.lang-btn');
-      buttons.forEach(btn => btn.classList.remove('active'));
-      event.target.classList.add('active');
-
-      // Update Teksten op de pagina
-      document.title = data.docTitle;
-      document.getElementById('sidebarTitle').innerText = data.sidebarTitle;
-      document.getElementById('mainTitle').innerText = data.mainTitle;
-      document.getElementById('subTitle').innerText = data.subTitle;
-      textarea.placeholder = data.placeholder;
-      document.getElementById('labelSlow').innerText = data.slow;
-      document.getElementById('labelNormal').innerText = data.normal;
-      document.getElementById('labelFast').innerText = data.fast;
-      document.getElementById('timerTitle').innerText = data.timerTitle;
-      document.getElementById('resetBtn').innerText = data.reset;
-      document.getElementById('adText').innerText = data.ad;
-
-      if (!timerInterval) {
-        document.getElementById('startBtn').innerText = data.start;
-      }
-
-      calculateTimes();
+    function toggleMenu() {
+      document.getElementById('navMenu').classList.toggle('open');
+      document.getElementById('overlay').classList.toggle('open');
     }
 
-    textarea.addEventListener('input', calculateTimes);
-
-    function formatTime(seconds) {
-      const mins = Math.floor(seconds / 60);
-      const secs = Math.floor(seconds % 60);
-      return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    function switchTab(tabId, btn) {
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+      document.getElementById('tab-' + tabId).classList.add('active');
+      btn.classList.add('active');
+      toggleMenu();
     }
 
-    function calculateTimes() {
-      const text = textarea.value.trim();
+    function changeLanguage() {
+      currentLang = document.getElementById('langSelect').value;
+      document.getElementById('activeLangTag').innerText = currentLang.toUpperCase();
+      const t = translations[currentLang];
+
+      document.getElementById('t1-title').innerText = t.t1Title;
+      document.getElementById('t1-sub').innerText = t.t1Sub;
+      document.getElementById('t1-slow').innerText = t.slow;
+      document.getElementById('t1-norm').innerText = t.norm;
+      document.getElementById('t1-fast').innerText = t.fast;
+      document.getElementById('t1-practice').innerText = t.practice;
+
+      document.getElementById('t2-title').innerText = t.t2Title;
+      document.getElementById('t2-sub').innerText = t.t2Sub;
+      document.getElementById('t2-issues').innerText = t.t2Issues;
+
+      document.getElementById('t3-title').innerText = t.t3Title;
+      document.getElementById('t3-sub').innerText = t.t3Sub;
+      document.getElementById('t3-score').innerText = t.t3Score;
+
+      calcTimer();
+    }
+
+    // TAB 1: TIMER LOGIC
+    function formatTime(sec) {
+      const m = Math.floor(sec / 60);
+      const s = Math.floor(sec % 60);
+      return `${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+    }
+
+    function calcTimer() {
+      const text = document.getElementById('text-timer').value.trim();
       const words = text ? text.split(/\s+/).length : 0;
-      const speeds = i18n[currentLang].speeds;
+      const sp = translations[currentLang].speeds;
 
-      document.getElementById('slowWpm').innerText = `~${speeds.slow} wpm`;
-      document.getElementById('normalWpm').innerText = `~${speeds.normal} wpm`;
-      document.getElementById('fastWpm').innerText = `~${speeds.fast} wpm`;
-
-      const slowSecs = words ? (words / speeds.slow) * 60 : 0;
-      const normalSecs = words ? (words / speeds.normal) * 60 : 0;
-      const fastSecs = words ? (words / speeds.fast) * 60 : 0;
-
-      document.getElementById('slowTime').innerText = formatTime(slowSecs);
-      document.getElementById('normalTime').innerText = formatTime(normalSecs);
-      document.getElementById('fastTime').innerText = formatTime(fastSecs);
+      document.getElementById('timeSlow').innerText = formatTime(words ? (words/sp.slow)*60 : 0);
+      document.getElementById('timeNorm').innerText = formatTime(words ? (words/sp.norm)*60 : 0);
+      document.getElementById('timeFast').innerText = formatTime(words ? (words/sp.fast)*60 : 0);
     }
 
-    // Stopwatch Logica
-    let timerInterval = null;
-    let secondsElapsed = 0;
-
+    let timerInt = null, secs = 0;
     function startTimer() {
-      const btn = document.getElementById('startBtn');
-      const langData = i18n[currentLang];
+      const b = document.getElementById('startBtn');
+      if(timerInt) { clearInterval(timerInt); timerInt = null; b.innerText = "Hervat"; }
+      else {
+        b.innerText = "Pauze";
+        timerInt = setInterval(() => { secs++; document.getElementById('stopwatch').innerText = formatTime(secs); }, 1000);
+      }
+    }
+    function resetTimer() {
+      clearInterval(timerInt); timerInt = null; secs = 0;
+      document.getElementById('stopwatch').innerText = "00:00";
+      document.getElementById('startBtn').innerText = "Start";
+    }
 
-      if (timerInterval) {
-        clearInterval(timerInterval);
-        timerInterval = null;
-        btn.innerText = langData.resume;
+    // TAB 2: SPELLING CHECKER
+    function checkSpelling() {
+      const text = document.getElementById('text-checker').value;
+      const container = document.getElementById('issuesContainer');
+      let issues = [];
+
+      if(!text.trim()) { container.innerHTML = "Geen tekst ingevoerd."; return; }
+
+      if(/\s{2,}/.test(text)) issues.push("⚠️ Dubbele of extra spaties gevonden.");
+      if(/(^\s*|[.!?]\s+)[a-z]/g.test(text)) issues.push("⚠️ Zinnen ontbreken een hoofdletter aan het begin.");
+      if(/[a-zA-R0-9]\s+[,.!?]/.test(text)) issues.push("⚠️ Onnodige spatie vóór een leesteken.");
+
+      if(issues.length === 0) {
+        container.innerHTML = "<span style='color:#16a34a;'>✅ Geen basisproblemen gevonden!</span>";
       } else {
-        btn.innerText = langData.pause;
-        timerInterval = setInterval(() => {
-          secondsElapsed++;
-          document.getElementById('stopwatch').innerText = formatTime(secondsElapsed);
-        }, 1000);
+        container.innerHTML = issues.map(i => `<div class="issue-item">${i}</div>`).join('');
       }
     }
 
-    function resetTimer() {
-      clearInterval(timerInterval);
-      timerInterval = null;
-      secondsElapsed = 0;
-      document.getElementById('stopwatch').innerText = '00:00';
-      document.getElementById('startBtn').innerText = i18n[currentLang].start;
+    function cleanText() {
+      let t = document.getElementById('text-checker').value;
+      t = t.replace(/\s+/g, ' '); // Dubbele spaties weg
+      t = t.replace(/\s+([,.!?])/g, '$1'); // Spatie voor punt/komma weg
+      t = t.replace(/(^\s*|[.!?]\s+)([a-z])/g, (m, p1, p2) => p1 + p2.toUpperCase()); // Hoofdletters zinnen
+      document.getElementById('text-checker').value = t;
+      checkSpelling();
+    }
+
+    // TAB 3: AI DETECTOR
+    function checkAI() {
+      const text = document.getElementById('text-ai').value.trim();
+      if(text.length < 50) {
+        document.getElementById('aiScore').innerText = "0%";
+        document.getElementById('aiBar').style.width = "0%";
+        document.getElementById('aiAnalysis').innerText = "Voer minimaal 50 tekens in voor een schatting.";
+        return;
+      }
+
+      const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
+      const words = text.split(/\s+/);
+      
+      // Bereken variatie in zinslengtes (AI genereert vaak hele gelijkmatige zinnen)
+      let lengths = sentences.map(s => s.trim().split(/\s+/).length);
+      let avgLength = words.length / (sentences.length || 1);
+      let variance = lengths.reduce((acc, l) => acc + Math.abs(l - avgLength), 0) / (sentences.length || 1);
+
+      // Lagere variatie = hogere AI kans
+      let score = Math.max(10, Math.min(95, Math.round(100 - (variance * 12))));
+      
+      document.getElementById('aiScore').innerText = score + "%";
+      document.getElementById('aiBar').style.width = score + "%";
+      document.getElementById('aiAnalysis').innerText = score > 60 ? "Hoge mate van regelmatige zinsopbouw (Typerend voor AI-teksten)." : "Natuurlijke variatie in zinslengte gedetecteerd.";
     }
   </script>
-
 </body>
 </html>
