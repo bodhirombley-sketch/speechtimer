@@ -3,34 +3,44 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Text & Speech Multi-Tool Suite</title>
+  <title>Multi-Tool Suite</title>
   <style>
     * { box-sizing: border-box; font-family: system-ui, -apple-system, sans-serif; }
     body { margin: 0; padding: 0; background: #f8fafc; color: #1e293b; display: flex; flex-direction: column; min-height: 100vh; }
 
-    /* Top Bar met Hamburger Knop */
+    /* Top Bar */
     .topbar { background: #0f172a; color: white; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; }
-    .menu-btn { background: none; border: none; color: white; font-size: 24px; cursor: pointer; display: flex; align-items: center; gap: 8px; }
-    .menu-btn:hover { color: #38bdf8; }
+    .hamburger-btn { background: #2563eb; color: white; border: none; font-size: 22px; padding: 8px 14px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-weight: 600; }
+    .hamburger-btn:hover { background: #1d4ed8; }
     .app-title { font-weight: 700; font-size: 18px; }
 
-    /* Navigatie Menu (Slide-out) */
-    .nav-menu { position: fixed; top: 0; left: -280px; width: 280px; height: 100%; background: #0f172a; color: white; padding: 20px; transition: 0.3s; z-index: 100; box-shadow: 2px 0 10px rgba(0,0,0,0.3); }
-    .nav-menu.open { left: 0; }
-    .close-btn { background: none; border: none; color: #94a3b8; font-size: 20px; float: right; cursor: pointer; }
-    .close-btn:hover { color: white; }
+    /* Blauwe Zijbalk Navigatie */
+    .nav-sidebar { position: fixed; top: 0; left: -320px; width: 300px; height: 100%; background: #1e40af; color: white; padding: 20px; transition: 0.3s ease; z-index: 100; box-shadow: 4px 0 15px rgba(0,0,0,0.2); overflow-y: auto; }
+    .nav-sidebar.open { left: 0; }
     
-    .menu-section { margin-top: 30px; }
-    .menu-section h3 { font-size: 12px; text-transform: uppercase; color: #64748b; letter-spacing: 0.05em; margin-bottom: 10px; }
-    .nav-item { display: block; width: 100%; padding: 12px; margin-bottom: 6px; background: transparent; color: #cbd5e1; border: none; border-radius: 6px; font-weight: 500; cursor: pointer; text-align: left; }
-    .nav-item:hover, .nav-item.active { background: #2563eb; color: white; }
+    .sidebar-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #3b82f6; padding-bottom: 12px; margin-bottom: 20px; }
+    .sidebar-header h2 { margin: 0; font-size: 18px; }
+    .close-btn { background: none; border: none; color: white; font-size: 22px; cursor: pointer; }
 
-    .lang-selector { width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #334155; background: #1e293b; color: white; margin-top: 5px; outline: none; }
+    /* Tool Knoppen & Accordeon Menu */
+    .tool-group { margin-bottom: 12px; }
+    .tool-btn { width: 100%; background: #2563eb; color: white; border: none; padding: 14px; border-radius: 8px; font-size: 15px; font-weight: 600; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background 0.2s; }
+    .tool-btn:hover, .tool-btn.active { background: #1d4ed8; }
+    .arrow { transition: transform 0.3s; font-size: 12px; }
+    .tool-btn.open .arrow { transform: rotate(180deg); }
 
-    /* Main Area */
-    .overlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.5); z-index: 90; }
+    /* Taal Keuzemenu onder elke tool */
+    .lang-dropdown { display: none; background: #1e3a8a; border-radius: 0 0 8px 8px; padding: 10px; margin-top: -4px; border: 1px solid #3b82f6; border-top: none; }
+    .lang-dropdown.show { display: block; }
+    .lang-title { font-size: 12px; color: #93c5fd; font-weight: 600; margin: 4px 0 8px 6px; text-transform: uppercase; }
+    .lang-opt { display: block; width: 100%; padding: 8px 12px; margin-bottom: 4px; background: transparent; color: #eff6ff; border: none; border-radius: 6px; font-size: 14px; text-align: left; cursor: pointer; }
+    .lang-opt:hover { background: #2563eb; color: white; }
+
+    /* Overlay */
+    .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 90; }
     .overlay.open { display: block; }
-    
+
+    /* Content Area */
     .container { max-width: 800px; margin: 0 auto; padding: 30px 20px; flex: 1; width: 100%; }
     .tab-content { display: none; }
     .tab-content.active { display: block; }
@@ -50,10 +60,8 @@
     .btn:hover { background: #1d4ed8; }
     .btn.danger { background: #ef4444; }
 
-    /* Spellcheck & AI Results */
     .issue-list { background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 15px; margin-top: 15px; }
     .issue-item { padding: 8px 0; border-bottom: 1px solid #f1f5f9; color: #dc2626; font-size: 14px; }
-    .issue-item:last-child { border-bottom: none; }
     
     .ai-bar-bg { background: #e2e8f0; height: 20px; border-radius: 10px; overflow: hidden; margin: 15px 0; }
     .ai-bar-fill { height: 100%; background: #2563eb; width: 0%; transition: width 0.5s; }
@@ -65,37 +73,70 @@
 
   <!-- Top Bar -->
   <div class="topbar">
-    <button class="menu-btn" onclick="toggleMenu()">☰ <span class="app-title">Toolbox</span></button>
-    <div id="activeLangTag">🇳🇱 NL</div>
+    <button class="hamburger-btn" onclick="toggleSidebar()">☰ Menu</button>
+    <div class="app-title" id="topTitle">⏱️ Speech Timer</div>
   </div>
 
-  <!-- Overlay -->
-  <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+  <!-- Overlay achter menu -->
+  <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
 
-  <!-- Sliding Menu -->
-  <div class="nav-menu" id="navMenu">
-    <button class="close-btn" onclick="toggleMenu()">✕</button>
-    
-    <div class="menu-section">
-      <h3>Kies Tool</h3>
-      <button class="nav-item active" onclick="switchTab('timer', this)">⏱️ Speech & Presentatie Timer</button>
-      <button class="nav-item" onclick="switchTab('checker', this)">✍️ Grammatica & Spelling</button>
-      <button class="nav-item" onclick="switchTab('ai', this)">🤖 AI-Tekst Detector</button>
+  <!-- Blauwe Zijbalk Navigatie -->
+  <div class="nav-sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h2>Kies een Tool</h2>
+      <button class="close-btn" onclick="toggleSidebar()">✕</button>
     </div>
 
-    <div class="menu-section">
-      <h3>Taal / Language</h3>
-      <select class="lang-selector" id="langSelect" onchange="changeLanguage()">
-        <option value="nl" selected>🇳🇱 Nederlands</option>
-        <option value="de">🇩🇪 Deutsch</option>
-        <option value="en">🇬🇧 English</option>
-        <option value="fr">🇫🇷 Français</option>
-        <option value="es">🇪🇸 Español</option>
-      </select>
+    <!-- TOOL 1: SPEECH TIMER -->
+    <div class="tool-group">
+      <button class="tool-btn" onclick="toggleDropdown('drop-timer', this)">
+        <span>⏱️ Speech & Presentatie</span>
+        <span class="arrow">▼</span>
+      </button>
+      <div class="lang-dropdown" id="drop-timer">
+        <div class="lang-title">Kies je taal:</div>
+        <button class="lang-opt" onclick="selectTool('timer', 'nl')">🇳🇱 Nederlands</button>
+        <button class="lang-opt" onclick="selectTool('timer', 'de')">🇩🇪 Deutsch</button>
+        <button class="lang-opt" onclick="selectTool('timer', 'en')">🇬🇧 English</button>
+        <button class="lang-opt" onclick="selectTool('timer', 'fr')">🇫🇷 Français</button>
+        <button class="lang-opt" onclick="selectTool('timer', 'es')">🇪🇸 Español</button>
+      </div>
+    </div>
+
+    <!-- TOOL 2: GRAMMATICA BOT -->
+    <div class="tool-group">
+      <button class="tool-btn" onclick="toggleDropdown('drop-checker', this)">
+        <span>✍️ Grammatica Bot</span>
+        <span class="arrow">▼</span>
+      </button>
+      <div class="lang-dropdown" id="drop-checker">
+        <div class="lang-title">Kies je taal:</div>
+        <button class="lang-opt" onclick="selectTool('checker', 'nl')">🇳🇱 Nederlands</button>
+        <button class="lang-opt" onclick="selectTool('checker', 'de')">🇩🇪 Deutsch</button>
+        <button class="lang-opt" onclick="selectTool('checker', 'en')">🇬🇧 English</button>
+        <button class="lang-opt" onclick="selectTool('checker', 'fr')">🇫🇷 Français</button>
+        <button class="lang-opt" onclick="selectTool('checker', 'es')">🇪🇸 Español</button>
+      </div>
+    </div>
+
+    <!-- TOOL 3: AI DETECTOR -->
+    <div class="tool-group">
+      <button class="tool-btn" onclick="toggleDropdown('drop-ai', this)">
+        <span>🤖 AI-Tekst Detector</span>
+        <span class="arrow">▼</span>
+      </button>
+      <div class="lang-dropdown" id="drop-ai">
+        <div class="lang-title">Kies je taal:</div>
+        <button class="lang-opt" onclick="selectTool('ai', 'nl')">🇳🇱 Nederlands</button>
+        <button class="lang-opt" onclick="selectTool('ai', 'de')">🇩🇪 Deutsch</button>
+        <button class="lang-opt" onclick="selectTool('ai', 'en')">🇬🇧 English</button>
+        <button class="lang-opt" onclick="selectTool('ai', 'fr')">🇫🇷 Français</button>
+        <button class="lang-opt" onclick="selectTool('ai', 'es')">🇪🇸 Español</button>
+      </div>
     </div>
   </div>
 
-  <!-- Main Container -->
+  <!-- Content Container -->
   <div class="container">
 
     <!-- TAB 1: SPEECH TIMER -->
@@ -118,7 +159,7 @@
       </div>
     </div>
 
-    <!-- TAB 2: SPELLING & GRAMMATICA -->
+    <!-- TAB 2: GRAMMATICA BOT -->
     <div id="tab-checker" class="tab-content">
       <h2 id="t2-title">Grammatica & Spelling Checker</h2>
       <p style="color:#64748b;" id="t2-sub">Controleer snel op hoofdletters, leestekens en dubbele spaties.</p>
@@ -151,6 +192,7 @@
 
   <script>
     let currentLang = 'nl';
+    let currentTool = 'timer';
 
     const translations = {
       nl: {
@@ -200,24 +242,39 @@
       }
     };
 
-    function toggleMenu() {
-      document.getElementById('navMenu').classList.toggle('open');
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('open');
       document.getElementById('overlay').classList.toggle('open');
     }
 
-    function switchTab(tabId, btn) {
-      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
-      document.getElementById('tab-' + tabId).classList.add('active');
-      btn.classList.add('active');
-      toggleMenu();
+    function toggleDropdown(dropId, btn) {
+      const drop = document.getElementById(dropId);
+      const isOpen = drop.classList.contains('show');
+      
+      // Sluit alle andere dropdowns
+      document.querySelectorAll('.lang-dropdown').forEach(d => d.classList.remove('show'));
+      document.querySelectorAll('.tool-btn').forEach(b => b.classList.remove('open'));
+
+      if(!isOpen) {
+        drop.classList.add('show');
+        btn.classList.add('open');
+      }
     }
 
-    function changeLanguage() {
-      currentLang = document.getElementById('langSelect').value;
-      document.getElementById('activeLangTag').innerText = currentLang.toUpperCase();
-      const t = translations[currentLang];
+    function selectTool(toolId, lang) {
+      currentTool = toolId;
+      currentLang = lang;
 
+      // Update active Tab
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      document.getElementById('tab-' + toolId).classList.add('active');
+
+      // Update Top Title
+      const titles = { timer: "⏱️ Speech Timer", checker: "✍️ Grammatica Bot", ai: "🤖 AI Detector" };
+      document.getElementById('topTitle').innerText = titles[toolId] + " (" + lang.toUpperCase() + ")";
+
+      // Apply Language Translations
+      const t = translations[lang];
       document.getElementById('t1-title').innerText = t.t1Title;
       document.getElementById('t1-sub').innerText = t.t1Sub;
       document.getElementById('t1-slow').innerText = t.slow;
@@ -234,9 +291,10 @@
       document.getElementById('t3-score').innerText = t.t3Score;
 
       calcTimer();
+      toggleSidebar(); // Sluit menu na keuze
     }
 
-    // TAB 1: TIMER LOGIC
+    // SPEECH TIMER LOGIC
     function formatTime(sec) {
       const m = Math.floor(sec / 60);
       const s = Math.floor(sec % 60);
@@ -268,7 +326,7 @@
       document.getElementById('startBtn').innerText = "Start";
     }
 
-    // TAB 2: SPELLING CHECKER
+    // SPELLING CHECKER LOGIC
     function checkSpelling() {
       const text = document.getElementById('text-checker').value;
       const container = document.getElementById('issuesContainer');
@@ -289,14 +347,14 @@
 
     function cleanText() {
       let t = document.getElementById('text-checker').value;
-      t = t.replace(/\s+/g, ' '); // Dubbele spaties weg
-      t = t.replace(/\s+([,.!?])/g, '$1'); // Spatie voor punt/komma weg
-      t = t.replace(/(^\s*|[.!?]\s+)([a-z])/g, (m, p1, p2) => p1 + p2.toUpperCase()); // Hoofdletters zinnen
+      t = t.replace(/\s+/g, ' ');
+      t = t.replace(/\s+([,.!?])/g, '$1');
+      t = t.replace(/(^\s*|[.!?]\s+)([a-z])/g, (m, p1, p2) => p1 + p2.toUpperCase());
       document.getElementById('text-checker').value = t;
       checkSpelling();
     }
 
-    // TAB 3: AI DETECTOR
+    // AI DETECTOR LOGIC
     function checkAI() {
       const text = document.getElementById('text-ai').value.trim();
       if(text.length < 50) {
@@ -309,12 +367,10 @@
       const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
       const words = text.split(/\s+/);
       
-      // Bereken variatie in zinslengtes (AI genereert vaak hele gelijkmatige zinnen)
       let lengths = sentences.map(s => s.trim().split(/\s+/).length);
       let avgLength = words.length / (sentences.length || 1);
       let variance = lengths.reduce((acc, l) => acc + Math.abs(l - avgLength), 0) / (sentences.length || 1);
 
-      // Lagere variatie = hogere AI kans
       let score = Math.max(10, Math.min(95, Math.round(100 - (variance * 12))));
       
       document.getElementById('aiScore').innerText = score + "%";
