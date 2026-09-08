@@ -78,7 +78,7 @@
 
   <div class="nav-sidebar" id="sidebar">
     <div class="sidebar-header">
-      <h2>Kies een Tool</h2>
+      <h2 id="menuHeader">Kies een Tool</h2>
       <button class="close-btn" onclick="toggleSidebar()">✕</button>
     </div>
 
@@ -88,7 +88,7 @@
         <span class="arrow">▼</span>
       </button>
       <div class="lang-dropdown" id="drop-timer">
-        <div class="lang-title">Kies je taal:</div>
+        <div class="lang-title">Language:</div>
         <button class="lang-opt" onclick="selectTool('timer', 'nl')">🇳🇱 Nederlands</button>
         <button class="lang-opt" onclick="selectTool('timer', 'de')">🇩🇪 Deutsch</button>
         <button class="lang-opt" onclick="selectTool('timer', 'en')">🇬🇧 English</button>
@@ -99,11 +99,11 @@
 
     <div class="tool-group">
       <button class="tool-btn" onclick="toggleDropdown('drop-checker', this)">
-        <span>✍️ Grammatica & Spelfout Bot</span>
+        <span>✍️ Grammatica Bot</span>
         <span class="arrow">▼</span>
       </button>
       <div class="lang-dropdown" id="drop-checker">
-        <div class="lang-title">Kies je taal:</div>
+        <div class="lang-title">Language:</div>
         <button class="lang-opt" onclick="selectTool('checker', 'nl')">🇳🇱 Nederlands</button>
         <button class="lang-opt" onclick="selectTool('checker', 'de')">🇩🇪 Deutsch</button>
         <button class="lang-opt" onclick="selectTool('checker', 'en')">🇬🇧 English</button>
@@ -118,7 +118,7 @@
         <span class="arrow">▼</span>
       </button>
       <div class="lang-dropdown" id="drop-ai">
-        <div class="lang-title">Kies je taal:</div>
+        <div class="lang-title">Language:</div>
         <button class="lang-opt" onclick="selectTool('ai', 'nl')">🇳🇱 Nederlands</button>
         <button class="lang-opt" onclick="selectTool('ai', 'de')">🇩🇪 Deutsch</button>
         <button class="lang-opt" onclick="selectTool('ai', 'en')">🇬🇧 English</button>
@@ -150,7 +150,7 @@
       </div>
     </div>
 
-    <!-- TAB 2: GRAMMATICA & SPELLING BOT -->
+    <!-- TAB 2: GRAMMATICA BOT -->
     <div id="tab-checker" class="tab-content">
       <h2 id="t2-title">Grammatica & Spelfout Bot</h2>
       <p style="color:#64748b;" id="t2-sub">Controleer snel op hoofdletters, leestekens, spaties en typfouten.</p>
@@ -158,8 +158,8 @@
       <textarea id="text-checker" placeholder="Plak je tekst om te controleren..." oninput="checkSpelling()"></textarea>
 
       <div class="action-bar">
-        <button class="btn success" onclick="cleanText()">✨ Automatisch Herstellen & Verbeteren</button>
-        <button class="btn" onclick="copyText('text-checker')">📋 Kopiëren</button>
+        <button class="btn success" id="btnClean" onclick="cleanText()">✨ Automatisch Herstellen</button>
+        <button class="btn" id="btnCopy" onclick="copyText('text-checker')">📋 Kopiëren</button>
       </div>
 
       <div class="issue-list">
@@ -191,49 +191,105 @@
 
     const translations = {
       nl: {
+        placeholder: "Plak hier je tekst...",
+        menuHeader: "Kies een Tool",
         t1Title: "Speech & Presentatie Timer", t1Sub: "Bereken direct hoe lang jouw tekst duurt om voor te lezen.",
         slow: "🐢 Langzaam", norm: "🚶 Normaal", fast: "🐇 Snel", practice: "Oefen je speech live:",
         t2Title: "Grammatica & Spelfout Bot", t2Sub: "Controleer snel op hoofdletters, leestekens, spaties en typfouten.",
         t2Issues: "Gevonden Aandachtspunten:",
+        btnClean: "✨ Automatisch Herstellen", btnCopy: "📋 Kopiëren", copyAlert: "Tekst gekopieerd!",
+        noText: "Geen tekst ingevoerd.", noIssues: "✅ Geen bekende vorm- of spelfouten gevonden!",
+        errSpaces: "⚠️ Extra of dubbele spaties gevonden.", errCaps: "⚠️ Eén of meerdere zinnen beginnen niet met een hoofdletter.",
+        errPunctBefore: "⚠️ Onnodige spatie voor een leesteken.", errPunctAfter: "⚠️ Geen spatie na een leesteken.",
         t3Title: "AI-Tekst Detector Indicator", t3Sub: "Analyseer de zinsstructuur op AI-kenmerken.",
-        t3Score: "Geschatte AI-waarschijnlijkheid",
-        speeds: { slow: 90, norm: 100, fast: 125 }
+        t3Score: "Geschatte AI-waarschijnlijkheid", aiShort: "Voer minimaal 50 tekens in voor een schatting.",
+        aiHigh: "Hoge mate van regelmatige zinsopbouw (Typerend voor AI-teksten).", aiLow: "Natuurlijke variatie in zinslengte gedetecteerd.",
+        speeds: { slow: 90, norm: 100, fast: 125 },
+        replacements: [
+          { bad: /\bsowieso\b|\bzo-wie-so\b/gi, good: "sowieso" },
+          { bad: /\bme moeder\b/gi, good: "m'n moeder" }, { bad: /\bme vader\b/gi, good: "m'n vader" },
+          { bad: /\bteveel\b/gi, good: "te veel" }, { bad: /\bteid\b/gi, good: "tijd" }, { bad: /\bteidens\b/gi, good: "tijdens" }
+        ]
       },
       de: {
+        placeholder: "Fügen Sie Ihren Text hier ein...",
+        menuHeader: "Werkzeug wählen",
         t1Title: "Rede & Präsentations-Timer", t1Sub: "Berechnen Sie sofort die Sprechdauer Ihres Textes.",
         slow: "🐢 Langsam", norm: "🚶 Normal", fast: "🐇 Schnell", practice: "Üben Sie Ihre Rede live:",
         t2Title: "Grammatik & Rechtschreibkorrektur", t2Sub: "Prüfen Sie auf Großbuchstaben, Satzzeichen und Tippfehler.",
         t2Issues: "Gefundene Probleme:",
+        btnClean: "✨ Automatisch korrigieren", btnCopy: "📋 Kopieren", copyAlert: "Text kopiert!",
+        noText: "Kein Text eingegeben.", noIssues: "✅ Keine Rechtschreibfehler gefunden!",
+        errSpaces: "⚠️ Doppelte Leerzeichen gefunden.", errCaps: "⚠️ Sätze sollten mit einem Großbuchstaben beginnen.",
+        errPunctBefore: "⚠️ Unnötiges Leerzeichen vor Satzzeichen.", errPunctAfter: "⚠️ Fehlendes Leerzeichen nach Satzzeichen.",
         t3Title: "AI-Text-Detektor", t3Sub: "Analysieren Sie die Satzstruktur auf KI-Merkmale.",
-        t3Score: "Geschätzte KI-Wahrscheinlichkeit",
-        speeds: { slow: 90, norm: 105, fast: 130 }
+        t3Score: "Geschätzte KI-Wahrscheinlichkeit", aiShort: "Geben Sie mindestens 50 Zeichen ein.",
+        aiHigh: "Hohe Regelmäßigkeit im Satzbau (Typisch für KI).", aiLow: "Natürliche Satzlängenvariation erkannt.",
+        speeds: { slow: 90, norm: 105, fast: 130 },
+        replacements: [
+          { bad: /\bdass\b/gi, good: "dass" }, { bad: /\bundt\b/gi, good: "und" },
+          { bad: /\boderer\b/gi, good: "oder" }, { bad: /\bwieber\b/gi, good: "wieder" }
+        ]
       },
       en: {
+        placeholder: "Paste your text here...",
+        menuHeader: "Select Tool",
         t1Title: "Speech & Presentation Timer", t1Sub: "Instantly calculate your speaking time.",
         slow: "🐢 Slow Pace", norm: "🚶 Average Pace", fast: "🐇 Fast Pace", practice: "Practice your speech live:",
         t2Title: "Grammar & Spelling Corrector", t2Sub: "Quickly fix capitalization, spacing, and typos.",
         t2Issues: "Detected Issues:",
+        btnClean: "✨ Auto Correct & Fix", btnCopy: "📋 Copy Text", copyAlert: "Text copied to clipboard!",
+        noText: "No text entered.", noIssues: "✅ No common grammar or spelling issues found!",
+        errSpaces: "⚠️ Extra or double spaces found.", errCaps: "⚠️ Sentences should start with a capital letter.",
+        errPunctBefore: "⚠️ Unnecessary space before punctuation.", errPunctAfter: "⚠️ Missing space after punctuation.",
         t3Title: "AI Text Detector Indicator", t3Sub: "Analyze sentence variation for AI patterns.",
-        t3Score: "Estimated AI Probability",
-        speeds: { slow: 110, norm: 130, fast: 160 }
+        t3Score: "Estimated AI Probability", aiShort: "Enter at least 50 characters for estimation.",
+        aiHigh: "High sentence regularity (Typical AI pattern).", aiLow: "Natural variation in sentence length detected.",
+        speeds: { slow: 110, norm: 130, fast: 160 },
+        replacements: [
+          { bad: /\bteh\b/gi, good: "the" }, { bad: /\brecieve\b/gi, good: "receive" },
+          { bad: /\bdont\b/gi, good: "don't" }, { bad: /\bcant\b/gi, good: "can't" }, { bad: /\bwaht\b/gi, good: "what" }
+        ]
       },
       fr: {
+        placeholder: "Collez votre texte ici...",
+        menuHeader: "Choisir un outil",
         t1Title: "Minuteur de Discours", t1Sub: "Calculez rapidement votre temps de parole.",
         slow: "🐢 Rythme lent", norm: "🚶 Rythme normal", fast: "🐇 Rythme rapide", practice: "Entraînez-vous en direct:",
         t2Title: "Correcteur d'Orthographe", t2Sub: "Corrigez la ponctuation, les majuscules et les fautes.",
         t2Issues: "Problèmes détectés:",
+        btnClean: "✨ Corriger automatiquement", btnCopy: "📋 Copier", copyAlert: "Texte copié!",
+        noText: "Aucun texte saisi.", noIssues: "✅ Aucun problème détecté!",
+        errSpaces: "⚠️ Espaces doubles trouvés.", errCaps: "⚠️ Les phrases doivent commencer par une majuscule.",
+        errPunctBefore: "⚠️ Espace inutile avant la ponctuation.", errPunctAfter: "⚠️ Espace manquant après la ponctuation.",
         t3Title: "Détecteur de Texte IA", t3Sub: "Analysez la structure des phrases.",
-        t3Score: "Probabilité IA estimée",
-        speeds: { slow: 100, norm: 120, fast: 150 }
+        t3Score: "Probabilité IA estimée", aiShort: "Saisissez au moins 50 caractères.",
+        aiHigh: "Régularité élevée des phrases (Atypique/IA).", aiLow: "Variation naturelle de la longueur des phrases.",
+        speeds: { slow: 100, norm: 120, fast: 150 },
+        replacements: [
+          { bad: /\bpa\b/gi, good: "pas" }, { bad: /\bboocoup\b/gi, good: "beaucoup" },
+          { bad: /\btro\b/gi, good: "trop" }
+        ]
       },
       es: {
+        placeholder: "Pega tu texto aquí...",
+        menuHeader: "Seleccionar Herramienta",
         t1Title: "Temporizador de Discursos", t1Sub: "Calcula al instante tu tiempo de lectura.",
         slow: "🐢 Ritmo lento", norm: "🚶 Ritmo normal", fast: "🐇 Ritmo rápido", practice: "Practica tu discurso en vivo:",
-        t2Title: "Corrector de Gramática y Ortografía", t2Sub: "Corrige mayúsculas, espacios y errores tipográficos.",
+        t2Title: "Corrector de Ortografía", t2Sub: "Corrige mayúsculas, espacios y errores tipográficos.",
         t2Issues: "Problemas detectados:",
+        btnClean: "✨ Corregir automáticamente", btnCopy: "📋 Copiar", copyAlert: "¡Texto copiado!",
+        noText: "No hay texto ingresado.", noIssues: "✅ ¡No se encontraron errores comunes!",
+        errSpaces: "⚠️ Se encontraron espacios dobles.", errCaps: "⚠️ Las oraciones deben comenzar con mayúscula.",
+        errPunctBefore: "⚠️ Espacio innecesario antes de la puntuación.", errPunctAfter: "⚠️ Falta espacio después de la puntuación.",
         t3Title: "Detector de Texto IA", t3Sub: "Analiza el patrón de oraciones.",
-        t3Score: "Probabilidad estimada de IA",
-        speeds: { slow: 120, norm: 145, fast: 175 }
+        t3Score: "Probabilidad estimada de IA", aiShort: "Ingrese al menos 50 caracteres.",
+        aiHigh: "Alta regularidad en las oraciones (Típico de IA).", aiLow: "Variación natural en la longitud de las oraciones.",
+        speeds: { slow: 120, norm: 145, fast: 175 },
+        replacements: [
+          { bad: /\btambien\b/gi, good: "también" }, { bad: /\bporq\b/gi, good: "porque" },
+          { bad: /\bq\b/gi, good: "que" }
+        ]
       }
     };
 
@@ -265,6 +321,7 @@
       document.getElementById('topTitle').innerText = titles[toolId] + " (" + lang.toUpperCase() + ")";
 
       const t = translations[lang];
+      document.getElementById('menuHeader').innerText = t.menuHeader;
       document.getElementById('t1-title').innerText = t.t1Title;
       document.getElementById('t1-sub').innerText = t.t1Sub;
       document.getElementById('t1-slow').innerText = t.slow;
@@ -275,12 +332,21 @@
       document.getElementById('t2-title').innerText = t.t2Title;
       document.getElementById('t2-sub').innerText = t.t2Sub;
       document.getElementById('t2-issues').innerText = t.t2Issues;
+      document.getElementById('btnClean').innerText = t.btnClean;
+      document.getElementById('btnCopy').innerText = t.btnCopy;
 
       document.getElementById('t3-title').innerText = t.t3Title;
       document.getElementById('t3-sub').innerText = t.t3Sub;
       document.getElementById('t3-score').innerText = t.t3Score;
 
+      // Update placeholders
+      document.getElementById('text-timer').placeholder = t.placeholder;
+      document.getElementById('text-checker').placeholder = t.placeholder;
+      document.getElementById('text-ai').placeholder = t.placeholder;
+
       calcTimer();
+      checkSpelling();
+      checkAI();
       toggleSidebar();
     }
 
@@ -316,61 +382,47 @@
       document.getElementById('startBtn').innerText = "Start";
     }
 
-    // SPELLING & GRAMMATICA BOT LOGIC
+    // GRAMMATICA BOT LOGIC (MEERTALIG)
     function checkSpelling() {
       const text = document.getElementById('text-checker').value;
       const container = document.getElementById('issuesContainer');
+      const t = translations[currentLang];
       let issues = [];
 
-      if(!text.trim()) { container.innerHTML = "Geen tekst ingevoerd."; return; }
+      if(!text.trim()) { container.innerHTML = t.noText; return; }
 
-      if(/\s{2,}/.test(text)) issues.push("⚠️ Extra of dubbele spaties gevonden.");
-      if(/(^\s*|[.!?]\s+)[a-z]/g.test(text)) issues.push("⚠️ Eén of meerdere zinnen beginnen niet met een hoofdletter.");
-      if(/[a-zA-Z0-9]\s+[,.!?]/.test(text)) issues.push("⚠️ Onnodige spatie voor een leesteken.");
-      if(/[,.!?][a-zA-Z]/.test(text)) issues.push("⚠️ Geen spatie na een leesteken.");
+      if(/\s{2,}/.test(text)) issues.push(t.errSpaces);
+      if(/(^\s*|[.!?]\s+)[a-z]/g.test(text)) issues.push(t.errCaps);
+      if(/[a-zA-Z0-9]\s+[,.!?]/.test(text)) issues.push(t.errPunctBefore);
+      if(/[,.!?][a-zA-Z]/.test(text)) issues.push(t.errPunctAfter);
 
       if(issues.length === 0) {
-        container.innerHTML = "<span style='color:#16a34a;'>✅ Geen bekende vorm- of spelfouten gevonden!</span>";
+        container.innerHTML = `<span style='color:#16a34a;'>${t.noIssues}</span>`;
       } else {
         container.innerHTML = issues.map(i => `<div class="issue-item">${i}</div>`).join('');
       }
     }
 
     function cleanText() {
-      let t = document.getElementById('text-checker').value;
-      if(!t.trim()) return;
+      let textVal = document.getElementById('text-checker').value;
+      if(!textVal.trim()) return;
+
+      const langData = translations[currentLang];
 
       // 1. Spaties opschonen
-      t = t.replace(/\s+/g, ' '); // Dubbele spaties
-      t = t.replace(/\s+([,.!?])/g, '$1'); // Spatie vóór komma/punt weg
-      t = t.replace(/([,.!?])([a-zA-Z])/g, '$1 $2'); // Spatie ná komma/punt toevoegen
+      textVal = textVal.replace(/\s+/g, ' ');
+      textVal = textVal.replace(/\s+([,.!?])/g, '$1');
+      textVal = textVal.replace(/([,.!?])([a-zA-Z])/g, '$1 $2');
 
-      // 2. Hoofdletters corrigeren aan begin van zin
-      t = t.replace(/(^\s*|[.!?]\s+)([a-z])/g, (m, p1, p2) => p1 + p2.toUpperCase());
+      // 2. Hoofdletters corrigeren
+      textVal = textVal.replace(/(^\s*|[.!?]\s+)([a-z])/g, (m, p1, p2) => p1 + p2.toUpperCase());
 
-      // 3. Bekende spelfout-patronen corrigeren (NL, EN, DE, FR, ES)
-      const replacements = [
-        { bad: /\bzo-wie-so\b|\bsowieso\b/gi, good: "sowieso" },
-        { bad: /\bme moeder\b/gi, good: "m'n moeder" },
-        { bad: /\bme vader\b/gi, good: "m'n vader" },
-        { bad: /\bteveel\b/gi, good: "te veel" },
-        { bad: /\bteveelste\b/gi, good: "zoveelste" },
-        { bad: /\btekening\b/gi, good: "tekening" },
-        { bad: /\bteid\b/gi, good: "tijd" },
-        { bad: /\bteidens\b/gi, good: "tijdens" },
-        { bad: /\breagren\b/gi, good: "reageren" },
-        { bad: /\bdat wat\b/gi, good: "dat wat" },
-        // Engels
-        { bad: /\bteh\b/gi, good: "the" },
-        { bad: /\breally\b/gi, good: "really" },
-        { bad: /\brecieve\b/gi, good: "receive" },
-        { bad: /\bdont\b/gi, good: "don't" },
-        { bad: /\bcant\b/gi, good: "can't" }
-      ];
+      // 3. Taalspecifieke woordcorrecties toepassen
+      if(langData.replacements) {
+        langData.replacements.forEach(r => { textVal = textVal.replace(r.bad, r.good); });
+      }
 
-      replacements.forEach(r => { t = t.replace(r.bad, r.good); });
-
-      document.getElementById('text-checker').value = t;
+      document.getElementById('text-checker').value = textVal;
       checkSpelling();
     }
 
@@ -378,17 +430,19 @@
       const val = document.getElementById(id).value;
       if(val) {
         navigator.clipboard.writeText(val);
-        alert("Tekst gekopieerd naar het klembord!");
+        alert(translations[currentLang].copyAlert);
       }
     }
 
-    // AI DETECTOR LOGIC
+    // AI DETECTOR LOGIC (MEERTALIG)
     function checkAI() {
       const text = document.getElementById('text-ai').value.trim();
+      const t = translations[currentLang];
+
       if(text.length < 50) {
         document.getElementById('aiScore').innerText = "0%";
         document.getElementById('aiBar').style.width = "0%";
-        document.getElementById('aiAnalysis').innerText = "Voer minimaal 50 tekens in voor een schatting.";
+        document.getElementById('aiAnalysis').innerText = t.aiShort;
         return;
       }
 
@@ -403,7 +457,7 @@
       
       document.getElementById('aiScore').innerText = score + "%";
       document.getElementById('aiBar').style.width = score + "%";
-      document.getElementById('aiAnalysis').innerText = score > 60 ? "Hoge mate van regelmatige zinsopbouw (Typerend voor AI-teksten)." : "Natuurlijke variatie in zinslengte gedetecteerd.";
+      document.getElementById('aiAnalysis').innerText = score > 60 ? t.aiHigh : t.aiLow;
     }
   </script>
 </body>
