@@ -146,7 +146,7 @@
         <h4 style="margin:0; color:#94a3b8;" id="t1-practice">Oefen je speech live:</h4>
         <div class="timer-display" id="stopwatch">00:00</div>
         <button class="btn" id="startBtn" onclick="startTimer()">Start</button>
-        <button class="btn danger" onclick="resetTimer()">Reset</button>
+        <button class="btn danger" id="resetBtn" onclick="resetTimer()">Reset</button>
       </div>
     </div>
 
@@ -155,30 +155,30 @@
       <h2 id="t2-title">Grammatica & Spelfout Bot</h2>
       <p style="color:#64748b;" id="t2-sub">Controleer snel op hoofdletters, leestekens, spaties en typfouten.</p>
       
-      <textarea id="text-checker" placeholder="Plak je tekst om te controleren..." oninput="checkSpelling()"></textarea>
+      <textarea id="text-checker" placeholder="Plak hier je tekst..." oninput="checkSpelling()"></textarea>
 
       <div class="action-bar">
-        <button class="btn success" id="btnClean" onclick="cleanText()">✨ Automatisch Herstellen</button>
-        <button class="btn" id="btnCopy" onclick="copyText('text-checker')">📋 Kopiëren</button>
+        <button class="btn success" id="btnClean" onclick="cleanText()">✨ Auto Correct & Fix</button>
+        <button class="btn" id="btnCopy" onclick="copyText('text-checker')">📋 Copy Text</button>
       </div>
 
       <div class="issue-list">
-        <h4 style="margin-top:0;" id="t2-issues">Gevonden Aandachtspunten:</h4>
-        <div id="issuesContainer">Geen tekst ingevoerd.</div>
+        <h4 style="margin-top:0;" id="t2-issues">Detected Issues:</h4>
+        <div id="issuesContainer">No text entered.</div>
       </div>
     </div>
 
     <!-- TAB 3: AI DETECTOR -->
     <div id="tab-ai" class="tab-content">
-      <h2 id="t3-title">AI-Tekst Detector Indicator</h2>
-      <p style="color:#64748b;" id="t3-sub">Analyseer de zinsstructuur op AI-kenmerken (zoals ChatGPT-stijl).</p>
-      <textarea id="text-ai" placeholder="Plak hier een tekst om de AI-score te berekenen..." oninput="checkAI()"></textarea>
+      <h2 id="t3-title">AI Text Detector Indicator</h2>
+      <p style="color:#64748b;" id="t3-sub">Analyze sentence variation for AI patterns.</p>
+      <textarea id="text-ai" placeholder="Paste your text here..." oninput="checkAI()"></textarea>
 
       <div class="card">
-        <h4 id="t3-score">Geschatte AI-waarschijnlijkheid</h4>
+        <h4 id="t3-score">Estimated AI Probability</h4>
         <div class="val" id="aiScore">0%</div>
         <div class="ai-bar-bg"><div class="ai-bar-fill" id="aiBar"></div></div>
-        <p style="font-size:13px; color:#64748b;" id="aiAnalysis">Plak een langere tekst voor een nauwkeurige analyse.</p>
+        <p style="font-size:13px; color:#64748b;" id="aiAnalysis">Enter at least 50 characters for estimation.</p>
       </div>
     </div>
 
@@ -194,7 +194,7 @@
         placeholder: "Plak hier je tekst...",
         menuHeader: "Kies een Tool",
         t1Title: "Speech & Presentatie Timer", t1Sub: "Bereken direct hoe lang jouw tekst duurt om voor te lezen.",
-        slow: "🐢 Langzaam", norm: "🚶 Normaal", fast: "🐇 Snel", practice: "Oefen je speech live:",
+        slow: "🐢 Langzaam", norm: "🚶 Normaal", fast: "🐇 Snel", practice: "Oefen je speech live:", startBtn: "Start", pauseBtn: "Pauze", resumeBtn: "Hervat", resetBtn: "Reset",
         t2Title: "Grammatica & Spelfout Bot", t2Sub: "Controleer snel op hoofdletters, leestekens, spaties en typfouten.",
         t2Issues: "Gevonden Aandachtspunten:",
         btnClean: "✨ Automatisch Herstellen", btnCopy: "📋 Kopiëren", copyAlert: "Tekst gekopieerd!",
@@ -215,7 +215,7 @@
         placeholder: "Fügen Sie Ihren Text hier ein...",
         menuHeader: "Werkzeug wählen",
         t1Title: "Rede & Präsentations-Timer", t1Sub: "Berechnen Sie sofort die Sprechdauer Ihres Textes.",
-        slow: "🐢 Langsam", norm: "🚶 Normal", fast: "🐇 Schnell", practice: "Üben Sie Ihre Rede live:",
+        slow: "🐢 Langsam", norm: "🚶 Normal", fast: "🐇 Schnell", practice: "Üben Sie Ihre Rede live:", startBtn: "Start", pauseBtn: "Pause", resumeBtn: "Fortsetzen", resetBtn: "Zurücksetzen",
         t2Title: "Grammatik & Rechtschreibkorrektur", t2Sub: "Prüfen Sie auf Großbuchstaben, Satzzeichen und Tippfehler.",
         t2Issues: "Gefundene Probleme:",
         btnClean: "✨ Automatisch korrigieren", btnCopy: "📋 Kopieren", copyAlert: "Text kopiert!",
@@ -235,7 +235,7 @@
         placeholder: "Paste your text here...",
         menuHeader: "Select Tool",
         t1Title: "Speech & Presentation Timer", t1Sub: "Instantly calculate your speaking time.",
-        slow: "🐢 Slow Pace", norm: "🚶 Average Pace", fast: "🐇 Fast Pace", practice: "Practice your speech live:",
+        slow: "🐢 Slow Pace", norm: "🚶 Average Pace", fast: "🐇 Fast Pace", practice: "Practice your speech live:", startBtn: "Start", pauseBtn: "Pause", resumeBtn: "Resume", resetBtn: "Reset",
         t2Title: "Grammar & Spelling Corrector", t2Sub: "Quickly fix capitalization, spacing, and typos.",
         t2Issues: "Detected Issues:",
         btnClean: "✨ Auto Correct & Fix", btnCopy: "📋 Copy Text", copyAlert: "Text copied to clipboard!",
@@ -255,7 +255,7 @@
         placeholder: "Collez votre texte ici...",
         menuHeader: "Choisir un outil",
         t1Title: "Minuteur de Discours", t1Sub: "Calculez rapidement votre temps de parole.",
-        slow: "🐢 Rythme lent", norm: "🚶 Rythme normal", fast: "🐇 Rythme rapide", practice: "Entraînez-vous en direct:",
+        slow: "🐢 Rythme lent", norm: "🚶 Rythme normal", fast: "🐇 Rythme rapide", practice: "Entraînez-vous en direct:", startBtn: "Démarrer", pauseBtn: "Pause", resumeBtn: "Reprendre", resetBtn: "Réinitialiser",
         t2Title: "Correcteur d'Orthographe", t2Sub: "Corrigez la ponctuation, les majuscules et les fautes.",
         t2Issues: "Problèmes détectés:",
         btnClean: "✨ Corriger automatiquement", btnCopy: "📋 Copier", copyAlert: "Texte copié!",
@@ -275,7 +275,7 @@
         placeholder: "Pega tu texto aquí...",
         menuHeader: "Seleccionar Herramienta",
         t1Title: "Temporizador de Discursos", t1Sub: "Calcula al instante tu tiempo de lectura.",
-        slow: "🐢 Ritmo lento", norm: "🚶 Ritmo normal", fast: "🐇 Ritmo rápido", practice: "Practica tu discurso en vivo:",
+        slow: "🐢 Ritmo lento", norm: "🚶 Ritmo normal", fast: "🐇 Ritmo rápido", practice: "Practica tu discurso en vivo:", startBtn: "Iniciar", pauseBtn: "Pausa", resumeBtn: "Continuar", resetBtn: "Reiniciar",
         t2Title: "Corrector de Ortografía", t2Sub: "Corrige mayúsculas, espacios y errores tipográficos.",
         t2Issues: "Problemas detectados:",
         btnClean: "✨ Corregir automáticamente", btnCopy: "📋 Copiar", copyAlert: "¡Texto copiado!",
@@ -317,8 +317,15 @@
       document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
       document.getElementById('tab-' + toolId).classList.add('active');
 
-      const titles = { timer: "⏱️ Speech Timer", checker: "✍️ Grammatica Bot", ai: "🤖 AI Detector" };
-      document.getElementById('topTitle').innerText = titles[toolId] + " (" + lang.toUpperCase() + ")";
+      const toolNames = {
+        nl: { timer: "⏱️ Speech Timer", checker: "✍️ Grammatica Bot", ai: "🤖 AI Detector" },
+        en: { timer: "⏱️ Speech Timer", checker: "✍️ Grammar Bot", ai: "🤖 AI Detector" },
+        de: { timer: "⏱️ Sprech-Timer", checker: "✍️ Grammatik Bot", ai: "🤖 KI Detektor" },
+        fr: { timer: "⏱️ Minuteur Discours", checker: "✍️ Robot Grammaire", ai: "🤖 Détecteur IA" },
+        es: { timer: "⏱️ Temporizador Speech", checker: "✍️ Bot Gramática", ai: "🤖 Detector IA" }
+      };
+
+      document.getElementById('topTitle').innerText = toolNames[lang][toolId] + " (" + lang.toUpperCase() + ")";
 
       const t = translations[lang];
       document.getElementById('menuHeader').innerText = t.menuHeader;
@@ -328,6 +335,8 @@
       document.getElementById('t1-norm').innerText = t.norm;
       document.getElementById('t1-fast').innerText = t.fast;
       document.getElementById('t1-practice').innerText = t.practice;
+      document.getElementById('startBtn').innerText = t.startBtn;
+      document.getElementById('resetBtn').innerText = t.resetBtn;
 
       document.getElementById('t2-title').innerText = t.t2Title;
       document.getElementById('t2-sub').innerText = t.t2Sub;
@@ -370,16 +379,20 @@
     let timerInt = null, secs = 0;
     function startTimer() {
       const b = document.getElementById('startBtn');
-      if(timerInt) { clearInterval(timerInt); timerInt = null; b.innerText = "Hervat"; }
-      else {
-        b.innerText = "Pauze";
+      const t = translations[currentLang];
+      if(timerInt) { 
+        clearInterval(timerInt); 
+        timerInt = null; 
+        b.innerText = t.resumeBtn; 
+      } else {
+        b.innerText = t.pauseBtn;
         timerInt = setInterval(() => { secs++; document.getElementById('stopwatch').innerText = formatTime(secs); }, 1000);
       }
     }
     function resetTimer() {
       clearInterval(timerInt); timerInt = null; secs = 0;
       document.getElementById('stopwatch').innerText = "00:00";
-      document.getElementById('startBtn').innerText = "Start";
+      document.getElementById('startBtn').innerText = translations[currentLang].startBtn;
     }
 
     // GRAMMATICA BOT LOGIC (MEERTALIG)
