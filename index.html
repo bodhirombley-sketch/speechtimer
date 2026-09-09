@@ -597,10 +597,10 @@
       // 1. Dubbele spaties oplossen
       textVal = textVal.replace(/\s+/g, ' ');
 
-      // 2. Onnodige spatie voor leesteken weghalen (bijv. "woord ." -> "woord.")
+      // 2. Onnodige spatie voor leesteken weghalen
       textVal = textVal.replace(/\s+([,.!?])/g, '$1');
 
-      // 3. Ontbrekende spatie na leesteken toevoegen (bijv. "woord.tekst" -> "woord. tekst")
+      // 3. Ontbrekende spatie na leesteken toevoegen
       textVal = textVal.replace(/([,.!?])([a-zA-Zà-ÿÀ-ß])/g, '$1 $2');
 
       // 4. Eerste letter van een zin automatisch een hoofdletter geven
