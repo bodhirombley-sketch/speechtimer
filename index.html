@@ -13,10 +13,7 @@
     .topbar-left { display: flex; align-items: center; gap: 16px; }
     .hamburger-btn { background: #2563eb; color: white; border: none; font-size: 15px; padding: 8px 14px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 6px; font-weight: 600; transition: background 0.2s; }
     .hamburger-btn:hover { background: #1d4ed8; }
-    
-    .app-brand { display: flex; align-items: center; gap: 10px; cursor: pointer; text-decoration: none; }
-    .app-logo { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; }
-    .app-title { font-weight: 800; font-size: 20px; color: #2563eb; letter-spacing: -0.5px; }
+    .app-title { font-weight: 800; font-size: 20px; color: #2563eb; cursor: pointer; letter-spacing: -0.5px; }
 
     .share-top-btn { background: #2563eb; color: white; border: none; padding: 8px 16px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: background 0.2s; }
     .share-top-btn:hover { background: #1d4ed8; }
@@ -121,19 +118,7 @@
   <div class="topbar">
     <div class="topbar-left">
       <button class="hamburger-btn" onclick="toggleSidebar()">☰ Menu</button>
-      <div class="app-brand" onclick="selectTool('home', currentLang)">
-        <div class="app-logo">
-          <!-- Logo Ingewerkt -->
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="32" height="32" rx="8" fill="#2563eb"/>
-            <path d="M10 10H22V12H10V10Z" fill="white"/>
-            <path d="M10 15H18V17H10V15Z" fill="white"/>
-            <path d="M10 20H15V22H10V20Z" fill="white"/>
-            <circle cx="21" cy="20" r="2.5" fill="#38bdf8"/>
-          </svg>
-        </div>
-        <div class="app-title" id="topTitle">Every-Tool</div>
-      </div>
+      <div class="app-title" id="topTitle" onclick="selectTool('home', currentLang)">Every-Tool</div>
     </div>
     <button class="share-top-btn" onclick="shareSite()" id="shareBtnText">🔗 Deel Site</button>
   </div>
