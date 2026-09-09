@@ -7,7 +7,7 @@
   <!-- PLAK HIER ONDER JE GOOGLE SEARCH CONSOLE META-TAG ALS JE DIE HEBT -->
   <!-- <meta name="google-site-verification" content="JOUW_CODE_VAN_GOOGLE" /> -->
 
-  <title>Multi-Tool Suite</title>
+  <title>Every-Tool - Slimme Tools voor Tekst en Spraak</title>
   <style>
     * { box-sizing: border-box; font-family: system-ui, -apple-system, sans-serif; }
     body { margin: 0; padding: 0; background: #f8fafc; color: #1e293b; display: flex; flex-direction: column; min-height: 100vh; }
@@ -16,9 +16,8 @@
     .topbar-left { display: flex; align-items: center; gap: 12px; }
     .hamburger-btn { background: #2563eb; color: white; border: none; font-size: 22px; padding: 8px 14px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-weight: 600; }
     .hamburger-btn:hover { background: #1d4ed8; }
-    .app-title { font-weight: 700; font-size: 18px; }
+    .app-title { font-weight: 700; font-size: 18px; cursor: pointer; }
 
-    /* Deelknop in de topbar */
     .share-top-btn { background: #10b981; color: white; border: none; padding: 8px 14px; border-radius: 6px; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: background 0.2s; }
     .share-top-btn:hover { background: #059669; }
 
@@ -48,6 +47,16 @@
     .tab-content { display: none; }
     .tab-content.active { display: block; }
 
+    /* HOME HERO STIJLEN */
+    .hero-section { text-align: center; padding: 40px 20px; background: white; border: 1px solid #e2e8f0; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+    .hero-section h1 { font-size: 32px; color: #0f172a; margin-bottom: 15px; }
+    .hero-section p { font-size: 16px; color: #64748b; margin-bottom: 25px; line-height: 1.5; }
+    .hero-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; text-align: left; margin-top: 25px; }
+    .hero-card { background: #f8fafc; border: 1px solid #e2e8f0; padding: 20px; border-radius: 8px; cursor: pointer; transition: all 0.2s; }
+    .hero-card:hover { border-color: #2563eb; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,0.1); }
+    .hero-card h3 { margin: 0 0 8px 0; color: #1e293b; font-size: 18px; }
+    .hero-card p { margin: 0; font-size: 14px; color: #64748b; }
+
     textarea { width: 100%; height: 180px; padding: 14px; font-size: 16px; border: 2px solid #cbd5e1; border-radius: 8px; resize: vertical; outline: none; margin-bottom: 15px; }
     textarea:focus { border-color: #2563eb; }
 
@@ -75,7 +84,6 @@
 
     .ad-space { margin-top: 30px; padding: 20px; background: #f1f5f9; border: 1px dashed #cbd5e1; text-align: center; color: #94a3b8; border-radius: 8px; }
 
-    /* BEVEILIGINGSBALK STIJLEN */
     .security-footer {
       margin-top: 25px;
       padding: 15px 20px;
@@ -91,16 +99,8 @@
       color: #475569;
       box-shadow: 0 1px 3px rgba(0,0,0,0.05);
     }
-    .sec-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: 600;
-    }
-    .sec-icon {
-      font-size: 16px;
-      color: #16a34a;
-    }
+    .sec-item { display: flex; align-items: center; gap: 8px; font-weight: 600; }
+    .sec-icon { font-size: 16px; color: #16a34a; }
   </style>
 </head>
 <body>
@@ -108,9 +108,8 @@
   <div class="topbar">
     <div class="topbar-left">
       <button class="hamburger-btn" onclick="toggleSidebar()">☰ Menu</button>
-      <div class="app-title" id="topTitle">⏱️ Speech Timer</div>
+      <div class="app-title" id="topTitle" onclick="selectTool('home', currentLang)">Every-Tool</div>
     </div>
-    <!-- Deelknop toegevoegd in de topbar -->
     <button class="share-top-btn" onclick="shareSite()" id="shareBtnText">🔗 Deel Site</button>
   </div>
 
@@ -120,6 +119,13 @@
     <div class="sidebar-header">
       <h2 id="menuHeader">Kies een Tool</h2>
       <button class="close-btn" onclick="toggleSidebar()">✕</button>
+    </div>
+
+    <!-- Home knop in sidebar -->
+    <div class="tool-group">
+      <button class="tool-btn" onclick="selectTool('home', currentLang)">
+        <span>🏠 Home / Overzicht</span>
+      </button>
     </div>
 
     <div class="tool-group">
@@ -170,8 +176,31 @@
 
   <div class="container">
 
+    <!-- TAB 0: HOME / LANDING PAGE -->
+    <div id="tab-home" class="tab-content active">
+      <div class="hero-section">
+        <h1 id="homeHeading">Alles-in-één tools voor je tekst en presentaties</h1>
+        <p id="homeSub">Welkom bij Every-Tool! Kies hieronder direct de tool die je wilt gebruiken voor je spraak, grammatica of teksten.</p>
+        
+        <div class="hero-grid">
+          <div class="hero-card" onclick="selectTool('timer', currentLang)">
+            <h3>⏱️ Speech Timer</h3>
+            <p id="card1Text">Bereken direct hoe lang jouw tekst duurt om voor te lezen.</p>
+          </div>
+          <div class="hero-card" onclick="selectTool('checker', currentLang)">
+            <h3>✍️ Grammatica Bot</h3>
+            <p id="card2Text">Controleer snel op hoofdletters, leestekens en typfouten.</p>
+          </div>
+          <div class="hero-card" onclick="selectTool('ai', currentLang)">
+            <h3>🤖 AI Detector</h3>
+            <p id="card3Text">Analyseer zinsstructuren op typische AI-kenmerken.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- TAB 1: SPEECH TIMER -->
-    <div id="tab-timer" class="tab-content active">
+    <div id="tab-timer" class="tab-content">
       <h2 id="t1-title">Speech & Presentatie Timer</h2>
       <p style="color:#64748b;" id="t1-sub">Bereken direct hoe lang jouw tekst duurt om voor te lezen.</p>
       <textarea id="text-timer" placeholder="Plak hier je tekst..." oninput="calcTimer()"></textarea>
@@ -224,33 +253,28 @@
 
     <div class="ad-space">Advertentie Ruimte (Google AdSense)</div>
 
-    <!-- BEVEILIGING EN VERIFICATIE FOOTER -->
     <div class="security-footer">
-      <div class="sec-item">
-        <span class="sec-icon">🔒</span>
-        <span>256-Bit SSL Encrypted Connection</span>
-      </div>
-      <div class="sec-item">
-        <span class="sec-icon">🛡️</span>
-        <span>100% Privacy - Client-Side Processed</span>
-      </div>
-      <div class="sec-item">
-        <span class="sec-icon">✅</span>
-        <span>Google Search Console Verified</span>
-      </div>
+      <div class="sec-item"><span class="sec-icon">🔒</span><span>256-Bit SSL Encrypted Connection</span></div>
+      <div class="sec-item"><span class="sec-icon">🛡️</span><span>100% Privacy - Client-Side Processed</span></div>
+      <div class="sec-item"><span class="sec-icon">✅</span><span>Google Search Console Verified</span></div>
     </div>
 
   </div>
 
   <script>
     let currentLang = 'nl';
-    let currentTool = 'timer';
+    let currentTool = 'home';
 
     const translations = {
       nl: {
         placeholder: "Plak hier je tekst...",
         menuHeader: "Kies een Tool",
         shareBtn: "🔗 Deel Site",
+        homeHeading: "Alles-in-één tools voor je tekst en presentaties",
+        homeSub: "Welkom bij Every-Tool! Kies hieronder direct de tool die je wilt gebruiken voor je spraak, grammatica of teksten.",
+        c1: "Bereken direct hoe lang jouw tekst duurt om voor te lezen.",
+        c2: "Controleer snel op hoofdletters, leestekens en typfouten.",
+        c3: "Analyseer zinsstructuren op typische AI-kenmerken.",
         t1Title: "Speech & Presentatie Timer", t1Sub: "Bereken direct hoe lang jouw tekst duurt om voor te lezen.",
         slow: "🐢 Langzaam", norm: "🚶 Normaal", fast: "🐇 Snel", practice: "Oefen je speech live:", startBtn: "Start", pauseBtn: "Pauze", resumeBtn: "Hervat", resetBtn: "Reset",
         t2Title: "Grammatica & Spelfout Bot", t2Sub: "Controleer snel op hoofdletters, leestekens, spaties en typfouten.",
@@ -264,6 +288,7 @@
         aiHigh: "Hoge mate van regelmatige zinsopbouw (Typerend voor AI-teksten).", aiLow: "Natuurlijke variatie in zinslengte gedetecteerd.",
         speeds: { slow: 90, norm: 100, fast: 125 },
         replacements: [
+          { bad: /\bils ben\b|\bil ben\b/gi, good: "ik ben" },
           { bad: /\bsowieso\b|\bzo-wie-so\b/gi, good: "sowieso" },
           { bad: /\bme moeder\b/gi, good: "m'n moeder" }, { bad: /\bme vader\b/gi, good: "m'n vader" },
           { bad: /\bteveel\b/gi, good: "te veel" }, { bad: /\bteid\b/gi, good: "tijd" }, { bad: /\bteidens\b/gi, good: "tijdens" }
@@ -273,6 +298,11 @@
         placeholder: "Fügen Sie Ihren Text hier ein...",
         menuHeader: "Werkzeug wählen",
         shareBtn: "🔗 Seite teilen",
+        homeHeading: "All-in-One Tools für Text und Präsentationen",
+        homeSub: "Willkommen bei Every-Tool! Wählen Sie unten direkt das gewünschte Werkzeug aus.",
+        c1: "Berechnen Sie sofort die Sprechdauer Ihres Textes.",
+        c2: "Prüfen Sie auf Großbuchstaben, Satzzeichen und Tippfehler.",
+        c3: "Analysieren Sie Satzstrukturen auf KI-Merkmale.",
         t1Title: "Rede & Präsentations-Timer", t1Sub: "Berechnen Sie sofort die Sprechdauer Ihres Textes.",
         slow: "🐢 Langsam", norm: "🚶 Normal", fast: "🐇 Schnell", practice: "Üben Sie Ihre Rede live:", startBtn: "Start", pauseBtn: "Pause", resumeBtn: "Fortsetzen", resetBtn: "Zurücksetzen",
         t2Title: "Grammatik & Rechtschreibkorrektur", t2Sub: "Prüfen Sie auf Großbuchstaben, Satzzeichen und Tippfehler.",
@@ -286,14 +316,18 @@
         aiHigh: "Hohe Regelmäßigkeit im Satzbau (Typisch für KI).", aiLow: "Natürliche Satzlängenvariation erkannt.",
         speeds: { slow: 90, norm: 105, fast: 130 },
         replacements: [
-          { bad: /\bdass\b/gi, good: "dass" }, { bad: /\bundt\b/gi, good: "und" },
-          { bad: /\boderer\b/gi, good: "oder" }, { bad: /\bwieber\b/gi, good: "wieder" }
+          { bad: /\bdass\b/gi, good: "dass" }, { bad: /\bundt\b/gi, good: "und" }
         ]
       },
       en: {
         placeholder: "Paste your text here...",
         menuHeader: "Select Tool",
         shareBtn: "🔗 Share Site",
+        homeHeading: "All-in-one tools for text and presentations",
+        homeSub: "Welcome to Every-Tool! Choose a tool below to get started instantly.",
+        c1: "Instantly calculate your speaking time.",
+        c2: "Quickly fix capitalization, spacing, and typos.",
+        c3: "Analyze sentence variation for AI patterns.",
         t1Title: "Speech & Presentation Timer", t1Sub: "Instantly calculate your speaking time.",
         slow: "🐢 Slow Pace", norm: "🚶 Average Pace", fast: "🐇 Fast Pace", practice: "Practice your speech live:", startBtn: "Start", pauseBtn: "Pause", resumeBtn: "Resume", resetBtn: "Reset",
         t2Title: "Grammar & Spelling Corrector", t2Sub: "Quickly fix capitalization, spacing, and typos.",
@@ -307,14 +341,18 @@
         aiHigh: "High sentence regularity (Typical AI pattern).", aiLow: "Natural variation in sentence length detected.",
         speeds: { slow: 110, norm: 130, fast: 160 },
         replacements: [
-          { bad: /\bteh\b/gi, good: "the" }, { bad: /\brecieve\b/gi, good: "receive" },
-          { bad: /\bdont\b/gi, good: "don't" }, { bad: /\bcant\b/gi, good: "can't" }, { bad: /\bwaht\b/gi, good: "what" }
+          { bad: /\bteh\b/gi, good: "the" }, { bad: /\brecieve\b/gi, good: "receive" }
         ]
       },
       fr: {
         placeholder: "Collez votre texte ici...",
         menuHeader: "Choisir un outil",
         shareBtn: "🔗 Partager",
+        homeHeading: "Outils tout-en-un pour textes et présentations",
+        homeSub: "Bienvenue sur Every-Tool ! Choisissez un outil ci-dessous.",
+        c1: "Calculez rapidement votre temps de parole.",
+        c2: "Corrigez la ponctuation, les majuscules et les fautes.",
+        c3: "Analysez la structure des phrases.",
         t1Title: "Minuteur de Discours", t1Sub: "Calculez rapidement votre temps de parole.",
         slow: "🐢 Rythme lent", norm: "🚶 Rythme normal", fast: "🐇 Rythme rapide", practice: "Entraînez-vous en direct:", startBtn: "Démarrer", pauseBtn: "Pause", resumeBtn: "Reprendre", resetBtn: "Réinitialiser",
         t2Title: "Correcteur d'Orthographe", t2Sub: "Corrigez la ponctuation, les majuscules et les fautes.",
@@ -328,19 +366,23 @@
         aiHigh: "Régularité élevée des phrases (Atypique/IA).", aiLow: "Variation naturelle de la longueur des phrases.",
         speeds: { slow: 100, norm: 120, fast: 150 },
         replacements: [
-          { bad: /\bpa\b/gi, good: "pas" }, { bad: /\bboocoup\b/gi, good: "beaucoup" },
-          { bad: /\btro\b/gi, good: "trop" }
+          { bad: /\bpa\b/gi, good: "pas" }
         ]
       },
       es: {
         placeholder: "Pega tu texto aquí...",
         menuHeader: "Seleccionar Herramienta",
         shareBtn: "🔗 Compartir",
+        homeHeading: "Herramientas todo en uno para textos y presentaciones",
+        homeSub: "¡Bienvenido a Every-Tool! Elige una herramienta a continuación.",
+        c1: "Calcula al instante tu tiempo de lectura.",
+        c2: "Corrige mayúsculas, espacios y errores tipográficos.",
+        c3: "Analiza el patrón de oraciones.",
         t1Title: "Temporizador de Discursos", t1Sub: "Calcula al instante tu tiempo de lectura.",
         slow: "🐢 Ritmo lento", norm: "🚶 Ritmo normal", fast: "🐇 Ritmo rápido", practice: "Practica tu discurso en vivo:", startBtn: "Iniciar", pauseBtn: "Pausa", resumeBtn: "Continuar", resetBtn: "Reiniciar",
         t2Title: "Corrector de Ortografía", t2Sub: "Corrige mayúsculas, espacios y errores tipográficos.",
         t2Issues: "Problemas detectados:",
-        btnClean: "✨ Corregir automáticamente", btnCopy: "📋 Copiar", copyAlert: "¡Enlace copiado!",
+        btnClean: "✨ Corregir automáticamente", btnCopy: "📋 Copier", copyAlert: "¡Enlace copiado!",
         noText: "No hay texto ingresado.", noIssues: "✅ ¡No se encontraron errores comunes!",
         errSpaces: "⚠️ Se encontraron espacios dobles.", errCaps: "⚠️ Las oraciones deben comenzar con mayúscula.",
         errPunctBefore: "⚠️ Espacio innecesario antes de la puntuación.", errPunctAfter: "⚠️ Falta espacio después de la puntuación.",
@@ -349,8 +391,7 @@
         aiHigh: "Alta regularidad en las oraciones (Típico de IA).", aiLow: "Variación natural en la longitud de las oraciones.",
         speeds: { slow: 120, norm: 145, fast: 175 },
         replacements: [
-          { bad: /\btambien\b/gi, good: "también" }, { bad: /\bporq\b/gi, good: "porque" },
-          { bad: /\bq\b/gi, good: "que" }
+          { bad: /\btambien\b/gi, good: "también" }
         ]
       }
     };
@@ -385,18 +426,27 @@
       document.getElementById('tab-' + toolId).classList.add('active');
 
       const toolNames = {
-        nl: { timer: "⏱️ Speech Timer", checker: "✍️ Grammatica Bot", ai: "🤖 AI Detector" },
-        en: { timer: "⏱️ Speech Timer", checker: "✍️ Grammar Bot", ai: "🤖 AI Detector" },
-        de: { timer: "⏱️ Sprech-Timer", checker: "✍️ Grammatik Bot", ai: "🤖 KI Detektor" },
-        fr: { timer: "⏱️ Minuteur Discours", checker: "✍️ Robot Grammaire", ai: "🤖 Détecteur IA" },
-        es: { timer: "⏱️ Temporizador Speech", checker: "✍️ Bot Gramática", ai: "🤖 Detector IA" }
+        nl: { home: "Every-Tool", timer: "⏱️ Speech Timer", checker: "✍️ Grammatica Bot", ai: "🤖 AI Detector" },
+        en: { home: "Every-Tool", timer: "⏱️ Speech Timer", checker: "✍️ Grammar Bot", ai: "🤖 AI Detector" },
+        de: { home: "Every-Tool", timer: "⏱️ Sprech-Timer", checker: "✍️ Grammatik Bot", ai: "🤖 KI Detektor" },
+        fr: { home: "Every-Tool", timer: "⏱️ Minuteur Discours", checker: "✍️ Robot Grammaire", ai: "🤖 Détecteur IA" },
+        es: { home: "Every-Tool", timer: "⏱️ Temporizador Speech", checker: "✍️ Bot Gramática", ai: "🤖 Detector IA" }
       };
 
-      document.getElementById('topTitle').innerText = toolNames[lang][toolId] + " (" + lang.toUpperCase() + ")";
+      document.getElementById('topTitle').innerText = toolNames[lang][toolId] + (toolId !== 'home' ? " (" + lang.toUpperCase() + ")" : "");
 
       const t = translations[lang];
       document.getElementById('menuHeader').innerText = t.menuHeader;
       document.getElementById('shareBtnText').innerText = t.shareBtn;
+
+      // Home vertalingen
+      document.getElementById('homeHeading').innerText = t.homeHeading;
+      document.getElementById('homeSub').innerText = t.homeSub;
+      document.getElementById('card1Text').innerText = t.c1;
+      document.getElementById('card2Text').innerText = t.c2;
+      document.getElementById('card3Text').innerText = t.c3;
+
+      // Timer vertalingen
       document.getElementById('t1-title').innerText = t.t1Title;
       document.getElementById('t1-sub').innerText = t.t1Sub;
       document.getElementById('t1-slow').innerText = t.slow;
@@ -406,28 +456,27 @@
       document.getElementById('startBtn').innerText = t.startBtn;
       document.getElementById('resetBtn').innerText = t.resetBtn;
 
+      // Checker vertalingen
       document.getElementById('t2-title').innerText = t.t2Title;
       document.getElementById('t2-sub').innerText = t.t2Sub;
       document.getElementById('t2-issues').innerText = t.t2Issues;
       document.getElementById('btnClean').innerText = t.btnClean;
       document.getElementById('btnCopy').innerText = t.btnCopy;
 
+      // AI vertalingen
       document.getElementById('t3-title').innerText = t.t3Title;
       document.getElementById('t3-sub').innerText = t.t3Sub;
       document.getElementById('t3-score').innerText = t.t3Score;
 
-      // Update placeholders
       document.getElementById('text-timer').placeholder = t.placeholder;
       document.getElementById('text-checker').placeholder = t.placeholder;
       document.getElementById('text-ai').placeholder = t.placeholder;
 
-      calcTimer();
-      checkSpelling();
-      checkAI();
-      toggleSidebar();
+      if(document.getElementById('sidebar').classList.contains('open')) {
+        toggleSidebar();
+      }
     }
 
-    // SPEECH TIMER LOGIC
     function formatTime(sec) {
       const m = Math.floor(sec / 60);
       const s = Math.floor(sec % 60);
@@ -463,7 +512,6 @@
       document.getElementById('startBtn').innerText = translations[currentLang].startBtn;
     }
 
-    // GRAMMATICA BOT LOGIC (MEERTALIG)
     function checkSpelling() {
       const text = document.getElementById('text-checker').value;
       const container = document.getElementById('issuesContainer');
@@ -490,15 +538,11 @@
 
       const langData = translations[currentLang];
 
-      // 1. Spaties opschonen
       textVal = textVal.replace(/\s+/g, ' ');
       textVal = textVal.replace(/\s+([,.!?])/g, '$1');
       textVal = textVal.replace(/([,.!?])([a-zA-Z])/g, '$1 $2');
-
-      // 2. Hoofdletters corrigeren
       textVal = textVal.replace(/(^\s*|[.!?]\s+)([a-z])/g, (m, p1, p2) => p1 + p2.toUpperCase());
 
-      // 3. Taalspecifieke woordcorrecties toepassen
       if(langData.replacements) {
         langData.replacements.forEach(r => { textVal = textVal.replace(r.bad, r.good); });
       }
@@ -515,7 +559,6 @@
       }
     }
 
-    // AI DETECTOR LOGIC (MEERTALIG)
     function checkAI() {
       const text = document.getElementById('text-ai').value.trim();
       const t = translations[currentLang];
