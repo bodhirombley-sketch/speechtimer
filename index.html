@@ -289,10 +289,9 @@
         errPunctBefore: "⚠️ Onnodige spatie voor leesteken.", errPunctAfter: "⚠️ Ontbrekende spatie na leesteken.",
         t3Title: "AI-Tekst Detector Indicator", t3Sub: "Analyseer de zinsstructuur op AI-kenmerken.",
         t3Score: "Geschatte AI-waarschijnlijkheid", aiShort: "Voer minimaal 50 tekens in voor een schatting.",
-        aiHigh: "Hoge mate van regelmatige zinsopbouw (Typerend voor AI-teksten).", aiLow: "Natuurlijke variatie in zinslengte gedetecteerd.",
+        aiHigh: "Hoge mate van regelmatige zinsopbouw en/of typische AI-clichés gedetecteerd.", aiLow: "Natuurlijke variatie in zinslengte en woordgebruik gedetecteerd.",
         speeds: { slow: 90, norm: 100, fast: 125 },
         replacements: [
-          { bad: /\beigelek\b/gi, good: "eigenlijk", desc: "Typfout: 'eigelek' gecorrigeerd naar 'eigenlijk'" },
           { bad: /\bils ben\b|\bil ben\b/gi, good: "ik ben", desc: "Typfout: 'ils ben' of 'il ben' gecorrigeerd naar 'ik ben'" },
           { bad: /\bochtendlight\b/gi, good: "ochtendlicht", desc: "Typfout: 'ochtendlight' gecorrigeerd naar 'ochtendlicht'" },
           { bad: /\bterwijil\b/gi, good: "terwijl", desc: "Typfout: 'terwijil' gecorrigeerd naar 'terwijl'" },
@@ -643,7 +642,30 @@
       let avgLength = words.length / (sentences.length || 1);
       let variance = lengths.reduce((acc, l) => acc + Math.abs(l - avgLength), 0) / (sentences.length || 1);
 
-      let score = Math.max(10, Math.min(95, Math.round(100 - (variance * 12))));
+      // Uitbreiding: Detectie van typische AI-stopwoorden / clichés per taal
+      const aiClichés = {
+        nl: ["daarnaast", "bovendien", "belangrijk om op te merken", "in het hedendaagse", "ten slotte", "cruciaal", "alomvattend", "essentieel"],
+        en: ["furthermore", "moreover", "it is important to note", "delve", "testament", "realm", "beacon", "in conclusion"],
+        de: ["darüber hinaus", "essenziell", "zudem", "im heutigen", "schlussendlich"],
+        fr: ["de plus", "il est important de noter", "en outre", "crucial"],
+        es: ["además", "es importante destacar", "en resumen", "crucial"]
+      };
+
+      let clichecount = 0;
+      const currentList = aiClichés[currentLang] || aiClichés['en'];
+      const lowerText = text.toLowerCase();
+      
+      currentList.forEach(phrase => {
+        const regex = new RegExp(phrase, 'g');
+        const matches = lowerText.match(regex);
+        if (matches) {
+          clichecount += matches.length;
+        }
+      });
+
+      let baseScore = 100 - (variance * 10);
+      let clichéBonus = clichecount * 7; 
+      let score = Math.max(5, Math.min(98, Math.round(baseScore + clichéBonus)));
       
       document.getElementById('aiScore').innerText = score + "%";
       document.getElementById('aiBar').style.width = score + "%";
