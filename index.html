@@ -46,7 +46,6 @@
     .tab-content { display: none; }
     .tab-content.active { display: block; }
 
-    /* SAAS HERO STIJL MET AUTOCOMPLETE ZOEKBALK */
     .hero-section { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 50px 40px; margin-bottom: 30px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05); text-align: center; }
     .hero-tag { display: inline-block; background: #eff6ff; color: #2563eb; font-size: 12px; font-weight: 700; text-transform: uppercase; padding: 6px 12px; border-radius: 20px; margin-bottom: 20px; letter-spacing: 0.5px; }
     .hero-section h1 { font-size: 42px; font-weight: 800; color: #0f172a; margin: 0 0 15px 0; letter-spacing: -1px; line-height: 1.2; }
@@ -58,14 +57,12 @@
     .hero-search-box input { flex: 1; border: none; padding: 10px 14px; font-size: 16px; outline: none; background: transparent; color: #0f172a; }
     .hero-search-btn { background: #2563eb; color: white; border: none; width: 48px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 18px; }
 
-    /* Autocomplete Resultaten Dropdown */
     .search-suggestions { position: absolute; top: 100%; left: 0; right: 0; background: #ffffff; border: 1px solid #cbd5e1; border-top: none; border-radius: 0 0 12px 12px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); z-index: 20; display: none; text-align: left; overflow: hidden; margin-top: 4px; }
     .search-suggestions.show { display: block; }
     .suggestion-item { padding: 12px 16px; font-size: 15px; color: #1e293b; cursor: pointer; border-bottom: 1px solid #f1f5f9; display: flex; align-items: center; gap: 10px; font-weight: 500; }
     .suggestion-item:last-child { border-bottom: none; }
     .suggestion-item:hover { background: #eff6ff; color: #2563eb; }
 
-    /* Content Cards & Elementen */
     textarea { width: 100%; height: 160px; padding: 16px; font-size: 15px; border: 1px solid #cbd5e1; border-radius: 10px; resize: vertical; outline: none; margin-bottom: 16px; background: #ffffff; color: #0f172a; }
     textarea:focus { border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
 
@@ -301,6 +298,7 @@
           { bad: /\bme vader\b/gi, good: "m'n vader", desc: "Grammatica: 'me vader' verbeterd naar 'm'n vader'" },
           { bad: /\bteveel\b/gi, good: "te veel", desc: "Spelling: 'teveel' (los in deze context) naar 'te veel'" },
           { bad: /\bteid\b/gi, good: "tijd", desc: "Typfout: 'teid' gecorrigeerd naar 'tijd'" },
+          { bad: /\bteidgebrek\b/gi, good: "tijdgebrek", desc: "Typfout: 'teidgebrek' gecorrigeerd naar 'tijdgebrek'" },
           { bad: /\bteidens\b/gi, good: "tijdens", desc: "Typfout: 'teidens' gecorrigeerd naar 'tijdens'" },
           { bad: /\bwordt je\b/gi, good: "word je", desc: "Grammatica: 'wordt je' (zonder t) verbeterd naar 'word je'" },
           { bad: /\bhun hebben\b/gi, good: "zij hebben", desc: "Grammatica: 'hun hebben' verbeterd naar 'zij hebben'" }
@@ -542,7 +540,6 @@
       document.getElementById('startBtn').innerText = translations[currentLang].startBtn;
     }
 
-    // Uitgebreide spelfout- en typfout-detectie
     function checkSpelling() {
       const text = document.getElementById('text-checker').value;
       const container = document.getElementById('issuesContainer');
@@ -571,7 +568,6 @@
       }
     }
 
-    // Automatisch herstellen van typfouten en opmaak
     function cleanText() {
       let textVal = document.getElementById('text-checker').value;
       if(!textVal.trim()) return;
