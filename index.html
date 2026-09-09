@@ -1,653 +1,213 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Every-Tool - Slimme Tools voor Tekst en Spraak</title>
-  <style>
-    * { box-sizing: border-box; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-    body { margin: 0; padding: 0; background: #f8fafc; color: #0f172a; display: flex; flex-direction: column; min-height: 100vh; }
+    <meta charset="UTF-8">
+    <title>Docs-stijl Spellingscontrole</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-    /* Topbalk */
-    .topbar { background: #ffffff; border-bottom: 1px solid #e2e8f0; padding: 12px 24px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; }
-    .topbar-left { display: flex; align-items: center; gap: 16px; }
-    .hamburger-btn { background: #2563eb; color: white; border: none; font-size: 15px; padding: 8px 14px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 6px; font-weight: 600; transition: background 0.2s; }
-    .hamburger-btn:hover { background: #1d4ed8; }
-    .app-title { font-weight: 800; font-size: 20px; color: #2563eb; cursor: pointer; letter-spacing: -0.5px; }
+        .toolbar {
+            width: 100%;
+            max-width: 800px;
+            background: #ffffff;
+            padding: 12px 20px;
+            border: 1px solid #dadce0;
+            border-bottom: none;
+            border-radius: 8px 8px 0 0;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
 
-    .share-top-btn { background: #2563eb; color: white; border: none; padding: 8px 16px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: background 0.2s; }
-    .share-top-btn:hover { background: #1d4ed8; }
+        .btn-check {
+            background-color: #1a73e8;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
 
-    /* Sidebar Menu */
-    .nav-sidebar { position: fixed; top: 0; left: -320px; width: 300px; height: 100%; background: #ffffff; color: #0f172a; padding: 24px; transition: 0.3s ease; z-index: 100; box-shadow: 10px 0 25px rgba(0,0,0,0.1); border-right: 1px solid #e2e8f0; overflow-y: auto; }
-    .nav-sidebar.open { left: 0; }
-    
-    .sidebar-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 16px; margin-bottom: 20px; }
-    .sidebar-header h2 { margin: 0; font-size: 18px; color: #0f172a; }
-    .close-btn { background: #f1f5f9; border: none; color: #64748b; width: 32px; height: 32px; border-radius: 50%; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-    .close-btn:hover { background: #e2e8f0; color: #0f172a; }
+        .btn-check:hover {
+            background-color: #1557b0;
+        }
 
-    .tool-group { margin-bottom: 12px; }
-    .tool-btn { width: 100%; background: #f8fafc; color: #1e293b; border: 1px solid #e2e8f0; padding: 12px 16px; border-radius: 8px; font-size: 15px; font-weight: 600; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.2s; }
-    .tool-btn:hover, .tool-btn.active { background: #eff6ff; border-color: #2563eb; color: #2563eb; }
-    .arrow { transition: transform 0.3s; font-size: 12px; color: #64748b; }
-    .tool-btn.open .arrow { transform: rotate(180deg); color: #2563eb; }
+        .editor-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            background: white;
+            border: 1px solid #dadce0;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            min-height: 250px;
+            padding: 30px;
+            box-sizing: border-box;
+        }
 
-    .lang-dropdown { display: none; background: #ffffff; border-radius: 8px; padding: 8px; margin-top: 6px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
-    .lang-dropdown.show { display: block; }
-    .lang-title { font-size: 11px; color: #64748b; font-weight: 700; margin: 4px 0 6px 8px; text-transform: uppercase; letter-spacing: 0.5px; }
-    .lang-opt { display: block; width: 100%; padding: 8px 12px; margin-bottom: 2px; background: transparent; color: #334155; border: none; border-radius: 6px; font-size: 14px; text-align: left; cursor: pointer; font-weight: 500; }
-    .lang-opt:hover { background: #eff6ff; color: #2563eb; }
+        /* Het bewerkbare tekstgebied */
+        #editor {
+            outline: none;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #202124;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
 
-    .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.4); backdrop-filter: blur(2px); z-index: 90; }
-    .overlay.open { display: block; }
+        /* Google Docs-stijl rode golvende onderstreping voor spelfouten */
+        .spell-error {
+            text-decoration: underline wavy #ea4335;
+            text-decoration-skip-ink: none;
+            cursor: pointer;
+            position: relative;
+        }
 
-    .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; flex: 1; width: 100%; }
-    .tab-content { display: none; }
-    .tab-content.active { display: block; }
+        /* Popup menu voor suggesties (Google Docs pop-up look) */
+        #suggestion-popup {
+            display: none;
+            position: absolute;
+            background: white;
+            border: 1px solid #dadce0;
+            box-shadow: 0 4px 12px rgba(60,64,67,0.15);
+            border-radius: 6px;
+            padding: 6px 0;
+            z-index: 1000;
+            min-width: 160px;
+        }
 
-    .hero-section { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 50px 40px; margin-bottom: 30px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05); text-align: center; }
-    .hero-tag { display: inline-block; background: #eff6ff; color: #2563eb; font-size: 12px; font-weight: 700; text-transform: uppercase; padding: 6px 12px; border-radius: 20px; margin-bottom: 20px; letter-spacing: 0.5px; }
-    .hero-section h1 { font-size: 42px; font-weight: 800; color: #0f172a; margin: 0 0 15px 0; letter-spacing: -1px; line-height: 1.2; }
-    .hero-section p { font-size: 18px; color: #64748b; margin: 0 auto 30px auto; max-width: 600px; line-height: 1.6; }
-    
-    .hero-search-wrapper { position: relative; max-width: 600px; margin: 0 auto; }
-    .hero-search-box { display: flex; background: #ffffff; border: 2px solid #cbd5e1; border-radius: 12px; padding: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); transition: border-color 0.2s; }
-    .hero-search-box:focus-within { border-color: #2563eb; }
-    .hero-search-box input { flex: 1; border: none; padding: 10px 14px; font-size: 16px; outline: none; background: transparent; color: #0f172a; }
-    .hero-search-btn { background: #2563eb; color: white; border: none; width: 48px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+        .suggestion-item {
+            padding: 8px 16px;
+            font-size: 14px;
+            color: #1a73e8;
+            cursor: pointer;
+        }
 
-    .search-suggestions { position: absolute; top: 100%; left: 0; right: 0; background: #ffffff; border: 1px solid #cbd5e1; border-top: none; border-radius: 0 0 12px 12px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); z-index: 20; display: none; text-align: left; overflow: hidden; margin-top: 4px; }
-    .search-suggestions.show { display: block; }
-    .suggestion-item { padding: 12px 16px; font-size: 15px; color: #1e293b; cursor: pointer; border-bottom: 1px solid #f1f5f9; display: flex; align-items: center; gap: 10px; font-weight: 500; }
-    .suggestion-item:last-child { border-bottom: none; }
-    .suggestion-item:hover { background: #eff6ff; color: #2563eb; }
+        .suggestion-item:hover {
+            background-color: #f1f3f4;
+        }
 
-    textarea { width: 100%; height: 160px; padding: 16px; font-size: 15px; border: 1px solid #cbd5e1; border-radius: 10px; resize: vertical; outline: none; margin-bottom: 16px; background: #ffffff; color: #0f172a; }
-    textarea:focus { border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
-
-    .action-bar { display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
-
-    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin: 16px 0; }
-    .card { background: white; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.02); }
-    .card h4 { margin: 0 0 8px 0; color: #64748b; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; }
-    .card .val { font-size: 26px; font-weight: 700; color: #2563eb; }
-
-    .timer-box { background: #0f172a; color: white; padding: 24px; border-radius: 12px; text-align: center; margin-top: 20px; }
-    .timer-display { font-size: 40px; font-weight: 800; font-family: monospace; color: #38bdf8; margin: 10px 0; letter-spacing: 2px; }
-    
-    .btn { padding: 10px 20px; background: #2563eb; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
-    .btn:hover { background: #1d4ed8; }
-    .btn.danger { background: #ef4444; }
-    .btn.danger:hover { background: #dc2626; }
-    .btn.success { background: #2563eb; }
-    .btn.success:hover { background: #1d4ed8; }
-
-    .issue-list { background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; margin-top: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.02); }
-    .issue-item { padding: 8px 0; border-bottom: 1px solid #f1f5f9; color: #dc2626; font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 8px; }
-    
-    .ai-bar-bg { background: #e2e8f0; height: 12px; border-radius: 6px; overflow: hidden; margin: 15px 0; }
-    .ai-bar-fill { height: 100%; background: #2563eb; width: 0%; transition: width 0.5s ease; border-radius: 6px; }
-
-    .ad-space { margin-top: 30px; padding: 20px; background: #ffffff; border: 1px dashed #cbd5e1; text-align: center; color: #94a3b8; border-radius: 12px; font-size: 14px; }
-
-    .security-footer {
-      margin-top: 30px;
-      padding: 16px 20px;
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-      flex-wrap: wrap;
-      gap: 15px;
-      font-size: 13px;
-      color: #475569;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
-    }
-    .sec-item { display: flex; align-items: center; gap: 8px; font-weight: 600; }
-    .sec-icon { font-size: 16px; color: #2563eb; }
-
-    h2.section-title { font-size: 24px; font-weight: 800; color: #0f172a; margin-top: 0; }
-  </style>
+        .no-errors {
+            margin-top: 10px;
+            color: #137333;
+            font-size: 14px;
+            font-weight: 500;
+            display: none;
+        }
+    </style>
 </head>
 <body>
 
-  <!-- TOPBAR -->
-  <div class="topbar">
-    <div class="topbar-left">
-      <button class="hamburger-btn" onclick="toggleSidebar()">☰ Menu</button>
-      <div class="app-title" id="topTitle" onclick="selectTool('home', currentLang)">Every-Tool</div>
-    </div>
-    <button class="share-top-btn" onclick="shareSite()" id="shareBtnText">🔗 Deel Site</button>
-  </div>
-
-  <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
-
-  <!-- SIDEBAR MENU -->
-  <div class="nav-sidebar" id="sidebar">
-    <div class="sidebar-header">
-      <h2 id="menuHeader">Kies een Tool</h2>
-      <button class="close-btn" onclick="toggleSidebar()">✕</button>
+    <div class="toolbar">
+        <button class="btn-check" onclick="runSpellCheck()">Spelling controleren (Knop)</button>
+        <span id="status-msg" class="no-errors">Geen spelfouten gevonden!</span>
     </div>
 
-    <div class="tool-group">
-      <button class="tool-btn" onclick="selectTool('home', currentLang)">
-        <span>🏠 Home / Overzicht</span>
-      </button>
-    </div>
-
-    <div class="tool-group">
-      <button class="tool-btn" onclick="toggleDropdown('drop-timer', this)">
-        <span>⏱️ Speech & Presentatie</span>
-        <span class="arrow">▼</span>
-      </button>
-      <div class="lang-dropdown" id="drop-timer">
-        <div class="lang-title">Language:</div>
-        <button class="lang-opt" onclick="selectTool('timer', 'nl')">🇳🇱 Nederlands</button>
-        <button class="lang-opt" onclick="selectTool('timer', 'de')">🇩🇪 Deutsch</button>
-        <button class="lang-opt" onclick="selectTool('timer', 'en')">🇬🇧 English</button>
-        <button class="lang-opt" onclick="selectTool('timer', 'fr')">🇫🇷 Français</button>
-        <button class="lang-opt" onclick="selectTool('timer', 'es')">🇪🇸 Español</button>
-      </div>
-    </div>
-
-    <div class="tool-group">
-      <button class="tool-btn" onclick="toggleDropdown('drop-checker', this)">
-        <span>✍️ Grammatica Bot</span>
-        <span class="arrow">▼</span>
-      </button>
-      <div class="lang-dropdown" id="drop-checker">
-        <div class="lang-title">Language:</div>
-        <button class="lang-opt" onclick="selectTool('checker', 'nl')">🇳🇱 Nederlands</button>
-        <button class="lang-opt" onclick="selectTool('checker', 'de')">🇩🇪 Deutsch</button>
-        <button class="lang-opt" onclick="selectTool('checker', 'en')">🇬🇧 English</button>
-        <button class="lang-opt" onclick="selectTool('checker', 'fr')">🇫🇷 Français</button>
-        <button class="lang-opt" onclick="selectTool('checker', 'es')">🇪🇸 Español</button>
-      </div>
-    </div>
-
-    <div class="tool-group">
-      <button class="tool-btn" onclick="toggleDropdown('drop-ai', this)">
-        <span>🤖 AI-Tekst Detector</span>
-        <span class="arrow">▼</span>
-      </button>
-      <div class="lang-dropdown" id="drop-ai">
-        <div class="lang-title">Language:</div>
-        <button class="lang-opt" onclick="selectTool('ai', 'nl')">🇳🇱 Nederlands</button>
-        <button class="lang-opt" onclick="selectTool('ai', 'de')">🇩🇪 Deutsch</button>
-        <button class="lang-opt" onclick="selectTool('ai', 'en')">🇬🇧 English</button>
-        <button class="lang-opt" onclick="selectTool('ai', 'fr')">🇫🇷 Français</button>
-        <button class="lang-opt" onclick="selectTool('ai', 'es')">🇪🇸 Español</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- MAIN CONTAINER -->
-  <div class="container">
-
-    <!-- TAB 0: HOME / LANDING PAGE -->
-    <div id="tab-home" class="tab-content active">
-      <div class="hero-section">
-        <span class="hero-tag">Meet Every-Tool</span>
-        <h1 id="homeHeading">Slimme tools voor al je tekst en spraak</h1>
-        <p id="homeSub">Optimaliseer je presentaties, controleer op spelfouten of analyseer zinsstructuren in een handomdraai. Snel, veilig en betrouwbaar.</p>
+    <div class="editor-container">
+        <!-- Jouw aangeleverde testtekst -->
+        <div id="editor" contenteditable="true">Ik ben echt blijelikh dat ik vanaute ochtendlicht terwijl ik m'n opdracht aan het maken was toch nog gelukkig ben geworden. Het wordt het wel waard om tijd te steken in deze familie zaak sowieso</div>
         
-        <div class="hero-search-wrapper">
-          <div class="hero-search-box">
-            <input type="text" id="homeSearchInput" placeholder="Zoek een tool (bijv. gram, timer, ai)..." oninput="filterTools()" autocomplete="off">
-            <button class="hero-search-btn" onclick="filterTools()">🔍</button>
-          </div>
-          <div class="search-suggestions" id="searchSuggestions"></div>
-        </div>
-      </div>
+        <!-- Contextmenu voor vervanging -->
+        <div id="suggestion-popup"></div>
     </div>
 
-    <!-- TAB 1: SPEECH TIMER -->
-    <div id="tab-timer" class="tab-content">
-      <h2 class="section-title" id="t1-title">Speech & Presentatie Timer</h2>
-      <p style="color:#64748b; margin-top:-5px; margin-bottom:20px;" id="t1-sub">Bereken direct hoe lang jouw tekst duurt om voor te lezen.</p>
-      <textarea id="text-timer" placeholder="Plak hier je tekst..." oninput="calcTimer()"></textarea>
+    <script>
+        // Woordenboek met veelvoorkomende fouten en de juiste suggesties
+        const dictionary = {
+            "blijelikh": ["blij", "gelukkig", "blijkelijk"],
+            "vanaute": ["vanochtend", "van uit", "vanuit"],
+            "ochtendlicht": ["ochtend", "ochtendlicht"],
+            "familie": ["familie-", "familie"], // ter voorbeeld
+            "zaak": ["zaak"]
+        };
 
-      <div class="card-grid">
-        <div class="card"><h4 id="t1-slow">🐢 Langzaam</h4><div class="val" id="timeSlow">00:00</div></div>
-        <div class="card"><h4 id="t1-norm">🚶 Normaal</h4><div class="val" id="timeNorm">00:00</div></div>
-        <div class="card"><h4 id="t1-fast">🐇 Snel</h4><div class="val" id="timeFast">00:00</div></div>
-      </div>
+        let activeErrorElement = null;
 
-      <div class="timer-box">
-        <h4 style="margin:0; color:#94a3b8; font-size: 14px; text-transform: uppercase;" id="t1-practice">Oefen je speech live:</h4>
-        <div class="timer-display" id="stopwatch">00:00</div>
-        <div style="display: flex; justify-content: center; gap: 10px; margin-top: 15px;">
-          <button class="btn success" id="startBtn" onclick="startTimer()">Start</button>
-          <button class="btn danger" id="resetBtn" onclick="resetTimer()">Reset</button>
-        </div>
-      </div>
-    </div>
+        function runSpellCheck() {
+            const editor = document.getElementById('editor');
+            let text = editor.innerHTML;
+            
+            // Verwijder eerdere markeringen tijdelijk om dubbel checken te voorkomen
+            text = text.replace(/<span class="spell-error"[^>]*>(.*?)<\/span>/g, '$1');
 
-    <!-- TAB 2: GRAMMATICA BOT -->
-    <div id="tab-checker" class="tab-content">
-      <h2 class="section-title" id="t2-title">Grammatica & Spelfout Bot</h2>
-      <p style="color:#64748b; margin-top:-5px; margin-bottom:20px;" id="t2-sub">Controleer snel op hoofdletters, leestekens, spaties en typfouten.</p>
-      
-      <textarea id="text-checker" placeholder="Plak hier je tekst..." oninput="checkSpelling()"></textarea>
+            let errorFound = false;
 
-      <div class="action-bar">
-        <button class="btn success" id="btnClean" onclick="cleanText()">✨ Automatisch Herstellen</button>
-        <button class="btn" id="btnCopy" onclick="copyText('text-checker')">📋 Kopiëren</button>
-      </div>
+            // Loop door elk fout woord in ons woordenboek
+            for (let wrongWord in dictionary) {
+                // Regex om hele woorden te matchen (case-insensitive)
+                const regex = new RegExp(`\\b(${wrongWord})\\b`, 'gi');
+                
+                if (regex.test(text)) {
+                    errorFound = true;
+                    // Vervang het woord door een span met de rode golvende lijn
+                    text = text.replace(regex, `<span class="spell-error" onclick="showSuggestions(event, '${wrongWord}')">$1</span>`);
+                }
+            }
 
-      <div class="issue-list">
-        <h4 style="margin-top:0; color:#0f172a; font-size:15px;" id="t2-issues">Gevonden Aandachtspunten:</h4>
-        <div id="issuesContainer" style="color: #64748b; font-size: 14px;">Geen tekst ingevoerd.</div>
-      </div>
-    </div>
+            editor.innerHTML = text;
 
-    <!-- TAB 3: AI DETECTOR -->
-    <div id="tab-ai" class="tab-content">
-      <h2 class="section-title" id="t3-title">AI-Tekst Detector Indicator</h2>
-      <p style="color:#64748b; margin-top:-5px; margin-bottom:20px;" id="t3-sub">Analyseer de zinsstructuur op AI-kenmerken.</p>
-      <textarea id="text-ai" placeholder="Plak hier je tekst..." oninput="checkAI()"></textarea>
+            // Toon statusmelding
+            const statusMsg = document.getElementById('status-msg');
+            statusMsg.style.display = 'block';
+            if (!errorFound) {
+                statusMsg.innerText = "Alles ziet er goed uit!";
+                statusMsg.style.color = "#137333";
+            } else {
+                statusMsg.innerText = "Spelfouten gemarkeerd met rode lijn.";
+                statusMsg.style.color = "#d93025";
+            }
+        }
 
-      <div class="card" style="text-align: left;">
-        <h4 id="t3-score" style="margin-bottom: 5px;">Geschatte AI-waarschijnlijkheid</h4>
-        <div class="val" id="aiScore" style="margin-bottom: 10px;">0%</div>
-        <div class="ai-bar-bg"><div class="ai-bar-fill" id="aiBar"></div></div>
-        <p style="font-size:14px; color:#64748b; margin-bottom: 0;" id="aiAnalysis">Voer minimaal 50 tekens in voor een schatting.</p>
-      </div>
-    </div>
+        function showSuggestions(event, wrongWord) {
+            event.stopPropagation();
+            activeErrorElement = event.target;
+            const popup = document.getElementById('suggestion-popup');
+            
+            // Maak suggesties lijst leeg
+            popup.innerHTML = '';
 
-    <div class="ad-space">Advertentie Ruimte (Google AdSense)</div>
+            // Haal suggesties op uit het woordenboek
+            const suggestions = dictionary[wrongWord.toLowerCase()] || ["Geen suggestie"];
 
-    <div class="security-footer">
-      <div class="sec-item"><span class="sec-icon">🔒</span><span>256-Bit SSL Encrypted Connection</span></div>
-      <div class="sec-item"><span class="sec-icon">🛡️</span><span>100% Privacy - Client-Side Processed</span></div>
-      <div class="sec-item"><span class="sec-icon">⚡</span><span>Instant Client-Side Processing</span></div>
-    </div>
+            suggestions.forEach(suggestion => {
+                const item = document.createElement('div');
+                item.className = 'suggestion-item';
+                item.innerText = suggestion;
+                item.onclick = function() {
+                    // Vervang het foutieve woord door de selectie
+                    activeErrorElement.outerText = suggestion;
+                    popup.style.display = 'none';
+                };
+                popup.appendChild(item);
+            });
 
-  </div>
+            // Positioneer de pop-up net onder het geklikte woord
+            const rect = activeErrorElement.getBoundingClientRect();
+            const containerRect = document.querySelector('.editor-container').getBoundingClientRect();
+            
+            popup.style.top = (rect.bottom - containerRect.top + 5) + 'px';
+            popup.style.left = (rect.left - containerRect.left) + 'px';
+            popup.style.display = 'block';
+        }
 
-  <script>
-    let currentLang = 'nl';
-    let currentTool = 'home';
+        // Sluit de pop-up als je ergens anders klikt
+        window.onclick = function(event) {
+            if (!event.target.classList.contains('spell-error')) {
+                document.getElementById('suggestion-popup').style.display = 'none';
+            }
+        };
+    </script>
 
-    const translations = {
-      nl: {
-        placeholder: "Plak hier je tekst...",
-        menuHeader: "Kies een Tool",
-        shareBtn: "🔗 Deel Site",
-        homeHeading: "Slimme tools voor al je tekst en spraak",
-        homeSub: "Optimaliseer je presentaties, controleer op spelfouten of analyseer zinsstructuren in een handomdraai. Snel, veilig en betrouwbaar.",
-        t1Title: "Speech & Presentatie Timer", t1Sub: "Bereken direct hoe lang jouw tekst duurt om voor te lezen.",
-        slow: "🐢 Langzaam", norm: "🚶 Normaal", fast: "🐇 Snel", practice: "Oefen je speech live:", startBtn: "Start", pauseBtn: "Pauze", resumeBtn: "Hervat", resetBtn: "Reset",
-        t2Title: "Grammatica & Spelfout Bot", t2Sub: "Controleer snel op hoofdletters, leestekens, spaties en typfouten.",
-        t2Issues: "Gevonden Aandachtspunten & Typfouten:",
-        btnClean: "✨ Automatisch Herstellen", btnCopy: "📋 Kopiëren", copyAlert: "Link gekopieerd!",
-        noText: "Geen tekst ingevoerd.", noIssues: "✅ Geen bekende vorm- of spelfouten gevonden!",
-        errSpaces: "⚠️ Extra of dubbele spaties gedetecteerd.", errCaps: "⚠️ Zin begint niet met een hoofdletter.",
-        errPunctBefore: "⚠️ Onnodige spatie voor leesteken.", errPunctAfter: "⚠️ Ontbrekende spatie na leesteken.",
-        t3Title: "AI-Tekst Detector Indicator", t3Sub: "Analyseer de zinsstructuur op AI-kenmerken.",
-        t3Score: "Geschatte AI-waarschijnlijkheid", aiShort: "Voer minimaal 50 tekens in voor een schatting.",
-        aiHigh: "Hoge mate van regelmatige zinsopbouw (Typerend voor AI-teksten).", aiLow: "Natuurlijke variatie in zinslengte gedetecteerd.",
-        speeds: { slow: 90, norm: 100, fast: 125 },
-        replacements: [
-          { bad: /\bils ben\b|\bil ben\b/gi, good: "ik ben", desc: "Typfout: 'ils ben' of 'il ben' gecorrigeerd naar 'ik ben'" },
-          { bad: /\bochtendlight\b/gi, good: "ochtendlicht", desc: "Typfout: 'ochtendlight' gecorrigeerd naar 'ochtendlicht'" },
-          { bad: /\bterwijil\b/gi, good: "terwijl", desc: "Typfout: 'terwijil' gecorrigeerd naar 'terwijl'" },
-          { bad: /\bmelodiën\b/gi, good: "melodieën", desc: "Spelling: 'melodiën' verbeterd naar 'melodieën'" },
-          { bad: /\buut\b/gi, good: "uit", desc: "Typfout: 'uut' gecorrigeerd naar 'uit'" },
-          { bad: /\bveelste\b/gi, good: "veel te", desc: "Spelling: 'veelste' gecorrigeerd naar 'veel te'" },
-          { bad: /\begt\b/gi, good: "echt", desc: "Typfout: 'egt' gecorrigeerd naar 'echt'" },
-          { bad: /\bnamelijke\b/gi, good: "namelijk", desc: "Spelling: 'namelijke' gecorrigeerd naar 'namelijk'" },
-          { bad: /\bme opdracht\b/gi, good: "m'n opdracht", desc: "Grammatica: 'me opdracht' verbeterd naar 'm'n opdracht'" },
-          { bad: /\bblijfen\b/gi, good: "blijven", desc: "Typfout: 'blijfen' gecorrigeerd naar 'blijven'" },
-          { bad: /\bgelukig\b/gi, good: "gelukkig", desc: "Spelling: 'gelukig' gecorrigeerd naar 'gelukkig'" },
-          { bad: /\bonduidelijks\b/gi, good: "onduidelijk", desc: "Spelling: 'onduidelijks' gecorrigeerd naar 'onduidelijk'" },
-          { bad: /\bbroodsjes\b/gi, good: "broodjes", desc: "Typfout: 'broodsjes' gecorrigeerd naar 'broodjes'" },
-          { bad: /\bword het\b/gi, good: "wordt het", desc: "Grammatica: 'word het' gecorrigeerd naar 'wordt het'" },
-          { bad: /\brestourant\b/gi, good: "restaurant", desc: "Typfout: 'restourant' gecorrigeerd naar 'restaurant'" },
-          { bad: /\bbedening\b/gi, good: "bediening", desc: "Typfout: 'bedening' gecorrigeerd naar 'bediening'" },
-          { bad: /\bvriendelik\b/gi, good: "vriendelijk", desc: "Spelling: 'vriendelik' gecorrigeerd naar 'vriendelijk'" },
-          { bad: /\bsmaakten\b/gi, good: "smaakte", desc: "Grammatica: 'smaakten' gecorrigeerd naar 'smaakte'" },
-          { bad: /\bwachtten\b/gi, good: "wachten", desc: "Spelling: 'wachtten' gecorrigeerd naar 'wachten'" },
-          { bad: /\bzekers\b/gi, good: "zeker", desc: "Spelling: 'zekers' gecorrigeerd naar 'zeker'" },
-          { bad: /\bfamillie\b/gi, good: "familie", desc: "Spelling: 'famillie' gecorrigeerd naar 'familie'" },
-          { bad: /\bsowieso\b|\bzo-wie-so\b/gi, good: "sowieso", desc: "Spelling: 'sowieso' gecorrigeerd" },
-          { bad: /\bme moeder\b/gi, good: "m'n moeder", desc: "Grammatica: 'me moeder' verbeterd naar 'm'n moeder'" },
-          { bad: /\bme vader\b/gi, good: "m'n vader", desc: "Grammatica: 'me vader' verbeterd naar 'm'n vader'" },
-          { bad: /\bteveel\b/gi, good: "te veel", desc: "Spelling: 'teveel' (los in deze context) naar 'te veel'" },
-          { bad: /\bteid\b/gi, good: "tijd", desc: "Typfout: 'teid' gecorrigeerd naar 'tijd'" },
-          { bad: /\bteidgebrek\b/gi, good: "tijdgebrek", desc: "Typfout: 'teidgebrek' gecorrigeerd naar 'tijdgebrek'" },
-          { bad: /\bteidens\b/gi, good: "tijdens", desc: "Typfout: 'teidens' gecorrigeerd naar 'tijdens'" },
-          { bad: /\bwordt je\b/gi, good: "word je", desc: "Grammatica: 'wordt je' (zonder t) verbeterd naar 'word je'" },
-          { bad: /\bhun hebben\b/gi, good: "zij hebben", desc: "Grammatica: 'hun hebben' verbeterd naar 'zij hebben'" }
-        ]
-      },
-      de: {
-        placeholder: "Fügen Sie Ihren Text hier ein...",
-        menuHeader: "Werkzeug wählen",
-        shareBtn: "🔗 Seite teilen",
-        homeHeading: "Intelligente Tools für Text und Präsentationen",
-        homeSub: "Optimieren Sie Ihre Präsentationen, prüfen Sie Rechtschreibung oder analysieren Sie Textstrukturen sofort.",
-        t1Title: "Rede & Präsentations-Timer", t1Sub: "Berechnen Sie sofort die Sprechdauer Ihres Textes.",
-        slow: "🐢 Langsam", norm: "🚶 Normal", fast: "🐇 Schnell", practice: "Üben Sie Ihre Rede live:", startBtn: "Start", pauseBtn: "Pause", resumeBtn: "Fortsetzen", resetBtn: "Zurücksetzen",
-        t2Title: "Grammatik & Rechtschreibkorrektur", t2Sub: "Prüfen Sie auf Großbuchstaben, Satzzeichen und Tippfehler.",
-        t2Issues: "Gefundene Probleme & Tippfehler:",
-        btnClean: "✨ Automatisch korrigieren", btnCopy: "📋 Kopieren", copyAlert: "Link kopiert!",
-        noText: "Kein Text eingegeben.", noIssues: "✅ Keine Rechtschreibfehler gefunden!",
-        errSpaces: "⚠️ Doppelte Leerzeichen gefunden.", errCaps: "⚠️ Sätze sollten mit einem Großbuchstaben beginnen.",
-        errPunctBefore: "⚠️ Unnötiges Leerzeichen vor Satzzeichen.", errPunctAfter: "⚠️ Fehlendes Leerzeichen nach Satzzeichen.",
-        t3Title: "AI-Text-Detektor", t3Sub: "Analysieren Sie die Satzstruktur auf KI-Merkmale.",
-        t3Score: "Geschätzte KI-Wahrscheinlichkeit", aiShort: "Geben Sie mindestens 50 Zeichen ein.",
-        aiHigh: "Hohe Regelmäßigkeit im Satzbau (Typisch für KI).", aiLow: "Natürliche Satzlängenvariation erkannt.",
-        speeds: { slow: 90, norm: 105, fast: 130 },
-        replacements: [
-          { bad: /\bdass\b/gi, good: "dass", desc: "Rechtschreibung geprüft" }
-        ]
-      },
-      en: {
-        placeholder: "Paste your text here...",
-        menuHeader: "Select Tool",
-        shareBtn: "🔗 Share Site",
-        homeHeading: "Smart tools for all your text and presentations",
-        homeSub: "Optimize your presentations, check for typos, or analyze sentence structures instantly. Fast, safe, and reliable.",
-        t1Title: "Speech & Presentation Timer", t1Sub: "Instantly calculate your speaking time.",
-        slow: "🐢 Slow Pace", norm: "🚶 Average Pace", fast: "🐇 Fast Pace", practice: "Practice your speech live:", startBtn: "Start", pauseBtn: "Pause", resumeBtn: "Resume", resetBtn: "Reset",
-        t2Title: "Grammar & Spelling Corrector", t2Sub: "Quickly fix capitalization, spacing, and typos.",
-        t2Issues: "Detected Issues & Typos:",
-        btnClean: "✨ Auto Correct & Fix", btnCopy: "📋 Copy Text", copyAlert: "Link copied to clipboard!",
-        noText: "No text entered.", noIssues: "✅ No common grammar or spelling issues found!",
-        errSpaces: "⚠️ Extra or double spaces found.", errCaps: "⚠️ Sentences should start with a capital letter.",
-        errPunctBefore: "⚠️ Unnecessary space before punctuation.", errPunctAfter: "⚠️ Missing space after punctuation.",
-        t3Title: "AI Text Detector Indicator", t3Sub: "Analyze sentence variation for AI patterns.",
-        t3Score: "Estimated AI Probability", aiShort: "Enter at least 50 characters for estimation.",
-        aiHigh: "High sentence regularity (Typical AI pattern).", aiLow: "Natural variation in sentence length detected.",
-        speeds: { slow: 110, norm: 130, fast: 160 },
-        replacements: [
-          { bad: /\bteh\b/gi, good: "the", desc: "Typo: 'teh' corrected to 'the'" },
-          { bad: /\brecieve\b/gi, good: "receive", desc: "Typo: 'recieve' corrected to 'receive'" }
-        ]
-      },
-      fr: {
-        placeholder: "Collez votre texte ici...",
-        menuHeader: "Choisir un outil",
-        shareBtn: "🔗 Partager",
-        homeHeading: "Outils intelligents pour textes et présentations",
-        homeSub: "Optimisez vos présentations, vérifiez l'orthographe ou analysez la structure des phrases instantanément.",
-        t1Title: "Minuteur de Discours", t1Sub: "Calculez rapidement votre temps de parole.",
-        slow: "🐢 Rythme lent", norm: "🚶 Rythme normal", fast: "🐇 Rythme rapide", practice: "Entraînez-vous en direct:", startBtn: "Démarrer", pauseBtn: "Pause", resumeBtn: "Reprendre", resetBtn: "Réinitialiser",
-        t2Title: "Correcteur d'Orthographe", t2Sub: "Corrigez la ponctuation, les majuscules et les fautes.",
-        t2Issues: "Problèmes et fautes détectés:",
-        btnClean: "✨ Corriger automatiquement", btnCopy: "📋 Copier", copyAlert: "Lien copié!",
-        noText: "Aucun texte saisi.", noIssues: "✅ Aucun problème détecté!",
-        errSpaces: "⚠️ Espaces doubles trouvés.", errCaps: "⚠️ Les phrases doivent commencer par une majuscule.",
-        errPunctBefore: "⚠️ Espace inutile avant la ponctuation.", errPunctAfter: "⚠️ Espace manquant après la ponctuation.",
-        t3Title: "Détecteur de Texte IA", t3Sub: "Analysez la structure des phrases.",
-        t3Score: "Probabilité IA estimée", aiShort: "Saisissez au moins 50 caractères.",
-        aiHigh: "Régularité élevée des phrases (Atypique/IA).", aiLow: "Variation naturelle de la longueur des phrases.",
-        speeds: { slow: 100, norm: 120, fast: 150 },
-        replacements: [
-          { bad: /\bpa\b/gi, good: "pas", desc: "Faute de frappe corrigée" }
-        ]
-      },
-      es: {
-        placeholder: "Pega tu texto hier...",
-        menuHeader: "Seleccionar Herramienta",
-        shareBtn: "🔗 Compartir",
-        homeHeading: "Herramientas inteligentes para textos y presentaciones",
-        homeSub: "Optimiza tus presentaciones, corrige errores ortográficos o analiza patrones de oraciones al instante.",
-        t1Title: "Temporizador de Discursos", t1Sub: "Calcula al instante tu tiempo de lectura.",
-        slow: "🐢 Ritmo lento", norm: "🚶 Ritmo normal", fast: "🐇 Ritmo rápido", practice: "Practica tu discurso en vivo:", startBtn: "Iniciar", pauseBtn: "Pausa", resumeBtn: "Continuar", resetBtn: "Reiniciar",
-        t2Title: "Corrector de Ortografía", t2Sub: "Corrige mayúsculas, espacios y errores tipográficos.",
-        t2Issues: "Problemes et fautes détectés:",
-        btnClean: "✨ Corregir automáticamente", btnCopy: "📋 Copier", copyAlert: "¡Enlace copiado!",
-        noText: "No hay texto ingresado.", noIssues: "✅ ¡No se encontraron errores comunes!",
-        errSpaces: "⚠️ Se encontraron espacios dobles.", errCaps: "⚠️ Las oraciones deben comenzar con mayúscula.",
-        errPunctBefore: "⚠️ Espacio innecesario antes de la puntuación.", errPunctAfter: "⚠️ Falta espacio después de la puntuación.",
-        t3Title: "Detector de Texto IA", t3Sub: "Analiza el patrón de oraciones.",
-        t3Score: "Probabilidad estimada de IA", aiShort: "Ingrese al menos 50 caracteres.",
-        aiHigh: "Alta regularidad en las oraciones (Típico de IA).", aiLow: "Variación natural en la longitud de las oraciones.",
-        speeds: { slow: 120, norm: 145, fast: 175 },
-        replacements: [
-          { bad: /\btambien\b/gi, good: "también", desc: "Corrección de tilde" }
-        ]
-      }
-    };
-
-    function toggleSidebar() {
-      document.getElementById('sidebar').classList.toggle('open');
-      document.getElementById('overlay').classList.toggle('open');
-    }
-
-    function toggleDropdown(dropId, btn) {
-      const drop = document.getElementById(dropId);
-      const isOpen = drop.classList.contains('show');
-      document.querySelectorAll('.lang-dropdown').forEach(d => d.classList.remove('show'));
-      document.querySelectorAll('.tool-btn').forEach(b => b.classList.remove('open'));
-
-      if(!isOpen) {
-        drop.classList.add('show');
-        btn.classList.add('open');
-      }
-    }
-
-    function shareSite() {
-      navigator.clipboard.writeText(window.location.href);
-      alert(translations[currentLang].copyAlert);
-    }
-
-    function selectTool(toolId, lang) {
-      currentTool = toolId;
-      currentLang = lang;
-
-      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-      document.getElementById('tab-' + toolId).classList.add('active');
-
-      const toolNames = {
-        nl: { home: "Every-Tool", timer: "⏱️ Speech Timer", checker: "✍️ Grammatica Bot", ai: "🤖 AI Detector" },
-        en: { home: "Every-Tool", timer: "⏱️ Speech Timer", checker: "✍️ Grammar Bot", ai: "🤖 AI Detector" },
-        de: { home: "Every-Tool", timer: "⏱️ Sprech-Timer", checker: "✍️ Grammatik Bot", ai: "🤖 KI Detektor" },
-        fr: { home: "Every-Tool", timer: "⏱️ Minuteur Discours", checker: "✍️ Robot Grammaire", ai: "🤖 Détecteur IA" },
-        es: { home: "Every-Tool", timer: "⏱️ Temporizador Speech", checker: "✍️ Bot Gramática", ai: "🤖 Detector IA" }
-      };
-
-      document.getElementById('topTitle').innerText = toolNames[lang][toolId] + (toolId !== 'home' ? " (" + lang.toUpperCase() + ")" : "");
-
-      const t = translations[lang];
-      document.getElementById('menuHeader').innerText = t.menuHeader;
-      document.getElementById('shareBtnText').innerText = t.shareBtn;
-
-      document.getElementById('homeHeading').innerText = t.homeHeading;
-      document.getElementById('homeSub').innerText = t.homeSub;
-
-      document.getElementById('t1-title').innerText = t.t1Title;
-      document.getElementById('t1-sub').innerText = t.t1Sub;
-      document.getElementById('t1-slow').innerText = t.slow;
-      document.getElementById('t1-norm').innerText = t.norm;
-      document.getElementById('t1-fast').innerText = t.fast;
-      document.getElementById('t1-practice').innerText = t.practice;
-      document.getElementById('startBtn').innerText = t.startBtn;
-      document.getElementById('resetBtn').innerText = t.resetBtn;
-
-      document.getElementById('t2-title').innerText = t.t2Title;
-      document.getElementById('t2-sub').innerText = t.t2Sub;
-      document.getElementById('t2-issues').innerText = t.t2Issues;
-      document.getElementById('btnClean').innerText = t.btnClean;
-      document.getElementById('btnCopy').innerText = t.btnCopy;
-
-      document.getElementById('t3-title').innerText = t.t3Title;
-      document.getElementById('t3-sub').innerText = t.t3Sub;
-      document.getElementById('t3-score').innerText = t.t3Score;
-
-      document.getElementById('text-timer').placeholder = t.placeholder;
-      document.getElementById('text-checker').placeholder = t.placeholder;
-      document.getElementById('text-ai').placeholder = t.placeholder;
-
-      if(document.getElementById('sidebar').classList.contains('open')) {
-        toggleSidebar();
-      }
-
-      document.getElementById('searchSuggestions').classList.remove('show');
-    }
-
-    function filterTools() {
-      const input = document.getElementById('homeSearchInput').value.toLowerCase().trim();
-      const suggestionsBox = document.getElementById('searchSuggestions');
-      
-      const allTools = [
-        { id: 'timer', name: '⏱️ Speech & Presentatie Timer', keywords: ['timer', 'speech', 'spreken', 'tijd', 'presentatie'] },
-        { id: 'checker', name: '✍️ Grammatica & Spelfout Bot', keywords: ['grammatica', 'gram', 'spelling', 'fouten', 'tekst', 'controle', 'typfout'] },
-        { id: 'ai', name: '🤖 AI-Tekst Detector', keywords: ['ai', 'detector', 'robot', 'ChatGPT', 'kunstmatige'] }
-      ];
-
-      if (!input) {
-        suggestionsBox.classList.remove('show');
-        suggestionsBox.innerHTML = '';
-        return;
-      }
-
-      const matches = allTools.filter(tool => 
-        tool.name.toLowerCase().includes(input) || 
-        tool.keywords.some(kw => kw.includes(input))
-      );
-
-      if (matches.length > 0) {
-        suggestionsBox.innerHTML = matches.map(m => `
-          <div class="suggestion-item" onclick="selectTool('${m.id}', currentLang)">
-            ${m.name}
-          </div>
-        `).join('');
-        suggestionsBox.classList.add('show');
-      } else {
-        suggestionsBox.innerHTML = `<div class="suggestion-item" style="color: #94a3b8; cursor: default;">Geen tools gevonden...</div>`;
-        suggestionsBox.classList.add('show');
-      }
-    }
-
-    function formatTime(sec) {
-      const m = Math.floor(sec / 60);
-      const s = Math.floor(sec % 60);
-      return `${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
-    }
-
-    function calcTimer() {
-      const text = document.getElementById('text-timer').value.trim();
-      const words = text ? text.split(/\s+/).length : 0;
-      const sp = translations[currentLang].speeds;
-
-      document.getElementById('timeSlow').innerText = formatTime(words ? (words/sp.slow)*60 : 0);
-      document.getElementById('timeNorm').innerText = formatTime(words ? (words/sp.norm)*60 : 0);
-      document.getElementById('timeFast').innerText = formatTime(words ? (words/sp.fast)*60 : 0);
-    }
-
-    let timerInt = null, secs = 0;
-    function startTimer() {
-      const b = document.getElementById('startBtn');
-      const t = translations[currentLang];
-      if(timerInt) { 
-        clearInterval(timerInt); 
-        timerInt = null; 
-        b.innerText = t.resumeBtn; 
-      } else {
-        b.innerText = t.pauseBtn;
-        timerInt = setInterval(() => { secs++; document.getElementById('stopwatch').innerText = formatTime(secs); }, 1000);
-      }
-    }
-    function resetTimer() {
-      clearInterval(timerInt); timerInt = null; secs = 0;
-      document.getElementById('stopwatch').innerText = "00:00";
-      document.getElementById('startBtn').innerText = translations[currentLang].startBtn;
-    }
-
-    function checkSpelling() {
-      const text = document.getElementById('text-checker').value;
-      const container = document.getElementById('issuesContainer');
-      const t = translations[currentLang];
-      let issues = [];
-
-      if(!text.trim()) { container.innerHTML = t.noText; return; }
-
-      if(/\s{2,}/.test(text)) issues.push(t.errSpaces);
-      if(/(^\s*|[.!?]\s+)[a-z]/g.test(text)) issues.push(t.errCaps);
-      if(/[a-zA-Z0-9]\s+[,.!?]/.test(text)) issues.push(t.errPunctBefore);
-      if(/[,.!?][a-zA-Z]/.test(text)) issues.push(t.errPunctAfter);
-
-      if(t.replacements) {
-        t.replacements.forEach(r => {
-          if (r.bad.test(text)) {
-            issues.push(`🔍 ${r.desc}`);
-          }
-        });
-      }
-
-      if(issues.length === 0) {
-        container.innerHTML = `<span style='color:#2563eb; font-weight:600;'>${t.noIssues}</span>`;
-      } else {
-        container.innerHTML = issues.map(i => `<div class="issue-item">${i}</div>`).join('');
-      }
-    }
-
-    function cleanText() {
-      let textVal = document.getElementById('text-checker').value;
-      if(!textVal.trim()) return;
-
-      const langData = translations[currentLang];
-
-      // 1. Dubbele spaties oplossen
-      textVal = textVal.replace(/\s+/g, ' ');
-
-      // 2. Onnodige spatie voor leesteken weghalen (bijv. "woord ." -> "woord.")
-      textVal = textVal.replace(/\s+([,.!?])/g, '$1');
-
-      // 3. Ontbrekende spatie na leesteken toevoegen (bijv. "woord.tekst" -> "woord. tekst")
-      textVal = textVal.replace(/([,.!?])([a-zA-Zà-ÿÀ-ß])/g, '$1 $2');
-
-      // 4. Eerste letter van een zin automatisch een hoofdletter geven
-      textVal = textVal.replace(/(^\s*|[.!?]\s+)([a-zà-ÿ])/g, (match, p1, p2) => p1 + p2.toUpperCase());
-
-      // 5. Specifieke woordenlijst/typfouten corrigeren
-      if(langData.replacements) {
-        langData.replacements.forEach(r => { textVal = textVal.replace(r.bad, r.good); });
-      }
-
-      // Terugzetten in de textarea en direct opnieuw controleren
-      document.getElementById('text-checker').value = textVal;
-      checkSpelling();
-    }
-
-    function copyText(id) {
-      const val = document.getElementById(id).value;
-      if(val) {
-        navigator.clipboard.writeText(val);
-        alert(translations[currentLang].copyAlert);
-      }
-    }
-
-    function checkAI() {
-      const text = document.getElementById('text-ai').value.trim();
-      const t = translations[currentLang];
-
-      if(text.length < 50) {
-        document.getElementById('aiScore').innerText = "0%";
-        document.getElementById('aiBar').style.width = "0%";
-        document.getElementById('aiAnalysis').innerText = t.aiShort;
-        return;
-      }
-
-      const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
-      const words = text.split(/\s+/);
-      
-      let lengths = sentences.map(s => s.trim().split(/\s+/).length);
-      let avgLength = words.length / (sentences.length || 1);
-      let variance = lengths.reduce((acc, l) => acc + Math.abs(l - avgLength), 0) / (sentences.length || 1);
-
-      let score = Math.max(10, Math.min(95, Math.round(100 - (variance * 12))));
-      
-      document.getElementById('aiScore').innerText = score + "%";
-      document.getElementById('aiBar').style.width = score + "%";
-      document.getElementById('aiAnalysis').innerText = score > 60 ? t.aiHigh : t.aiLow;
-    }
-  </script>
 </body>
 </html>
