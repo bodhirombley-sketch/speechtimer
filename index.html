@@ -292,6 +292,7 @@
         aiHigh: "Hoge mate van regelmatige zinsopbouw (Typerend voor AI-teksten).", aiLow: "Natuurlijke variatie in zinslengte gedetecteerd.",
         speeds: { slow: 90, norm: 100, fast: 125 },
         replacements: [
+          { bad: /\beigelek\b/gi, good: "eigenlijk", desc: "Typfout: 'eigelek' gecorrigeerd naar 'eigenlijk'" },
           { bad: /\bils ben\b|\bil ben\b/gi, good: "ik ben", desc: "Typfout: 'ils ben' of 'il ben' gecorrigeerd naar 'ik ben'" },
           { bad: /\bochtendlight\b/gi, good: "ochtendlicht", desc: "Typfout: 'ochtendlight' gecorrigeerd naar 'ochtendlicht'" },
           { bad: /\bterwijil\b/gi, good: "terwijl", desc: "Typfout: 'terwijil' gecorrigeerd naar 'terwijl'" },
