@@ -3,93 +3,99 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  
-  <!-- PLAK HIER ONDER JE GOOGLE SEARCH CONSOLE META-TAG ALS JE DIE HEBT -->
-  <!-- <meta name="google-site-verification" content="JOUW_CODE_VAN_GOOGLE" /> -->
-
   <title>Every-Tool - Slimme Tools voor Tekst en Spraak</title>
   <style>
-    * { box-sizing: border-box; font-family: system-ui, -apple-system, sans-serif; }
-    body { margin: 0; padding: 0; background: #f8fafc; color: #1e293b; display: flex; flex-direction: column; min-height: 100vh; }
+    * { box-sizing: border-box; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { margin: 0; padding: 0; background: #f8fafc; color: #0f172a; display: flex; flex-direction: column; min-height: 100vh; }
 
-    .topbar { background: #0f172a; color: white; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; }
-    .topbar-left { display: flex; align-items: center; gap: 12px; }
-    .hamburger-btn { background: #2563eb; color: white; border: none; font-size: 22px; padding: 8px 14px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-weight: 600; }
+    /* Topbalk */
+    .topbar { background: #ffffff; border-bottom: 1px solid #e2e8f0; padding: 12px 24px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; }
+    .topbar-left { display: flex; align-items: center; gap: 16px; }
+    .hamburger-btn { background: #2563eb; color: white; border: none; font-size: 15px; padding: 8px 14px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 6px; font-weight: 600; transition: background 0.2s; }
     .hamburger-btn:hover { background: #1d4ed8; }
-    .app-title { font-weight: 700; font-size: 18px; cursor: pointer; }
+    .app-title { font-weight: 800; font-size: 20px; color: #2563eb; cursor: pointer; letter-spacing: -0.5px; }
 
-    .share-top-btn { background: #10b981; color: white; border: none; padding: 8px 14px; border-radius: 6px; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: background 0.2s; }
-    .share-top-btn:hover { background: #059669; }
+    .share-top-btn { background: #2563eb; color: white; border: none; padding: 8px 16px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: background 0.2s; }
+    .share-top-btn:hover { background: #1d4ed8; }
 
-    .nav-sidebar { position: fixed; top: 0; left: -320px; width: 300px; height: 100%; background: #1e40af; color: white; padding: 20px; transition: 0.3s ease; z-index: 100; box-shadow: 4px 0 15px rgba(0,0,0,0.2); overflow-y: auto; }
+    /* Sidebar Menu */
+    .nav-sidebar { position: fixed; top: 0; left: -320px; width: 300px; height: 100%; background: #ffffff; color: #0f172a; padding: 24px; transition: 0.3s ease; z-index: 100; box-shadow: 10px 0 25px rgba(0,0,0,0.1); border-right: 1px solid #e2e8f0; overflow-y: auto; }
     .nav-sidebar.open { left: 0; }
     
-    .sidebar-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #3b82f6; padding-bottom: 12px; margin-bottom: 20px; }
-    .sidebar-header h2 { margin: 0; font-size: 18px; }
-    .close-btn { background: none; border: none; color: white; font-size: 22px; cursor: pointer; }
+    .sidebar-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 16px; margin-bottom: 20px; }
+    .sidebar-header h2 { margin: 0; font-size: 18px; color: #0f172a; }
+    .close-btn { background: #f1f5f9; border: none; color: #64748b; width: 32px; height: 32px; border-radius: 50%; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .close-btn:hover { background: #e2e8f0; color: #0f172a; }
 
     .tool-group { margin-bottom: 12px; }
-    .tool-btn { width: 100%; background: #2563eb; color: white; border: none; padding: 14px; border-radius: 8px; font-size: 15px; font-weight: 600; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background 0.2s; }
-    .tool-btn:hover, .tool-btn.active { background: #1d4ed8; }
-    .arrow { transition: transform 0.3s; font-size: 12px; }
-    .tool-btn.open .arrow { transform: rotate(180deg); }
+    .tool-btn { width: 100%; background: #f8fafc; color: #1e293b; border: 1px solid #e2e8f0; padding: 12px 16px; border-radius: 8px; font-size: 15px; font-weight: 600; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.2s; }
+    .tool-btn:hover, .tool-btn.active { background: #eff6ff; border-color: #2563eb; color: #2563eb; }
+    .arrow { transition: transform 0.3s; font-size: 12px; color: #64748b; }
+    .tool-btn.open .arrow { transform: rotate(180deg); color: #2563eb; }
 
-    .lang-dropdown { display: none; background: #1e3a8a; border-radius: 0 0 8px 8px; padding: 10px; margin-top: -4px; border: 1px solid #3b82f6; border-top: none; }
+    .lang-dropdown { display: none; background: #ffffff; border-radius: 8px; padding: 8px; margin-top: 6px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
     .lang-dropdown.show { display: block; }
-    .lang-title { font-size: 12px; color: #93c5fd; font-weight: 600; margin: 4px 0 8px 6px; text-transform: uppercase; }
-    .lang-opt { display: block; width: 100%; padding: 8px 12px; margin-bottom: 4px; background: transparent; color: #eff6ff; border: none; border-radius: 6px; font-size: 14px; text-align: left; cursor: pointer; }
-    .lang-opt:hover { background: #2563eb; color: white; }
+    .lang-title { font-size: 11px; color: #64748b; font-weight: 700; margin: 4px 0 6px 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .lang-opt { display: block; width: 100%; padding: 8px 12px; margin-bottom: 2px; background: transparent; color: #334155; border: none; border-radius: 6px; font-size: 14px; text-align: left; cursor: pointer; font-weight: 500; }
+    .lang-opt:hover { background: #eff6ff; color: #2563eb; }
 
-    .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 90; }
+    .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.4); backdrop-filter: blur(2px); z-index: 90; }
     .overlay.open { display: block; }
 
-    .container { max-width: 800px; margin: 0 auto; padding: 30px 20px; flex: 1; width: 100%; }
+    .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; flex: 1; width: 100%; }
     .tab-content { display: none; }
     .tab-content.active { display: block; }
 
-    /* HOME HERO STIJLEN */
-    .hero-section { text-align: center; padding: 40px 20px; background: white; border: 1px solid #e2e8f0; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
-    .hero-section h1 { font-size: 32px; color: #0f172a; margin-bottom: 15px; }
-    .hero-section p { font-size: 16px; color: #64748b; margin-bottom: 25px; line-height: 1.5; }
-    .hero-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; text-align: left; margin-top: 25px; }
-    .hero-card { background: #f8fafc; border: 1px solid #e2e8f0; padding: 20px; border-radius: 8px; cursor: pointer; transition: all 0.2s; }
-    .hero-card:hover { border-color: #2563eb; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,0.1); }
-    .hero-card h3 { margin: 0 0 8px 0; color: #1e293b; font-size: 18px; }
-    .hero-card p { margin: 0; font-size: 14px; color: #64748b; }
-
-    textarea { width: 100%; height: 180px; padding: 14px; font-size: 16px; border: 2px solid #cbd5e1; border-radius: 8px; resize: vertical; outline: none; margin-bottom: 15px; }
-    textarea:focus { border-color: #2563eb; }
-
-    .action-bar { display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap; }
-
-    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 15px 0; }
-    .card { background: white; padding: 16px; border-radius: 8px; border: 1px solid #e2e8f0; text-align: center; }
-    .card h4 { margin: 0 0 8px 0; color: #64748b; font-size: 14px; }
-    .card .val { font-size: 22px; font-weight: 700; color: #2563eb; }
-
-    .timer-box { background: #0f172a; color: white; padding: 20px; border-radius: 8px; text-align: center; margin-top: 15px; }
-    .timer-display { font-size: 36px; font-weight: 700; font-family: monospace; color: #38bdf8; margin: 10px 0; }
+    /* SAAS HERO STIJL */
+    .hero-section { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 50px 40px; margin-bottom: 30px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05); text-align: center; }
+    .hero-tag { display: inline-block; background: #eff6ff; color: #2563eb; font-size: 12px; font-weight: 700; text-transform: uppercase; padding: 6px 12px; border-radius: 20px; margin-bottom: 20px; letter-spacing: 0.5px; }
+    .hero-section h1 { font-size: 42px; font-weight: 800; color: #0f172a; margin: 0 0 15px 0; letter-spacing: -1px; line-height: 1.2; }
+    .hero-section p { font-size: 18px; color: #64748b; margin: 0 auto 30px auto; max-width: 600px; line-height: 1.6; }
     
-    .btn { padding: 10px 18px; background: #2563eb; color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; }
+    .hero-cta-group { display: flex; justify-content: center; gap: 12px; margin-bottom: 40px; flex-wrap: wrap; }
+    .btn-primary { background: #2563eb; color: white; border: none; padding: 14px 28px; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 12px rgba(37,99,235,0.2); transition: background 0.2s; }
+    .btn-primary:hover { background: #1d4ed8; }
+    
+    .hero-search-box { display: flex; background: #ffffff; border: 2px solid #cbd5e1; border-radius: 12px; padding: 6px; max-width: 600px; margin: 0 auto; box-shadow: 0 4px 12px rgba(0,0,0,0.03); transition: border-color 0.2s; }
+    .hero-search-box:focus-within { border-color: #2563eb; }
+    .hero-search-box input { flex: 1; border: none; padding: 10px 14px; font-size: 16px; outline: none; background: transparent; color: #0f172a; }
+    .hero-search-btn { background: #2563eb; color: white; border: none; width: 48px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+
+    /* Content Cards & Elementen */
+    textarea { width: 100%; height: 160px; padding: 16px; font-size: 15px; border: 1px solid #cbd5e1; border-radius: 10px; resize: vertical; outline: none; margin-bottom: 16px; background: #ffffff; color: #0f172a; }
+    textarea:focus { border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
+
+    .action-bar { display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
+
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin: 16px 0; }
+    .card { background: white; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.02); }
+    .card h4 { margin: 0 0 8px 0; color: #64748b; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .card .val { font-size: 26px; font-weight: 700; color: #2563eb; }
+
+    .timer-box { background: #0f172a; color: white; padding: 24px; border-radius: 12px; text-align: center; margin-top: 20px; }
+    .timer-display { font-size: 40px; font-weight: 800; font-family: monospace; color: #38bdf8; margin: 10px 0; letter-spacing: 2px; }
+    
+    .btn { padding: 10px 20px; background: #2563eb; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
     .btn:hover { background: #1d4ed8; }
     .btn.danger { background: #ef4444; }
-    .btn.success { background: #16a34a; }
-    .btn.success:hover { background: #15803d; }
+    .btn.danger:hover { background: #dc2626; }
+    .btn.success { background: #2563eb; }
+    .btn.success:hover { background: #1d4ed8; }
 
-    .issue-list { background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 15px; margin-top: 15px; }
-    .issue-item { padding: 8px 0; border-bottom: 1px solid #f1f5f9; color: #dc2626; font-size: 14px; }
+    .issue-list { background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; margin-top: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.02); }
+    .issue-item { padding: 8px 0; border-bottom: 1px solid #f1f5f9; color: #dc2626; font-size: 14px; font-weight: 500; }
     
-    .ai-bar-bg { background: #e2e8f0; height: 20px; border-radius: 10px; overflow: hidden; margin: 15px 0; }
-    .ai-bar-fill { height: 100%; background: #2563eb; width: 0%; transition: width 0.5s; }
+    .ai-bar-bg { background: #e2e8f0; height: 12px; border-radius: 6px; overflow: hidden; margin: 15px 0; }
+    .ai-bar-fill { height: 100%; background: #2563eb; width: 0%; transition: width 0.5s ease; border-radius: 6px; }
 
-    .ad-space { margin-top: 30px; padding: 20px; background: #f1f5f9; border: 1px dashed #cbd5e1; text-align: center; color: #94a3b8; border-radius: 8px; }
+    .ad-space { margin-top: 30px; padding: 20px; background: #ffffff; border: 1px dashed #cbd5e1; text-align: center; color: #94a3b8; border-radius: 12px; font-size: 14px; }
 
     .security-footer {
-      margin-top: 25px;
-      padding: 15px 20px;
+      margin-top: 30px;
+      padding: 16px 20px;
       background: #ffffff;
       border: 1px solid #e2e8f0;
-      border-radius: 8px;
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: space-around;
@@ -97,14 +103,17 @@
       gap: 15px;
       font-size: 13px;
       color: #475569;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
     }
     .sec-item { display: flex; align-items: center; gap: 8px; font-weight: 600; }
-    .sec-icon { font-size: 16px; color: #16a34a; }
+    .sec-icon { font-size: 16px; color: #2563eb; }
+
+    h2.section-title { font-size: 24px; font-weight: 800; color: #0f172a; margin-top: 0; }
   </style>
 </head>
 <body>
 
+  <!-- TOPBAR -->
   <div class="topbar">
     <div class="topbar-left">
       <button class="hamburger-btn" onclick="toggleSidebar()">☰ Menu</button>
@@ -115,13 +124,13 @@
 
   <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
 
+  <!-- SIDEBAR MENU -->
   <div class="nav-sidebar" id="sidebar">
     <div class="sidebar-header">
       <h2 id="menuHeader">Kies een Tool</h2>
       <button class="close-btn" onclick="toggleSidebar()">✕</button>
     </div>
 
-    <!-- Home knop in sidebar -->
     <div class="tool-group">
       <button class="tool-btn" onclick="selectTool('home', currentLang)">
         <span>🏠 Home / Overzicht</span>
@@ -174,35 +183,31 @@
     </div>
   </div>
 
+  <!-- MAIN CONTAINER -->
   <div class="container">
 
     <!-- TAB 0: HOME / LANDING PAGE -->
     <div id="tab-home" class="tab-content active">
       <div class="hero-section">
-        <h1 id="homeHeading">Alles-in-één tools voor je tekst en presentaties</h1>
-        <p id="homeSub">Welkom bij Every-Tool! Kies hieronder direct de tool die je wilt gebruiken voor je spraak, grammatica of teksten.</p>
+        <span class="hero-tag">Meet Every-Tool</span>
+        <h1 id="homeHeading">Slimme tools voor al je tekst en spraak</h1>
+        <p id="homeSub">Optimaliseer je presentaties, controleer op spelfouten of analyseer zinsstructuren in een handomdraai. Snel, veilig en betrouwbaar.</p>
         
-        <div class="hero-grid">
-          <div class="hero-card" onclick="selectTool('timer', currentLang)">
-            <h3>⏱️ Speech Timer</h3>
-            <p id="card1Text">Bereken direct hoe lang jouw tekst duurt om voor te lezen.</p>
-          </div>
-          <div class="hero-card" onclick="selectTool('checker', currentLang)">
-            <h3>✍️ Grammatica Bot</h3>
-            <p id="card2Text">Controleer snel op hoofdletters, leestekens en typfouten.</p>
-          </div>
-          <div class="hero-card" onclick="selectTool('ai', currentLang)">
-            <h3>🤖 AI Detector</h3>
-            <p id="card3Text">Analyseer zinsstructuren op typische AI-kenmerken.</p>
-          </div>
+        <div class="hero-cta-group">
+          <button class="btn-primary" onclick="selectTool('timer', currentLang)">Direct Starten →</button>
+        </div>
+
+        <div class="hero-search-box">
+          <input type="text" id="homeSearchInput" placeholder="Zoek een tool of typ direct je tekst..." onkeydown="if(event.key === 'Enter') selectTool('timer', currentLang)">
+          <button class="hero-search-btn" onclick="selectTool('timer', currentLang)">🔍</button>
         </div>
       </div>
     </div>
 
     <!-- TAB 1: SPEECH TIMER -->
     <div id="tab-timer" class="tab-content">
-      <h2 id="t1-title">Speech & Presentatie Timer</h2>
-      <p style="color:#64748b;" id="t1-sub">Bereken direct hoe lang jouw tekst duurt om voor te lezen.</p>
+      <h2 class="section-title" id="t1-title">Speech & Presentatie Timer</h2>
+      <p style="color:#64748b; margin-top:-5px; margin-bottom:20px;" id="t1-sub">Bereken direct hoe lang jouw tekst duurt om voor te lezen.</p>
       <textarea id="text-timer" placeholder="Plak hier je tekst..." oninput="calcTimer()"></textarea>
 
       <div class="card-grid">
@@ -212,17 +217,19 @@
       </div>
 
       <div class="timer-box">
-        <h4 style="margin:0; color:#94a3b8;" id="t1-practice">Oefen je speech live:</h4>
+        <h4 style="margin:0; color:#94a3b8; font-size: 14px; text-transform: uppercase;" id="t1-practice">Oefen je speech live:</h4>
         <div class="timer-display" id="stopwatch">00:00</div>
-        <button class="btn" id="startBtn" onclick="startTimer()">Start</button>
-        <button class="btn danger" id="resetBtn" onclick="resetTimer()">Reset</button>
+        <div style="display: flex; justify-content: center; gap: 10px; margin-top: 15px;">
+          <button class="btn success" id="startBtn" onclick="startTimer()">Start</button>
+          <button class="btn danger" id="resetBtn" onclick="resetTimer()">Reset</button>
+        </div>
       </div>
     </div>
 
     <!-- TAB 2: GRAMMATICA BOT -->
     <div id="tab-checker" class="tab-content">
-      <h2 id="t2-title">Grammatica & Spelfout Bot</h2>
-      <p style="color:#64748b;" id="t2-sub">Controleer snel op hoofdletters, leestekens, spaties en typfouten.</p>
+      <h2 class="section-title" id="t2-title">Grammatica & Spelfout Bot</h2>
+      <p style="color:#64748b; margin-top:-5px; margin-bottom:20px;" id="t2-sub">Controleer snel op hoofdletters, leestekens, spaties en typfouten.</p>
       
       <textarea id="text-checker" placeholder="Plak hier je tekst..." oninput="checkSpelling()"></textarea>
 
@@ -232,22 +239,22 @@
       </div>
 
       <div class="issue-list">
-        <h4 style="margin-top:0;" id="t2-issues">Gevonden Aandachtspunten:</h4>
-        <div id="issuesContainer">Geen tekst ingevoerd.</div>
+        <h4 style="margin-top:0; color:#0f172a; font-size:15px;" id="t2-issues">Gevonden Aandachtspunten:</h4>
+        <div id="issuesContainer" style="color: #64748b; font-size: 14px;">Geen tekst ingevoerd.</div>
       </div>
     </div>
 
     <!-- TAB 3: AI DETECTOR -->
     <div id="tab-ai" class="tab-content">
-      <h2 id="t3-title">AI-Tekst Detector Indicator</h2>
-      <p style="color:#64748b;" id="t3-sub">Analyseer de zinsstructuur op AI-kenmerken.</p>
+      <h2 class="section-title" id="t3-title">AI-Tekst Detector Indicator</h2>
+      <p style="color:#64748b; margin-top:-5px; margin-bottom:20px;" id="t3-sub">Analyseer de zinsstructuur op AI-kenmerken.</p>
       <textarea id="text-ai" placeholder="Plak hier je tekst..." oninput="checkAI()"></textarea>
 
-      <div class="card">
-        <h4 id="t3-score">Geschatte AI-waarschijnlijkheid</h4>
-        <div class="val" id="aiScore">0%</div>
+      <div class="card" style="text-align: left;">
+        <h4 id="t3-score" style="margin-bottom: 5px;">Geschatte AI-waarschijnlijkheid</h4>
+        <div class="val" id="aiScore" style="margin-bottom: 10px;">0%</div>
         <div class="ai-bar-bg"><div class="ai-bar-fill" id="aiBar"></div></div>
-        <p style="font-size:13px; color:#64748b;" id="aiAnalysis">Voer minimaal 50 tekens in voor een schatting.</p>
+        <p style="font-size:14px; color:#64748b; margin-bottom: 0;" id="aiAnalysis">Voer minimaal 50 tekens in voor een schatting.</p>
       </div>
     </div>
 
@@ -270,11 +277,8 @@
         placeholder: "Plak hier je tekst...",
         menuHeader: "Kies een Tool",
         shareBtn: "🔗 Deel Site",
-        homeHeading: "Alles-in-één tools voor je tekst en presentaties",
-        homeSub: "Welkom bij Every-Tool! Kies hieronder direct de tool die je wilt gebruiken voor je spraak, grammatica of teksten.",
-        c1: "Bereken direct hoe lang jouw tekst duurt om voor te lezen.",
-        c2: "Controleer snel op hoofdletters, leestekens en typfouten.",
-        c3: "Analyseer zinsstructuren op typische AI-kenmerken.",
+        homeHeading: "Slimme tools voor al je tekst en spraak",
+        homeSub: "Optimaliseer je presentaties, controleer op spelfouten of analyseer zinsstructuren in een handomdraai. Snel, veilig en betrouwbaar.",
         t1Title: "Speech & Presentatie Timer", t1Sub: "Bereken direct hoe lang jouw tekst duurt om voor te lezen.",
         slow: "🐢 Langzaam", norm: "🚶 Normaal", fast: "🐇 Snel", practice: "Oefen je speech live:", startBtn: "Start", pauseBtn: "Pauze", resumeBtn: "Hervat", resetBtn: "Reset",
         t2Title: "Grammatica & Spelfout Bot", t2Sub: "Controleer snel op hoofdletters, leestekens, spaties en typfouten.",
@@ -298,11 +302,8 @@
         placeholder: "Fügen Sie Ihren Text hier ein...",
         menuHeader: "Werkzeug wählen",
         shareBtn: "🔗 Seite teilen",
-        homeHeading: "All-in-One Tools für Text und Präsentationen",
-        homeSub: "Willkommen bei Every-Tool! Wählen Sie unten direkt das gewünschte Werkzeug aus.",
-        c1: "Berechnen Sie sofort die Sprechdauer Ihres Textes.",
-        c2: "Prüfen Sie auf Großbuchstaben, Satzzeichen und Tippfehler.",
-        c3: "Analysieren Sie Satzstrukturen auf KI-Merkmale.",
+        homeHeading: "Intelligente Tools für Text und Präsentationen",
+        homeSub: "Optimieren Sie Ihre Präsentationen, prüfen Sie Rechtschreibung oder analysieren Sie Textstrukturen sofort.",
         t1Title: "Rede & Präsentations-Timer", t1Sub: "Berechnen Sie sofort die Sprechdauer Ihres Textes.",
         slow: "🐢 Langsam", norm: "🚶 Normal", fast: "🐇 Schnell", practice: "Üben Sie Ihre Rede live:", startBtn: "Start", pauseBtn: "Pause", resumeBtn: "Fortsetzen", resetBtn: "Zurücksetzen",
         t2Title: "Grammatik & Rechtschreibkorrektur", t2Sub: "Prüfen Sie auf Großbuchstaben, Satzzeichen und Tippfehler.",
@@ -316,18 +317,15 @@
         aiHigh: "Hohe Regelmäßigkeit im Satzbau (Typisch für KI).", aiLow: "Natürliche Satzlängenvariation erkannt.",
         speeds: { slow: 90, norm: 105, fast: 130 },
         replacements: [
-          { bad: /\bdass\b/gi, good: "dass" }, { bad: /\bundt\b/gi, good: "und" }
+          { bad: /\bdass\b/gi, good: "dass" }
         ]
       },
       en: {
         placeholder: "Paste your text here...",
         menuHeader: "Select Tool",
         shareBtn: "🔗 Share Site",
-        homeHeading: "All-in-one tools for text and presentations",
-        homeSub: "Welcome to Every-Tool! Choose a tool below to get started instantly.",
-        c1: "Instantly calculate your speaking time.",
-        c2: "Quickly fix capitalization, spacing, and typos.",
-        c3: "Analyze sentence variation for AI patterns.",
+        homeHeading: "Smart tools for all your text and presentations",
+        homeSub: "Optimize your presentations, check for typos, or analyze sentence structures instantly. Fast, safe, and reliable.",
         t1Title: "Speech & Presentation Timer", t1Sub: "Instantly calculate your speaking time.",
         slow: "🐢 Slow Pace", norm: "🚶 Average Pace", fast: "🐇 Fast Pace", practice: "Practice your speech live:", startBtn: "Start", pauseBtn: "Pause", resumeBtn: "Resume", resetBtn: "Reset",
         t2Title: "Grammar & Spelling Corrector", t2Sub: "Quickly fix capitalization, spacing, and typos.",
@@ -341,18 +339,15 @@
         aiHigh: "High sentence regularity (Typical AI pattern).", aiLow: "Natural variation in sentence length detected.",
         speeds: { slow: 110, norm: 130, fast: 160 },
         replacements: [
-          { bad: /\bteh\b/gi, good: "the" }, { bad: /\brecieve\b/gi, good: "receive" }
+          { bad: /\bteh\b/gi, good: "the" }
         ]
       },
       fr: {
         placeholder: "Collez votre texte ici...",
         menuHeader: "Choisir un outil",
         shareBtn: "🔗 Partager",
-        homeHeading: "Outils tout-en-un pour textes et présentations",
-        homeSub: "Bienvenue sur Every-Tool ! Choisissez un outil ci-dessous.",
-        c1: "Calculez rapidement votre temps de parole.",
-        c2: "Corrigez la ponctuation, les majuscules et les fautes.",
-        c3: "Analysez la structure des phrases.",
+        homeHeading: "Outils intelligents pour textes et présentations",
+        homeSub: "Optimisez vos présentations, vérifiez l'orthographe ou analysez la structure des phrases instantanément.",
         t1Title: "Minuteur de Discours", t1Sub: "Calculez rapidement votre temps de parole.",
         slow: "🐢 Rythme lent", norm: "🚶 Rythme normal", fast: "🐇 Rythme rapide", practice: "Entraînez-vous en direct:", startBtn: "Démarrer", pauseBtn: "Pause", resumeBtn: "Reprendre", resetBtn: "Réinitialiser",
         t2Title: "Correcteur d'Orthographe", t2Sub: "Corrigez la ponctuation, les majuscules et les fautes.",
@@ -373,11 +368,8 @@
         placeholder: "Pega tu texto aquí...",
         menuHeader: "Seleccionar Herramienta",
         shareBtn: "🔗 Compartir",
-        homeHeading: "Herramientas todo en uno para textos y presentaciones",
-        homeSub: "¡Bienvenido a Every-Tool! Elige una herramienta a continuación.",
-        c1: "Calcula al instante tu tiempo de lectura.",
-        c2: "Corrige mayúsculas, espacios y errores tipográficos.",
-        c3: "Analiza el patrón de oraciones.",
+        homeHeading: "Herramientas inteligentes para textos y presentaciones",
+        homeSub: "Optimiza tus presentaciones, corrige errores ortográficos o analiza patrones de oraciones al instante.",
         t1Title: "Temporizador de Discursos", t1Sub: "Calcula al instante tu tiempo de lectura.",
         slow: "🐢 Ritmo lento", norm: "🚶 Ritmo normal", fast: "🐇 Ritmo rápido", practice: "Practica tu discurso en vivo:", startBtn: "Iniciar", pauseBtn: "Pausa", resumeBtn: "Continuar", resetBtn: "Reiniciar",
         t2Title: "Corrector de Ortografía", t2Sub: "Corrige mayúsculas, espacios y errores tipográficos.",
@@ -439,14 +431,9 @@
       document.getElementById('menuHeader').innerText = t.menuHeader;
       document.getElementById('shareBtnText').innerText = t.shareBtn;
 
-      // Home vertalingen
       document.getElementById('homeHeading').innerText = t.homeHeading;
       document.getElementById('homeSub').innerText = t.homeSub;
-      document.getElementById('card1Text').innerText = t.c1;
-      document.getElementById('card2Text').innerText = t.c2;
-      document.getElementById('card3Text').innerText = t.c3;
 
-      // Timer vertalingen
       document.getElementById('t1-title').innerText = t.t1Title;
       document.getElementById('t1-sub').innerText = t.t1Sub;
       document.getElementById('t1-slow').innerText = t.slow;
@@ -456,14 +443,12 @@
       document.getElementById('startBtn').innerText = t.startBtn;
       document.getElementById('resetBtn').innerText = t.resetBtn;
 
-      // Checker vertalingen
       document.getElementById('t2-title').innerText = t.t2Title;
       document.getElementById('t2-sub').innerText = t.t2Sub;
       document.getElementById('t2-issues').innerText = t.t2Issues;
       document.getElementById('btnClean').innerText = t.btnClean;
       document.getElementById('btnCopy').innerText = t.btnCopy;
 
-      // AI vertalingen
       document.getElementById('t3-title').innerText = t.t3Title;
       document.getElementById('t3-sub').innerText = t.t3Sub;
       document.getElementById('t3-score').innerText = t.t3Score;
@@ -526,7 +511,7 @@
       if(/[,.!?][a-zA-Z]/.test(text)) issues.push(t.errPunctAfter);
 
       if(issues.length === 0) {
-        container.innerHTML = `<span style='color:#16a34a;'>${t.noIssues}</span>`;
+        container.innerHTML = `<span style='color:#2563eb; font-weight:600;'>${t.noIssues}</span>`;
       } else {
         container.innerHTML = issues.map(i => `<div class="issue-item">${i}</div>`).join('');
       }
