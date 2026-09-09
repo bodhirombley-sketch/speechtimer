@@ -194,12 +194,12 @@
         <p id="homeSub">Optimaliseer je presentaties, controleer op spelfouten of analyseer zinsstructuren in een handomdraai. Snel, veilig en betrouwbaar.</p>
         
         <div class="hero-cta-group">
-          <button class="btn-primary" onclick="selectTool('timer', currentLang)">Direct Starten →</button>
+          <button class="btn-primary" onclick="handleSearchQuery()">Direct Starten →</button>
         </div>
 
         <div class="hero-search-box">
-          <input type="text" id="homeSearchInput" placeholder="Zoek een tool of typ direct je tekst..." onkeydown="if(event.key === 'Enter') selectTool('timer', currentLang)">
-          <button class="hero-search-btn" onclick="selectTool('timer', currentLang)">🔍</button>
+          <input type="text" id="homeSearchInput" placeholder="Zoek een tool of typ direct je tekst..." onkeydown="if(event.key === 'Enter') handleSearchQuery()">
+          <button class="hero-search-btn" onclick="handleSearchQuery()">🔍</button>
         </div>
       </div>
     </div>
@@ -263,7 +263,7 @@
     <div class="security-footer">
       <div class="sec-item"><span class="sec-icon">🔒</span><span>256-Bit SSL Encrypted Connection</span></div>
       <div class="sec-item"><span class="sec-icon">🛡️</span><span>100% Privacy - Client-Side Processed</span></div>
-      <div class="sec-item"><span class="sec-icon">✅</span><span>Google Search Console Verified</span></div>
+      <div class="sec-item"><span class="sec-icon">⚡</span><span>Instant Client-Side Processing</span></div>
     </div>
 
   </div>
@@ -365,7 +365,7 @@
         ]
       },
       es: {
-        placeholder: "Pega tu texto aquí...",
+        placeholder: "Pega tu texto hier...",
         menuHeader: "Seleccionar Herramienta",
         shareBtn: "🔗 Compartir",
         homeHeading: "Herramientas inteligentes para textos y presentaciones",
@@ -373,7 +373,7 @@
         t1Title: "Temporizador de Discursos", t1Sub: "Calcula al instante tu tiempo de lectura.",
         slow: "🐢 Ritmo lento", norm: "🚶 Ritmo normal", fast: "🐇 Ritmo rápido", practice: "Practica tu discurso en vivo:", startBtn: "Iniciar", pauseBtn: "Pausa", resumeBtn: "Continuar", resetBtn: "Reiniciar",
         t2Title: "Corrector de Ortografía", t2Sub: "Corrige mayúsculas, espacios y errores tipográficos.",
-        t2Issues: "Problemas detectados:",
+        t2Issues: "Problemes detectados:",
         btnClean: "✨ Corregir automáticamente", btnCopy: "📋 Copier", copyAlert: "¡Enlace copiado!",
         noText: "No hay texto ingresado.", noIssues: "✅ ¡No se encontraron errores comunes!",
         errSpaces: "⚠️ Se encontraron espacios dobles.", errCaps: "⚠️ Las oraciones deben comenzar con mayúscula.",
@@ -459,6 +459,16 @@
 
       if(document.getElementById('sidebar').classList.contains('open')) {
         toggleSidebar();
+      }
+    }
+
+    // Slimme zoek- / invoerfunctie die de tekst overneemt en de tool opent
+    function handleSearchQuery() {
+      const query = document.getElementById('homeSearchInput').value.trim();
+      selectTool('timer', currentLang);
+      if(query) {
+        document.getElementById('text-timer').value = query;
+        calcTimer();
       }
     }
 
