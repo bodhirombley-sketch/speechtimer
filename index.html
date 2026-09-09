@@ -56,7 +56,6 @@
             box-sizing: border-box;
         }
 
-        /* Het bewerkbare tekstgebied */
         #editor {
             outline: none;
             font-size: 16px;
@@ -66,7 +65,6 @@
             word-break: break-word;
         }
 
-        /* Google Docs-stijl rode golvende onderstreping voor spelfouten */
         .spell-error {
             text-decoration: underline wavy #ea4335;
             text-decoration-skip-ink: none;
@@ -74,7 +72,6 @@
             position: relative;
         }
 
-        /* Popup menu voor suggesties (Google Docs pop-up look) */
         #suggestion-popup {
             display: none;
             position: absolute;
@@ -100,7 +97,6 @@
 
         .no-errors {
             margin-top: 10px;
-            color: #137333;
             font-size: 14px;
             font-weight: 500;
             display: none;
@@ -110,26 +106,21 @@
 <body>
 
     <div class="toolbar">
-        <button class="btn-check" onclick="runSpellCheck()">Spelling controleren (Knop)</button>
-        <span id="status-msg" class="no-errors">Geen spelfouten gevonden!</span>
+        <button class="btn-check" onclick="runSpellCheck()">Spelling controleren</button>
+        <span id="status-msg" class="no-errors"></span>
     </div>
 
     <div class="editor-container">
-        <!-- Jouw aangeleverde testtekst -->
         <div id="editor" contenteditable="true">Ik ben echt blijelikh dat ik vanaute ochtendlicht terwijl ik m'n opdracht aan het maken was toch nog gelukkig ben geworden. Het wordt het wel waard om tijd te steken in deze familie zaak sowieso</div>
         
-        <!-- Contextmenu voor vervanging -->
         <div id="suggestion-popup"></div>
     </div>
 
     <script>
-        // Woordenboek met veelvoorkomende fouten en de juiste suggesties
         const dictionary = {
-            "blijelikh": ["blij", "gelukkig", "blijkelijk"],
-            "vanaute": ["vanochtend", "van uit", "vanuit"],
-            "ochtendlicht": ["ochtend", "ochtendlicht"],
-            "familie": ["familie-", "familie"], // ter voorbeeld
-            "zaak": ["zaak"]
+            "blijelikh": ["blij", "blijkelijk"],
+            "vanaute": ["vanochtend", "vanuit"],
+            "familie zaak": ["familiezaak"]
         };
 
         let activeErrorElement = null;
@@ -138,30 +129,25 @@
             const editor = document.getElementById('editor');
             let text = editor.innerHTML;
             
-            // Verwijder eerdere markeringen tijdelijk om dubbel checken te voorkomen
             text = text.replace(/<span class="spell-error"[^>]*>(.*?)<\/span>/g, '$1');
 
             let errorFound = false;
 
-            // Loop door elk fout woord in ons woordenboek
             for (let wrongWord in dictionary) {
-                // Regex om hele woorden te matchen (case-insensitive)
                 const regex = new RegExp(`\\b(${wrongWord})\\b`, 'gi');
                 
                 if (regex.test(text)) {
                     errorFound = true;
-                    // Vervang het woord door een span met de rode golvende lijn
                     text = text.replace(regex, `<span class="spell-error" onclick="showSuggestions(event, '${wrongWord}')">$1</span>`);
                 }
             }
 
             editor.innerHTML = text;
 
-            // Toon statusmelding
             const statusMsg = document.getElementById('status-msg');
             statusMsg.style.display = 'block';
             if (!errorFound) {
-                statusMsg.innerText = "Alles ziet er goed uit!";
+                statusMsg.innerText = "Geen spelfouten gevonden!";
                 statusMsg.style.color = "#137333";
             } else {
                 statusMsg.innerText = "Spelfouten gemarkeerd met rode lijn.";
@@ -174,10 +160,8 @@
             activeErrorElement = event.target;
             const popup = document.getElementById('suggestion-popup');
             
-            // Maak suggesties lijst leeg
             popup.innerHTML = '';
 
-            // Haal suggesties op uit het woordenboek
             const suggestions = dictionary[wrongWord.toLowerCase()] || ["Geen suggestie"];
 
             suggestions.forEach(suggestion => {
@@ -185,14 +169,12 @@
                 item.className = 'suggestion-item';
                 item.innerText = suggestion;
                 item.onclick = function() {
-                    // Vervang het foutieve woord door de selectie
                     activeErrorElement.outerText = suggestion;
                     popup.style.display = 'none';
                 };
                 popup.appendChild(item);
             });
 
-            // Positioneer de pop-up net onder het geklikte woord
             const rect = activeErrorElement.getBoundingClientRect();
             const containerRect = document.querySelector('.editor-container').getBoundingClientRect();
             
@@ -201,7 +183,6 @@
             popup.style.display = 'block';
         }
 
-        // Sluit de pop-up als je ergens anders klikt
         window.onclick = function(event) {
             if (!event.target.classList.contains('spell-error')) {
                 document.getElementById('suggestion-popup').style.display = 'none';
