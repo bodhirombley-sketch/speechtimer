@@ -2,8 +2,10 @@
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
-    <title>Docs-stijl Spellingscontrole</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Docs Stijl Spellingscontrole</title>
     <style>
+        /* Algemene pagina-opmaak */
         body {
             font-family: Arial, sans-serif;
             background-color: #f8f9fa;
@@ -14,6 +16,23 @@
             align-items: center;
         }
 
+        header {
+            margin-bottom: 20px;
+            text-align: center;
+            color: #202124;
+        }
+
+        header h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            color: #5f6368;
+            font-size: 14px;
+        }
+
+        /* Toolbar in Google Docs stijl */
         .toolbar {
             width: 100%;
             max-width: 800px;
@@ -23,8 +42,9 @@
             border-bottom: none;
             border-radius: 8px 8px 0 0;
             display: flex;
-            gap: 10px;
+            justify-content: space-between;
             align-items: center;
+            box-sizing: border-box;
         }
 
         .btn-check {
@@ -43,6 +63,12 @@
             background-color: #1557b0;
         }
 
+        #status-msg {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* De editor container */
         .editor-container {
             position: relative;
             width: 100%;
@@ -51,20 +77,22 @@
             border: 1px solid #dadce0;
             border-radius: 0 0 8px 8px;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            min-height: 250px;
-            padding: 30px;
+            min-height: 300px;
+            padding: 40px;
             box-sizing: border-box;
         }
 
+        /* Het bewerkbare tekstgebied */
         #editor {
             outline: none;
             font-size: 16px;
-            line-height: 1.6;
+            line-height: 1.8;
             color: #202124;
             white-space: pre-wrap;
             word-break: break-word;
         }
 
+        /* Google Docs-stijl rode golvende onderstreping voor spelfouten */
         .spell-error {
             text-decoration: underline wavy #ea4335;
             text-decoration-skip-ink: none;
@@ -72,6 +100,7 @@
             position: relative;
         }
 
+        /* Popup menu voor suggesties */
         #suggestion-popup {
             display: none;
             position: absolute;
@@ -84,6 +113,16 @@
             min-width: 160px;
         }
 
+        .suggestion-header {
+            padding: 4px 16px;
+            font-size: 11px;
+            text-transform: uppercase;
+            color: #5f6368;
+            font-weight: bold;
+            border-bottom: 1px solid #f1f3f4;
+            margin-bottom: 4px;
+        }
+
         .suggestion-item {
             padding: 8px 16px;
             font-size: 14px;
@@ -94,33 +133,35 @@
         .suggestion-item:hover {
             background-color: #f1f3f4;
         }
-
-        .no-errors {
-            margin-top: 10px;
-            font-size: 14px;
-            font-weight: 500;
-            display: none;
-        }
     </style>
 </head>
 <body>
 
+    <header>
+        <h1>Online Tekstverwerker</h1>
+        <p>Klik op de knop om je tekst te controleren op spelfouten (Google Docs stijl)</p>
+    </header>
+
+    <!-- De werkbalk met de automatische knop -->
     <div class="toolbar">
         <button class="btn-check" onclick="runSpellCheck()">Spelling controleren</button>
-        <span id="status-msg" class="no-errors"></span>
+        <span id="status-msg"></span>
     </div>
 
+    <!-- Het document / de pagina waar de tekst in staat -->
     <div class="editor-container">
         <div id="editor" contenteditable="true">Ik ben echt blijelikh dat ik vanaute ochtendlicht terwijl ik m'n opdracht aan het maken was toch nog gelukkig ben geworden. Het wordt het wel waard om tijd te steken in deze familie zaak sowieso</div>
         
+        <!-- De interactieve pop-up die verschijnt bij klik op een fout -->
         <div id="suggestion-popup"></div>
     </div>
 
     <script>
+        // Uitgebreid woordenboek gekoppeld aan de testtekst
         const dictionary = {
             "blijelikh": ["blij", "blijkelijk"],
             "vanaute": ["vanochtend", "vanuit"],
-            "familie zaak": ["familiezaak"]
+            "familie": ["familie", "familie-"]
         };
 
         let activeErrorElement = null;
@@ -129,28 +170,31 @@
             const editor = document.getElementById('editor');
             let text = editor.innerHTML;
             
+            // Verwijder eventuele oude markeringen zodat we met een schone lei beginnen
             text = text.replace(/<span class="spell-error"[^>]*>(.*?)<\/span>/g, '$1');
 
             let errorFound = false;
 
+            // Loop door alle fouten in het woordenboek
             for (let wrongWord in dictionary) {
                 const regex = new RegExp(`\\b(${wrongWord})\\b`, 'gi');
                 
                 if (regex.test(text)) {
                     errorFound = true;
+                    // Omring het foutieve woord met een span element dat de rode golflijn triggert
                     text = text.replace(regex, `<span class="spell-error" onclick="showSuggestions(event, '${wrongWord}')">$1</span>`);
                 }
             }
 
             editor.innerHTML = text;
 
+            // Update statusmelding in de toolbar
             const statusMsg = document.getElementById('status-msg');
-            statusMsg.style.display = 'block';
             if (!errorFound) {
                 statusMsg.innerText = "Geen spelfouten gevonden!";
                 statusMsg.style.color = "#137333";
             } else {
-                statusMsg.innerText = "Spelfouten gemarkeerd met rode lijn.";
+                statusMsg.innerText = "Spelfouten gedetecteerd (klik erop voor suggesties)";
                 statusMsg.style.color = "#d93025";
             }
         }
@@ -160,7 +204,7 @@
             activeErrorElement = event.target;
             const popup = document.getElementById('suggestion-popup');
             
-            popup.innerHTML = '';
+            popup.innerHTML = '<div class="suggestion-header">Suggesties</div>';
 
             const suggestions = dictionary[wrongWord.toLowerCase()] || ["Geen suggestie"];
 
@@ -169,12 +213,14 @@
                 item.className = 'suggestion-item';
                 item.innerText = suggestion;
                 item.onclick = function() {
+                    // Vervang het foutieve woord direct in de HTML door de gekozen suggestie
                     activeErrorElement.outerText = suggestion;
                     popup.style.display = 'none';
                 };
                 popup.appendChild(item);
             });
 
+            // Bereken de positie zodat de pop-up netjes onder het foutieve woord verschijnt
             const rect = activeErrorElement.getBoundingClientRect();
             const containerRect = document.querySelector('.editor-container').getBoundingClientRect();
             
@@ -183,6 +229,7 @@
             popup.style.display = 'block';
         }
 
+        // Sluit de suggestie-popup zodra er buiten wordt geklikt
         window.onclick = function(event) {
             if (!event.target.classList.contains('spell-error')) {
                 document.getElementById('suggestion-popup').style.display = 'none';
