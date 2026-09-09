@@ -132,7 +132,7 @@
         <nav>
             <a href="#" onclick="switchTool('home')" class="active" id="nav-home">Home</a>
             <a href="#" onclick="switchTool('timer')" id="nav-timer">Speech Timer</a>
-            <a href="#" onclick="switchTool('grammar')" id="nav-grammar">Grammatica Bot</a>
+            <a href="#" onclick="switchTool('grammar')" id="nav-grammar">Grammatica & Typfouten Bot</a>
             <a href="#" onclick="switchTool('ai')" id="nav-ai">AI Detector</a>
         </nav>
     </header>
@@ -141,10 +141,11 @@
         <!-- HOME SECTIE -->
         <div id="home" class="tool-section active">
             <h1>Alles-in-één tools voor je tekst en presentaties</h1>
-            <p>Welkom bij Every-Tool! Kies hieronder direct een handige tool om je speech te timen, je grammatica te controleren of teksten te analyseren.</p>
-            <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+            <p>Welkom bij Every-Tool! Kies hieronder direct een handige tool om je speech te timen, je grammatica en typfouten te controleren of teksten te analyseren.</p>
+            <div style="display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap;">
                 <button onclick="switchTool('timer')">Start Speech Timer</button>
-                <button onclick="switchTool('grammar')">Open Grammatica Bot</button>
+                <button onclick="switchTool('grammar')">Open Grammatica & Typfouten Bot</button>
+                <button onclick="switchTool('ai')">Open AI Detector</button>
             </div>
         </div>
 
@@ -156,10 +157,10 @@
             <div id="timerOutput" class="output-box" style="margin-top: 1rem; display:none;"></div>
         </div>
 
-        <!-- GRAMMATICA BOT SECTIE -->
+        <!-- GRAMMATICA & TYPFOUTEN BOT SECTIE -->
         <div id="grammar" class="tool-section">
-            <h1>Grammatica Bot</h1>
-            <p>Laat je tekst controleren op veelgemaakte typ- en taalfouten.</p>
+            <h1>Grammatica & Typfouten Bot</h1>
+            <p>Laat je tekst controleren op veelgemaakte grammatica- en typfouten.</p>
             <textarea id="grammarText" placeholder="Typ of plak hier je tekst (bijv. 'il ben naar de winkel')..."></textarea>
             <button onclick="checkGrammar()">Controleer Tekst</button>
             <div id="grammarOutput" class="output-box" style="margin-top: 1rem; display:none;"></div>
@@ -206,7 +207,7 @@
             output.innerHTML = `Geschatte spreektijd (bij normaal tempo van 130 woorden/minuut): <strong>${minutes} minuut/minuten en ${seconds} seconden</strong> (${words} woorden).`;
         }
 
-        // Verbeterde Grammatica Bot met vaste correcties (zoals "il ben" -> "ik ben")
+        // Grammatica & Typfouten Bot met vaste correcties
         function checkGrammar() {
             let text = document.getElementById('grammarText').value;
             const output = document.getElementById('grammarOutput');
@@ -217,10 +218,9 @@
                 return;
             }
 
-            // Veelgemaakte fouten woordenboek / vervangingen
             let correctionsMade = 0;
             
-            // Vervang "il ben" (ongeacht hoofdletters) netjes door "ik ben"
+            // Vervang "il ben" netjes door "ik ben"
             let correctedText = text.replace(/\bil\s+ben\b/gi, (match) => {
                 correctionsMade++;
                 return match[0] === 'I' ? 'Ik ben' : 'ik ben';
@@ -235,7 +235,7 @@
             if (correctionsMade > 0) {
                 output.innerHTML = `<strong>Resultaat (${correctionsMade} verbetering(en) doorgevoerd):</strong><br><p style="background:#fff; padding:10px; border-radius:5px; border:1px solid #cbd5e1;">${correctedText}</p>`;
             } else {
-                output.innerHTML = `<strong>Resultaat:</strong> Geen typische grammaticafouten of typfouten gevonden in deze controlelijst!`;
+                output.innerHTML = `<strong>Resultaat:</strong> Geen typische grammatica- of typfouten gevonden in deze controlelijst!`;
             }
         }
 
@@ -259,19 +259,15 @@
                 return;
             }
 
-            // Kenmerken berekenen voor AI-detectie
-            // AI-teksten hebben vaak heel gelijkmatige zinnen en specifieke stopwoorden
             const sentences = text.split(/[.!?]+/).filter(Boolean);
             const avgSentenceLength = wordCount / (sentences.length || 1);
 
-            let aiScore = 20; // Basiswaarde
+            let aiScore = 20;
 
-            // AI houdt van gemiddeld langere, stabiele zinnen (vaak tussen 12 en 25 woorden per zin)
             if (avgSentenceLength >= 14 && avgSentenceLength <= 24) {
                 aiScore += 35;
             }
 
-            // Check op typische AI-koppelwoorden/formele constructies
             const aiKeywords = ['daarnaast', 'bovendien', 'ten eerste', 'concluderend', 'belangrijk om op te merken', 'in het algemeen', 'over het algemeen', 'essentieel'];
             let keywordMatches = 0;
             aiKeywords.forEach(keyword => {
@@ -281,7 +277,6 @@
 
             aiScore += (keywordMatches * 15);
 
-            // Begrenzen tussen 5% en 95%
             if (aiScore > 92) aiScore = 92;
             if (aiScore < 8) aiScore = 8;
 
@@ -299,7 +294,7 @@
             output.innerHTML = `<strong>AI-Analyse Resultaat:</strong><br>
                 Geschatte AI-score: <strong style="color:${color};">${aiScore}%</strong><br>
                 Status: <strong>${label}</strong><br>
-                <small style="color:#64748b;">Analyse op basis van gemiddelde zislengte (${Math.round(avgSentenceLength)} woorden/zin) en formele structuurwoorden.</small>`;
+                <small style="color:#64748b;">Analyse op basis van gemiddelde zinslengte (${Math.round(avgSentenceLength)} woorden/zin) en formele structuurwoorden.</small>`;
         }
     </script>
 </body>
