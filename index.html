@@ -120,7 +120,7 @@
     .ai-bar-bg { background: #f1f5f9; height: 12px; border-radius: 6px; overflow: hidden; margin: 15px 0; border: 1px solid #e2e8f0; }
     .ai-bar-fill { height: 100%; background: #2563eb; width: 0%; transition: width 0.5s ease; border-radius: 6px; }
 
-    /* QR Generator specifiek (Dubbele uploadsectie verwijderd, strakke moderne drop-zone) */
+    /* QR Code Generator specifiek */
     .drop-zone { border: 2px dashed #cbd5e1; background: #f8fafc; border-radius: 16px; padding: 45px 24px; text-align: center; cursor: pointer; transition: all 0.2s; margin-bottom: 24px; }
     .drop-zone:hover { background: #eff6ff; border-color: #2563eb; }
     .drop-zone.dragover { background: #dbeafe; border-color: #1d4ed8; transform: scale(1.01); }
@@ -129,7 +129,7 @@
     .drop-zone-icon { font-size: 40px; color: #2563eb; margin-bottom: 4px; }
 
     .qr-preview-box { background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 35px; text-align: center; margin-top: 20px; box-shadow: 0 4px 15px -3px rgba(0,0,0,0.02); display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 250px; }
-    .qr-preview-box img { max-width: 200px; height: auto; border-radius: 10px; border: 1px solid #e2e8f0; padding: 10px; background: white; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+    .qr-preview-box img { max-width: 200px; height: auto; border-radius: 10px; border: 1px solid #e2e8f0; padding: 10px; background: white; box-shadow: 0 4px 12px rgba(0,0,0,0.05); margin-bottom: 16px; }
 
     .ad-space { margin-top: 40px; padding: 24px; background: #f8fafc; border: 1px dashed #cbd5e1; text-align: center; color: #64748b; border-radius: 14px; font-size: 14px; font-weight: 500; }
 
@@ -345,7 +345,7 @@
       </div>
     </div>
 
-    <!-- TAB 4: QR CODE GENERATOR (Hernoemd, geen dubbele PDF-upload, nette structuur) -->
+    <!-- TAB 4: QR CODE GENERATOR -->
     <div id="tab-qr" class="tab-content">
       <div class="section-header-wrapper">
         <h2 class="section-title" id="qr-title">QR Code Generator</h2>
@@ -377,6 +377,7 @@
   <script>
     let currentLang = 'nl';
     let currentTool = 'home';
+    let currentQRUrl = ''; // Bewaart de actieve QR-link voor downloaden
 
     const translations = {
       nl: {
@@ -402,6 +403,7 @@
         dropText: "Sleep je PDF-bestand hier of klik om te bladeren",
         dropSub: "Ondersteunt alleen PDF-bestanden",
         qrPlaceholder: "Upload een PDF om een QR-code te genereren...",
+        downloadQR: "📥 Download QR-code",
         speeds: { slow: 90, norm: 100, fast: 125 },
         replacements: [
           { bad: /\bils ben\b|\bil ben\b/gi, good: "ik ben", desc: "Typfout: 'ils ben' of 'il ben' gecorrigeerd naar 'ik ben'" },
@@ -459,10 +461,9 @@
         dropText: "PDF-Datei hierher ziehen oder klicken",
         dropSub: "Nur PDF-Dateien werden unterstützt",
         qrPlaceholder: "Laden Sie eine PDF hoch, um einen QR-Code zu generieren...",
-        speeds: { slow: 90, norm: 105, fast: 130 },
-        replacements: [
-          { bad: /\bdass\b/gi, good: "dass", desc: "Rechtschreibung geprüft" }
-        ]
+        downloadQR: "📥 QR-Code herunterladen",
+        speeds: { slow: 110, norm: 130, fast: 160 },
+        replacements: [{ bad: /\bdass\b/gi, good: "dass", desc: "Rechtschreibung geprüft" }]
       },
       en: {
         placeholder: "Paste your text here...",
@@ -487,66 +488,11 @@
         dropText: "Drag & drop your PDF file here or click to browse",
         dropSub: "Supports PDF files only",
         qrPlaceholder: "Upload a PDF to generate a QR code...",
+        downloadQR: "📥 Download QR Code",
         speeds: { slow: 110, norm: 130, fast: 160 },
         replacements: [
           { bad: /\bteh\b/gi, good: "the", desc: "Typo: 'teh' corrected to 'the'" },
           { bad: /\brecieve\b/gi, good: "receive", desc: "Typo: 'recieve' corrected to 'receive'" }
-        ]
-      },
-      fr: {
-        placeholder: "Collez votre texte ici...",
-        menuHeader: "Choisir un outil",
-        shareBtn: "🔗 Partager",
-        homeHeading: "Outils intelligents pour textes et présentations",
-        homeSub: "Optimisez vos présentations, vérifiez l'orthographe ou analysez la structure des phrases instantanément.",
-        aboutTitle: "💡 À propos",
-        aboutText: "Tous les calculs et analyses sont effectués directement dans votre navigateur web (côté client), garantissant une confidentialité maximale.",
-        t1Title: "Minuteur de Discours", t1Sub: "Calculez rapidement votre temps de parole.",
-        slow: "🐢 Rythme lent", norm: "🚶 Rythme normal", fast: "🐇 Rythme rapide", practice: "Entraînez-vous en direct:", startBtn: "Démarrer", pauseBtn: "Pause", resumeBtn: "Reprendre", resetBtn: "Réinitialiser",
-        t2Title: "Correcteur d'Orthographe", t2Sub: "Corrigez la ponctuation, les majuscules et les fautes.",
-        t2Issues: "Problèmes et fautes détectés:",
-        btnClean: "✨ Corriger automatiquement", btnCopy: "📋 Copier", copyAlert: "Lien copié!",
-        noText: "Aucun texte saisi.", noIssues: "✅ Aucun problème détecté!",
-        errSpaces: "⚠️ Espaces doubles trouvés.", errCaps: "⚠️ Les phrases doivent commencer par une majuscule.",
-        errPunctBefore: "⚠️ Espace inutile avant la ponctuation.", errPunctAfter: "⚠️ Espace manquant après la ponctuation.",
-        t3Title: "Détecteur de Texte IA", t3Sub: "Analysez la structure des phrases.",
-        t3Score: "Probabilité IA estimée", aiShort: "Saisissez au moins 50 caractères.",
-        aiHigh: "Régularité élevée des phrases (Atypique/IA).", aiLow: "Variation naturelle de la longueur des phrases.",
-        qrTitle: "Générateur de Code QR", qrSub: "Glissez et déposez un fichier PDF ici pour générer un code QR.",
-        dropText: "Glissez votre PDF ici ou cliquez pour parcourir",
-        dropSub: "Prend en charge uniquement les fichiers PDF",
-        qrPlaceholder: "Téléchargez un PDF pour générer un code QR...",
-        speeds: { slow: 100, norm: 120, fast: 150 },
-        replacements: [
-          { bad: /\bpa\b/gi, good: "pas", desc: "Faute de frappe corrigée" }
-        ]
-      },
-      es: {
-        placeholder: "Pega tu texto aquí...",
-        menuHeader: "Seleccionar Herramienta",
-        shareBtn: "🔗 Compartir",
-        homeHeading: "Herramientas inteligentes para textos y presentaciones",
-        homeSub: "Optimiza tus presentaciones, corrige errores ortográficos o analiza patrones de oraciones al instante.",
-        aboutTitle: "💡 Acerca de",
-        aboutText: "Todos los cálculos y análisis se realizan directamente en tu navegador web (del lado del cliente), garantizando la máxima privacidad.",
-        t1Title: "Temporizador de Discursos", t1Sub: "Calcula al instante tu tiempo de lectura.",
-        slow: "🐢 Ritmo lento", norm: "🚶 Ritmo normal", fast: "🐇 Ritmo rápido", practice: "Practica tu discurso en vivo:", startBtn: "Iniciar", pauseBtn: "Pausa", resumeBtn: "Continuar", resetBtn: "Reiniciar",
-        t2Title: "Corrector de Ortografía", t2Sub: "Corrige mayúsculas, espacios y errores tipográficos.",
-        t2Issues: "Problemas detectados:",
-        btnClean: "✨ Corregir automáticamente", btnCopy: "📋 Copiar", copyAlert: "¡Enlace copiado!",
-        noText: "No hay texto ingresado.", noIssues: "✅ ¡No se encontraron errores comunes!",
-        errSpaces: "⚠️ Se encontraron espacios dobles.", errCaps: "⚠️ Las oraciones deben comenzar con mayúscula.",
-        errPunctBefore: "⚠️ Espacio innecesario antes de la puntuación.", errPunctAfter: "⚠️ Falta espacio después de la puntuación.",
-        t3Title: "Detector de Texto IA", t3Sub: "Analiza el patrón de oraciones.",
-        t3Score: "Probabilidad estimada de IA", aiShort: "Ingrese al menos 50 caracteres.",
-        aiHigh: "Alta regularidad en las oraciones (Típico de IA).", aiLow: "Variación natural en la longitud de las oraciones.",
-        qrTitle: "Generador de Código QR", qrSub: "Arrastra y suelta un archivo PDF aquí para generar un código QR.",
-        dropText: "Arrastra tu PDF aquí o haz clic para buscar",
-        dropSub: "Solo admite archivos PDF",
-        qrPlaceholder: "Sube un PDF para generar un code QR...",
-        speeds: { slow: 120, norm: 145, fast: 175 },
-        replacements: [
-          { bad: /\btambien\b/gi, good: "también", desc: "Corrección de tilde" }
         ]
       }
     };
@@ -601,7 +547,7 @@
 
       document.getElementById('topTitle').innerText = toolNames[lang][toolId];
 
-      const t = translations[lang];
+      const t = translations[lang] || translations['nl'];
       document.getElementById('menuHeader').innerText = t.menuHeader;
       document.getElementById('shareBtnText').innerText = t.shareBtn;
 
@@ -641,6 +587,12 @@
       document.getElementById('text-timer').placeholder = t.placeholder;
       document.getElementById('text-checker').placeholder = t.placeholder;
       document.getElementById('text-ai').placeholder = t.placeholder;
+
+      // Update download knop tekst als deze zichtbaar is
+      const downloadBtn = document.getElementById('downloadQrBtn');
+      if(downloadBtn) {
+        downloadBtn.innerText = t.downloadQR;
+      }
 
       if(document.getElementById('sidebar').classList.contains('open')) {
         toggleSidebar();
@@ -708,7 +660,7 @@
     function calcTimer() {
       const text = document.getElementById('text-timer').value.trim();
       const words = text ? text.split(/\s+/).length : 0;
-      const sp = translations[currentLang].speeds;
+      const sp = (translations[currentLang] || translations['nl']).speeds;
 
       document.getElementById('timeSlow').innerText = formatTime(words ? (words/sp.slow)*60 : 0);
       document.getElementById('timeNorm').innerText = formatTime(words ? (words/sp.norm)*60 : 0);
@@ -718,7 +670,7 @@
     let timerInt = null, secs = 0;
     function startTimer() {
       const b = document.getElementById('startBtn');
-      const t = translations[currentLang];
+      const t = translations[currentLang] || translations['nl'];
       if(timerInt) { 
         clearInterval(timerInt); 
         timerInt = null; 
@@ -731,13 +683,13 @@
     function resetTimer() {
       clearInterval(timerInt); timerInt = null; secs = 0;
       document.getElementById('stopwatch').innerText = "00:00";
-      document.getElementById('startBtn').innerText = translations[currentLang].startBtn;
+      document.getElementById('startBtn').innerText = (translations[currentLang] || translations['nl']).startBtn;
     }
 
     function checkSpelling() {
       const text = document.getElementById('text-checker').value;
       const container = document.getElementById('issuesContainer');
-      const t = translations[currentLang];
+      const t = translations[currentLang] || translations['nl'];
       let issues = [];
 
       if(!text.trim()) { container.innerHTML = t.noText; return; }
@@ -766,7 +718,7 @@
       let textVal = document.getElementById('text-checker').value;
       if(!textVal.trim()) return;
 
-      const langData = translations[currentLang];
+      const langData = translations[currentLang] || translations['nl'];
 
       textVal = textVal.replace(/\s+/g, ' ');
       textVal = textVal.replace(/\s+([,.!?])/g, '$1');
@@ -785,13 +737,13 @@
       const val = document.getElementById(id).value;
       if(val) {
         navigator.clipboard.writeText(val);
-        alert(translations[currentLang].copyAlert);
+        alert((translations[currentLang] || translations['nl']).copyAlert);
       }
     }
 
     function checkAI() {
       const text = document.getElementById('text-ai').value.trim();
-      const t = translations[currentLang];
+      const t = translations[currentLang] || translations['nl'];
 
       if(text.length < 50) {
         document.getElementById('aiScore').innerText = "0%";
@@ -836,7 +788,7 @@
       document.getElementById('aiAnalysis').innerText = score > 60 ? t.aiHigh : t.aiLow;
     }
 
-    /* QR / PDF Drag & Drop Functionaliteit */
+    /* QR / PDF Drag & Drop & Download functionaliteit */
     function handleDragOver(e) {
       e.preventDefault();
       document.getElementById('dropZone').classList.add('dragover');
@@ -863,19 +815,47 @@
 
     function processFile(file) {
       const box = document.getElementById('qrPreviewBox');
+      const t = translations[currentLang] || translations['nl'];
       
       if (file.type !== "application/pdf") {
         alert("Upload alstublieft een geldig PDF-bestand.");
         return;
       }
 
-      const fileUrl = URL.createObjectURL(file);
-      const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=` + encodeURIComponent(fileUrl);
+      currentQRUrl = URL.createObjectURL(file);
+      const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=` + encodeURIComponent(currentQRUrl);
       
       box.innerHTML = `
-        <img src="${qrApiUrl}" alt="QR Code voor PDF" />
-        <p style="font-size: 13px; color: #475569; margin-top: 14px; font-weight: 500;">Gegenereerd voor PDF: <span style="color:#2563eb; font-weight: 600;">${file.name}</span></p>
+        <img id="generatedQrImg" src="${qrApiUrl}" alt="QR Code voor PDF" crossorigin="anonymous" />
+        <p style="font-size: 13px; color: #475569; margin-top: 6px; margin-bottom: 16px; font-weight: 500;">Gegenereerd voor PDF: <span style="color:#2563eb; font-weight: 600;">${file.name}</span></p>
+        <button class="btn success" id="downloadQrBtn" onclick="downloadQRCode('${file.name}')">${t.downloadQR || "📥 Download QR-code"}</button>
       `;
+    }
+
+    function downloadQRCode(fileName) {
+      const img = document.getElementById('generatedQrImg');
+      if (!img) return;
+
+      // Maak een tijdelijk canvas om de afbeelding te converteren en te downloaden
+      const canvas = document.createElement('canvas');
+      canvas.width = img.naturalWidth || 250;
+      canvas.height = img.naturalHeight || 250;
+      const ctx = canvas.getContext('2d');
+      
+      const imageObj = new Image();
+      imageObj.crossOrigin = "anonymous";
+      imageObj.onload = function() {
+        ctx.drawImage(imageObj, 0, 0);
+        const dataURL = canvas.toDataURL('image/png');
+        
+        const a = document.createElement('a');
+        a.href = dataURL;
+        a.download = `qr-code-${fileName.replace(/\.[^/.]+$/, "")}.png`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      };
+      imageObj.src = img.src;
     }
   </script>
 </body>
