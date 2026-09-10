@@ -8,6 +8,16 @@
     * { box-sizing: border-box; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
     body { margin: 0; padding: 0; background: #f8fafc; color: #0f172a; display: flex; flex-direction: column; min-height: 100vh; }
 
+    /* Taalkeuze Scherm (Landing / Modal) */
+    .language-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(4px); z-index: 1000; display: flex; align-items: center; justify-content: center; transition: opacity 0.3s ease; }
+    .language-overlay.hidden { display: none; }
+    .language-modal { background: #ffffff; padding: 40px; border-radius: 20px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); text-align: center; max-width: 450px; width: 90%; border: 1px solid #e2e8f0; }
+    .language-modal h2 { margin-top: 0; font-size: 24px; color: #0f172a; font-weight: 800; letter-spacing: -0.5px; }
+    .language-modal p { color: #475569; font-size: 15px; margin-bottom: 25px; line-height: 1.5; }
+    .lang-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .lang-card-btn { background: #f8fafc; border: 2px solid #e2e8f0; padding: 14px; border-radius: 12px; font-size: 15px; font-weight: 700; color: #1e293b; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; }
+    .lang-card-btn:hover { background: #eff6ff; border-color: #2563eb; color: #2563eb; transform: translateY(-1px); }
+
     /* Topbalk */
     .topbar { background: #ffffff; border-bottom: 1px solid #e2e8f0; padding: 12px 24px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; }
     .topbar-left { display: flex; align-items: center; gap: 16px; }
@@ -19,7 +29,6 @@
     .share-top-btn { background: #2563eb; color: white; border: none; padding: 8px 16px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: background 0.2s; }
     .share-top-btn:hover { background: #1d4ed8; }
 
-    /* Snelle taalwissel in topbar */
     .lang-switcher-top { display: flex; gap: 4px; background: #f1f5f9; padding: 4px; border-radius: 8px; border: 1px solid #e2e8f0; }
     .lang-switcher-top button { background: transparent; border: none; padding: 4px 8px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; color: #475569; }
     .lang-switcher-top button.active { background: #ffffff; color: #2563eb; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
@@ -52,18 +61,17 @@
     .tab-content { display: none; }
     .tab-content.active { display: block; }
 
-    /* Home / Hero Sectie met betere balans en contrast */
+    /* Hero Sectie */
     .hero-section { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 60px 40px; margin-bottom: 30px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05); text-align: center; }
     .hero-tag { display: inline-block; background: #eff6ff; color: #2563eb; font-size: 12px; font-weight: 700; text-transform: uppercase; padding: 6px 12px; border-radius: 20px; margin-bottom: 20px; letter-spacing: 0.5px; }
     .hero-section h1 { font-size: 40px; font-weight: 800; color: #0f172a; margin: 0 0 15px 0; letter-spacing: -1px; line-height: 1.2; }
-    .hero-section p { font-size: 17px; color: #334155; margin: 0 auto 35px auto; max-width: 650px; line-height: 1.6; font-weight: 400; } /* Contrast verbeterd van #64748b naar #334155 */
+    .hero-section p { font-size: 17px; color: #334155; margin: 0 auto 35px auto; max-width: 650px; line-height: 1.6; font-weight: 400; }
     
     .hero-search-wrapper { position: relative; max-width: 600px; margin: 0 auto 10px auto; }
     .hero-search-box { display: flex; background: #ffffff; border: 2px solid #cbd5e1; border-radius: 12px; padding: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); transition: border-color 0.2s; }
     .hero-search-box:focus-within { border-color: #2563eb; }
     .hero-search-box input { flex: 1; border: none; padding: 10px 14px; font-size: 16px; outline: none; background: transparent; color: #0f172a; }
     
-    /* Duidelijke CTA knop met tekst ipv alleen icoon */
     .hero-search-btn { background: #2563eb; color: white; border: none; padding: 0 18px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; transition: background 0.2s; }
     .hero-search-btn:hover { background: #1d4ed8; }
 
@@ -73,16 +81,11 @@
     .suggestion-item:last-child { border-bottom: none; }
     .suggestion-item:hover { background: #eff6ff; color: #2563eb; }
 
-    /* Extra secties voor balans op de homepage (About Us & Reviews) */
-    .home-sections-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px; }
-    @media(max-width: 768px) { .home-sections-grid { grid-template-columns: 1fr; } }
-    
+    /* Over Ons blok (zonder neppe reviews) */
+    .home-single-section { margin-top: 30px; }
     .info-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 30px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); text-align: left; }
     .info-card h3 { margin-top: 0; font-size: 18px; color: #0f172a; font-weight: 700; display: flex; align-items: center; gap: 8px; }
     .info-card p { color: #475569; font-size: 14px; line-height: 1.6; margin-bottom: 0; }
-    
-    .review-item { font-style: italic; color: #334155; font-size: 14px; margin-bottom: 12px; line-height: 1.5; }
-    .review-author { font-style: normal; font-weight: 600; font-size: 13px; color: #2563eb; }
 
     textarea { width: 100%; height: 160px; padding: 16px; font-size: 15px; border: 1px solid #cbd5e1; border-radius: 10px; resize: vertical; outline: none; margin-bottom: 16px; background: #ffffff; color: #0f172a; }
     textarea:focus { border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
@@ -110,6 +113,12 @@
     .ai-bar-bg { background: #e2e8f0; height: 12px; border-radius: 6px; overflow: hidden; margin: 15px 0; }
     .ai-bar-fill { height: 100%; background: #2563eb; width: 0%; transition: width 0.5s ease; border-radius: 6px; }
 
+    /* QR Generator specifiek */
+    .qr-input { width: 100%; padding: 12px 16px; font-size: 15px; border: 1px solid #cbd5e1; border-radius: 8px; outline: none; margin-bottom: 12px; background: #ffffff; color: #0f172a; }
+    .qr-input:focus { border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
+    .qr-preview-box { background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 30px; text-align: center; margin-top: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.02); display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 250px; }
+    .qr-preview-box img { max-width: 200px; height: auto; border-radius: 8px; border: 1px solid #e2e8f0; padding: 8px; background: white; }
+
     .ad-space { margin-top: 30px; padding: 20px; background: #ffffff; border: 1px dashed #cbd5e1; text-align: center; color: #94a3b8; border-radius: 12px; font-size: 14px; }
 
     .security-footer {
@@ -136,6 +145,20 @@
 </head>
 <body>
 
+  <!-- EERSTE KEER TAALKEUZE MODAL -->
+  <div class="language-overlay" id="languageOverlay">
+    <div class="language-modal">
+      <h2>Welcome / Welkommen / Bienvenue</h2>
+      <p>Kies je taal om te starten / Choose your language to start:</p>
+      <div class="lang-grid">
+        <button class="lang-card-btn" onclick="setInitialLanguage('nl')">🇳🇱 Nederlands</button>
+        <button class="lang-card-btn" onclick="setInitialLanguage('en')">🇬🇧 English</button>
+        <button class="lang-card-btn" onclick="setInitialLanguage('de')">🇩🇪 Deutsch</button>
+        <button class="lang-card-btn" onclick="setInitialLanguage('fr')">🇫🇷 Français</button>
+      </div>
+    </div>
+  </div>
+
   <!-- TOPBAR -->
   <div class="topbar">
     <div class="topbar-left">
@@ -144,7 +167,6 @@
     </div>
     
     <div class="topbar-right">
-      <!-- Directe taalkeuze in topbar voor betere toegankelijkheid -->
       <div class="lang-switcher-top">
         <button id="langBtnNl" class="active" onclick="selectTool(currentTool, 'nl')">NL</button>
         <button id="langBtnEn" onclick="selectTool(currentTool, 'en')">EN</button>
@@ -213,6 +235,12 @@
         <button class="lang-opt" onclick="selectTool('ai', 'es')">🇪🇸 Español</button>
       </div>
     </div>
+
+    <div class="tool-group">
+      <button class="tool-btn" onclick="selectTool('qr', currentLang)">
+        <span>📱 QR Code Generator</span>
+      </button>
+    </div>
   </div>
 
   <!-- MAIN CONTAINER -->
@@ -234,18 +262,10 @@
         </div>
       </div>
 
-      <!-- Extra secties voor paginabalans (About Us & Reviews) -->
-      <div class="home-sections-grid">
+      <div class="home-single-section">
         <div class="info-card">
           <h3 id="aboutTitle">💡 Over Every-Tool</h3>
           <p id="aboutText">Every-Tool is ontworpen om studenten, professionals en contentmakers te helpen sneller te werken. Alle berekeningen en analyses vinden direct plaats in je eigen webbrowser (client-side), wat maximale privacy garandeert. Er worden geen teksten opgeslagen of gedeeld.</p>
-        </div>
-        <div class="info-card">
-          <h3 id="reviewsTitle">⭐ Wat gebruikers zeggen</h3>
-          <div class="review-item" id="review1">"De speech timer heeft me gered tijdens de voorbereiding van mijn pitch. Super handig dat je direct ziet hoe lang het duurt!"</div>
-          <div class="review-author">— Mark V., student</div>
-          <div class="review-item" id="review2" style="margin-top: 12px;">"De grammatica- en AI-detector werken razendsnel en helpen enorm om teksten scherper te krijgen."</div>
-          <div class="review-author">— Sarah D., copywriter</div>
         </div>
       </div>
     </div>
@@ -304,6 +324,18 @@
       </div>
     </div>
 
+    <!-- TAB 4: QR CODE GENERATOR -->
+    <div id="tab-qr" class="tab-content">
+      <h2 class="section-title" id="qr-title">QR Code Generator</h2>
+      <p style="color:#334155; margin-top:-5px; margin-bottom:20px; font-weight: 500;" id="qr-sub">Genereer direct een QR-code voor elke website of tekst.</p>
+      
+      <input type="text" id="qrInputText" class="qr-input" placeholder="Typ URL of tekst (bijv. https://example.com)..." oninput="generateQRCode()" />
+      
+      <div class="qr-preview-box" id="qrPreviewBox">
+        <p style="color: #94a3b8; font-size: 14px; margin: 0;" id="qrPlaceholderText">Voer tekst in om een QR-code te genereren...</p>
+      </div>
+    </div>
+
     <div class="ad-space">Advertentie Ruimte (Google AdSense)</div>
 
     <div class="security-footer">
@@ -327,9 +359,6 @@
         homeSub: "Optimaliseer je presentaties, controleer op spelfouten of analyseer zinsstructuren in een handomdraai. Snel, veilig en betrouwbaar.",
         aboutTitle: "💡 Over Every-Tool",
         aboutText: "Every-Tool is ontworpen om studenten, professionals en contentmakers te helpen sneller te werken. Alle berekeningen en analyses vinden direct plaats in je eigen webbrowser (client-side), wat maximale privacy garandeert. Er worden geen teksten opgeslagen of gedeeld.",
-        reviewsTitle: "⭐ Wat gebruikers zeggen",
-        review1: "\"De speech timer heeft me gered tijdens de voorbereiding van mijn pitch. Super handig dat je direct ziet hoe lang het duurt!\"",
-        review2: "\"De grammatica- en AI-detector werken razendsnel en helpen enorm om teksten scherper te krijgen.\"",
         t1Title: "Speech & Presentatie Timer", t1Sub: "Bereken direct hoe lang jouw tekst duurt om voor te lezen.",
         slow: "🐢 Langzaam", norm: "🚶 Normaal", fast: "🐇 Snel", practice: "Oefen je speech live:", startBtn: "Start", pauseBtn: "Pauze", resumeBtn: "Hervat", resetBtn: "Reset",
         t2Title: "Grammatica & Spelfout Bot", t2Sub: "Controleer snel op hoofdletters, leestekens, spaties en typfouten.",
@@ -341,6 +370,8 @@
         t3Title: "AI-Tekst Detector Indicator", t3Sub: "Analyseer de zinsstructuur op AI-kenmerken.",
         t3Score: "Geschatte AI-waarschijnlijkheid", aiShort: "Voer minimaal 50 tekens in voor een schatting.",
         aiHigh: "Hoge mate van regelmatige zinsopbouw en/of typische AI-clichés gedetecteerd.", aiLow: "Natuurlijke variatie in zinslengte en woordgebruik gedetecteerd.",
+        qrTitle: "QR Code Generator", qrSub: "Genereer direct een QR-code voor elke website of tekst.",
+        qrPlaceholder: "Voer tekst in om een QR-code te genereren...",
         speeds: { slow: 90, norm: 100, fast: 125 },
         replacements: [
           { bad: /\bils ben\b|\bil ben\b/gi, good: "ik ben", desc: "Typfout: 'ils ben' of 'il ben' gecorrigeerd naar 'ik ben'" },
@@ -383,9 +414,6 @@
         homeSub: "Optimieren Sie Ihre Präsentationen, prüfen Sie Rechtschreibung oder analysieren Sie Textstrukturen sofort.",
         aboutTitle: "💡 Über Every-Tool",
         aboutText: "Every-Tool wurde entwickelt, um Studenten, Profis und Content-Erstellern zu helfen, effizienter zu arbeiten. Alle Berechnungen und Analysen erfolgen direkt in Ihrem Browser (clientseitig), was absolute Privatsphäre garantiert.",
-        reviewsTitle: "⭐ Benutzerbewertungen",
-        review1: "\"Der Speech Timer hat mir bei der Vorbereitung meines Pitches sehr geholfen!\"",
-        review2: "\"Die Grammatik- und KI-Detektor-Tools sind extrem schnell und nützlich.\"",
         t1Title: "Rede & Präsentations-Timer", t1Sub: "Berechnen Sie sofort die Sprechdauer Ihres Textes.",
         slow: "🐢 Langsam", norm: "🚶 Normal", fast: "🐇 Schnell", practice: "Üben Sie Ihre Rede live:", startBtn: "Start", pauseBtn: "Pause", resumeBtn: "Fortsetzen", resetBtn: "Zurücksetzen",
         t2Title: "Grammatik & Rechtschreibkorrektur", t2Sub: "Prüfen Sie auf Großbuchstaben, Satzzeichen und Tippfehler.",
@@ -397,6 +425,8 @@
         t3Title: "AI-Text-Detektor", t3Sub: "Analysieren Sie die Satzstruktur auf KI-Merkmale.",
         t3Score: "Geschätzte KI-Wahrscheinlichkeit", aiShort: "Geben Sie mindestens 50 Zeichen ein.",
         aiHigh: "Hohe Regelmäßigkeit im Satzbau (Typisch für KI).", aiLow: "Natürliche Satzlängenvariation erkannt.",
+        qrTitle: "QR Code Generator", qrSub: "Generieren Sie sofort einen QR-Code für jede Website oder Text.",
+        qrPlaceholder: "Geben Sie Text oder URL ein...",
         speeds: { slow: 90, norm: 105, fast: 130 },
         replacements: [
           { bad: /\bdass\b/gi, good: "dass", desc: "Rechtschreibung geprüft" }
@@ -410,9 +440,6 @@
         homeSub: "Optimize your presentations, check for typos, or analyze sentence structures instantly. Fast, safe, and reliable.",
         aboutTitle: "💡 About Every-Tool",
         aboutText: "Every-Tool is designed to help students, professionals, and creators work faster. All calculations and analyses take place directly in your web browser (client-side), ensuring maximum privacy. No texts are ever stored or shared.",
-        reviewsTitle: "⭐ User Reviews",
-        review1: "\"The speech timer saved me during my pitch preparation. Super handy to see how long it takes instantly!\"",
-        review2: "\"The grammar and AI detector tools work lightning-fast and help sharpen texts immensely.\"",
         t1Title: "Speech & Presentation Timer", t1Sub: "Instantly calculate your speaking time.",
         slow: "🐢 Slow Pace", norm: "🚶 Average Pace", fast: "🐇 Fast Pace", practice: "Practice your speech live:", startBtn: "Start", pauseBtn: "Pause", resumeBtn: "Resume", resetBtn: "Reset",
         t2Title: "Grammar & Spelling Corrector", t2Sub: "Quickly fix capitalization, spacing, and typos.",
@@ -424,6 +451,8 @@
         t3Title: "AI Text Detector Indicator", t3Sub: "Analyze sentence variation for AI patterns.",
         t3Score: "Estimated AI Probability", aiShort: "Enter at least 50 characters for estimation.",
         aiHigh: "High sentence regularity (Typical AI pattern).", aiLow: "Natural variation in sentence length detected.",
+        qrTitle: "QR Code Generator", qrSub: "Instantly generate a QR code for any website or text.",
+        qrPlaceholder: "Enter URL or text...",
         speeds: { slow: 110, norm: 130, fast: 160 },
         replacements: [
           { bad: /\bteh\b/gi, good: "the", desc: "Typo: 'teh' corrected to 'the'" },
@@ -438,9 +467,6 @@
         homeSub: "Optimisez vos présentations, vérifiez l'orthographe ou analysez la structure des phrases instantanément.",
         aboutTitle: "💡 À propos",
         aboutText: "Tous les calculs et analyses sont effectués directement dans votre navigateur web (côté client), garantissant une confidentialité maximale.",
-        reviewsTitle: "⭐ Avis",
-        review1: "\"Le minuteur de discours m'a sauvé la vie lors de ma préparation !\"",
-        review2: "\"Outils extrêmement rapides et utiles.\"",
         t1Title: "Minuteur de Discours", t1Sub: "Calculez rapidement votre temps de parole.",
         slow: "🐢 Rythme lent", norm: "🚶 Rythme normal", fast: "🐇 Rythme rapide", practice: "Entraînez-vous en direct:", startBtn: "Démarrer", pauseBtn: "Pause", resumeBtn: "Reprendre", resetBtn: "Réinitialiser",
         t2Title: "Correcteur d'Orthographe", t2Sub: "Corrigez la ponctuation, les majuscules et les fautes.",
@@ -452,6 +478,8 @@
         t3Title: "Détecteur de Texte IA", t3Sub: "Analysez la structure des phrases.",
         t3Score: "Probabilité IA estimée", aiShort: "Saisissez au moins 50 caractères.",
         aiHigh: "Régularité élevée des phrases (Atypique/IA).", aiLow: "Variation naturelle de la longueur des phrases.",
+        qrTitle: "Générateur de Code QR", qrSub: "Générez instantanément un code QR pour tout site ou texte.",
+        qrPlaceholder: "Entrez l'URL ou le texte...",
         speeds: { slow: 100, norm: 120, fast: 150 },
         replacements: [
           { bad: /\bpa\b/gi, good: "pas", desc: "Faute de frappe corrigée" }
@@ -465,9 +493,6 @@
         homeSub: "Optimiza tus presentaciones, corrige errores ortográficos o analiza patrones de oraciones al instante.",
         aboutTitle: "💡 Acerca de",
         aboutText: "Todos los cálculos y análisis se realizan directamente en tu navegador web (del lado del cliente), garantizando la máxima privacidad.",
-        reviewsTitle: "⭐ Reseñas",
-        review1: "\"¡El temporizador de discursos me salvó durante mi preparación!\"",
-        review2: "\"Herramientas muy útiles y rápidas.\"",
         t1Title: "Temporizador de Discursos", t1Sub: "Calcula al instante tu tiempo de lectura.",
         slow: "🐢 Ritmo lento", norm: "🚶 Ritmo normal", fast: "🐇 Ritmo rápido", practice: "Practica tu discurso en vivo:", startBtn: "Iniciar", pauseBtn: "Pausa", resumeBtn: "Continuar", resetBtn: "Reiniciar",
         t2Title: "Corrector de Ortografía", t2Sub: "Corrige mayúsculas, espacios y errores tipográficos.",
@@ -479,12 +504,20 @@
         t3Title: "Detector de Texto IA", t3Sub: "Analiza el patrón de oraciones.",
         t3Score: "Probabilidad estimada de IA", aiShort: "Ingrese al menos 50 caracteres.",
         aiHigh: "Alta regularidad en las oraciones (Típico de IA).", aiLow: "Variación natural en la longitud de las oraciones.",
+        qrTitle: "Generador de Código QR", qrSub: "Genera instantáneamente un código QR para cualquier sitio.",
+        qrPlaceholder: "Ingresa URL o texto...",
         speeds: { slow: 120, norm: 145, fast: 175 },
         replacements: [
           { bad: /\btambien\b/gi, good: "también", desc: "Corrección de tilde" }
         ]
       }
     };
+
+    function setInitialLanguage(lang) {
+      currentLang = lang;
+      document.getElementById('languageOverlay').classList.add('hidden');
+      selectTool('home', lang);
+    }
 
     function toggleSidebar() {
       document.getElementById('sidebar').classList.toggle('open');
@@ -515,18 +548,17 @@
       document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
       document.getElementById('tab-' + toolId).classList.add('active');
 
-      // Update top language switcher buttons visual state
       document.querySelectorAll('.lang-switcher-top button').forEach(b => b.classList.remove('active'));
       if(lang === 'nl') document.getElementById('langBtnNl').classList.add('active');
       if(lang === 'en') document.getElementById('langBtnEn').classList.add('active');
       if(lang === 'de') document.getElementById('langBtnDe').classList.add('active');
 
       const toolNames = {
-        nl: { home: "Every-Tool", timer: "⏱️ Speech Timer", checker: "✍️ Grammatica Bot", ai: "🤖 AI Detector" },
-        en: { home: "Every-Tool", timer: "⏱️ Speech Timer", checker: "✍️ Grammar Bot", ai: "🤖 AI Detector" },
-        de: { home: "Every-Tool", timer: "⏱️ Sprech-Timer", checker: "✍️ Grammatik Bot", ai: "🤖 KI Detektor" },
-        fr: { home: "Every-Tool", timer: "⏱️ Minuteur Discours", checker: "✍️ Robot Grammaire", ai: "🤖 Détecteur IA" },
-        es: { home: "Every-Tool", timer: "⏱️ Temporizador Speech", checker: "✍️ Bot Gramática", ai: "🤖 Detector IA" }
+        nl: { home: "Every-Tool", timer: "⏱️ Speech Timer", checker: "✍️ Grammatica Bot", ai: "🤖 AI Detector", qr: "📱 QR Generator" },
+        en: { home: "Every-Tool", timer: "⏱️ Speech Timer", checker: "✍️ Grammar Bot", ai: "🤖 AI Detector", qr: "📱 QR Generator" },
+        de: { home: "Every-Tool", timer: "⏱️ Sprech-Timer", checker: "✍️ Grammatik Bot", ai: "🤖 KI Detektor", qr: "📱 QR Generator" },
+        fr: { home: "Every-Tool", timer: "⏱️ Minuteur Discours", checker: "✍️ Robot Grammaire", ai: "🤖 Détecteur IA", qr: "📱 Générateur QR" },
+        es: { home: "Every-Tool", timer: "⏱️ Temporizador Speech", checker: "✍️ Bot Gramática", ai: "🤖 Detector IA", qr: "📱 Generador QR" }
       };
 
       document.getElementById('topTitle').innerText = toolNames[lang][toolId] + (toolId !== 'home' ? " (" + lang.toUpperCase() + ")" : "");
@@ -541,9 +573,6 @@
       if(document.getElementById('aboutTitle')) {
         document.getElementById('aboutTitle').innerText = t.aboutTitle;
         document.getElementById('aboutText').innerText = t.aboutText;
-        document.getElementById('reviewsTitle').innerText = t.reviewsTitle;
-        document.getElementById('review1').innerText = t.review1;
-        document.getElementById('review2').innerText = t.review2;
       }
 
       document.getElementById('t1-title').innerText = t.t1Title;
@@ -565,6 +594,11 @@
       document.getElementById('t3-sub').innerText = t.t3Sub;
       document.getElementById('t3-score').innerText = t.t3Score;
 
+      document.getElementById('qr-title').innerText = t.qrTitle;
+      document.getElementById('qr-sub').innerText = t.qrSub;
+      document.getElementById('qrInputText').placeholder = t.qrPlaceholder;
+      document.getElementById('qrPlaceholderText').innerText = t.qrPlaceholder;
+
       document.getElementById('text-timer').placeholder = t.placeholder;
       document.getElementById('text-checker').placeholder = t.placeholder;
       document.getElementById('text-ai').placeholder = t.placeholder;
@@ -583,7 +617,8 @@
       const allTools = [
         { id: 'timer', name: '⏱️ Speech & Presentatie Timer', keywords: ['timer', 'speech', 'spreken', 'tijd', 'presentatie'] },
         { id: 'checker', name: '✍️ Grammatica & Spelfout Bot', keywords: ['grammatica', 'gram', 'spelling', 'fouten', 'tekst', 'controle', 'typfout'] },
-        { id: 'ai', name: '🤖 AI-Tekst Detector', keywords: ['ai', 'detector', 'robot', 'ChatGPT', 'kunstmatige'] }
+        { id: 'ai', name: '🤖 AI-Tekst Detector', keywords: ['ai', 'detector', 'robot', 'ChatGPT', 'kunstmatige'] },
+        { id: 'qr', name: '📱 QR Code Generator', keywords: ['qr', 'code', 'generator', 'link', 'url'] }
       ];
 
       if (!input) {
@@ -619,6 +654,8 @@
           selectTool('timer', currentLang);
         } else if (input.includes('ai') || input.includes('detect') || input.includes('robot')) {
           selectTool('ai', currentLang);
+        } else if (input.includes('qr') || input.includes('code')) {
+          selectTool('qr', currentLang);
         }
       }
     }
@@ -758,6 +795,24 @@
       document.getElementById('aiScore').innerText = score + "%";
       document.getElementById('aiBar').style.width = score + "%";
       document.getElementById('aiAnalysis').innerText = score > 60 ? t.aiHigh : t.aiLow;
+    }
+
+    function generateQRCode() {
+      const val = document.getElementById('qrInputText').value.trim();
+      const box = document.getElementById('qrPreviewBox');
+      const t = translations[currentLang];
+
+      if (!val) {
+        box.innerHTML = `<p style="color: #94a3b8; font-size: 14px; margin: 0;" id="qrPlaceholderText">${t.qrPlaceholder}</p>`;
+        return;
+      }
+
+      // Gratis QR Code API via api.qrserver.com
+      const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=` + encodeURIComponent(val);
+      box.innerHTML = `
+        <img src="${qrApiUrl}" alt="QR Code" />
+        <p style="font-size: 13px; color: #475569; margin-top: 12px; font-weight: 500;">Scandichtheid / gegenereerd voor: <span style="color:#2563eb; word-break: break-all;">${val}</span></p>
+      `;
     }
   </script>
 </body>
