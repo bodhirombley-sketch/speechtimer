@@ -68,14 +68,14 @@
     .lang-card-btn { background: var(--bg-color); border: 1px solid var(--border-color); padding: 14px; border-radius: 12px; font-size: 15px; font-weight: 700; color: var(--text-color); cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; }
     .lang-card-btn:hover { background: var(--primary-light); border-color: var(--primary); color: var(--primary); transform: translateY(-1px); }
 
-    .topbar { background: var(--card-bg); border-bottom: 1px solid var(--border-color); padding: 12px 24px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; }
-    .topbar-left { display: flex; align-items: center; gap: 16px; }
+    .topbar { background: var(--card-bg); border-bottom: 1px solid var(--border-color); padding: 10px 12px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; flex-wrap: wrap; gap: 8px; }
+    .topbar-left { display: flex; align-items: center; gap: 10px; }
     .hamburger-btn { background: var(--primary); color: white; border: none; font-size: 15px; padding: 8px 14px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 6px; font-weight: 600; transition: all 0.2s; }
     .hamburger-btn:hover { background: var(--primary-hover); transform: translateY(-1px); }
-    .app-title { font-weight: 800; font-size: 20px; color: var(--primary); cursor: pointer; letter-spacing: -0.5px; transition: opacity 0.2s; }
+    .app-title { font-size: 17px; font-weight: 800; color: var(--primary); cursor: pointer; letter-spacing: -0.5px; transition: opacity 0.2s; }
     .app-title:hover { opacity: 0.85; }
 
-    .topbar-right { display: flex; align-items: center; gap: 10px; }
+    .topbar-right { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
     .top-action-btn { background: var(--primary); color: white; border: none; padding: 8px 14px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: all 0.2s; }
     .top-action-btn:hover { background: var(--primary-hover); }
 
@@ -117,11 +117,17 @@
     .hero-section p { font-size: 17px; color: var(--text-muted); margin: 0 auto 35px auto; max-width: 650px; line-height: 1.6; }
     
     .hero-search-wrapper { position: relative; max-width: 620px; margin: 0 auto 10px auto; }
-    .hero-search-box { display: flex; background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 14px; padding: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
-    .hero-search-box:focus-within { border-color: var(--primary); box-shadow: 0 0 0 4px var(--primary-light); }
-    .hero-search-box input { flex: 1; border: none; padding: 12px 16px; font-size: 16px; outline: none; background: transparent; color: var(--text-color); }
     
-    .hero-search-btn { background: var(--primary); color: white; border: none; padding: 0 24px; border-radius: 10px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 700; transition: all 0.2s; }
+    .hero-search-box { display: flex; flex-direction: column; background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 14px; padding: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.02); gap: 6px; }
+    @media (min-width: 480px) {
+      .hero-search-box { flex-direction: row; }
+    }
+    .hero-search-box input { width: 100%; border: none; padding: 12px 16px; font-size: 16px; outline: none; background: transparent; color: var(--text-color); }
+    
+    .hero-search-btn { background: var(--primary); color: white; border: none; padding: 12px 24px; border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 15px; font-weight: 700; transition: all 0.2s; width: 100%; }
+    @media (min-width: 480px) {
+      .hero-search-btn { width: auto; }
+    }
     .hero-search-btn:hover { background: var(--primary-hover); }
 
     .search-suggestions { position: absolute; top: 100%; left: 0; right: 0; background: var(--card-bg); border: 1px solid var(--border-color); border-top: none; border-radius: 0 0 14px 14px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); z-index: 20; display: none; text-align: left; overflow: hidden; margin-top: 4px; }
@@ -169,8 +175,8 @@
     .ai-bar-bg { background: var(--bg-color); height: 12px; border-radius: 6px; overflow: hidden; margin: 15px 0; border: 1px solid var(--border-color); }
     .ai-bar-fill { height: 100%; background: var(--primary); width: 0%; transition: width 0.5s ease; border-radius: 6px; }
 
-    .url-input-group { display: flex; gap: 10px; margin-bottom: 24px; }
-    .url-input-group input { flex: 1; padding: 14px 16px; font-size: 15px; border: 1px solid var(--border-color); border-radius: 12px; outline: none; background: var(--textarea-bg); color: var(--text-color); }
+    .url-input-group { display: flex; gap: 10px; margin-bottom: 24px; flex-wrap: wrap; }
+    .url-input-group input { flex: 1; min-width: 200px; padding: 14px 16px; font-size: 15px; border: 1px solid var(--border-color); border-radius: 12px; outline: none; background: var(--textarea-bg); color: var(--text-color); }
     .url-input-group input:focus { border-color: var(--primary); box-shadow: 0 0 0 4px var(--primary-light); }
 
     .qr-preview-box { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 35px; text-align: center; margin-top: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 250px; }
@@ -182,7 +188,7 @@
     .tts-select { width: 100%; padding: 12px; background: var(--textarea-bg); border: 1px solid var(--border-color); border-radius: 10px; color: var(--text-color); font-size: 15px; outline: none; }
     .tts-select:focus { border-color: var(--primary); box-shadow: 0 0 0 4px var(--primary-light); }
     
-    .translation-preview { margin-top: 20px; padding: 16px; background: var(--card-bg); border-radius: 12px; border: 1px dashed var(--border-color); font-size: 15px; color: var(--text-color); line-height: 1.6; min-height: 70px; }
+    .translation-preview { margin-top: 20px; padding: 16px; background: var(--card-bg); border-radius: 12px; border: 1px dashed var(--border-color); font-size: 15px; color: var(--text-color); line-height: 1.6; min-height: 70px; word-break: break-word; }
 
     .ad-space { margin-top: 40px; padding: 24px; background: var(--card-bg); border: 1px dashed var(--border-color); text-align: center; color: var(--text-muted); border-radius: 14px; font-size: 14px; font-weight: 500; }
 
@@ -373,7 +379,7 @@
       <div class="timer-box">
         <h4 style="margin:0; font-size: 14px; text-transform: uppercase;" id="t1-practice">Oefen je speech live:</h4>
         <div class="timer-display" id="stopwatch">00:00</div>
-        <div style="display: flex; justify-content: center; gap: 12px; margin-top: 18px;">
+        <div style="display: flex; justify-content: center; gap: 12px; margin-top: 18px; flex-wrap: wrap;">
           <button class="btn" id="startBtn" onclick="startTimer()">Start</button>
           <button class="btn danger" id="resetBtn" onclick="resetTimer()">Reset</button>
         </div>
@@ -543,7 +549,7 @@
         faq4Q: "Hoe betrouwbaar is de AI-Tekst Detector?",
         faq4A: "De AI-detector kijkt naar statistische kenmerken zoals zinslengte en variatie in schrijfstijl. Het geeft een goede indicatie, maar het blijft een schatting en geen 100% sluitend bewijs.",
         faq5Q: "Kan ik de gegenereerde audio downloaden?",
-        faq5A: "Ja, in de Tekst-naar-Spraak tool kun je direct na het invoeren van je tekst klikken op de downloadknop om het audiobestand (.WAV) op te slaan op je apparaat.",
+        faq5A: "Ja, in de Tekst-naار-Spraak tool kun je direct na het invoeren van je tekst klikken op de downloadknop om het audiobestand (.WAV) op te slaan op je apparaat.",
         faq6Q: "Moet ik software installeren om deze tools te gebruiken?",
         faq6A: "Nee, absoluut niet. Every-Tool werkt volledig web-based in elke moderne browser op je computer, tablet of smartphone.",
         faq7Q: "Hoe werkt de Grammatica Bot?",
