@@ -237,17 +237,17 @@
 
     <div class="tool-group">
       <button class="tool-btn" onclick="selectTool('home', currentLang)">
-        <span>🏠 Overzicht / Home</span>
+        <span id="menuHome">🏠 Overzicht / Home</span>
       </button>
     </div>
 
     <div class="tool-group">
       <button class="tool-btn" onclick="toggleDropdown('drop-timer', this)">
-        <span>⏱️ Speech & Presentatie</span>
+        <span id="menuTimer">⏱️ Speech & Presentatie</span>
         <span class="arrow">▼</span>
       </button>
       <div class="lang-dropdown" id="drop-timer">
-        <div class="lang-title">Taal / Language:</div>
+        <div class="lang-title" id="langTitle1">Taal / Language:</div>
         <button class="lang-opt" onclick="selectTool('timer', 'nl')">🇳🇱 Nederlands</button>
         <button class="lang-opt" onclick="selectTool('timer', 'de')">🇩🇪 Deutsch</button>
         <button class="lang-opt" onclick="selectTool('timer', 'en')">🇬🇧 English</button>
@@ -256,11 +256,11 @@
 
     <div class="tool-group">
       <button class="tool-btn" onclick="toggleDropdown('drop-checker', this)">
-        <span>✍️ Grammatica Bot</span>
+        <span id="menuChecker">✍️ Grammatica Bot</span>
         <span class="arrow">▼</span>
       </button>
       <div class="lang-dropdown" id="drop-checker">
-        <div class="lang-title">Taal / Language:</div>
+        <div class="lang-title" id="langTitle2">Taal / Language:</div>
         <button class="lang-opt" onclick="selectTool('checker', 'nl')">🇳🇱 Nederlands</button>
         <button class="lang-opt" onclick="selectTool('checker', 'de')">🇩🇪 Deutsch</button>
         <button class="lang-opt" onclick="selectTool('checker', 'en')">🇬🇧 English</button>
@@ -269,11 +269,11 @@
 
     <div class="tool-group">
       <button class="tool-btn" onclick="toggleDropdown('drop-ai', this)">
-        <span>🤖 AI-Tekst Detector</span>
+        <span id="menuAi">🤖 AI-Tekst Detector</span>
         <span class="arrow">▼</span>
       </button>
       <div class="lang-dropdown" id="drop-ai">
-        <div class="lang-title">Taal / Language:</div>
+        <div class="lang-title" id="langTitle3">Taal / Language:</div>
         <button class="lang-opt" onclick="selectTool('ai', 'nl')">🇳🇱 Nederlands</button>
         <button class="lang-opt" onclick="selectTool('ai', 'de')">🇩🇪 Deutsch</button>
         <button class="lang-opt" onclick="selectTool('ai', 'en')">🇬🇧 English</button>
@@ -282,7 +282,7 @@
 
     <div class="tool-group">
       <button class="tool-btn" onclick="selectTool('qr', currentLang)">
-        <span>📱 QR Code Generator</span>
+        <span id="menuQr">📱 QR Code Generator</span>
       </button>
     </div>
   </nav>
@@ -293,14 +293,14 @@
     <!-- HOME TAB -->
     <div id="tab-home" class="tab-content active">
       <section class="hero-section">
-        <span class="hero-tag">Meet Every-Tool</span>
+        <span class="hero-tag" id="heroTag">Meet Every-Tool</span>
         <h1 id="homeHeading">Slimme tools voor al je tekst en spraak</h1>
         <p id="homeSub">Optimaliseer je presentaties, controleer op spelfouten of analyseer zinsstructuren in een handomdraai. Snel, veilig en betrouwbaar.</p>
         
         <div class="hero-search-wrapper">
           <div class="hero-search-box">
             <input type="text" id="homeSearchInput" placeholder="Typ om een tool te zoeken..." oninput="filterTools()" autocomplete="off">
-            <button class="hero-search-btn" onclick="filterTools()"><span>Zoek</span> 🔍</button>
+            <button class="hero-search-btn" id="homeSearchBtn" onclick="filterTools()"><span>Zoek</span> 🔍</button>
           </div>
           <div class="search-suggestions" id="searchSuggestions"></div>
         </div>
@@ -314,18 +314,18 @@
 
         <!-- SEO FAQ Accordion -->
         <section class="info-card">
-          <h3>❓ Veelgestelde Vragen (FAQ)</h3>
+          <h3 id="faqTitle">❓ Veelgestelde Vragen (FAQ)</h3>
           <details>
-            <summary>Hoe werkt de Speech Timer?</summary>
-            <p>Plak je presentatietekst in de tool om direct je spreektijd te berekenen op basis van verschillende snelheden (langzaam, normaal, snel).</p>
+            <summary id="faq1Q">Hoe werkt de Speech Timer?</summary>
+            <p id="faq1A">Plak je presentatietekst in de tool om direct je spreektijd te berekenen op basis van verschillende snelheden (langzaam, normaal, snel).</p>
           </details>
           <details>
-            <summary>Worden mijn teksten opgeslagen?</summary>
-            <p>Nee, alle verwerking gebeurt lokaal in je browser. Dankzij LocalStorage onthoudt je browser wel tijdelijk je invoer, zodat je niets kwijtraakt als je per ongeluk de pagina vernieuwt.</p>
+            <summary id="faq2Q">Worden mijn teksten opgeslagen?</summary>
+            <p id="faq2A">Nee, alle verwerking gebeurt lokaal in je browser. Dankzij LocalStorage onthoudt je browser wel tijdelijk je invoer, zodat je niets kwijtraakt als je per ongeluk de pagina vernieuwt.</p>
           </details>
           <details>
-            <summary>Is het gebruik van Every-Tool gratis?</summary>
-            <p>Ja, alle tools op dit platform zijn volledig gratis te gebruiken voor studenten, professionals en contentmakers.</p>
+            <summary id="faq3Q">Is het gebruik van Every-Tool gratis?</summary>
+            <p id="faq3A">Ja, alle tools op dit platform zijn volledig gratis te gebruiken voor studenten, professionals en contentmakers.</p>
           </details>
         </section>
       </div>
@@ -403,7 +403,7 @@
       
       <div class="url-input-group">
         <input type="url" id="qrUrlInput" placeholder="https://jouwwebsite.nl" oninput="generateQRFromInput()" />
-        <button class="btn" onclick="generateQRFromInput()">Genereer</button>
+        <button class="btn" id="qrGenBtn" onclick="generateQRFromInput()">Genereer</button>
       </div>
 
       <div class="qr-preview-box" id="qrPreviewBox">
@@ -411,12 +411,12 @@
       </div>
     </div>
 
-    <div class="ad-space">Advertentie Ruimte (Google AdSense)</div>
+    <div class="ad-space" id="adSpaceText">Advertentie Ruimte (Google AdSense)</div>
 
     <footer class="security-footer">
-      <div class="sec-item"><span class="sec-icon">🔒</span><span>256-bit SSL-beveiliging</span></div>
-      <div class="sec-item"><span class="sec-icon">🛡️</span><span>100% Privacy - Lokale verwerking</span></div>
-      <div class="sec-item"><span class="sec-icon">⚡</span><span>Direct resultaat</span></div>
+      <div class="sec-item"><span class="sec-icon">🔒</span><span id="sec1">256-bit SSL-beveiliging</span></div>
+      <div class="sec-item"><span class="sec-icon">🛡️</span><span id="sec2">100% Privacy - Lokale verwerking</span></div>
+      <div class="sec-item"><span class="sec-icon">⚡</span><span id="sec3">Direct resultaat</span></div>
     </footer>
 
   </main>
@@ -430,14 +430,30 @@
       nl: {
         placeholder: "Plak hier je tekst...",
         menuHeader: "Kies een Tool",
+        menuHome: "🏠 Overzicht / Home",
+        menuTimer: "⏱️ Speech & Presentatie",
+        menuChecker: "✍️ Grammatica Bot",
+        menuAi: "🤖 AI-Tekst Detector",
+        menuQr: "📱 QR Code Generator",
+        langTitle: "Taal / Language:",
         shareBtn: "🔗 Deel",
+        heroTag: "Meet Every-Tool",
         homeHeading: "Slimme tools voor al je tekst en spraak",
-        homeSub: "Optimaliseer je presentaties, controleer op spelfouten of analyseer zinsstructuren in een handomdraai.",
+        homeSub: "Optimaliseer je presentaties, controleer op spelfouten of analyseer zinsstructuren in een handomdraai. Snel, veilig en betrouwbaar.",
+        searchPlaceholder: "Typ om een tool te zoeken...",
+        searchBtn: "Zoek",
         aboutTitle: "💡 Over Every-Tool & Onze Functionaliteiten",
-        aboutText: "Every-Tool is ontworpen om snel en efficiënt te werken met maximale privacy dankzij lokale browserverwerking.",
+        aboutText: "Alle berekeningen vinden direct plaats in je eigen webbrowser (client-side), wat maximale privacy garandeert. Geen van je teksten wordt opgeslagen op externe servers.",
+        faqTitle: "❓ Veelgestelde Vragen (FAQ)",
+        faq1Q: "Hoe werkt de Speech Timer?",
+        faq1A: "Plak je presentatietekst in de tool om direct je spreektijd te berekenen op basis van verschillende snelheden (langzaam, normaal, snel).",
+        faq2Q: "Worden mijn teksten opgeslagen?",
+        faq2A: "Nee, alle verwerking gebeurt lokaal in je browser. Dankzij LocalStorage onthoudt je browser wel tijdelijk je invoer, zodat je niets kwijtraakt als je per ongeluk de pagina vernieuwt.",
+        faq3Q: "Is het gebruik van Every-Tool gratis?",
+        faq3A: "Ja, alle tools op dit platform zijn volledig gratis te gebruiken voor studenten, professionals en contentmakers.",
         t1Title: "Speech & Presentatie Timer", t1Sub: "Bereken direct hoe lang jouw tekst duurt om voor te lezen.",
         slow: "🐢 Langzaam", norm: "🚶 Normaal", fast: "🐇 Snel", practice: "Oefen je speech live:", startBtn: "Start", pauseBtn: "Pauze", resumeBtn: "Hervat", resetBtn: "Reset",
-        t2Title: "Grammatica & Spelfout Bot", t2Sub: "Controleer automatisch via LanguageTool.",
+        t2Title: "Grammatica & Spelfout Bot", t2Sub: "Controleer automatisch op spelfouten via LanguageTool.",
         t2Issues: "Gevonden Aandachtspunten:",
         btnClean: "✨ Automatisch Herstellen", btnCopy: "📋 Kopiëren", copyAlert: "Gekopieerd naar klembord!",
         noText: "Geen tekst ingevoerd.", noIssues: "✅ Geen spelfouten gevonden!",
@@ -446,17 +462,36 @@
         aiHigh: "Hoge mate van regelmatige zinsopbouw gedetecteerd.", aiLow: "Natuurlijke variatie in zinslengte gedetecteerd.",
         qrTitle: "QR Code Generator", qrSub: "Voer een URL in om direct een QR-code te genereren.",
         qrPlaceholder: "Vul een URL in...",
+        qrGenBtn: "Genereer",
         downloadQR: "📥 Download QR-code",
+        adSpace: "Advertentie Ruimte (Google AdSense)",
+        sec1: "256-bit SSL-beveiliging", sec2: "100% Privacy - Lokale verwerking", sec3: "Direct resultaat",
         speeds: { slow: 90, norm: 100, fast: 125 }
       },
       de: {
         placeholder: "Fügen Sie Ihren Text hier ein...",
         menuHeader: "Werkzeug wählen",
+        menuHome: "🏠 Übersicht / Home",
+        menuTimer: "⏱️ Rede & Präsentation",
+        menuChecker: "✍️ Grammatik Bot",
+        menuAi: "🤖 AI-Text-Detektor",
+        menuQr: "📱 QR Code Generator",
+        langTitle: "Sprache / Language:",
         shareBtn: "🔗 Teilen",
+        heroTag: "Meet Every-Tool",
         homeHeading: "Intelligente Tools für Text und Präsentationen",
-        homeSub: "Optimieren Sie Ihre Präsentationen und prüfen Sie Rechtschreibung sofort.",
-        aboutTitle: "💡 Über Every-Tool",
-        aboutText: "Maximale Datenschutz durch lokale Browser-Verarbeitung.",
+        homeSub: "Optimieren Sie Ihre Präsentationen, prüfen Sie Rechtschreibung oder analysieren Sie Satzstrukturen im Handumdrehen.",
+        searchPlaceholder: "Nach einem Tool suchen...",
+        searchBtn: "Suchen",
+        aboutTitle: "💡 Über Every-Tool & Funktionen",
+        aboutText: "Alle Berechnungen finden direkt in Ihrem Browser (client-side) statt, was maximale Privatsphäre garantiert.",
+        faqTitle: "❓ Häufig gestellte Fragen (FAQ)",
+        faq1Q: "Wie funktioniert der Speech Timer?",
+        faq1A: "Fügen Sie Ihren Text ein, um die Sprechdauer basierend auf verschiedenen Geschwindigkeiten zu berechnen.",
+        faq2Q: "Werden meine Texte gespeichert?",
+        faq2A: "Nein, die gesamte Verarbeitung erfolgt lokal in Ihrem Browser.",
+        faq3Q: "Ist Every-Tool kostenlos?",
+        faq3A: "Ja, alle Tools auf dieser Plattform sind völlig kostenlos nutzbar.",
         t1Title: "Rede & Präsentations-Timer", t1Sub: "Berechnen Sie sofort die Sprechdauer.",
         slow: "🐢 Langsam", norm: "🚶 Normal", fast: "🐇 Schnell", practice: "Üben Sie live:", startBtn: "Start", pauseBtn: "Pause", resumeBtn: "Fortsetzen", resetBtn: "Zurücksetzen",
         t2Title: "Grammatik & Rechtschreibung", t2Sub: "Automatische Prüfung via LanguageTool.",
@@ -468,17 +503,36 @@
         aiHigh: "Hohe Regelmäßigkeit.", aiLow: "Natürliche Variation.",
         qrTitle: "QR Code Generator", qrSub: "Geben Sie eine URL ein.",
         qrPlaceholder: "URL eingeben...",
+        qrGenBtn: "Generieren",
         downloadQR: "📥 Herunterladen",
+        adSpace: "Werbeplatz (Google AdSense)",
+        sec1: "256-bit SSL-Sicherheit", sec2: "100% Datenschutz - Lokale Verarbeitung", sec3: "Sofortiges Ergebnis",
         speeds: { slow: 110, norm: 130, fast: 160 }
       },
       en: {
         placeholder: "Paste your text here...",
         menuHeader: "Select Tool",
+        menuHome: "🏠 Overview / Home",
+        menuTimer: "⏱️ Speech & Presentation",
+        menuChecker: "✍️ Grammar Bot",
+        menuAi: "🤖 AI Text Detector",
+        menuQr: "📱 QR Code Generator",
+        langTitle: "Language:",
         shareBtn: "🔗 Share",
+        heroTag: "Meet Every-Tool",
         homeHeading: "Smart tools for text and presentations",
-        homeSub: "Optimize presentations and check typos instantly.",
-        aboutTitle: "💡 About Every-Tool",
-        aboutText: "Maximum privacy through local browser processing.",
+        homeSub: "Optimize presentations, check typos, or analyze sentence structures instantly.",
+        searchPlaceholder: "Type to search a tool...",
+        searchBtn: "Search",
+        aboutTitle: "💡 About Every-Tool & Features",
+        aboutText: "All calculations take place directly in your web browser (client-side), guaranteeing maximum privacy.",
+        faqTitle: "❓ Frequently Asked Questions (FAQ)",
+        faq1Q: "How does the Speech Timer work?",
+        faq1A: "Paste your presentation text to instantly calculate speaking time based on different speeds.",
+        faq2Q: "Are my texts saved?",
+        faq2A: "No, all processing happens locally in your browser using LocalStorage.",
+        faq3Q: "Is Every-Tool free to use?",
+        faq3A: "Yes, all tools on this platform are completely free for students, professionals, and creators.",
         t1Title: "Speech & Presentation Timer", t1Sub: "Calculate speaking time instantly.",
         slow: "🐢 Slow", norm: "🚶 Average", fast: "🐇 Fast", practice: "Practice live:", startBtn: "Start", pauseBtn: "Pause", resumeBtn: "Resume", resetBtn: "Reset",
         t2Title: "Grammar Corrector", t2Sub: "Automatic checking powered by LanguageTool.",
@@ -490,7 +544,10 @@
         aiHigh: "High regularity.", aiLow: "Natural variation.",
         qrTitle: "QR Code Generator", qrSub: "Enter a URL to generate a QR code.",
         qrPlaceholder: "Enter a URL...",
+        qrGenBtn: "Generate",
         downloadQR: "📥 Download QR Code",
+        adSpace: "Ad Space (Google AdSense)",
+        sec1: "256-bit SSL Security", sec2: "100% Privacy - Local Processing", sec3: "Instant Results",
         speeds: { slow: 110, norm: 130, fast: 160 }
       }
     };
@@ -561,38 +618,67 @@
       if(lang === 'de') document.getElementById('langBtnDe').classList.add('active');
 
       const t = translations[lang] || translations['nl'];
+      
+      // Update UI texts safely
       document.getElementById('menuHeader').innerText = t.menuHeader;
+      document.getElementById('menuHome').innerText = t.menuHome;
+      document.getElementById('menuTimer').innerText = t.menuTimer;
+      document.getElementById('menuChecker').innerText = t.menuChecker;
+      document.getElementById('menuAi').innerText = t.menuAi;
+      document.getElementById('menuQr').innerText = t.menuQr;
+      document.getElementById('langTitle1').innerText = t.langTitle;
+      document.getElementById('langTitle2').innerText = t.langTitle;
+      document.getElementById('langTitle3').innerText = t.langTitle;
+
       document.getElementById('shareBtnText').innerText = t.shareBtn;
+      document.getElementById('heroTag').innerText = t.heroTag;
       document.getElementById('homeHeading').innerText = t.homeHeading;
       document.getElementById('homeSub').innerText = t.homeSub;
+      document.getElementById('homeSearchInput').placeholder = t.searchPlaceholder;
+      document.getElementById('homeSearchBtn').innerHTML = `<span>${t.searchBtn}</span> 🔍`;
       
-      if(document.getElementById('aboutTitle')) {
-        document.getElementById('aboutTitle').innerText = t.aboutTitle;
-        document.getElementById('aboutText').innerText = t.aboutText;
-      }
+      document.getElementById('aboutTitle').innerText = t.aboutTitle;
+      document.getElementById('aboutText').innerText = t.aboutText;
+      
+      document.getElementById('faqTitle').innerText = t.faqTitle;
+      document.getElementById('faq1Q').innerText = t.faq1Q;
+      document.getElementById('faq1A').innerText = t.faq1A;
+      document.getElementById('faq2Q').innerText = t.faq2Q;
+      document.getElementById('faq2A').innerText = t.faq2A;
+      document.getElementById('faq3Q').innerText = t.faq3Q;
+      document.getElementById('faq3A').innerText = t.faq3A;
 
       document.getElementById('t1-title').innerText = t.t1Title;
       document.getElementById('t1-sub').innerText = t.t1Sub;
+      document.getElementById('text-timer').placeholder = t.placeholder;
       document.getElementById('t1-slow').innerText = t.slow;
       document.getElementById('t1-norm').innerText = t.norm;
       document.getElementById('t1-fast').innerText = t.fast;
       document.getElementById('t1-practice').innerText = t.practice;
-      document.getElementById('startBtn').innerText = t.startBtn;
+      document.getElementById('startBtn').innerText = timerInt ? t.pauseBtn : t.startBtn;
       document.getElementById('resetBtn').innerText = t.resetBtn;
 
       document.getElementById('t2-title').innerText = t.t2Title;
       document.getElementById('t2-sub').innerText = t.t2Sub;
+      document.getElementById('text-checker').placeholder = t.placeholder;
       document.getElementById('t2-issues').innerText = t.t2Issues;
       document.getElementById('btnClean').innerText = t.btnClean;
       document.getElementById('btnCopy').innerText = t.btnCopy;
 
       document.getElementById('t3-title').innerText = t.t3Title;
       document.getElementById('t3-sub').innerText = t.t3Sub;
+      document.getElementById('text-ai').placeholder = t.placeholder;
       document.getElementById('t3-score').innerText = t.t3Score;
 
       document.getElementById('qr-title').innerText = t.qrTitle;
       document.getElementById('qr-sub').innerText = t.qrSub;
+      document.getElementById('qrGenBtn').innerText = t.qrGenBtn;
       document.getElementById('qrPlaceholderText').innerText = t.qrPlaceholder;
+
+      document.getElementById('adSpaceText').innerText = t.adSpace;
+      document.getElementById('sec1').innerText = t.sec1;
+      document.getElementById('sec2').innerText = t.sec2;
+      document.getElementById('sec3').innerText = t.sec3;
 
       if(document.getElementById('sidebar').classList.contains('open')) toggleSidebar();
       document.getElementById('searchSuggestions').classList.remove('show');
@@ -602,7 +688,7 @@
       const input = document.getElementById('homeSearchInput').value.toLowerCase().trim();
       const suggestionsBox = document.getElementById('searchSuggestions');
       const allTools = [
-        { id: 'timer', name: '⏱️ Speech & Presentatie Timer', keywords: ['timer', 'speech', 'spreken'] },
+        { id: 'timer', name: '⏱️ Speech & Presentatie', keywords: ['timer', 'speech', 'spreken'] },
         { id: 'checker', name: '✍️ Grammatica Bot', keywords: ['grammatica', 'spelling', 'fouten'] },
         { id: 'ai', name: '🤖 AI-Tekst Detector', keywords: ['ai', 'detector', 'chatgpt'] },
         { id: 'qr', name: '📱 QR Code Generator', keywords: ['qr', 'code', 'url'] }
