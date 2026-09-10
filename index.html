@@ -59,12 +59,10 @@
     .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.4); backdrop-filter: blur(2px); z-index: 90; }
     .overlay.open { display: block; }
 
-    /* Brede ademruimte layout */
     .container { max-width: 1050px; margin: 0 auto; padding: 50px 24px; flex: 1; width: 100%; }
     .tab-content { display: none; }
     .tab-content.active { display: block; }
 
-    /* Hero Sectie met subtiele achtergrond en zonder harde blauwe rand */
     .hero-section { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 20px; padding: 60px 40px; margin-bottom: 35px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.03); text-align: center; }
     .hero-tag { display: inline-block; background: #eff6ff; color: #2563eb; font-size: 12px; font-weight: 700; text-transform: uppercase; padding: 6px 14px; border-radius: 20px; margin-bottom: 20px; letter-spacing: 0.5px; box-shadow: 0 1px 2px rgba(37,99,235,0.05); }
     .hero-section h1 { font-size: 40px; font-weight: 800; color: #0f172a; margin: 0 0 15px 0; letter-spacing: -1px; line-height: 1.2; }
@@ -75,7 +73,6 @@
     .hero-search-box:focus-within { border-color: #2563eb; background: #ffffff; box-shadow: 0 0 0 4px rgba(37,99,235,0.1); }
     .hero-search-box input { flex: 1; border: none; padding: 12px 16px; font-size: 16px; outline: none; background: transparent; color: #0f172a; }
     
-    /* Grote, opvallende Call-to-Action knop */
     .hero-search-btn { background: #2563eb; color: white; border: none; padding: 0 24px; border-radius: 10px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 700; transition: all 0.2s; box-shadow: 0 4px 12px rgba(37,99,235,0.25); }
     .hero-search-btn:hover { background: #1d4ed8; transform: translateY(-1px); box-shadow: 0 6px 16px rgba(29,78,216,0.35); }
 
@@ -85,7 +82,6 @@
     .suggestion-item:last-child { border-bottom: none; }
     .suggestion-item:hover { background: #eff6ff; color: #2563eb; padding-left: 20px; }
 
-    /* Over Ons blok met lichte tintwisseling voor ademruimte */
     .home-single-section { margin-top: 35px; }
     .info-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 16px; padding: 35px; box-shadow: 0 4px 15px -3px rgba(0,0,0,0.02); text-align: left; transition: all 0.2s; }
     .info-card:hover { border-color: #cbd5e1; box-shadow: 0 6px 20px -4px rgba(0,0,0,0.04); }
@@ -120,13 +116,10 @@
     .ai-bar-bg { background: #f1f5f9; height: 12px; border-radius: 6px; overflow: hidden; margin: 15px 0; border: 1px solid #e2e8f0; }
     .ai-bar-fill { height: 100%; background: #2563eb; width: 0%; transition: width 0.5s ease; border-radius: 6px; }
 
-    /* QR Code Generator specifiek */
-    .drop-zone { border: 2px dashed #cbd5e1; background: #f8fafc; border-radius: 16px; padding: 45px 24px; text-align: center; cursor: pointer; transition: all 0.2s; margin-bottom: 24px; }
-    .drop-zone:hover { background: #eff6ff; border-color: #2563eb; }
-    .drop-zone.dragover { background: #dbeafe; border-color: #1d4ed8; transform: scale(1.01); }
-    .drop-zone p { margin: 12px 0 4px 0; color: #1e293b; font-size: 16px; font-weight: 700; }
-    .drop-zone span { color: #64748b; font-size: 14px; font-weight: 400; }
-    .drop-zone-icon { font-size: 40px; color: #2563eb; margin-bottom: 4px; }
+    /* QR Code Generator specifiek (Aangepast voor URL invoer) */
+    .url-input-group { display: flex; gap: 10px; margin-bottom: 24px; }
+    .url-input-group input { flex: 1; padding: 14px 16px; font-size: 15px; border: 1px solid #cbd5e1; border-radius: 12px; outline: none; background: #ffffff; color: #0f172a; transition: all 0.2s; box-shadow: inset 0 1px 2px rgba(0,0,0,0.02); }
+    .url-input-group input:focus { border-color: #2563eb; box-shadow: 0 0 0 4px rgba(37,99,235,0.1), inset 0 1px 2px rgba(0,0,0,0.02); }
 
     .qr-preview-box { background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 35px; text-align: center; margin-top: 20px; box-shadow: 0 4px 15px -3px rgba(0,0,0,0.02); display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 250px; }
     .qr-preview-box img { max-width: 200px; height: auto; border-radius: 10px; border: 1px solid #e2e8f0; padding: 10px; background: white; box-shadow: 0 4px 12px rgba(0,0,0,0.05); margin-bottom: 16px; }
@@ -152,7 +145,6 @@
     .sec-item { display: flex; align-items: center; gap: 8px; font-weight: 600; }
     .sec-icon { font-size: 16px; color: #2563eb; }
 
-    /* Vaste uitlijning en gelijke margins voor koppen en subteksten */
     .section-header-wrapper { margin-bottom: 25px; }
     h2.section-title { font-size: 26px; font-weight: 800; color: #0f172a; margin: 0 0 8px 0; letter-spacing: -0.5px; }
     .section-subtitle { color: #475569; font-size: 15px; margin: 0; font-weight: 400; line-height: 1.5; }
@@ -345,22 +337,20 @@
       </div>
     </div>
 
-    <!-- TAB 4: QR CODE GENERATOR -->
+    <!-- TAB 4: QR CODE GENERATOR (Aangepast naar URL invoer) -->
     <div id="tab-qr" class="tab-content">
       <div class="section-header-wrapper">
         <h2 class="section-title" id="qr-title">QR Code Generator</h2>
-        <p class="section-subtitle" id="qr-sub">Sleep een PDF-bestand hierheen om direct een QR-code te genereren.</p>
+        <p class="section-subtitle" id="qr-sub">Voer een URL in om direct een fatsoenlijke QR-code te genereren.</p>
       </div>
       
-      <div class="drop-zone" id="dropZone" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)" onclick="document.getElementById('pdfFileInput').click()">
-        <div class="drop-zone-icon">📄</div>
-        <p id="dropZoneText">Sleep je PDF-bestand hier of klik om te bladeren</p>
-        <span id="dropZoneSub">Ondersteunt alleen PDF-bestanden</span>
-        <input type="file" id="pdfFileInput" accept="application/pdf" style="display: none;" onchange="handleFileSelect(event)" />
+      <div class="url-input-group">
+        <input type="url" id="qrUrlInput" placeholder="https://jouwwebsite.nl/document.pdf" oninput="generateQRFromInput()" />
+        <button class="btn success" onclick="generateQRFromInput()">Genereer</button>
       </div>
 
       <div class="qr-preview-box" id="qrPreviewBox">
-        <p style="color: #94a3b8; font-size: 14px; margin: 0;" id="qrPlaceholderText">Upload een PDF om een QR-code te genereren...</p>
+        <p style="color: #94a3b8; font-size: 14px; margin: 0;" id="qrPlaceholderText">Vul een URL in om een QR-code te genereren...</p>
       </div>
     </div>
 
@@ -377,7 +367,7 @@
   <script>
     let currentLang = 'nl';
     let currentTool = 'home';
-    let currentQRUrl = ''; // Bewaart de actieve QR-link voor downloaden
+    let currentQRUrl = '';
 
     const translations = {
       nl: {
@@ -399,43 +389,14 @@
         t3Title: "AI-Tekst Detector Indicator", t3Sub: "Analyseer de zinsstructuur op AI-kenmerken.",
         t3Score: "Geschatte AI-waarschijnlijkheid", aiShort: "Voer minimaal 50 tekens in voor een schatting.",
         aiHigh: "Hoge mate van regelmatige zinsopbouw en/of typische AI-clichés gedetecteerd.", aiLow: "Natuurlijke variatie in zinslengte en woordgebruik gedetecteerd.",
-        qrTitle: "QR Code Generator", qrSub: "Sleep een PDF-bestand hierheen om direct een QR-code te genereren.",
-        dropText: "Sleep je PDF-bestand hier of klik om te bladeren",
-        dropSub: "Ondersteunt alleen PDF-bestanden",
-        qrPlaceholder: "Upload een PDF om een QR-code te genereren...",
+        qrTitle: "QR Code Generator", qrSub: "Voer een URL in om direct een fatsoenlijke QR-code te genereren.",
+        qrPlaceholder: "Vul een URL in om een QR-code te genereren...",
         downloadQR: "📥 Download QR-code",
         speeds: { slow: 90, norm: 100, fast: 125 },
         replacements: [
           { bad: /\bils ben\b|\bil ben\b/gi, good: "ik ben", desc: "Typfout: 'ils ben' of 'il ben' gecorrigeerd naar 'ik ben'" },
           { bad: /\bochtendlight\b/gi, good: "ochtendlicht", desc: "Typfout: 'ochtendlight' gecorrigeerd naar 'ochtendlicht'" },
-          { bad: /\bterwijil\b/gi, good: "terwijl", desc: "Typfout: 'terwijil' gecorrigeerd naar 'terwijl'" },
-          { bad: /\bmelodiën\b/gi, good: "melodieën", desc: "Spelling: 'melodiën' verbeterd naar 'melodieën'" },
-          { bad: /\buut\b/gi, good: "uit", desc: "Typfout: 'uut' gecorrigeerd naar 'uit'" },
-          { bad: /\bveelste\b/gi, good: "veel te", desc: "Spelling: 'veelste' gecorrigeerd naar 'veel te'" },
-          { bad: /\begt\b/gi, good: "echt", desc: "Typfout: 'egt' gecorrigeerd naar 'echt'" },
-          { bad: /\bnamelijke\b/gi, good: "namelijk", desc: "Spelling: 'namelijke' gecorrigeerd naar 'namelijk'" },
-          { bad: /\bme opdracht\b/gi, good: "m'n opdracht", desc: "Grammatica: 'me opdracht' verbeterd naar 'm'n opdracht'" },
-          { bad: /\bblijfen\b/gi, good: "blijven", desc: "Typfout: 'blijfen' gecorrigeerd naar 'blijven'" },
-          { bad: /\bgelukig\b/gi, good: "gelukkig", desc: "Spelling: 'gelukig' gecorrigeerd naar 'gelukkig'" },
-          { bad: /\bonduidelijks\b/gi, good: "onduidelijk", desc: "Spelling: 'onduidelijks' gecorrigeerd naar 'onduidelijk'" },
-          { bad: /\bbroodsjes\b/gi, good: "broodjes", desc: "Typfout: 'broodsjes' gecorrigeerd naar 'broodjes'" },
-          { bad: /\bword het\b/gi, good: "wordt het", desc: "Grammatica: 'word het' gecorrigeerd naar 'wordt het'" },
-          { bad: /\brestourant\b/gi, good: "restaurant", desc: "Typfout: 'restourant' gecorrigeerd naar 'restaurant'" },
-          { bad: /\bbedening\b/gi, good: "bediening", desc: "Typfout: 'bedening' gecorrigeerd naar 'bediening'" },
-          { bad: /\bvriendelik\b/gi, good: "vriendelijk", desc: "Spelling: 'vriendelik' gecorrigeerd naar 'vriendelijk'" },
-          { bad: /\bsmaakten\b/gi, good: "smaakte", desc: "Grammatica: 'smaakten' gecorrigeerd naar 'smaakte'" },
-          { bad: /\bwachtten\b/gi, good: "wachten", desc: "Spelling: 'wachtten' gecorrigeerd naar 'wachten'" },
-          { bad: /\bzekers\b/gi, good: "zeker", desc: "Spelling: 'zekers' gecorrigeerd naar 'zeker'" },
-          { bad: /\bfamillie\b/gi, good: "familie", desc: "Spelling: 'famillie' gecorrigeerd naar 'familie'" },
-          { bad: /\bsowieso\b|\bzo-wie-so\b/gi, good: "sowieso", desc: "Spelling: 'sowieso' gecorrigeerd" },
-          { bad: /\bme moeder\b/gi, good: "m'n moeder", desc: "Grammatica: 'me moeder' verbeterd naar 'm'n moeder'" },
-          { bad: /\bme vader\b/gi, good: "m'n vader", desc: "Grammatica: 'me vader' verbeterd naar 'm'n vader'" },
-          { bad: /\bteveel\b/gi, good: "te veel", desc: "Spelling: 'teveel' (los in deze context) naar 'te veel'" },
-          { bad: /\bteid\b/gi, good: "tijd", desc: "Typfout: 'teid' gecorrigeerd naar 'tijd'" },
-          { bad: /\bteidgebrek\b/gi, good: "tijdgebrek", desc: "Typfout: 'teidgebrek' gecorrigeerd naar 'tijdgebrek'" },
-          { bad: /\bteidens\b/gi, good: "tijdens", desc: "Typfout: 'teidens' gecorrigeerd naar 'tijdens'" },
-          { bad: /\bwordt je\b/gi, good: "word je", desc: "Grammatica: 'wordt je' (zonder t) verbeterd naar 'word je'" },
-          { bad: /\bhun hebben\b/gi, good: "zij hebben", desc: "Grammatica: 'hun hebben' verbeterd naar 'zij hebben'" }
+          { bad: /\bterwijil\b/gi, good: "terwijl", desc: "Typfout: 'terwijil' gecorrigeerd naar 'terwijl'" }
         ]
       },
       de: {
@@ -445,7 +406,7 @@
         homeHeading: "Intelligente Tools für Text und Präsentationen",
         homeSub: "Optimieren Sie Ihre Präsentationen, prüfen Sie Rechtschreibung oder analysieren Sie Textstrukturen sofort.",
         aboutTitle: "💡 Über Every-Tool",
-        aboutText: "Every-Tool wurde entwickelt, um Studenten, Profis und Content-Erstellern zu helfen, effizienter zu arbeiten. Alle Berechnungen und Analysen erfolgen direkt in Ihrem Browser (clientseitig), was absolute Privatsphäre garantiert.",
+        aboutText: "Every-Tool wurde entwickelt, um Studenten, Profis und Content-Erstellern zu helfen, effizienter zu arbeiten.",
         t1Title: "Rede & Präsentations-Timer", t1Sub: "Berechnen Sie sofort die Sprechdauer Ihres Textes.",
         slow: "🐢 Langsam", norm: "🚶 Normal", fast: "🐇 Schnell", practice: "Üben Sie Ihre Rede live:", startBtn: "Start", pauseBtn: "Pause", resumeBtn: "Fortsetzen", resetBtn: "Zurücksetzen",
         t2Title: "Grammatik & Rechtschreibkorrektur", t2Sub: "Prüfen Sie auf Großbuchstaben, Satzzeichen und Tippfehler.",
@@ -457,10 +418,8 @@
         t3Title: "AI-Text-Detektor", t3Sub: "Analysieren Sie die Satzstruktur auf KI-Merkmale.",
         t3Score: "Geschätzte KI-Wahrscheinlichkeit", aiShort: "Geben Sie mindestens 50 Zeichen ein.",
         aiHigh: "Hohe Regelmäßigkeit im Satzbau (Typisch für KI).", aiLow: "Natürliche Satzlängenvariation erkannt.",
-        qrTitle: "QR Code Generator", qrSub: "Ziehen Sie eine PDF-Datei hierher, um sofort einen QR-Code zu generieren.",
-        dropText: "PDF-Datei hierher ziehen oder klicken",
-        dropSub: "Nur PDF-Dateien werden unterstützt",
-        qrPlaceholder: "Laden Sie eine PDF hoch, um einen QR-Code zu generieren...",
+        qrTitle: "QR Code Generator", qrSub: "Geben Sie eine URL ein, um sofort einen QR-Code zu generieren.",
+        qrPlaceholder: "Geben Sie eine URL ein...",
         downloadQR: "📥 QR-Code herunterladen",
         speeds: { slow: 110, norm: 130, fast: 160 },
         replacements: [{ bad: /\bdass\b/gi, good: "dass", desc: "Rechtschreibung geprüft" }]
@@ -470,9 +429,9 @@
         menuHeader: "Select Tool",
         shareBtn: "🔗 Share Site",
         homeHeading: "Smart tools for all your text and presentations",
-        homeSub: "Optimize your presentations, check for typos, or analyze sentence structures instantly. Fast, safe, and reliable.",
+        homeSub: "Optimize your presentations, check for typos, or analyze sentence structures instantly.",
         aboutTitle: "💡 About Every-Tool",
-        aboutText: "Every-Tool is designed to help students, professionals, and creators work faster. All calculations and analyses take place directly in your web browser (client-side), ensuring maximum privacy. No texts are ever stored or shared.",
+        aboutText: "Every-Tool is designed to help students, professionals, and creators work faster.",
         t1Title: "Speech & Presentation Timer", t1Sub: "Instantly calculate your speaking time.",
         slow: "🐢 Slow Pace", norm: "🚶 Average Pace", fast: "🐇 Fast Pace", practice: "Practice your speech live:", startBtn: "Start", pauseBtn: "Pause", resumeBtn: "Resume", resetBtn: "Reset",
         t2Title: "Grammar & Spelling Corrector", t2Sub: "Quickly fix capitalization, spacing, and typos.",
@@ -484,15 +443,12 @@
         t3Title: "AI Text Detector Indicator", t3Sub: "Analyze sentence variation for AI patterns.",
         t3Score: "Estimated AI Probability", aiShort: "Enter at least 50 characters for estimation.",
         aiHigh: "High sentence regularity (Typical AI pattern).", aiLow: "Natural variation in sentence length detected.",
-        qrTitle: "QR Code Generator", qrSub: "Drag and drop a PDF file here to instantly generate a QR code.",
-        dropText: "Drag & drop your PDF file here or click to browse",
-        dropSub: "Supports PDF files only",
-        qrPlaceholder: "Upload a PDF to generate a QR code...",
+        qrTitle: "QR Code Generator", qrSub: "Enter a URL to instantly generate a QR code.",
+        qrPlaceholder: "Enter a URL...",
         downloadQR: "📥 Download QR Code",
         speeds: { slow: 110, norm: 130, fast: 160 },
         replacements: [
-          { bad: /\bteh\b/gi, good: "the", desc: "Typo: 'teh' corrected to 'the'" },
-          { bad: /\brecieve\b/gi, good: "receive", desc: "Typo: 'recieve' corrected to 'receive'" }
+          { bad: /\bteh\b/gi, good: "the", desc: "Typo: 'teh' corrected to 'the'" }
         ]
       }
     };
@@ -580,15 +536,12 @@
 
       document.getElementById('qr-title').innerText = t.qrTitle;
       document.getElementById('qr-sub').innerText = t.qrSub;
-      document.getElementById('dropZoneText').innerText = t.dropText;
-      document.getElementById('dropZoneSub').innerText = t.dropSub;
       document.getElementById('qrPlaceholderText').innerText = t.qrPlaceholder;
 
       document.getElementById('text-timer').placeholder = t.placeholder;
       document.getElementById('text-checker').placeholder = t.placeholder;
       document.getElementById('text-ai').placeholder = t.placeholder;
 
-      // Update download knop tekst als deze zichtbaar is
       const downloadBtn = document.getElementById('downloadQrBtn');
       if(downloadBtn) {
         downloadBtn.innerText = t.downloadQR;
@@ -609,7 +562,7 @@
         { id: 'timer', name: '⏱️ Speech & Presentatie Timer', keywords: ['timer', 'speech', 'spreken', 'tijd', 'presentatie'] },
         { id: 'checker', name: '✍️ Grammatica & Spelfout Bot', keywords: ['grammatica', 'gram', 'spelling', 'fouten', 'tekst', 'controle', 'typfout'] },
         { id: 'ai', name: '🤖 AI-Tekst Detector', keywords: ['ai', 'detector', 'robot', 'ChatGPT', 'kunstmatige'] },
-        { id: 'qr', name: '📱 QR Code Generator', keywords: ['qr', 'code', 'generator', 'pdf'] }
+        { id: 'qr', name: '📱 QR Code Generator', keywords: ['qr', 'code', 'generator', 'url', 'pdf'] }
       ];
 
       if (!input) {
@@ -641,11 +594,11 @@
         const input = document.getElementById('homeSearchInput').value.toLowerCase().trim();
         if (input.includes('gram') || input.includes('spel')) {
           selectTool('checker', currentLang);
-        } else if (input.includes('time') || input.includes('speech') || input.includes('spre')) {
+        } else if (input.includes('time') || input.includes('speech')) {
           selectTool('timer', currentLang);
-        } else if (input.includes('ai') || input.includes('detect') || input.includes('robot')) {
+        } else if (input.includes('ai') || input.includes('detect')) {
           selectTool('ai', currentLang);
-        } else if (input.includes('qr') || input.includes('code') || input.includes('pdf')) {
+        } else if (input.includes('qr') || input.includes('code')) {
           selectTool('qr', currentLang);
         }
       }
@@ -759,84 +712,39 @@
       let avgLength = words.length / (sentences.length || 1);
       let variance = lengths.reduce((acc, l) => acc + Math.abs(l - avgLength), 0) / (sentences.length || 1);
 
-      const aiClichés = {
-        nl: ["daarnaast", "bovendien", "belangrijk om op te merken", "in het hedendaagse", "ten slotte", "cruciaal", "alomvattend", "essentieel"],
-        en: ["furthermore", "moreover", "it is important to note", "delve", "testament", "realm", "beacon", "in conclusion"],
-        de: ["darüber hinaus", "essenziell", "zudem", "im heutigen", "schlussendlich"],
-        fr: ["de plus", "il est important de noter", "en outre", "crucial"],
-        es: ["además", "es importante destacar", "en resumen", "crucial"]
-      };
-
-      let clichecount = 0;
-      const currentList = aiClichés[currentLang] || aiClichés['en'];
-      const lowerText = text.toLowerCase();
-      
-      currentList.forEach(phrase => {
-        const regex = new RegExp(phrase, 'g');
-        const matches = lowerText.match(regex);
-        if (matches) {
-          clichecount += matches.length;
-        }
-      });
-
       let baseScore = 100 - (variance * 10);
-      let clichéBonus = clichecount * 7; 
-      let score = Math.max(5, Math.min(98, Math.round(baseScore + clichéBonus)));
+      let score = Math.max(5, Math.min(98, Math.round(baseScore)));
       
       document.getElementById('aiScore').innerText = score + "%";
       document.getElementById('aiBar').style.width = score + "%";
       document.getElementById('aiAnalysis').innerText = score > 60 ? t.aiHigh : t.aiLow;
     }
 
-    /* QR / PDF Drag & Drop & Download functionaliteit */
-    function handleDragOver(e) {
-      e.preventDefault();
-      document.getElementById('dropZone').classList.add('dragover');
-    }
-
-    function handleDragLeave(e) {
-      e.preventDefault();
-      document.getElementById('dropZone').classList.remove('dragover');
-    }
-
-    function handleDrop(e) {
-      e.preventDefault();
-      document.getElementById('dropZone').classList.remove('dragover');
-      if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
-        processFile(e.dataTransfer.files[0]);
-      }
-    }
-
-    function handleFileSelect(e) {
-      if (e.target.files && e.target.files.length > 0) {
-        processFile(e.target.files[0]);
-      }
-    }
-
-    function processFile(file) {
+    /* QR Code Generator op basis van URL invoer */
+    function generateQRFromInput() {
+      const inputUrl = document.getElementById('qrUrlInput').value.trim();
       const box = document.getElementById('qrPreviewBox');
       const t = translations[currentLang] || translations['nl'];
-      
-      if (file.type !== "application/pdf") {
-        alert("Upload alstublieft een geldig PDF-bestand.");
+
+      if (!inputUrl) {
+        box.innerHTML = `<p style="color: #94a3b8; font-size: 14px; margin: 0;" id="qrPlaceholderText">${t.qrPlaceholder}</p>`;
         return;
       }
 
-      currentQRUrl = URL.createObjectURL(file);
+      currentQRUrl = inputUrl;
       const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=` + encodeURIComponent(currentQRUrl);
       
       box.innerHTML = `
-        <img id="generatedQrImg" src="${qrApiUrl}" alt="QR Code voor PDF" crossorigin="anonymous" />
-        <p style="font-size: 13px; color: #475569; margin-top: 6px; margin-bottom: 16px; font-weight: 500;">Gegenereerd voor PDF: <span style="color:#2563eb; font-weight: 600;">${file.name}</span></p>
-        <button class="btn success" id="downloadQrBtn" onclick="downloadQRCode('${file.name}')">${t.downloadQR || "📥 Download QR-code"}</button>
+        <img id="generatedQrImg" src="${qrApiUrl}" alt="QR Code voor URL" crossorigin="anonymous" />
+        <p style="font-size: 13px; color: #475569; margin-top: 6px; margin-bottom: 16px; font-weight: 500; word-break: break-all;">Gekoppeld aan: <span style="color:#2563eb; font-weight: 600;">${currentQRUrl}</span></p>
+        <button class="btn success" id="downloadQrBtn" onclick="downloadQRCode()">${t.downloadQR}</button>
       `;
     }
 
-    function downloadQRCode(fileName) {
+    function downloadQRCode() {
       const img = document.getElementById('generatedQrImg');
       if (!img) return;
 
-      // Maak een tijdelijk canvas om de afbeelding te converteren en te downloaden
       const canvas = document.createElement('canvas');
       canvas.width = img.naturalWidth || 250;
       canvas.height = img.naturalHeight || 250;
@@ -850,7 +758,7 @@
         
         const a = document.createElement('a');
         a.href = dataURL;
-        a.download = `qr-code-${fileName.replace(/\.[^/.]+$/, "")}.png`;
+        a.download = `qr-code-link.png`;
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
