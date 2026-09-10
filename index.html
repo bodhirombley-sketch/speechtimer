@@ -116,7 +116,6 @@
     .ai-bar-bg { background: #f1f5f9; height: 12px; border-radius: 6px; overflow: hidden; margin: 15px 0; border: 1px solid #e2e8f0; }
     .ai-bar-fill { height: 100%; background: #2563eb; width: 0%; transition: width 0.5s ease; border-radius: 6px; }
 
-    /* QR Code Generator specifiek (Aangepast voor URL invoer) */
     .url-input-group { display: flex; gap: 10px; margin-bottom: 24px; }
     .url-input-group input { flex: 1; padding: 14px 16px; font-size: 15px; border: 1px solid #cbd5e1; border-radius: 12px; outline: none; background: #ffffff; color: #0f172a; transition: all 0.2s; box-shadow: inset 0 1px 2px rgba(0,0,0,0.02); }
     .url-input-group input:focus { border-color: #2563eb; box-shadow: 0 0 0 4px rgba(37,99,235,0.1), inset 0 1px 2px rgba(0,0,0,0.02); }
@@ -301,23 +300,23 @@
       </div>
     </div>
 
-    <!-- TAB 2: GRAMMATICA BOT -->
+    <!-- TAB 2: GRAMMATICA BOT (GEKOPPELD AAN LANGUAGETOOL API) -->
     <div id="tab-checker" class="tab-content">
       <div class="section-header-wrapper">
         <h2 class="section-title" id="t2-title">Grammatica & Spelfout Bot</h2>
-        <p class="section-subtitle" id="t2-sub">Controleer snel op hoofdletters, leestekens, spaties en typfouten.</p>
+        <p class="section-subtitle" id="t2-sub">Controleer automatisch op spelfouten en grammatica via LanguageTool.</p>
       </div>
       
-      <textarea id="text-checker" placeholder="Plak hier je tekst om te controleren op spelfouten..." oninput="checkSpelling()"></textarea>
+      <textarea id="text-checker" placeholder="Plak hier je tekst om te controleren op spelfouten..."></textarea>
 
       <div class="action-bar">
-        <button class="btn success" id="btnClean" onclick="cleanText()">✨ Automatisch Herstellen</button>
+        <button class="btn success" id="btnClean" onclick="checkAndFixWithLanguageTool()">✨ Automatisch Herstellen</button>
         <button class="btn" id="btnCopy" onclick="copyText('text-checker')">📋 Kopiëren</button>
       </div>
 
       <div class="issue-list">
         <h4 style="margin-top:0; color:#0f172a; font-size:15px; font-weight: 700;" id="t2-issues">Gevonden Aandachtspunten:</h4>
-        <div id="issuesContainer" style="color: #475569; font-size: 14px;">Geen tekst ingevoerd.</div>
+        <div id="issuesContainer" style="color: #475569; font-size: 14px;">Klik op 'Automatisch Herstellen' om de tekst te controleren.</div>
       </div>
     </div>
 
@@ -337,7 +336,7 @@
       </div>
     </div>
 
-    <!-- TAB 4: QR CODE GENERATOR (Aangepast naar URL invoer) -->
+    <!-- TAB 4: QR CODE GENERATOR -->
     <div id="tab-qr" class="tab-content">
       <div class="section-header-wrapper">
         <h2 class="section-title" id="qr-title">QR Code Generator</h2>
@@ -380,24 +379,17 @@
         aboutText: "Every-Tool is ontworpen om studenten, professionals en contentmakers te helpen sneller te werken. Alle berekeningen en analyses vinden direct plaats in je eigen webbrowser (client-side), wat maximale privacy garandeert. Er worden geen teksten opgeslagen of gedeeld.",
         t1Title: "Speech & Presentatie Timer", t1Sub: "Bereken direct hoe lang jouw tekst duurt om voor te lezen.",
         slow: "🐢 Langzaam", norm: "🚶 Normaal", fast: "🐇 Snel", practice: "Oefen je speech live:", startBtn: "Start", pauseBtn: "Pauze", resumeBtn: "Hervat", resetBtn: "Reset",
-        t2Title: "Grammatica & Spelfout Bot", t2Sub: "Controleer snel op hoofdletters, leestekens, spaties en typfouten.",
-        t2Issues: "Gevonden Aandachtspunten & Typfouten:",
+        t2Title: "Grammatica & Spelfout Bot", t2Sub: "Controleer automatisch op spelfouten en grammatica via LanguageTool.",
+        t2Issues: "Gevonden Aandachtspunten:",
         btnClean: "✨ Automatisch Herstellen", btnCopy: "📋 Kopiëren", copyAlert: "Link gekopieerd naar klembord!",
-        noText: "Geen tekst ingevoerd.", noIssues: "✅ Geen bekende vorm- of spelfouten gevonden!",
-        errSpaces: "⚠️ Extra of dubbele spaties gedetecteerd.", errCaps: "⚠️ Zin begint niet met een hoofdletter.",
-        errPunctBefore: "⚠️ Onnodige spatie voor leesteken.", errPunctAfter: "⚠️ Ontbrekende spatie na leesteken.",
+        noText: "Geen tekst ingevoerd.", noIssues: "✅ Geen spelfouten gevonden!",
         t3Title: "AI-Tekst Detector Indicator", t3Sub: "Analyseer de zinsstructuur op AI-kenmerken.",
         t3Score: "Geschatte AI-waarschijnlijkheid", aiShort: "Voer minimaal 50 tekens in voor een schatting.",
         aiHigh: "Hoge mate van regelmatige zinsopbouw en/of typische AI-clichés gedetecteerd.", aiLow: "Natuurlijke variatie in zinslengte en woordgebruik gedetecteerd.",
         qrTitle: "QR Code Generator", qrSub: "Voer een URL in om direct een fatsoenlijke QR-code te genereren.",
         qrPlaceholder: "Vul een URL in om een QR-code te genereren...",
         downloadQR: "📥 Download QR-code",
-        speeds: { slow: 90, norm: 100, fast: 125 },
-        replacements: [
-          { bad: /\bils ben\b|\bil ben\b/gi, good: "ik ben", desc: "Typfout: 'ils ben' of 'il ben' gecorrigeerd naar 'ik ben'" },
-          { bad: /\bochtendlight\b/gi, good: "ochtendlicht", desc: "Typfout: 'ochtendlight' gecorrigeerd naar 'ochtendlicht'" },
-          { bad: /\bterwijil\b/gi, good: "terwijl", desc: "Typfout: 'terwijil' gecorrigeerd naar 'terwijl'" }
-        ]
+        speeds: { slow: 90, norm: 100, fast: 125 }
       },
       de: {
         placeholder: "Fügen Sie Ihren Text hier ein...",
@@ -409,20 +401,17 @@
         aboutText: "Every-Tool wurde entwickelt, um Studenten, Profis und Content-Erstellern zu helfen, effizienter zu arbeiten.",
         t1Title: "Rede & Präsentations-Timer", t1Sub: "Berechnen Sie sofort die Sprechdauer Ihres Textes.",
         slow: "🐢 Langsam", norm: "🚶 Normal", fast: "🐇 Schnell", practice: "Üben Sie Ihre Rede live:", startBtn: "Start", pauseBtn: "Pause", resumeBtn: "Fortsetzen", resetBtn: "Zurücksetzen",
-        t2Title: "Grammatik & Rechtschreibkorrektur", t2Sub: "Prüfen Sie auf Großbuchstaben, Satzzeichen und Tippfehler.",
-        t2Issues: "Gefundene Probleme & Tippfehler:",
+        t2Title: "Grammatik & Rechtschreibkorrektur", t2Sub: "Automatische Prüfung via LanguageTool.",
+        t2Issues: "Gefundene Probleme:",
         btnClean: "✨ Automatisch korrigieren", btnCopy: "📋 Kopieren", copyAlert: "Link kopiert!",
         noText: "Kein Text eingegeben.", noIssues: "✅ Keine Rechtschreibfehler gefunden!",
-        errSpaces: "⚠️ Doppelte Leerzeichen gefunden.", errCaps: "⚠️ Sätze sollten mit einem Großbuchstaben beginnen.",
-        errPunctBefore: "⚠️ Unnötiges Leerzeichen vor Satzzeichen.", errPunctAfter: "⚠️ Fehlendes Leerzeichen nach Satzzeichen.",
         t3Title: "AI-Text-Detektor", t3Sub: "Analysieren Sie die Satzstruktur auf KI-Merkmale.",
         t3Score: "Geschätzte KI-Wahrscheinlichkeit", aiShort: "Geben Sie mindestens 50 Zeichen ein.",
-        aiHigh: "Hohe Regelmäßigkeit im Satzbau (Typisch für KI).", aiLow: "Natürliche Satzlängenvariation erkannt.",
+        aiHigh: "Hohe Regelmäßigkeit im Satzbau.", aiLow: "Natürliche Satzlängenvariation erkannt.",
         qrTitle: "QR Code Generator", qrSub: "Geben Sie eine URL ein, um sofort einen QR-Code zu generieren.",
         qrPlaceholder: "Geben Sie eine URL ein...",
         downloadQR: "📥 QR-Code herunterladen",
-        speeds: { slow: 110, norm: 130, fast: 160 },
-        replacements: [{ bad: /\bdass\b/gi, good: "dass", desc: "Rechtschreibung geprüft" }]
+        speeds: { slow: 110, norm: 130, fast: 160 }
       },
       en: {
         placeholder: "Paste your text here...",
@@ -434,22 +423,17 @@
         aboutText: "Every-Tool is designed to help students, professionals, and creators work faster.",
         t1Title: "Speech & Presentation Timer", t1Sub: "Instantly calculate your speaking time.",
         slow: "🐢 Slow Pace", norm: "🚶 Average Pace", fast: "🐇 Fast Pace", practice: "Practice your speech live:", startBtn: "Start", pauseBtn: "Pause", resumeBtn: "Resume", resetBtn: "Reset",
-        t2Title: "Grammar & Spelling Corrector", t2Sub: "Quickly fix capitalization, spacing, and typos.",
-        t2Issues: "Detected Issues & Typos:",
+        t2Title: "Grammar & Spelling Corrector", t2Sub: "Automatic checking powered by LanguageTool API.",
+        t2Issues: "Detected Issues:",
         btnClean: "✨ Auto Correct & Fix", btnCopy: "📋 Copy Text", copyAlert: "Link copied to clipboard!",
-        noText: "No text entered.", noIssues: "✅ No common grammar or spelling issues found!",
-        errSpaces: "⚠️ Extra or double spaces found.", errCaps: "⚠️ Sentences should start with a capital letter.",
-        errPunctBefore: "⚠️ Unnecessary space before punctuation.", errPunctAfter: "⚠️ Missing space after punctuation.",
+        noText: "No text entered.", noIssues: "✅ No grammar or spelling issues found!",
         t3Title: "AI Text Detector Indicator", t3Sub: "Analyze sentence variation for AI patterns.",
         t3Score: "Estimated AI Probability", aiShort: "Enter at least 50 characters for estimation.",
-        aiHigh: "High sentence regularity (Typical AI pattern).", aiLow: "Natural variation in sentence length detected.",
+        aiHigh: "High sentence regularity.", aiLow: "Natural variation in sentence length detected.",
         qrTitle: "QR Code Generator", qrSub: "Enter a URL to instantly generate a QR code.",
         qrPlaceholder: "Enter a URL...",
         downloadQR: "📥 Download QR Code",
-        speeds: { slow: 110, norm: 130, fast: 160 },
-        replacements: [
-          { bad: /\bteh\b/gi, good: "the", desc: "Typo: 'teh' corrected to 'the'" }
-        ]
+        speeds: { slow: 110, norm: 130, fast: 160 }
       }
     };
 
@@ -541,11 +525,6 @@
       document.getElementById('text-timer').placeholder = t.placeholder;
       document.getElementById('text-checker').placeholder = t.placeholder;
       document.getElementById('text-ai').placeholder = t.placeholder;
-
-      const downloadBtn = document.getElementById('downloadQrBtn');
-      if(downloadBtn) {
-        downloadBtn.innerText = t.downloadQR;
-      }
 
       if(document.getElementById('sidebar').classList.contains('open')) {
         toggleSidebar();
@@ -639,51 +618,60 @@
       document.getElementById('startBtn').innerText = (translations[currentLang] || translations['nl']).startBtn;
     }
 
-    function checkSpelling() {
-      const text = document.getElementById('text-checker').value;
+    /* LANGUAGE TOOL API INTEGRATIE */
+    async function checkAndFixWithLanguageTool() {
+      const textarea = document.getElementById('text-checker');
       const container = document.getElementById('issuesContainer');
       const t = translations[currentLang] || translations['nl'];
-      let issues = [];
+      let text = textarea.value;
 
-      if(!text.trim()) { container.innerHTML = t.noText; return; }
+      if(!text.trim()) {
+        container.innerHTML = t.noText;
+        return;
+      }
 
-      if(/\s{2,}/.test(text)) issues.push(t.errSpaces);
-      if(/(^\s*|[.!?]\s+)[a-z]/g.test(text)) issues.push(t.errCaps);
-      if(/[a-zA-Z0-9]\s+[,.!?]/.test(text)) issues.push(t.errPunctBefore);
-      if(/[,.!?][a-zA-Z]/.test(text)) issues.push(t.errPunctAfter);
+      container.innerHTML = "⏳ Bezig met controleren via LanguageTool...";
 
-      if(t.replacements) {
-        t.replacements.forEach(r => {
-          if (r.bad.test(text)) {
-            issues.push(`🔍 ${r.desc}`);
+      try {
+        const response = await fetch("https://api.languagetool.org/v2/check", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams({
+            text: text,
+            language: currentLang === 'nl' ? 'nl' : currentLang === 'de' ? 'de' : currentLang === 'fr' ? 'fr' : currentLang === 'es' ? 'es' : 'en-US'
+          })
+        });
+
+        const data = await response.json();
+        const matches = data.matches;
+
+        if (matches.length === 0) {
+          container.innerHTML = `<span style='color:#2563eb; font-weight:600;'>${t.noIssues}</span>`;
+          return;
+        }
+
+        // Toon gevonden aandachtspunten in de lijst
+        let issueHtml = "";
+        matches.forEach(m => {
+          let suggestionText = m.replacements.length > 0 ? ` (Suggestie: <strong>${m.replacements[0].value}</strong>)` : '';
+          issueHtml += `<div class="issue-item">⚠️ ${m.message}${suggestionText}</div>`;
+        });
+        container.innerHTML = issueHtml;
+
+        // Automatisch herstellen (Vervang van achter naar voren zodat indexen kloppen)
+        let correctedText = text;
+        matches.sort((a, b) => b.offset - a.offset).forEach(m => {
+          if (m.replacements.length > 0) {
+            let replacement = m.replacements[0].value;
+            correctedText = correctedText.substring(0, m.offset) + replacement + correctedText.substring(m.offset + m.length);
           }
         });
+
+        textarea.value = correctedText;
+
+      } catch (error) {
+        container.innerHTML = `<span style='color:#dc2626;'>⚠️ Kon geen verbinding maken met LanguageTool API. Controleer je internetverbinding.</span>`;
       }
-
-      if(issues.length === 0) {
-        container.innerHTML = `<span style='color:#2563eb; font-weight:600;'>${t.noIssues}</span>`;
-      } else {
-        container.innerHTML = issues.map(i => `<div class="issue-item">${i}</div>`).join('');
-      }
-    }
-
-    function cleanText() {
-      let textVal = document.getElementById('text-checker').value;
-      if(!textVal.trim()) return;
-
-      const langData = translations[currentLang] || translations['nl'];
-
-      textVal = textVal.replace(/\s+/g, ' ');
-      textVal = textVal.replace(/\s+([,.!?])/g, '$1');
-      textVal = textVal.replace(/([,.!?])([a-zA-Zà-ÿÀ-ß])/g, '$1 $2');
-      textVal = textVal.replace(/(^\s*|[.!?]\s+)([a-zà-ÿ])/g, (match, p1, p2) => p1 + p2.toUpperCase());
-
-      if(langData.replacements) {
-        langData.replacements.forEach(r => { textVal = textVal.replace(r.bad, r.good); });
-      }
-
-      document.getElementById('text-checker').value = textVal;
-      checkSpelling();
     }
 
     function copyText(id) {
@@ -720,7 +708,7 @@
       document.getElementById('aiAnalysis').innerText = score > 60 ? t.aiHigh : t.aiLow;
     }
 
-    /* QR Code Generator op basis van URL invoer */
+    /* QR Code Generator */
     function generateQRFromInput() {
       const inputUrl = document.getElementById('qrUrlInput').value.trim();
       const box = document.getElementById('qrPreviewBox');
