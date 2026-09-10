@@ -3,155 +3,198 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Every-Tool - Slimme Tools voor Tekst en Spraak</title>
-  <style>
-    * { box-sizing: border-box; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-    body { margin: 0; padding: 0; background: #f8fafc; color: #0f172a; display: flex; flex-direction: column; min-height: 100vh; }
+  <title>Every-Tool - Slimme Tools voor Tekst, Speech Timer en Grammatica</title>
+  <meta name="description" content="Gebruik gratis online tools zoals een Speech Timer, Grammatica Bot, AI-Tekst Detector en QR Code Generator. Snel, betrouwbaar en direct in je browser." />
+  <meta name="keywords" content="speech timer, grammatica checker, ai detector, qr code generator, online tools" />
+  
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:title" content="Every-Tool - Slimme Tools voor Tekst en Spraak" />
+  <meta property="og:description" content="Optimaliseer je presentaties, controleer spelfouten of genereer QR-codes in een handomdraai." />
+  <meta property="og:type" content="website" />
+  <link rel="canonical" href="https://bodhirombley-sketch.github.io/speechtimer/" />
 
-    /* Taalkeuze Scherm (Landing / Modal) */
-    .language-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(4px); z-index: 1000; display: flex; align-items: center; justify-content: center; transition: opacity 0.3s ease; }
+  <!-- Schema Markup (Structured Data voor AI & SEO) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Every-Tool",
+    "url": "https://bodhirombley-sketch.github.io/speechtimer/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "All",
+    "browser": "Requires JavaScript. Powered by HTML5.",
+    "description": "Slimme online tools voor tekst, spraak en presentaties, inclusief Speech Timer, Grammatica Bot en AI Detector.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0"
+    }
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg-color: #f8fafc;
+      --card-bg: #ffffff;
+      --text-color: #0f172a;
+      --text-muted: #475569;
+      --border-color: #e2e8f0;
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --primary-light: #eff6ff;
+      --sidebar-bg: #ffffff;
+      --textarea-bg: #ffffff;
+    }
+
+    [data-theme="dark"] {
+      --bg-color: #0f172a;
+      --card-bg: #1e293b;
+      --text-color: #f8fafc;
+      --text-muted: #94a3b8;
+      --border-color: #334155;
+      --primary: #38bdf8;
+      --primary-hover: #0ea5e9;
+      --primary-light: rgba(56, 189, 248, 0.1);
+      --sidebar-bg: #1e293b;
+      --textarea-bg: #0f172a;
+    }
+
+    * { box-sizing: border-box; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { margin: 0; padding: 0; background: var(--bg-color); color: var(--text-color); display: flex; flex-direction: column; min-height: 100vh; transition: background 0.3s, color 0.3s; }
+
+    /* Taalkeuze Scherm */
+    .language-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(4px); z-index: 1000; display: flex; align-items: center; justify-content: center; transition: opacity 0.3s ease; }
     .language-overlay.hidden { display: none; }
-    .language-modal { background: #ffffff; padding: 40px; border-radius: 20px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); text-align: center; max-width: 450px; width: 90%; }
-    .language-modal h2 { margin-top: 0; font-size: 24px; color: #0f172a; font-weight: 800; letter-spacing: -0.5px; }
-    .language-modal p { color: #475569; font-size: 15px; margin-bottom: 25px; line-height: 1.5; }
+    .language-modal { background: var(--card-bg); padding: 40px; border-radius: 20px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.3); text-align: center; max-width: 450px; width: 90%; border: 1px solid var(--border-color); }
+    .language-modal h2 { margin-top: 0; font-size: 24px; color: var(--text-color); font-weight: 800; letter-spacing: -0.5px; }
+    .language-modal p { color: var(--text-muted); font-size: 15px; margin-bottom: 25px; line-height: 1.5; }
     .lang-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    .lang-card-btn { background: #f8fafc; border: 1px solid #e2e8f0; padding: 14px; border-radius: 12px; font-size: 15px; font-weight: 700; color: #1e293b; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 1px 2px rgba(0,0,0,0.02); }
-    .lang-card-btn:hover { background: #eff6ff; border-color: #2563eb; color: #2563eb; transform: translateY(-1px); box-shadow: 0 4px 6px -1px rgba(37,99,235,0.1); }
+    .lang-card-btn { background: var(--bg-color); border: 1px solid var(--border-color); padding: 14px; border-radius: 12px; font-size: 15px; font-weight: 700; color: var(--text-color); cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; }
+    .lang-card-btn:hover { background: var(--primary-light); border-color: var(--primary); color: var(--primary); transform: translateY(-1px); }
 
     /* Topbalk */
-    .topbar { background: #ffffff; border-bottom: 1px solid #e2e8f0; padding: 12px 24px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; }
+    .topbar { background: var(--card-bg); border-bottom: 1px solid var(--border-color); padding: 12px 24px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; }
     .topbar-left { display: flex; align-items: center; gap: 16px; }
-    .hamburger-btn { background: #2563eb; color: white; border: none; font-size: 15px; padding: 8px 14px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 6px; font-weight: 600; transition: all 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
-    .hamburger-btn:hover { background: #1d4ed8; box-shadow: 0 4px 6px -1px rgba(29,78,216,0.2); transform: translateY(-1px); }
-    .app-title { font-weight: 800; font-size: 20px; color: #2563eb; cursor: pointer; letter-spacing: -0.5px; transition: opacity 0.2s; }
+    .hamburger-btn { background: var(--primary); color: white; border: none; font-size: 15px; padding: 8px 14px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 6px; font-weight: 600; transition: all 0.2s; }
+    .hamburger-btn:hover { background: var(--primary-hover); transform: translateY(-1px); }
+    .app-title { font-weight: 800; font-size: 20px; color: var(--primary); cursor: pointer; letter-spacing: -0.5px; transition: opacity 0.2s; }
     .app-title:hover { opacity: 0.85; }
 
-    .topbar-right { display: flex; align-items: center; gap: 12px; }
-    .share-top-btn { background: #2563eb; color: white; border: none; padding: 8px 16px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: all 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
-    .share-top-btn:hover { background: #1d4ed8; box-shadow: 0 4px 6px -1px rgba(29,78,216,0.2); transform: translateY(-1px); }
+    .topbar-right { display: flex; align-items: center; gap: 10px; }
+    .top-action-btn { background: var(--primary); color: white; border: none; padding: 8px 14px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: all 0.2s; }
+    .top-action-btn:hover { background: var(--primary-hover); }
 
-    .lang-switcher-top { display: flex; gap: 4px; background: #f1f5f9; padding: 4px; border-radius: 8px; border: 1px solid #e2e8f0; }
-    .lang-switcher-top button { background: transparent; border: none; padding: 4px 8px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; color: #475569; transition: all 0.2s; }
-    .lang-switcher-top button:hover { color: #2563eb; }
-    .lang-switcher-top button.active { background: #ffffff; color: #2563eb; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+    .lang-switcher-top { display: flex; gap: 4px; background: var(--bg-color); padding: 4px; border-radius: 8px; border: 1px solid var(--border-color); }
+    .lang-switcher-top button { background: transparent; border: none; padding: 4px 8px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; color: var(--text-muted); transition: all 0.2s; }
+    .lang-switcher-top button:hover { color: var(--primary); }
+    .lang-switcher-top button.active { background: var(--card-bg); color: var(--primary); box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
 
     /* Sidebar Menu */
-    .nav-sidebar { position: fixed; top: 0; left: -320px; width: 300px; height: 100%; background: #ffffff; color: #0f172a; padding: 24px; transition: 0.3s ease; z-index: 100; box-shadow: 10px 0 25px rgba(0,0,0,0.1); border-right: 1px solid #e2e8f0; overflow-y: auto; }
+    .nav-sidebar { position: fixed; top: 0; left: -320px; width: 300px; height: 100%; background: var(--sidebar-bg); color: var(--text-color); padding: 24px; transition: 0.3s ease; z-index: 100; box-shadow: 10px 0 25px rgba(0,0,0,0.2); border-right: 1px solid var(--border-color); overflow-y: auto; }
     .nav-sidebar.open { left: 0; }
     
-    .sidebar-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 16px; margin-bottom: 20px; }
-    .sidebar-header h2 { margin: 0; font-size: 18px; color: #0f172a; font-weight: 700; }
-    .close-btn { background: #f1f5f9; border: none; color: #64748b; width: 32px; height: 32px; border-radius: 50%; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
-    .close-btn:hover { background: #e2e8f0; color: #0f172a; transform: scale(1.05); }
+    .sidebar-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 16px; margin-bottom: 20px; }
+    .sidebar-header h2 { margin: 0; font-size: 18px; color: var(--text-color); font-weight: 700; }
+    .close-btn { background: var(--bg-color); border: none; color: var(--text-muted); width: 32px; height: 32px; border-radius: 50%; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+    .close-btn:hover { background: var(--border-color); color: var(--text-color); }
 
     .tool-group { margin-bottom: 12px; }
-    .tool-btn { width: 100%; background: #f8fafc; color: #1e293b; border: 1px solid #e2e8f0; padding: 12px 16px; border-radius: 8px; font-size: 15px; font-weight: 600; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.2s; }
-    .tool-btn:hover, .tool-btn.active { background: #eff6ff; border-color: #2563eb; color: #2563eb; transform: translateX(2px); box-shadow: 0 2px 4px rgba(37,99,235,0.05); }
-    .arrow { transition: transform 0.3s; font-size: 12px; color: #64748b; }
-    .tool-btn.open .arrow { transform: rotate(180deg); color: #2563eb; }
+    .tool-btn { width: 100%; background: var(--bg-color); color: var(--text-color); border: 1px solid var(--border-color); padding: 12px 16px; border-radius: 8px; font-size: 15px; font-weight: 600; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.2s; }
+    .tool-btn:hover, .tool-btn.active { background: var(--primary-light); border-color: var(--primary); color: var(--primary); transform: translateX(2px); }
+    .arrow { transition: transform 0.3s; font-size: 12px; color: var(--text-muted); }
+    .tool-btn.open .arrow { transform: rotate(180deg); color: var(--primary); }
 
-    .lang-dropdown { display: none; background: #ffffff; border-radius: 8px; padding: 8px; margin-top: 6px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+    .lang-dropdown { display: none; background: var(--card-bg); border-radius: 8px; padding: 8px; margin-top: 6px; border: 1px solid var(--border-color); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
     .lang-dropdown.show { display: block; }
-    .lang-title { font-size: 11px; color: #64748b; font-weight: 700; margin: 4px 0 6px 8px; text-transform: uppercase; letter-spacing: 0.5px; }
-    .lang-opt { display: block; width: 100%; padding: 8px 12px; margin-bottom: 2px; background: transparent; color: #334155; border: none; border-radius: 6px; font-size: 14px; text-align: left; cursor: pointer; font-weight: 500; transition: all 0.15s; }
-    .lang-opt:hover { background: #eff6ff; color: #2563eb; padding-left: 16px; }
+    .lang-title { font-size: 11px; color: var(--text-muted); font-weight: 700; margin: 4px 0 6px 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .lang-opt { display: block; width: 100%; padding: 8px 12px; margin-bottom: 2px; background: transparent; color: var(--text-color); border: none; border-radius: 6px; font-size: 14px; text-align: left; cursor: pointer; font-weight: 500; transition: all 0.15s; }
+    .lang-opt:hover { background: var(--primary-light); color: var(--primary); padding-left: 16px; }
 
-    .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.4); backdrop-filter: blur(2px); z-index: 90; }
+    .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.5); backdrop-filter: blur(2px); z-index: 90; }
     .overlay.open { display: block; }
 
-    .container { max-width: 1050px; margin: 0 auto; padding: 50px 24px; flex: 1; width: 100%; }
+    .container { max-width: 1050px; margin: 0 auto; padding: 40px 24px; flex: 1; width: 100%; }
     .tab-content { display: none; }
     .tab-content.active { display: block; }
 
-    .hero-section { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 20px; padding: 60px 40px; margin-bottom: 35px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.03); text-align: center; }
-    .hero-tag { display: inline-block; background: #eff6ff; color: #2563eb; font-size: 12px; font-weight: 700; text-transform: uppercase; padding: 6px 14px; border-radius: 20px; margin-bottom: 20px; letter-spacing: 0.5px; box-shadow: 0 1px 2px rgba(37,99,235,0.05); }
-    .hero-section h1 { font-size: 40px; font-weight: 800; color: #0f172a; margin: 0 0 15px 0; letter-spacing: -1px; line-height: 1.2; }
-    .hero-section p { font-size: 17px; color: #475569; margin: 0 auto 35px auto; max-width: 650px; line-height: 1.6; font-weight: 400; }
+    .hero-section { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 20px; padding: 60px 40px; margin-bottom: 35px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.03); text-align: center; }
+    .hero-tag { display: inline-block; background: var(--primary-light); color: var(--primary); font-size: 12px; font-weight: 700; text-transform: uppercase; padding: 6px 14px; border-radius: 20px; margin-bottom: 20px; letter-spacing: 0.5px; }
+    .hero-section h1 { font-size: 40px; font-weight: 800; color: var(--text-color); margin: 0 0 15px 0; letter-spacing: -1px; line-height: 1.2; }
+    .hero-section p { font-size: 17px; color: var(--text-muted); margin: 0 auto 35px auto; max-width: 650px; line-height: 1.6; }
     
     .hero-search-wrapper { position: relative; max-width: 620px; margin: 0 auto 10px auto; }
-    .hero-search-box { display: flex; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 14px; padding: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.02); transition: all 0.2s; }
-    .hero-search-box:focus-within { border-color: #2563eb; background: #ffffff; box-shadow: 0 0 0 4px rgba(37,99,235,0.1); }
-    .hero-search-box input { flex: 1; border: none; padding: 12px 16px; font-size: 16px; outline: none; background: transparent; color: #0f172a; }
+    .hero-search-box { display: flex; background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 14px; padding: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
+    .hero-search-box:focus-within { border-color: var(--primary); box-shadow: 0 0 0 4px var(--primary-light); }
+    .hero-search-box input { flex: 1; border: none; padding: 12px 16px; font-size: 16px; outline: none; background: transparent; color: var(--text-color); }
     
-    .hero-search-btn { background: #2563eb; color: white; border: none; padding: 0 24px; border-radius: 10px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 700; transition: all 0.2s; box-shadow: 0 4px 12px rgba(37,99,235,0.25); }
-    .hero-search-btn:hover { background: #1d4ed8; transform: translateY(-1px); box-shadow: 0 6px 16px rgba(29,78,216,0.35); }
+    .hero-search-btn { background: var(--primary); color: white; border: none; padding: 0 24px; border-radius: 10px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 700; transition: all 0.2s; }
+    .hero-search-btn:hover { background: var(--primary-hover); }
 
-    .search-suggestions { position: absolute; top: 100%; left: 0; right: 0; background: #ffffff; border: 1px solid #cbd5e1; border-top: none; border-radius: 0 0 14px 14px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); z-index: 20; display: none; text-align: left; overflow: hidden; margin-top: 4px; }
+    .search-suggestions { position: absolute; top: 100%; left: 0; right: 0; background: var(--card-bg); border: 1px solid var(--border-color); border-top: none; border-radius: 0 0 14px 14px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); z-index: 20; display: none; text-align: left; overflow: hidden; margin-top: 4px; }
     .search-suggestions.show { display: block; }
-    .suggestion-item { padding: 12px 16px; font-size: 15px; color: #1e293b; cursor: pointer; border-bottom: 1px solid #f1f5f9; display: flex; align-items: center; gap: 10px; font-weight: 500; transition: background 0.15s; }
+    .suggestion-item { padding: 12px 16px; font-size: 15px; color: var(--text-color); cursor: pointer; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; gap: 10px; font-weight: 500; }
     .suggestion-item:last-child { border-bottom: none; }
-    .suggestion-item:hover { background: #eff6ff; color: #2563eb; padding-left: 20px; }
+    .suggestion-item:hover { background: var(--primary-light); color: var(--primary); padding-left: 20px; }
 
-    .home-single-section { margin-top: 35px; }
-    .info-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 16px; padding: 35px; box-shadow: 0 4px 15px -3px rgba(0,0,0,0.02); text-align: left; transition: all 0.2s; }
-    .info-card:hover { border-color: #cbd5e1; box-shadow: 0 6px 20px -4px rgba(0,0,0,0.04); }
-    .info-card h3 { margin-top: 0; font-size: 18px; color: #0f172a; font-weight: 700; display: flex; align-items: center; gap: 10px; }
-    .info-card p { color: #475569; font-size: 15px; line-height: 1.7; margin-bottom: 0; }
+    .home-single-section { margin-top: 35px; display: grid; gap: 24px; }
+    .info-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 35px; box-shadow: 0 4px 15px -3px rgba(0,0,0,0.02); text-align: left; }
+    .info-card h3 { margin-top: 0; font-size: 18px; color: var(--text-color); font-weight: 700; display: flex; align-items: center; gap: 10px; }
+    .info-card p, .info-card li { color: var(--text-muted); font-size: 15px; line-height: 1.7; }
+    .info-card ul { padding-left: 20px; margin-bottom: 0; }
 
-    textarea { width: 100%; height: 160px; padding: 16px; font-size: 15px; border: 1px solid #cbd5e1; border-radius: 12px; resize: vertical; outline: none; margin-bottom: 16px; background: #ffffff; color: #0f172a; transition: all 0.2s; box-shadow: inset 0 1px 2px rgba(0,0,0,0.02); }
-    textarea:focus { border-color: #2563eb; box-shadow: 0 0 0 4px rgba(37,99,235,0.1), inset 0 1px 2px rgba(0,0,0,0.02); }
+    /* FAQ Accordeon Stijl */
+    details { background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 10px; padding: 14px 18px; margin-bottom: 12px; transition: all 0.2s; cursor: pointer; }
+    details[open] { border-color: var(--primary); background: var(--primary-light); }
+    summary { font-weight: 700; color: var(--text-color); font-size: 15px; outline: none; }
+    details p { margin: 10px 0 0 0; color: var(--text-muted); font-size: 14px; line-height: 1.6; }
+
+    textarea { width: 100%; height: 160px; padding: 16px; font-size: 15px; border: 1px solid var(--border-color); border-radius: 12px; resize: vertical; outline: none; margin-bottom: 10px; background: var(--textarea-bg); color: var(--text-color); transition: all 0.2s; }
+    textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 4px var(--primary-light); }
+
+    .stats-bar { font-size: 13px; color: var(--text-muted); font-weight: 600; margin-bottom: 16px; display: flex; gap: 15px; }
 
     .action-bar { display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
 
     .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin: 20px 0; }
-    .card { background: white; padding: 24px; border-radius: 14px; border: 1px solid #e2e8f0; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.02); transition: all 0.2s; }
-    .card:hover { border-color: #cbd5e1; box-shadow: 0 6px 16px rgba(0,0,0,0.04); transform: translateY(-2px); }
-    .card h4 { margin: 0 0 8px 0; color: #64748b; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; }
-    .card .val { font-size: 28px; font-weight: 800; color: #2563eb; }
+    .card { background: var(--card-bg); padding: 24px; border-radius: 14px; border: 1px solid var(--border-color); text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
+    .card h4 { margin: 0 0 8px 0; color: var(--text-muted); font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; }
+    .card .val { font-size: 28px; font-weight: 800; color: var(--primary); }
 
-    .timer-box { background: #0f172a; color: white; padding: 30px; border-radius: 16px; text-align: center; margin-top: 25px; box-shadow: 0 10px 25px -5px rgba(15,23,42,0.2); }
-    .timer-display { font-size: 42px; font-weight: 800; font-family: monospace; color: #38bdf8; margin: 12px 0; letter-spacing: 2px; }
+    .timer-box { background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-color); padding: 30px; border-radius: 16px; text-align: center; margin-top: 25px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05); }
+    .timer-display { font-size: 42px; font-weight: 800; font-family: monospace; color: var(--primary); margin: 12px 0; letter-spacing: 2px; }
     
-    .btn { padding: 12px 22px; background: #2563eb; color: white; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; transition: all 0.2s; box-shadow: 0 2px 4px rgba(37,99,235,0.1); }
-    .btn:hover { background: #1d4ed8; transform: translateY(-1px); box-shadow: 0 4px 8px rgba(29,78,216,0.2); }
-    .btn.danger { background: #ef4444; box-shadow: 0 2px 4px rgba(239,68,68,0.1); }
-    .btn.danger:hover { background: #dc2626; box-shadow: 0 4px 8px rgba(220,38,38,0.2); }
-    .btn.success { background: #2563eb; box-shadow: 0 2px 4px rgba(37,99,235,0.1); }
-    .btn.success:hover { background: #1d4ed8; }
+    .btn { padding: 12px 22px; background: var(--primary); color: white; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+    .btn:hover { background: var(--primary-hover); transform: translateY(-1px); }
+    .btn.danger { background: #ef4444; }
+    .btn.danger:hover { background: #dc2626; }
 
-    .issue-list { background: white; border: 1px solid #e2e8f0; border-radius: 14px; padding: 24px; margin-top: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
-    .issue-item { padding: 10px 0; border-bottom: 1px solid #f1f5f9; color: #dc2626; font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 8px; }
+    .issue-list { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 14px; padding: 24px; margin-top: 20px; }
+    .issue-item { padding: 10px 0; border-bottom: 1px solid var(--border-color); color: #ef4444; font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 8px; }
     .issue-item:last-child { border-bottom: none; }
     
-    .ai-bar-bg { background: #f1f5f9; height: 12px; border-radius: 6px; overflow: hidden; margin: 15px 0; border: 1px solid #e2e8f0; }
-    .ai-bar-fill { height: 100%; background: #2563eb; width: 0%; transition: width 0.5s ease; border-radius: 6px; }
+    .ai-bar-bg { background: var(--bg-color); height: 12px; border-radius: 6px; overflow: hidden; margin: 15px 0; border: 1px solid var(--border-color); }
+    .ai-bar-fill { height: 100%; background: var(--primary); width: 0%; transition: width 0.5s ease; border-radius: 6px; }
 
     .url-input-group { display: flex; gap: 10px; margin-bottom: 24px; }
-    .url-input-group input { flex: 1; padding: 14px 16px; font-size: 15px; border: 1px solid #cbd5e1; border-radius: 12px; outline: none; background: #ffffff; color: #0f172a; transition: all 0.2s; box-shadow: inset 0 1px 2px rgba(0,0,0,0.02); }
-    .url-input-group input:focus { border-color: #2563eb; box-shadow: 0 0 0 4px rgba(37,99,235,0.1), inset 0 1px 2px rgba(0,0,0,0.02); }
+    .url-input-group input { flex: 1; padding: 14px 16px; font-size: 15px; border: 1px solid var(--border-color); border-radius: 12px; outline: none; background: var(--textarea-bg); color: var(--text-color); }
+    .url-input-group input:focus { border-color: var(--primary); box-shadow: 0 0 0 4px var(--primary-light); }
 
-    .qr-preview-box { background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 35px; text-align: center; margin-top: 20px; box-shadow: 0 4px 15px -3px rgba(0,0,0,0.02); display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 250px; }
-    .qr-preview-box img { max-width: 200px; height: auto; border-radius: 10px; border: 1px solid #e2e8f0; padding: 10px; background: white; box-shadow: 0 4px 12px rgba(0,0,0,0.05); margin-bottom: 16px; }
+    .qr-preview-box { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 35px; text-align: center; margin-top: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 250px; }
+    .qr-preview-box img { max-width: 200px; height: auto; border-radius: 10px; border: 1px solid var(--border-color); padding: 10px; background: white; margin-bottom: 16px; }
 
-    .ad-space { margin-top: 40px; padding: 24px; background: #f8fafc; border: 1px dashed #cbd5e1; text-align: center; color: #64748b; border-radius: 14px; font-size: 14px; font-weight: 500; }
+    .ad-space { margin-top: 40px; padding: 24px; background: var(--card-bg); border: 1px dashed var(--border-color); text-align: center; color: var(--text-muted); border-radius: 14px; font-size: 14px; font-weight: 500; }
 
-    .security-footer {
-      margin-top: 40px;
-      padding: 20px 24px;
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-      flex-wrap: wrap;
-      gap: 15px;
-      font-size: 13px;
-      color: #334155;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.01);
-      font-weight: 500;
-    }
-    .sec-item { display: flex; align-items: center; gap: 8px; font-weight: 600; }
-    .sec-icon { font-size: 16px; color: #2563eb; }
+    .security-footer { margin-top: 40px; padding: 20px 24px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 14px; display: flex; align-items: center; justify-content: space-around; flex-wrap: wrap; gap: 15px; font-size: 13px; color: var(--text-muted); font-weight: 500; }
+    .sec-item { display: flex; align-items: center; gap: 8px; font-weight: 600; color: var(--text-color); }
+    .sec-icon { font-size: 16px; color: var(--primary); }
 
     .section-header-wrapper { margin-bottom: 25px; }
-    h2.section-title { font-size: 26px; font-weight: 800; color: #0f172a; margin: 0 0 8px 0; letter-spacing: -0.5px; }
-    .section-subtitle { color: #475569; font-size: 15px; margin: 0; font-weight: 400; line-height: 1.5; }
+    h2.section-title { font-size: 26px; font-weight: 800; color: var(--text-color); margin: 0 0 8px 0; letter-spacing: -0.5px; }
+    .section-subtitle { color: var(--text-muted); font-size: 15px; margin: 0; font-weight: 400; }
   </style>
 </head>
-<body>
+<body data-theme="light">
 
-  <!-- EERSTE KEER TAALKEUZE MODAL -->
+  <!-- TAALKEUZE MODAL -->
   <div class="language-overlay" id="languageOverlay">
     <div class="language-modal">
       <h2>Welcome / Welkommen / Bienvenue</h2>
@@ -166,29 +209,30 @@
   </div>
 
   <!-- TOPBAR -->
-  <div class="topbar">
+  <header class="topbar">
     <div class="topbar-left">
-      <button class="hamburger-btn" onclick="toggleSidebar()">☰ Menu</button>
+      <button class="hamburger-btn" onclick="toggleSidebar()" aria-label="Open menu">☰ Menu</button>
       <div class="app-title" id="topTitle" onclick="selectTool('home', currentLang)">Every-Tool</div>
     </div>
     
     <div class="topbar-right">
+      <button class="top-action-btn" onclick="toggleDarkMode()" id="darkModeBtn">🌙 Dark Mode</button>
       <div class="lang-switcher-top">
         <button id="langBtnNl" class="active" onclick="selectTool(currentTool, 'nl')">NL</button>
         <button id="langBtnEn" onclick="selectTool(currentTool, 'en')">EN</button>
         <button id="langBtnDe" onclick="selectTool(currentTool, 'de')">DE</button>
       </div>
-      <button class="share-top-btn" onclick="shareSite()" id="shareBtnText">🔗 Deel Site</button>
+      <button class="top-action-btn" onclick="shareSite()" id="shareBtnText">🔗 Deel</button>
     </div>
-  </div>
+  </header>
 
   <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
 
   <!-- SIDEBAR MENU -->
-  <div class="nav-sidebar" id="sidebar">
+  <nav class="nav-sidebar" id="sidebar">
     <div class="sidebar-header">
       <h2 id="menuHeader">Kies een Tool</h2>
-      <button class="close-btn" onclick="toggleSidebar()">✕</button>
+      <button class="close-btn" onclick="toggleSidebar()" aria-label="Sluit menu">✕</button>
     </div>
 
     <div class="tool-group">
@@ -207,8 +251,6 @@
         <button class="lang-opt" onclick="selectTool('timer', 'nl')">🇳🇱 Nederlands</button>
         <button class="lang-opt" onclick="selectTool('timer', 'de')">🇩🇪 Deutsch</button>
         <button class="lang-opt" onclick="selectTool('timer', 'en')">🇬🇧 English</button>
-        <button class="lang-opt" onclick="selectTool('timer', 'fr')">🇫🇷 Français</button>
-        <button class="lang-opt" onclick="selectTool('timer', 'es')">🇪🇸 Español</button>
       </div>
     </div>
 
@@ -222,8 +264,6 @@
         <button class="lang-opt" onclick="selectTool('checker', 'nl')">🇳🇱 Nederlands</button>
         <button class="lang-opt" onclick="selectTool('checker', 'de')">🇩🇪 Deutsch</button>
         <button class="lang-opt" onclick="selectTool('checker', 'en')">🇬🇧 English</button>
-        <button class="lang-opt" onclick="selectTool('checker', 'fr')">🇫🇷 Français</button>
-        <button class="lang-opt" onclick="selectTool('checker', 'es')">🇪🇸 Español</button>
       </div>
     </div>
 
@@ -237,8 +277,6 @@
         <button class="lang-opt" onclick="selectTool('ai', 'nl')">🇳🇱 Nederlands</button>
         <button class="lang-opt" onclick="selectTool('ai', 'de')">🇩🇪 Deutsch</button>
         <button class="lang-opt" onclick="selectTool('ai', 'en')">🇬🇧 English</button>
-        <button class="lang-opt" onclick="selectTool('ai', 'fr')">🇫🇷 Français</button>
-        <button class="lang-opt" onclick="selectTool('ai', 'es')">🇪🇸 Español</button>
       </div>
     </div>
 
@@ -247,42 +285,60 @@
         <span>📱 QR Code Generator</span>
       </button>
     </div>
-  </div>
+  </nav>
 
   <!-- MAIN CONTAINER -->
-  <div class="container">
+  <main class="container">
 
-    <!-- TAB 0: HOME / LANDING PAGE -->
+    <!-- HOME TAB -->
     <div id="tab-home" class="tab-content active">
-      <div class="hero-section">
+      <section class="hero-section">
         <span class="hero-tag">Meet Every-Tool</span>
         <h1 id="homeHeading">Slimme tools voor al je tekst en spraak</h1>
         <p id="homeSub">Optimaliseer je presentaties, controleer op spelfouten of analyseer zinsstructuren in een handomdraai. Snel, veilig en betrouwbaar.</p>
         
         <div class="hero-search-wrapper">
           <div class="hero-search-box">
-            <input type="text" id="homeSearchInput" placeholder="Typ om een tool te zoeken (druk op Enter)..." oninput="filterTools()" onkeydown="handleSearchKey(event)" autocomplete="off">
+            <input type="text" id="homeSearchInput" placeholder="Typ om een tool te zoeken..." oninput="filterTools()" autocomplete="off">
             <button class="hero-search-btn" onclick="filterTools()"><span>Zoek</span> 🔍</button>
           </div>
           <div class="search-suggestions" id="searchSuggestions"></div>
         </div>
-      </div>
+      </section>
 
       <div class="home-single-section">
-        <div class="info-card">
-          <h3 id="aboutTitle">💡 Over Every-Tool</h3>
-          <p id="aboutText">Every-Tool is ontworpen om studenten, professionals en contentmakers te helpen sneller te werken. Alle berekeningen en analyses vinden direct plaats in je eigen webbrowser (client-side), wat maximale privacy garandeert. Er worden geen teksten opgeslagen of gedeeld.</p>
-        </div>
+        <section class="info-card">
+          <h3 id="aboutTitle">💡 Over Every-Tool & Onze Functionaliteiten</h3>
+          <p id="aboutText">Alle berekeningen vinden direct plaats in je eigen webbrowser (client-side), wat maximale privacy garandeert. Geen van je teksten wordt opgeslagen op externe servers.</p>
+        </section>
+
+        <!-- SEO FAQ Accordion -->
+        <section class="info-card">
+          <h3>❓ Veelgestelde Vragen (FAQ)</h3>
+          <details>
+            <summary>Hoe werkt de Speech Timer?</summary>
+            <p>Plak je presentatietekst in de tool om direct je spreektijd te berekenen op basis van verschillende snelheden (langzaam, normaal, snel).</p>
+          </details>
+          <details>
+            <summary>Worden mijn teksten opgeslagen?</summary>
+            <p>Nee, alle verwerking gebeurt lokaal in je browser. Dankzij LocalStorage onthoudt je browser wel tijdelijk je invoer, zodat je niets kwijtraakt als je per ongeluk de pagina vernieuwt.</p>
+          </details>
+          <details>
+            <summary>Is het gebruik van Every-Tool gratis?</summary>
+            <p>Ja, alle tools op dit platform zijn volledig gratis te gebruiken voor studenten, professionals en contentmakers.</p>
+          </details>
+        </section>
       </div>
     </div>
 
-    <!-- TAB 1: SPEECH TIMER -->
+    <!-- SPEECH TIMER TAB -->
     <div id="tab-timer" class="tab-content">
       <div class="section-header-wrapper">
         <h2 class="section-title" id="t1-title">Speech & Presentatie Timer</h2>
         <p class="section-subtitle" id="t1-sub">Bereken direct hoe lang jouw tekst duurt om voor te lezen.</p>
       </div>
-      <textarea id="text-timer" placeholder="Plak hier je tekst om de spreektijd te berekenen..." oninput="calcTimer()"></textarea>
+      <textarea id="text-timer" placeholder="Plak hier je tekst..." oninput="handleTimerInput()"></textarea>
+      <div class="stats-bar" id="stats-timer">Woorden: 0 | Tekens: 0</div>
 
       <div class="card-grid">
         <div class="card"><h4 id="t1-slow">🐢 Langzaam</h4><div class="val" id="timeSlow">00:00</div></div>
@@ -291,77 +347,79 @@
       </div>
 
       <div class="timer-box">
-        <h4 style="margin:0; color:#94a3b8; font-size: 14px; text-transform: uppercase;" id="t1-practice">Oefen je speech live:</h4>
+        <h4 style="margin:0; font-size: 14px; text-transform: uppercase;" id="t1-practice">Oefen je speech live:</h4>
         <div class="timer-display" id="stopwatch">00:00</div>
         <div style="display: flex; justify-content: center; gap: 12px; margin-top: 18px;">
-          <button class="btn success" id="startBtn" onclick="startTimer()">Start</button>
+          <button class="btn" id="startBtn" onclick="startTimer()">Start</button>
           <button class="btn danger" id="resetBtn" onclick="resetTimer()">Reset</button>
         </div>
       </div>
     </div>
 
-    <!-- TAB 2: GRAMMATICA BOT (GEKOPPELD AAN LANGUAGETOOL API) -->
+    <!-- GRAMMATICA TAB -->
     <div id="tab-checker" class="tab-content">
       <div class="section-header-wrapper">
         <h2 class="section-title" id="t2-title">Grammatica & Spelfout Bot</h2>
-        <p class="section-subtitle" id="t2-sub">Controleer automatisch op spelfouten en grammatica via LanguageTool.</p>
+        <p class="section-subtitle" id="t2-sub">Controleer automatisch op spelfouten via LanguageTool.</p>
       </div>
       
-      <textarea id="text-checker" placeholder="Plak hier je tekst om te controleren op spelfouten..."></textarea>
+      <textarea id="text-checker" placeholder="Plak hier je tekst..." oninput="updateCheckerStats()"></textarea>
+      <div class="stats-bar" id="stats-checker">Woorden: 0 | Tekens: 0</div>
 
       <div class="action-bar">
-        <button class="btn success" id="btnClean" onclick="checkAndFixWithLanguageTool()">✨ Automatisch Herstellen</button>
+        <button class="btn" id="btnClean" onclick="checkAndFixWithLanguageTool()">✨ Automatisch Herstellen</button>
         <button class="btn" id="btnCopy" onclick="copyText('text-checker')">📋 Kopiëren</button>
       </div>
 
       <div class="issue-list">
-        <h4 style="margin-top:0; color:#0f172a; font-size:15px; font-weight: 700;" id="t2-issues">Gevonden Aandachtspunten:</h4>
-        <div id="issuesContainer" style="color: #475569; font-size: 14px;">Klik op 'Automatisch Herstellen' om de tekst te controleren.</div>
+        <h4 style="margin-top:0; font-size:15px; font-weight: 700;" id="t2-issues">Gevonden Aandachtspunten:</h4>
+        <div id="issuesContainer" style="color: var(--text-muted); font-size: 14px;">Klik op 'Automatisch Herstellen' om te controleren.</div>
       </div>
     </div>
 
-    <!-- TAB 3: AI DETECTOR -->
+    <!-- AI DETECTOR TAB -->
     <div id="tab-ai" class="tab-content">
       <div class="section-header-wrapper">
         <h2 class="section-title" id="t3-title">AI-Tekst Detector Indicator</h2>
-        <p class="section-subtitle" id="t3-sub">Analyseer de zinsstructuur op AI-kenmerken.</p>
+        <p class="section-subtitle" id="t3-sub">Analyseer zinsstructuur op AI-kenmerken.</p>
       </div>
-      <textarea id="text-ai" placeholder="Plak hier je tekst om de AI-waarschijnlijkheid te meten..." oninput="checkAI()"></textarea>
+      <textarea id="text-ai" placeholder="Plak hier je tekst..." oninput="checkAI()"></textarea>
+      <div class="stats-bar" id="stats-ai">Woorden: 0 | Tekens: 0</div>
 
       <div class="card" style="text-align: left;">
         <h4 id="t3-score" style="margin-bottom: 8px;">Geschatte AI-waarschijnlijkheid</h4>
         <div class="val" id="aiScore" style="margin-bottom: 12px;">0%</div>
         <div class="ai-bar-bg"><div class="ai-bar-fill" id="aiBar"></div></div>
-        <p style="font-size:14px; color:#475569; margin-bottom: 0; font-weight: 500;" id="aiAnalysis">Voer minimaal 50 tekens in voor een schatting.</p>
+        <p style="font-size:14px; color: var(--text-muted); margin-bottom: 0; font-weight: 500;" id="aiAnalysis">Voer minimaal 50 tekens in.</p>
       </div>
     </div>
 
-    <!-- TAB 4: QR CODE GENERATOR -->
+    <!-- QR CODE GENERATOR TAB -->
     <div id="tab-qr" class="tab-content">
       <div class="section-header-wrapper">
         <h2 class="section-title" id="qr-title">QR Code Generator</h2>
-        <p class="section-subtitle" id="qr-sub">Voer een URL in om direct een fatsoenlijke QR-code te genereren.</p>
+        <p class="section-subtitle" id="qr-sub">Voer een URL in om direct een QR-code te genereren.</p>
       </div>
       
       <div class="url-input-group">
-        <input type="url" id="qrUrlInput" placeholder="https://jouwwebsite.nl/document.pdf" oninput="generateQRFromInput()" />
-        <button class="btn success" onclick="generateQRFromInput()">Genereer</button>
+        <input type="url" id="qrUrlInput" placeholder="https://jouwwebsite.nl" oninput="generateQRFromInput()" />
+        <button class="btn" onclick="generateQRFromInput()">Genereer</button>
       </div>
 
       <div class="qr-preview-box" id="qrPreviewBox">
-        <p style="color: #94a3b8; font-size: 14px; margin: 0;" id="qrPlaceholderText">Vul een URL in om een QR-code te genereren...</p>
+        <p style="color: var(--text-muted); font-size: 14px; margin: 0;" id="qrPlaceholderText">Vul een URL in...</p>
       </div>
     </div>
 
     <div class="ad-space">Advertentie Ruimte (Google AdSense)</div>
 
-    <div class="security-footer">
-      <div class="sec-item"><span class="sec-icon">🔒</span><span>256-bit SSL-beveiligde verbinding</span></div>
-      <div class="sec-item"><span class="sec-icon">🛡️</span><span>100% Privacy - Lokale verwerking in browser</span></div>
-      <div class="sec-item"><span class="sec-icon">⚡</span><span>Direct resultaat zonder wachttijd</span></div>
-    </div>
+    <footer class="security-footer">
+      <div class="sec-item"><span class="sec-icon">🔒</span><span>256-bit SSL-beveiliging</span></div>
+      <div class="sec-item"><span class="sec-icon">🛡️</span><span>100% Privacy - Lokale verwerking</span></div>
+      <div class="sec-item"><span class="sec-icon">⚡</span><span>Direct resultaat</span></div>
+    </footer>
 
-  </div>
+  </main>
 
   <script>
     let currentLang = 'nl';
@@ -372,75 +430,105 @@
       nl: {
         placeholder: "Plak hier je tekst...",
         menuHeader: "Kies een Tool",
-        shareBtn: "🔗 Deel Site",
+        shareBtn: "🔗 Deel",
         homeHeading: "Slimme tools voor al je tekst en spraak",
-        homeSub: "Optimaliseer je presentaties, controleer op spelfouten of analyseer zinsstructuren in een handomdraai. Snel, veilig en betrouwbaar.",
-        aboutTitle: "💡 Over Every-Tool",
-        aboutText: "Every-Tool is ontworpen om studenten, professionals en contentmakers te helpen sneller te werken. Alle berekeningen en analyses vinden direct plaats in je eigen webbrowser (client-side), wat maximale privacy garandeert. Er worden geen teksten opgeslagen of gedeeld.",
+        homeSub: "Optimaliseer je presentaties, controleer op spelfouten of analyseer zinsstructuren in een handomdraai.",
+        aboutTitle: "💡 Over Every-Tool & Onze Functionaliteiten",
+        aboutText: "Every-Tool is ontworpen om snel en efficiënt te werken met maximale privacy dankzij lokale browserverwerking.",
         t1Title: "Speech & Presentatie Timer", t1Sub: "Bereken direct hoe lang jouw tekst duurt om voor te lezen.",
         slow: "🐢 Langzaam", norm: "🚶 Normaal", fast: "🐇 Snel", practice: "Oefen je speech live:", startBtn: "Start", pauseBtn: "Pauze", resumeBtn: "Hervat", resetBtn: "Reset",
-        t2Title: "Grammatica & Spelfout Bot", t2Sub: "Controleer automatisch op spelfouten en grammatica via LanguageTool.",
+        t2Title: "Grammatica & Spelfout Bot", t2Sub: "Controleer automatisch via LanguageTool.",
         t2Issues: "Gevonden Aandachtspunten:",
-        btnClean: "✨ Automatisch Herstellen", btnCopy: "📋 Kopiëren", copyAlert: "Link gekopieerd naar klembord!",
+        btnClean: "✨ Automatisch Herstellen", btnCopy: "📋 Kopiëren", copyAlert: "Gekopieerd naar klembord!",
         noText: "Geen tekst ingevoerd.", noIssues: "✅ Geen spelfouten gevonden!",
-        t3Title: "AI-Tekst Detector Indicator", t3Sub: "Analyseer de zinsstructuur op AI-kenmerken.",
+        t3Title: "AI-Tekst Detector Indicator", t3Sub: "Analyseer zinsstructuur op AI-kenmerken.",
         t3Score: "Geschatte AI-waarschijnlijkheid", aiShort: "Voer minimaal 50 tekens in voor een schatting.",
-        aiHigh: "Hoge mate van regelmatige zinsopbouw en/of typische AI-clichés gedetecteerd.", aiLow: "Natuurlijke variatie in zinslengte en woordgebruik gedetecteerd.",
-        qrTitle: "QR Code Generator", qrSub: "Voer een URL in om direct een fatsoenlijke QR-code te genereren.",
-        qrPlaceholder: "Vul een URL in om een QR-code te genereren...",
+        aiHigh: "Hoge mate van regelmatige zinsopbouw gedetecteerd.", aiLow: "Natuurlijke variatie in zinslengte gedetecteerd.",
+        qrTitle: "QR Code Generator", qrSub: "Voer een URL in om direct een QR-code te genereren.",
+        qrPlaceholder: "Vul een URL in...",
         downloadQR: "📥 Download QR-code",
         speeds: { slow: 90, norm: 100, fast: 125 }
       },
       de: {
         placeholder: "Fügen Sie Ihren Text hier ein...",
         menuHeader: "Werkzeug wählen",
-        shareBtn: "🔗 Seite teilen",
+        shareBtn: "🔗 Teilen",
         homeHeading: "Intelligente Tools für Text und Präsentationen",
-        homeSub: "Optimieren Sie Ihre Präsentationen, prüfen Sie Rechtschreibung oder analysieren Sie Textstrukturen sofort.",
+        homeSub: "Optimieren Sie Ihre Präsentationen und prüfen Sie Rechtschreibung sofort.",
         aboutTitle: "💡 Über Every-Tool",
-        aboutText: "Every-Tool wurde entwickelt, um Studenten, Profis und Content-Erstellern zu helfen, effizienter zu arbeiten.",
-        t1Title: "Rede & Präsentations-Timer", t1Sub: "Berechnen Sie sofort die Sprechdauer Ihres Textes.",
-        slow: "🐢 Langsam", norm: "🚶 Normal", fast: "🐇 Schnell", practice: "Üben Sie Ihre Rede live:", startBtn: "Start", pauseBtn: "Pause", resumeBtn: "Fortsetzen", resetBtn: "Zurücksetzen",
-        t2Title: "Grammatik & Rechtschreibkorrektur", t2Sub: "Automatische Prüfung via LanguageTool.",
+        aboutText: "Maximale Datenschutz durch lokale Browser-Verarbeitung.",
+        t1Title: "Rede & Präsentations-Timer", t1Sub: "Berechnen Sie sofort die Sprechdauer.",
+        slow: "🐢 Langsam", norm: "🚶 Normal", fast: "🐇 Schnell", practice: "Üben Sie live:", startBtn: "Start", pauseBtn: "Pause", resumeBtn: "Fortsetzen", resetBtn: "Zurücksetzen",
+        t2Title: "Grammatik & Rechtschreibung", t2Sub: "Automatische Prüfung via LanguageTool.",
         t2Issues: "Gefundene Probleme:",
-        btnClean: "✨ Automatisch korrigieren", btnCopy: "📋 Kopieren", copyAlert: "Link kopiert!",
-        noText: "Kein Text eingegeben.", noIssues: "✅ Keine Rechtschreibfehler gefunden!",
-        t3Title: "AI-Text-Detektor", t3Sub: "Analysieren Sie die Satzstruktur auf KI-Merkmale.",
-        t3Score: "Geschätzte KI-Wahrscheinlichkeit", aiShort: "Geben Sie mindestens 50 Zeichen ein.",
-        aiHigh: "Hohe Regelmäßigkeit im Satzbau.", aiLow: "Natürliche Satzlängenvariation erkannt.",
-        qrTitle: "QR Code Generator", qrSub: "Geben Sie eine URL ein, um sofort einen QR-Code zu generieren.",
-        qrPlaceholder: "Geben Sie eine URL ein...",
-        downloadQR: "📥 QR-Code herunterladen",
+        btnClean: "✨ Korrigieren", btnCopy: "📋 Kopieren", copyAlert: "Kopiert!",
+        noText: "Kein Text.", noIssues: "✅ Keine Fehler gefunden!",
+        t3Title: "AI-Text-Detektor", t3Sub: "Analysieren Sie die Satzstruktur.",
+        t3Score: "Geschätzte KI-Wahrscheinlichkeit", aiShort: "Mindestens 50 Zeichen eingeben.",
+        aiHigh: "Hohe Regelmäßigkeit.", aiLow: "Natürliche Variation.",
+        qrTitle: "QR Code Generator", qrSub: "Geben Sie eine URL ein.",
+        qrPlaceholder: "URL eingeben...",
+        downloadQR: "📥 Herunterladen",
         speeds: { slow: 110, norm: 130, fast: 160 }
       },
       en: {
         placeholder: "Paste your text here...",
         menuHeader: "Select Tool",
-        shareBtn: "🔗 Share Site",
-        homeHeading: "Smart tools for all your text and presentations",
-        homeSub: "Optimize your presentations, check for typos, or analyze sentence structures instantly.",
+        shareBtn: "🔗 Share",
+        homeHeading: "Smart tools for text and presentations",
+        homeSub: "Optimize presentations and check typos instantly.",
         aboutTitle: "💡 About Every-Tool",
-        aboutText: "Every-Tool is designed to help students, professionals, and creators work faster.",
-        t1Title: "Speech & Presentation Timer", t1Sub: "Instantly calculate your speaking time.",
-        slow: "🐢 Slow Pace", norm: "🚶 Average Pace", fast: "🐇 Fast Pace", practice: "Practice your speech live:", startBtn: "Start", pauseBtn: "Pause", resumeBtn: "Resume", resetBtn: "Reset",
-        t2Title: "Grammar & Spelling Corrector", t2Sub: "Automatic checking powered by LanguageTool API.",
+        aboutText: "Maximum privacy through local browser processing.",
+        t1Title: "Speech & Presentation Timer", t1Sub: "Calculate speaking time instantly.",
+        slow: "🐢 Slow", norm: "🚶 Average", fast: "🐇 Fast", practice: "Practice live:", startBtn: "Start", pauseBtn: "Pause", resumeBtn: "Resume", resetBtn: "Reset",
+        t2Title: "Grammar Corrector", t2Sub: "Automatic checking powered by LanguageTool.",
         t2Issues: "Detected Issues:",
-        btnClean: "✨ Auto Correct & Fix", btnCopy: "📋 Copy Text", copyAlert: "Link copied to clipboard!",
-        noText: "No text entered.", noIssues: "✅ No grammar or spelling issues found!",
-        t3Title: "AI Text Detector Indicator", t3Sub: "Analyze sentence variation for AI patterns.",
-        t3Score: "Estimated AI Probability", aiShort: "Enter at least 50 characters for estimation.",
-        aiHigh: "High sentence regularity.", aiLow: "Natural variation in sentence length detected.",
-        qrTitle: "QR Code Generator", qrSub: "Enter a URL to instantly generate a QR code.",
+        btnClean: "✨ Auto Correct", btnCopy: "📋 Copy", copyAlert: "Copied!",
+        noText: "No text entered.", noIssues: "✅ No issues found!",
+        t3Title: "AI Text Detector", t3Sub: "Analyze sentence variation.",
+        t3Score: "Estimated AI Probability", aiShort: "Enter at least 50 characters.",
+        aiHigh: "High regularity.", aiLow: "Natural variation.",
+        qrTitle: "QR Code Generator", qrSub: "Enter a URL to generate a QR code.",
         qrPlaceholder: "Enter a URL...",
         downloadQR: "📥 Download QR Code",
         speeds: { slow: 110, norm: 130, fast: 160 }
       }
     };
 
+    // Laad opgeslagen data bij opstarten
+    window.addEventListener('DOMContentLoaded', () => {
+      ['text-timer', 'text-checker', 'text-ai', 'qrUrlInput'].forEach(id => {
+        const saved = localStorage.getItem(id);
+        if(saved) {
+          document.getElementById(id).value = saved;
+          if(id === 'text-timer') calcTimer();
+          if(id === 'text-checker') updateCheckerStats();
+          if(id === 'text-ai') checkAI();
+          if(id === 'qrUrlInput') generateQRFromInput();
+        }
+      });
+    });
+
+    function saveToLocal(id, val) {
+      localStorage.setItem(id, val);
+    }
+
     function setInitialLanguage(lang) {
       currentLang = lang;
       document.getElementById('languageOverlay').classList.add('hidden');
       selectTool('home', lang);
+    }
+
+    function toggleDarkMode() {
+      const body = document.body;
+      const btn = document.getElementById('darkModeBtn');
+      if(body.getAttribute('data-theme') === 'light') {
+        body.setAttribute('data-theme', 'dark');
+        btn.innerText = "☀️ Light Mode";
+      } else {
+        body.setAttribute('data-theme', 'light');
+        btn.innerText = "🌙 Dark Mode";
+      }
     }
 
     function toggleSidebar() {
@@ -453,22 +541,17 @@
       const isOpen = drop.classList.contains('show');
       document.querySelectorAll('.lang-dropdown').forEach(d => d.classList.remove('show'));
       document.querySelectorAll('.tool-btn').forEach(b => b.classList.remove('open'));
-
-      if(!isOpen) {
-        drop.classList.add('show');
-        btn.classList.add('open');
-      }
+      if(!isOpen) { drop.classList.add('show'); btn.classList.add('open'); }
     }
 
     function shareSite() {
       navigator.clipboard.writeText(window.location.href);
-      alert(translations[currentLang].copyAlert);
+      alert((translations[currentLang] || translations['nl']).copyAlert);
     }
 
     function selectTool(toolId, lang) {
       currentTool = toolId;
       currentLang = lang;
-
       document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
       document.getElementById('tab-' + toolId).classList.add('active');
 
@@ -477,20 +560,9 @@
       if(lang === 'en') document.getElementById('langBtnEn').classList.add('active');
       if(lang === 'de') document.getElementById('langBtnDe').classList.add('active');
 
-      const toolNames = {
-        nl: { home: "Every-Tool", timer: "⏱️ Speech Timer", checker: "✍️ Grammatica Bot", ai: "🤖 AI Detector", qr: "📱 QR Code Generator" },
-        en: { home: "Every-Tool", timer: "⏱️ Speech Timer", checker: "✍️ Grammar Bot", ai: "🤖 AI Detector", qr: "📱 QR Code Generator" },
-        de: { home: "Every-Tool", timer: "⏱️ Sprech-Timer", checker: "✍️ Grammatik Bot", ai: "🤖 KI Detektor", qr: "📱 QR Code Generator" },
-        fr: { home: "Every-Tool", timer: "⏱️ Minuteur Discours", checker: "✍️ Robot Grammaire", ai: "🤖 Détecteur IA", qr: "📱 QR Code Generator" },
-        es: { home: "Every-Tool", timer: "⏱️ Temporizador Speech", checker: "✍️ Bot Gramática", ai: "🤖 Detector IA", qr: "📱 QR Code Generator" }
-      };
-
-      document.getElementById('topTitle').innerText = toolNames[lang][toolId];
-
       const t = translations[lang] || translations['nl'];
       document.getElementById('menuHeader').innerText = t.menuHeader;
       document.getElementById('shareBtnText').innerText = t.shareBtn;
-
       document.getElementById('homeHeading').innerText = t.homeHeading;
       document.getElementById('homeSub').innerText = t.homeSub;
       
@@ -522,64 +594,29 @@
       document.getElementById('qr-sub').innerText = t.qrSub;
       document.getElementById('qrPlaceholderText').innerText = t.qrPlaceholder;
 
-      document.getElementById('text-timer').placeholder = t.placeholder;
-      document.getElementById('text-checker').placeholder = t.placeholder;
-      document.getElementById('text-ai').placeholder = t.placeholder;
-
-      if(document.getElementById('sidebar').classList.contains('open')) {
-        toggleSidebar();
-      }
-
+      if(document.getElementById('sidebar').classList.contains('open')) toggleSidebar();
       document.getElementById('searchSuggestions').classList.remove('show');
     }
 
     function filterTools() {
       const input = document.getElementById('homeSearchInput').value.toLowerCase().trim();
       const suggestionsBox = document.getElementById('searchSuggestions');
-      
       const allTools = [
-        { id: 'timer', name: '⏱️ Speech & Presentatie Timer', keywords: ['timer', 'speech', 'spreken', 'tijd', 'presentatie'] },
-        { id: 'checker', name: '✍️ Grammatica & Spelfout Bot', keywords: ['grammatica', 'gram', 'spelling', 'fouten', 'tekst', 'controle', 'typfout'] },
-        { id: 'ai', name: '🤖 AI-Tekst Detector', keywords: ['ai', 'detector', 'robot', 'ChatGPT', 'kunstmatige'] },
-        { id: 'qr', name: '📱 QR Code Generator', keywords: ['qr', 'code', 'generator', 'url', 'pdf'] }
+        { id: 'timer', name: '⏱️ Speech & Presentatie Timer', keywords: ['timer', 'speech', 'spreken'] },
+        { id: 'checker', name: '✍️ Grammatica Bot', keywords: ['grammatica', 'spelling', 'fouten'] },
+        { id: 'ai', name: '🤖 AI-Tekst Detector', keywords: ['ai', 'detector', 'chatgpt'] },
+        { id: 'qr', name: '📱 QR Code Generator', keywords: ['qr', 'code', 'url'] }
       ];
 
-      if (!input) {
-        suggestionsBox.classList.remove('show');
-        suggestionsBox.innerHTML = '';
-        return;
-      }
-
-      const matches = allTools.filter(tool => 
-        tool.name.toLowerCase().includes(input) || 
-        tool.keywords.some(kw => kw.includes(input))
-      );
+      if (!input) { suggestionsBox.classList.remove('show'); return; }
+      const matches = allTools.filter(tool => tool.name.toLowerCase().includes(input) || tool.keywords.some(kw => kw.includes(input)));
 
       if (matches.length > 0) {
-        suggestionsBox.innerHTML = matches.map(m => `
-          <div class="suggestion-item" onclick="selectTool('${m.id}', currentLang)">
-            ${m.name}
-          </div>
-        `).join('');
+        suggestionsBox.innerHTML = matches.map(m => `<div class="suggestion-item" onclick="selectTool('${m.id}', currentLang)">${m.name}</div>`).join('');
         suggestionsBox.classList.add('show');
       } else {
-        suggestionsBox.innerHTML = `<div class="suggestion-item" style="color: #94a3b8; cursor: default;">Geen tools gevonden...</div>`;
+        suggestionsBox.innerHTML = `<div class="suggestion-item" style="color: var(--text-muted); cursor: default;">Geen tools gevonden...</div>`;
         suggestionsBox.classList.add('show');
-      }
-    }
-
-    function handleSearchKey(event) {
-      if (event.key === 'Enter') {
-        const input = document.getElementById('homeSearchInput').value.toLowerCase().trim();
-        if (input.includes('gram') || input.includes('spel')) {
-          selectTool('checker', currentLang);
-        } else if (input.includes('time') || input.includes('speech')) {
-          selectTool('timer', currentLang);
-        } else if (input.includes('ai') || input.includes('detect')) {
-          selectTool('ai', currentLang);
-        } else if (input.includes('qr') || input.includes('code')) {
-          selectTool('qr', currentLang);
-        }
       }
     }
 
@@ -589,11 +626,19 @@
       return `${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
     }
 
+    function handleTimerInput() {
+      const val = document.getElementById('text-timer').value;
+      saveToLocal('text-timer', val);
+      calcTimer();
+    }
+
     function calcTimer() {
       const text = document.getElementById('text-timer').value.trim();
-      const words = text ? text.split(/\s+/).length : 0;
-      const sp = (translations[currentLang] || translations['nl']).speeds;
+      const words = text ? text.split(/\s+/).filter(w=>w.length>0).length : 0;
+      const chars = text.length;
+      document.getElementById('stats-timer').innerText = `Woorden: ${words} | Tekens: ${chars}`;
 
+      const sp = (translations[currentLang] || translations['nl']).speeds;
       document.getElementById('timeSlow').innerText = formatTime(words ? (words/sp.slow)*60 : 0);
       document.getElementById('timeNorm').innerText = formatTime(words ? (words/sp.norm)*60 : 0);
       document.getElementById('timeFast').innerText = formatTime(words ? (words/sp.fast)*60 : 0);
@@ -603,11 +648,8 @@
     function startTimer() {
       const b = document.getElementById('startBtn');
       const t = translations[currentLang] || translations['nl'];
-      if(timerInt) { 
-        clearInterval(timerInt); 
-        timerInt = null; 
-        b.innerText = t.resumeBtn; 
-      } else {
+      if(timerInt) { clearInterval(timerInt); timerInt = null; b.innerText = t.resumeBtn; } 
+      else {
         b.innerText = t.pauseBtn;
         timerInt = setInterval(() => { secs++; document.getElementById('stopwatch').innerText = formatTime(secs); }, 1000);
       }
@@ -618,39 +660,36 @@
       document.getElementById('startBtn').innerText = (translations[currentLang] || translations['nl']).startBtn;
     }
 
-    /* LANGUAGE TOOL API INTEGRATIE */
+    function updateCheckerStats() {
+      const val = document.getElementById('text-checker').value;
+      saveToLocal('text-checker', val);
+      const words = val.trim() ? val.trim().split(/\s+/).length : 0;
+      document.getElementById('stats-checker').innerText = `Woorden: ${words} | Tekens: ${val.length}`;
+    }
+
     async function checkAndFixWithLanguageTool() {
       const textarea = document.getElementById('text-checker');
       const container = document.getElementById('issuesContainer');
       const t = translations[currentLang] || translations['nl'];
       let text = textarea.value;
 
-      if(!text.trim()) {
-        container.innerHTML = t.noText;
-        return;
-      }
-
-      container.innerHTML = "⏳ Bezig met controleren via LanguageTool...";
+      if(!text.trim()) { container.innerHTML = t.noText; return; }
+      container.innerHTML = "⏳ Bezig met controleren...";
 
       try {
         const response = await fetch("https://api.languagetool.org/v2/check", {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: new URLSearchParams({
-            text: text,
-            language: currentLang === 'nl' ? 'nl' : currentLang === 'de' ? 'de' : currentLang === 'fr' ? 'fr' : currentLang === 'es' ? 'es' : 'en-US'
-          })
+          body: new URLSearchParams({ text: text, language: currentLang === 'nl' ? 'nl' : currentLang === 'de' ? 'de' : 'en-US' })
         });
-
         const data = await response.json();
         const matches = data.matches;
 
         if (matches.length === 0) {
-          container.innerHTML = `<span style='color:#2563eb; font-weight:600;'>${t.noIssues}</span>`;
+          container.innerHTML = `<span style='color:var(--primary); font-weight:600;'>${t.noIssues}</span>`;
           return;
         }
 
-        // Toon gevonden aandachtspunten in de lijst
         let issueHtml = "";
         matches.forEach(m => {
           let suggestionText = m.replacements.length > 0 ? ` (Suggestie: <strong>${m.replacements[0].value}</strong>)` : '';
@@ -658,19 +697,16 @@
         });
         container.innerHTML = issueHtml;
 
-        // Automatisch herstellen (Vervang van achter naar voren zodat indexen kloppen)
         let correctedText = text;
         matches.sort((a, b) => b.offset - a.offset).forEach(m => {
           if (m.replacements.length > 0) {
-            let replacement = m.replacements[0].value;
-            correctedText = correctedText.substring(0, m.offset) + replacement + correctedText.substring(m.offset + m.length);
+            correctedText = correctedText.substring(0, m.offset) + m.replacements[0].value + correctedText.substring(m.offset + m.length);
           }
         });
-
         textarea.value = correctedText;
-
+        updateCheckerStats();
       } catch (error) {
-        container.innerHTML = `<span style='color:#dc2626;'>⚠️ Kon geen verbinding maken met LanguageTool API. Controleer je internetverbinding.</span>`;
+        container.innerHTML = `<span style='color:#ef4444;'>⚠️ Verbindingsfout met LanguageTool API.</span>`;
       }
     }
 
@@ -684,7 +720,10 @@
 
     function checkAI() {
       const text = document.getElementById('text-ai').value.trim();
+      saveToLocal('text-ai', text);
       const t = translations[currentLang] || translations['nl'];
+      const words = text ? text.split(/\s+/).length : 0;
+      document.getElementById('stats-ai').innerText = `Woorden: ${words} | Tekens: ${text.length}`;
 
       if(text.length < 50) {
         document.getElementById('aiScore').innerText = "0%";
@@ -694,28 +733,24 @@
       }
 
       const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
-      const words = text.split(/\s+/);
-      
       let lengths = sentences.map(s => s.trim().split(/\s+/).length);
-      let avgLength = words.length / (sentences.length || 1);
+      let avgLength = words / (sentences.length || 1);
       let variance = lengths.reduce((acc, l) => acc + Math.abs(l - avgLength), 0) / (sentences.length || 1);
 
-      let baseScore = 100 - (variance * 10);
-      let score = Math.max(5, Math.min(98, Math.round(baseScore)));
-      
+      let score = Math.max(5, Math.min(98, Math.round(100 - (variance * 10))));
       document.getElementById('aiScore').innerText = score + "%";
       document.getElementById('aiBar').style.width = score + "%";
       document.getElementById('aiAnalysis').innerText = score > 60 ? t.aiHigh : t.aiLow;
     }
 
-    /* QR Code Generator */
     function generateQRFromInput() {
       const inputUrl = document.getElementById('qrUrlInput').value.trim();
+      saveToLocal('qrUrlInput', inputUrl);
       const box = document.getElementById('qrPreviewBox');
       const t = translations[currentLang] || translations['nl'];
 
       if (!inputUrl) {
-        box.innerHTML = `<p style="color: #94a3b8; font-size: 14px; margin: 0;" id="qrPlaceholderText">${t.qrPlaceholder}</p>`;
+        box.innerHTML = `<p style="color: var(--text-muted); font-size: 14px; margin: 0;">${t.qrPlaceholder}</p>`;
         return;
       }
 
@@ -723,30 +758,26 @@
       const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=` + encodeURIComponent(currentQRUrl);
       
       box.innerHTML = `
-        <img id="generatedQrImg" src="${qrApiUrl}" alt="QR Code voor URL" crossorigin="anonymous" />
-        <p style="font-size: 13px; color: #475569; margin-top: 6px; margin-bottom: 16px; font-weight: 500; word-break: break-all;">Gekoppeld aan: <span style="color:#2563eb; font-weight: 600;">${currentQRUrl}</span></p>
-        <button class="btn success" id="downloadQrBtn" onclick="downloadQRCode()">${t.downloadQR}</button>
+        <img id="generatedQrImg" src="${qrApiUrl}" alt="QR Code" crossorigin="anonymous" />
+        <p style="font-size: 13px; color: var(--text-muted); margin-top: 6px; margin-bottom: 16px;">Gekoppeld aan: <span style="color:var(--primary); font-weight: 600;">${currentQRUrl}</span></p>
+        <button class="btn" onclick="downloadQRCode()">${t.downloadQR}</button>
       `;
     }
 
     function downloadQRCode() {
       const img = document.getElementById('generatedQrImg');
       if (!img) return;
-
       const canvas = document.createElement('canvas');
       canvas.width = img.naturalWidth || 250;
       canvas.height = img.naturalHeight || 250;
       const ctx = canvas.getContext('2d');
-      
       const imageObj = new Image();
       imageObj.crossOrigin = "anonymous";
       imageObj.onload = function() {
         ctx.drawImage(imageObj, 0, 0);
-        const dataURL = canvas.toDataURL('image/png');
-        
         const a = document.createElement('a');
-        a.href = dataURL;
-        a.download = `qr-code-link.png`;
+        a.href = canvas.toDataURL('image/png');
+        a.download = `qr-code.png`;
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
