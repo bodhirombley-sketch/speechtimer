@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Every-Tool - Slimme Tools voor Tekst, Speech Timer en Grammatica</title>
-  <meta name="description" content="Gebruik gratis online tools zoals een Speech Timer, Grammatica Bot, AI-Tekst Detector en QR Code Generator. Snel, betrouwbaar en direct in je browser." />
-  <meta name="keywords" content="speech timer, grammatica checker, ai detector, qr code generator, online tools" />
+  <meta name="description" content="Gebruik gratis online tools zoals een Speech Timer, Grammatica Bot, AI-Tekst Detector en QR Code Generator. Snel, betrouwbaar en direct in je browser."[cite: 2]/>
+  <meta name="keywords" content="speech timer, grammatica checker, ai detector, qr code generator, online tools"[cite: 2]/>
   
-  <meta property="og:title" content="Every-Tool - Slimme Tools voor Tekst en Spraak" />
-  <meta property="og:description" content="Optimaliseer je presentaties, controleer spelfouten of genereer QR-codes in een handomdraai." />
-  <meta property="og:type" content="website" />
-  <link rel="canonical" href="https://bodhirombley-sketch.github.io/speechtimer/" />
+  <meta property="og:title" content="Every-Tool - Slimme Tools voor Tekst en Spraak"[cite: 2]/>
+  <meta property="og:description" content="Optimaliseer je presentaties, controleer spelfouten of genereer QR-codes in een handomdraai."[cite: 2]/>
+  <meta property="og:type" content="website"[cite: 2]/>
+  <link rel="canonical" href="https://bodhirombley-sketch.github.io/speechtimer/"[cite: 2]/>
 
   <script type="application/ld+json">
   {
@@ -56,162 +56,163 @@
       --textarea-bg: #0f172a;
     }
 
-    * { box-sizing: border-box; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-    body { margin: 0; padding: 0; background: var(--bg-color); color: var(--text-color); display: flex; flex-direction: column; min-height: 100vh; transition: background 0.3s, color 0.3s; }
+    * { box-sizing: border-box; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;[cite: 2]}
+    body { margin: 0; padding: 0; background: var(--bg-color); color: var(--text-color); display: flex; flex-direction: column; min-height: 100vh; transition: background 0.3s, color 0.3s;[cite: 2]}
 
-    .language-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(4px); z-index: 1000; display: flex; align-items: center; justify-content: center; transition: opacity 0.3s ease; }
-    .language-overlay.hidden { display: none; }
-    .language-modal { background: var(--card-bg); padding: 40px; border-radius: 20px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.3); text-align: center; max-width: 450px; width: 90%; border: 1px solid var(--border-color); }
-    .language-modal h2 { margin-top: 0; font-size: 24px; color: var(--text-color); font-weight: 800; letter-spacing: -0.5px; }
-    .language-modal p { color: var(--text-muted); font-size: 15px; margin-bottom: 25px; line-height: 1.5; }
-    .lang-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    .lang-card-btn { background: var(--bg-color); border: 1px solid var(--border-color); padding: 14px; border-radius: 12px; font-size: 15px; font-weight: 700; color: var(--text-color); cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; }
-    .lang-card-btn:hover { background: var(--primary-light); border-color: var(--primary); color: var(--primary); transform: translateY(-1px); }
+    .language-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(4px); z-index: 1000; display: flex; align-items: center; justify-content: center; transition: opacity 0.3s ease;[cite: 2]}
+    .language-overlay.hidden { display: none;[cite: 2]}
+    .language-modal { background: var(--card-bg); padding: 40px; border-radius: 20px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.3); text-align: center; max-width: 450px; width: 90%; border: 1px solid var(--border-color);[cite: 2]}
+    .language-modal h2 { margin-top: 0; font-size: 24px; color: var(--text-color); font-weight: 800; letter-spacing: -0.5px;[cite: 2]}
+    .language-modal p { color: var(--text-muted); font-size: 15px; margin-bottom: 25px; line-height: 1.5;[cite: 2]}
+    .lang-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;[cite: 2]}
+    .lang-card-btn { background: var(--bg-color); border: 1px solid var(--border-color); padding: 14px; border-radius: 12px; font-size: 15px; font-weight: 700; color: var(--text-color); cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px;[cite: 2]}
+    .lang-card-btn:hover { background: var(--primary-light); border-color: var(--primary); color: var(--primary); transform: translateY(-1px);[cite: 2]}
 
-    .topbar { background: var(--card-bg); border-bottom: 1px solid var(--border-color); padding: 10px 12px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; flex-wrap: wrap; gap: 8px; }
-    .topbar-left { display: flex; align-items: center; gap: 10px; }
-    .hamburger-btn { background: var(--primary); color: white; border: none; font-size: 15px; padding: 8px 14px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 6px; font-weight: 600; transition: all 0.2s; }
-    .hamburger-btn:hover { background: var(--primary-hover); transform: translateY(-1px); }
-    .app-title { font-size: 17px; font-weight: 800; color: var(--primary); cursor: pointer; letter-spacing: -0.5px; transition: opacity 0.2s; }
-    .app-title:hover { opacity: 0.85; }
+    .topbar { background: var(--card-bg); border-bottom: 1px solid var(--border-color); padding: 10px 12px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; flex-wrap: wrap; gap: 8px;[cite: 2]}
+    .topbar-left { display: flex; align-items: center; gap: 10px;[cite: 2]}
+    .hamburger-btn { background: var(--primary); color: white; border: none; font-size: 15px; padding: 8px 14px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 6px; font-weight: 600; transition: all 0.2s;[cite: 2]}
+    .hamburger-btn:hover { background: var(--primary-hover); transform: translateY(-1px);[cite: 2]}
+    .app-title { font-size: 17px; font-weight: 800; color: var(--primary); cursor: pointer; letter-spacing: -0.5px; transition: opacity 0.2s;[cite: 2]}
+    .app-title:hover { opacity: 0.85;[cite: 2]}
 
-    .topbar-right { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
-    .top-action-btn { background: var(--primary); color: white; border: none; padding: 8px 14px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: all 0.2s; }
-    .top-action-btn:hover { background: var(--primary-hover); }
+    .topbar-right { display: flex; align-items: center; gap: 6px; flex-wrap: wrap;[cite: 2]}
+    .top-action-btn { background: var(--primary); color: white; border: none; padding: 8px 14px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: all 0.2s;[cite: 2]}
+    .top-action-btn:hover { background: var(--primary-hover);[cite: 2]}
 
-    .lang-switcher-top { display: flex; gap: 4px; background: var(--bg-color); padding: 4px; border-radius: 8px; border: 1px solid var(--border-color); }
-    .lang-switcher-top button { background: transparent; border: none; padding: 4px 8px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; color: var(--text-muted); transition: all 0.2s; }
-    .lang-switcher-top button:hover { color: var(--primary); }
-    .lang-switcher-top button.active { background: var(--card-bg); color: var(--primary); box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+    .lang-switcher-top { display: flex; gap: 4px; background: var(--bg-color); padding: 4px; border-radius: 8px; border: 1px solid var(--border-color);[cite: 2]}
+    .lang-switcher-top button { background: transparent; border: none; padding: 4px 8px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; color: var(--text-muted); transition: all 0.2s;[cite: 2]}
+    .lang-switcher-top button:hover { color: var(--primary);[cite: 2]}
+    .lang-switcher-top button.active { background: var(--card-bg); color: var(--primary); box-shadow: 0 1px 2px rgba(0,0,0,0.05);[cite: 2]}
 
-    .nav-sidebar { position: fixed; top: 0; left: -320px; width: 300px; height: 100%; background: var(--sidebar-bg); color: var(--text-color); padding: 24px; transition: 0.3s ease; z-index: 100; box-shadow: 10px 0 25px rgba(0,0,0,0.2); border-right: 1px solid var(--border-color); overflow-y: auto; }
-    .nav-sidebar.open { left: 0; }
+    .nav-sidebar { position: fixed; top: 0; left: -320px; width: 300px; height: 100%; background: var(--sidebar-bg); color: var(--text-color); padding: 24px; transition: 0.3s ease; z-index: 100; box-shadow: 10px 0 25px rgba(0,0,0,0.2); border-right: 1px solid var(--border-color); overflow-y: auto;[cite: 2]}
+    .nav-sidebar.open { left: 0;[cite: 2]}
     
-    .sidebar-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 16px; margin-bottom: 20px; }
-    .sidebar-header h2 { margin: 0; font-size: 18px; color: var(--text-color); font-weight: 700; }
-    .close-btn { background: var(--bg-color); border: none; color: var(--text-muted); width: 32px; height: 32px; border-radius: 50%; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
-    .close-btn:hover { background: var(--border-color); color: var(--text-color); }
+    .sidebar-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 16px; margin-bottom: 20px;[cite: 2]}
+    .sidebar-header h2 { margin: 0; font-size: 18px; color: var(--text-color); font-weight: 700;[cite: 2]}
+    .close-btn { background: var(--bg-color); border: none; color: var(--text-muted); width: 32px; height: 32px; border-radius: 50%; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s;[cite: 2]}
+    .close-btn:hover { background: var(--border-color); color: var(--text-color);[cite: 2]}
 
-    .tool-group { margin-bottom: 12px; }
-    .tool-btn { width: 100%; background: var(--bg-color); color: var(--text-color); border: 1px solid var(--border-color); padding: 12px 16px; border-radius: 8px; font-size: 15px; font-weight: 600; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.2s; }
-    .tool-btn:hover, .tool-btn.active { background: var(--primary-light); border-color: var(--primary); color: var(--primary); transform: translateX(2px); }
-    .arrow { transition: transform 0.3s; font-size: 12px; color: var(--text-muted); }
-    .tool-btn.open .arrow { transform: rotate(180deg); color: var(--primary); }
+    .tool-group { margin-bottom: 12px;[cite: 2]}
+    .tool-btn { width: 100%; background: var(--bg-color); color: var(--text-color); border: 1px solid var(--border-color); padding: 12px 16px; border-radius: 8px; font-size: 15px; font-weight: 600; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.2s;[cite: 2]}
+    .tool-btn:hover, .tool-btn.active { background: var(--primary-light); border-color: var(--primary); color: var(--primary); transform: translateX(2px);[cite: 2]}
+    .arrow { transition: transform 0.3s; font-size: 12px; color: var(--text-muted);[cite: 2]}
+    .tool-btn.open .arrow { transform: rotate(180deg); color: var(--primary);[cite: 2]}
 
-    .lang-dropdown { display: none; background: var(--card-bg); border-radius: 8px; padding: 8px; margin-top: 6px; border: 1px solid var(--border-color); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
-    .lang-dropdown.show { display: block; }
-    .lang-title { font-size: 11px; color: var(--text-muted); font-weight: 700; margin: 4px 0 6px 8px; text-transform: uppercase; letter-spacing: 0.5px; }
-    .lang-opt { display: block; width: 100%; padding: 8px 12px; margin-bottom: 2px; background: transparent; color: var(--text-color); border: none; border-radius: 6px; font-size: 14px; text-align: left; cursor: pointer; font-weight: 500; transition: all 0.15s; }
-    .lang-opt:hover { background: var(--primary-light); color: var(--primary); padding-left: 16px; }
+    .lang-dropdown { display: none; background: var(--card-bg); border-radius: 8px; padding: 8px; margin-top: 6px; border: 1px solid var(--border-color); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);[cite: 2]}
+    .lang-dropdown.show { display: block;[cite: 2]}
+    .lang-title { font-size: 11px; color: var(--text-muted); font-weight: 700; margin: 4px 0 6px 8px; text-transform: uppercase; letter-spacing: 0.5px;[cite: 2]}
+    .lang-opt { display: block; width: 100%; padding: 8px 12px; margin-bottom: 2px; background: transparent; color: var(--text-color); border: none; border-radius: 6px; font-size: 14px; text-align: left; cursor: pointer; font-weight: 500; transition: all 0.15s;[cite: 2]}
+    .lang-opt:hover { background: var(--primary-light); color: var(--primary); padding-left: 16px;[cite: 2]}
 
-    .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.5); backdrop-filter: blur(2px); z-index: 90; }
-    .overlay.open { display: block; }
+    .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.5); backdrop-filter: blur(2px); z-index: 90;[cite: 2]}
+    .overlay.open { display: block;[cite: 2]}
 
-    .container { max-width: 1050px; margin: 0 auto; padding: 40px 24px; flex: 1; width: 100%; }
-    .tab-content { display: none; }
-    .tab-content.active { display: block; }
+    .container { max-width: 1050px; margin: 0 auto; padding: 40px 24px; flex: 1; width: 100%;[cite: 2]}
+    .tab-content { display: none;[cite: 2]}
+    .tab-content.active { display: block;[cite: 2]}
 
-    .hero-section { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 20px; padding: 60px 40px; margin-bottom: 35px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.03); text-align: center; }
-    .hero-tag { display: inline-block; background: var(--primary-light); color: var(--primary); font-size: 12px; font-weight: 700; text-transform: uppercase; padding: 6px 14px; border-radius: 20px; margin-bottom: 20px; letter-spacing: 0.5px; }
-    .hero-section h1 { font-size: 40px; font-weight: 800; color: var(--text-color); margin: 0 0 15px 0; letter-spacing: -1px; line-height: 1.2; }
-    .hero-section p { font-size: 17px; color: var(--text-muted); margin: 0 auto 35px auto; max-width: 650px; line-height: 1.6; }
+    .hero-section { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 20px; padding: 60px 40px; margin-bottom: 35px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.03); text-align: center;[cite: 2]}
+    .hero-tag { display: inline-block; background: var(--primary-light); color: var(--primary); font-size: 12px; font-weight: 700; text-transform: uppercase; padding: 6px 14px; border-radius: 20px; margin-bottom: 20px; letter-spacing: 0.5px;[cite: 2]}
+    .hero-section h1 { font-size: 40px; font-weight: 800; color: var(--text-color); margin: 0 0 15px 0; letter-spacing: -1px; line-height: 1.2;[cite: 2]}
+    .hero-section p { font-size: 17px; color: var(--text-muted); margin: 0 auto 35px auto; max-width: 650px; line-height: 1.6;[cite: 2]}
     
-    .hero-search-wrapper { position: relative; max-width: 620px; margin: 0 auto 10px auto; }
+    .hero-search-wrapper { position: relative; max-width: 620px; margin: 0 auto 10px auto;[cite: 2]}
     
-    .hero-search-box { display: flex; flex-direction: column; background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 14px; padding: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.02); gap: 6px; }
+    .hero-search-box { display: flex; flex-direction: column; background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 14px; padding: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.02); gap: 6px;[cite: 2]}
     @media (min-width: 480px) {
-      .hero-search-box { flex-direction: row; }
+      .hero-search-box { flex-direction: row;[cite: 2]}
     }
-    .hero-search-box input { width: 100%; border: none; padding: 12px 16px; font-size: 16px; outline: none; background: transparent; color: var(--text-color); }
+    .hero-search-box input { width: 100%; border: none; padding: 12px 16px; font-size: 16px; outline: none; background: transparent; color: var(--text-color);[cite: 2]}
     
-    .hero-search-btn { background: var(--primary); color: white; border: none; padding: 12px 24px; border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 15px; font-weight: 700; transition: all 0.2s; width: 100%; }
+    .hero-search-btn { background: var(--primary); color: white; border: none; padding: 12px 24px; border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 15px; font-weight: 700; transition: all 0.2s; width: 100%;[cite: 2]}
     @media (min-width: 480px) {
-      .hero-search-btn { width: auto; }
+      .hero-search-btn { width: auto;[cite: 2]}
     }
-    .hero-search-btn:hover { background: var(--primary-hover); }
+    .hero-search-btn:hover { background: var(--primary-hover);[cite: 2]}
 
-    .search-suggestions { position: absolute; top: 100%; left: 0; right: 0; background: var(--card-bg); border: 1px solid var(--border-color); border-top: none; border-radius: 0 0 14px 14px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); z-index: 20; display: none; text-align: left; overflow: hidden; margin-top: 4px; }
-    .search-suggestions.show { display: block; }
-    .suggestion-item { padding: 12px 16px; font-size: 15px; color: var(--text-color); cursor: pointer; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; gap: 10px; font-weight: 500; }
-    .suggestion-item:last-child { border-bottom: none; }
-    .suggestion-item:hover { background: var(--primary-light); color: var(--primary); padding-left: 20px; }
+    .search-suggestions { position: absolute; top: 100%; left: 0; right: 0; background: var(--card-bg); border: 1px solid var(--border-color); border-top: none; border-radius: 0 0 14px 14px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); z-index: 20; display: none; text-align: left; overflow: hidden; margin-top: 4px;[cite: 2]}
+    .search-suggestions.show { display: block;[cite: 2]}
+    .suggestion-item { padding: 12px 16px; font-size: 15px; color: var(--text-color); cursor: pointer; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; gap: 10px; font-weight: 500;[cite: 2]}
+    .suggestion-item:last-child { border-bottom: none;[cite: 2]}
+    .suggestion-item:hover { background: var(--primary-light); color: var(--primary); padding-left: 20px;[cite: 2]}
 
-    .home-single-section { margin-top: 35px; display: grid; gap: 24px; }
-    .info-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 35px; box-shadow: 0 4px 15px -3px rgba(0,0,0,0.02); text-align: left; }
-    .info-card h3 { margin-top: 0; font-size: 18px; color: var(--text-color); font-weight: 700; display: flex; align-items: center; gap: 10px; }
-    .info-card p, .info-card li { color: var(--text-muted); font-size: 15px; line-height: 1.7; }
-    .info-card ul { padding-left: 20px; margin-bottom: 0; }
+    .home-single-section { margin-top: 35px; display: grid; gap: 24px;[cite: 2]}
+    .info-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 35px; box-shadow: 0 4px 15px -3px rgba(0,0,0,0.02); text-align: left;[cite: 2]}
+    .info-card h3 { margin-top: 0; font-size: 18px; color: var(--text-color); font-weight: 700; display: flex; align-items: center; gap: 10px;[cite: 2]}
+    .info-card p, .info-card li { color: var(--text-muted); font-size: 15px; line-height: 1.7;[cite: 2]}
+    .info-card ul { padding-left: 20px; margin-bottom: 0;[cite: 2]}
 
-    details { background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 10px; padding: 14px 18px; margin-bottom: 12px; transition: all 0.2s; cursor: pointer; }
-    details[open] { border-color: var(--primary); background: var(--primary-light); }
-    summary { font-weight: 700; color: var(--text-color); font-size: 15px; outline: none; }
-    details p { margin: 10px 0 0 0; color: var(--text-muted); font-size: 14px; line-height: 1.6; }
+    details { background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 10px; padding: 14px 18px; margin-bottom: 12px; transition: all 0.2s; cursor: pointer;[cite: 2]}
+    details[open] { border-color: var(--primary); background: var(--primary-light);[cite: 2]}
+    summary { font-weight: 700; color: var(--text-color); font-size: 15px; outline: none;[cite: 2]}
+    details p { margin: 10px 0 0 0; color: var(--text-muted); font-size: 14px; line-height: 1.6;[cite: 2]}
 
-    textarea { width: 100%; height: 160px; padding: 16px; font-size: 15px; border: 1px solid var(--border-color); border-radius: 12px; resize: vertical; outline: none; margin-bottom: 10px; background: var(--textarea-bg); color: var(--text-color); transition: all 0.2s; }
-    textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 4px var(--primary-light); }
+    textarea { width: 100%; height: 160px; padding: 16px; font-size: 15px; border: 1px solid var(--border-color); border-radius: 12px; resize: vertical; outline: none; margin-bottom: 10px; background: var(--textarea-bg); color: var(--text-color); transition: all 0.2s;[cite: 2]}
+    textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 4px var(--primary-light);[cite: 2]}
 
-    .stats-bar { font-size: 13px; color: var(--text-muted); font-weight: 600; margin-bottom: 16px; display: flex; gap: 15px; }
-    .action-bar { display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
+    .stats-bar { font-size: 13px; color: var(--text-muted); font-weight: 600; margin-bottom: 16px; display: flex; gap: 15px;[cite: 2]}
+    .action-bar { display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap;[cite: 2]}
 
-    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin: 20px 0; }
-    .card { background: var(--card-bg); padding: 24px; border-radius: 14px; border: 1px solid var(--border-color); text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
-    .card h4 { margin: 0 0 8px 0; color: var(--text-muted); font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; }
-    .card .val { font-size: 28px; font-weight: 800; color: var(--primary); }
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin: 20px 0;[cite: 2]}
+    .card { background: var(--card-bg); padding: 24px; border-radius: 14px; border: 1px solid var(--border-color); text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.02);[cite: 2]}
+    .card h4 { margin: 0 0 8px 0; color: var(--text-muted); font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700;[cite: 2]}
+    .card .val { font-size: 28px; font-weight: 800; color: var(--primary);[cite: 2]}
 
-    .timer-box { background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-color); padding: 30px; border-radius: 16px; text-align: center; margin-top: 25px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05); }
-    .timer-display { font-size: 42px; font-weight: 800; font-family: monospace; color: var(--primary); margin: 12px 0; letter-spacing: 2px; }
+    .timer-box { background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-color); padding: 30px; border-radius: 16px; text-align: center; margin-top: 25px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);[cite: 2]}
+    .timer-display { font-size: 42px; font-weight: 800; font-family: monospace; color: var(--primary); margin: 12px 0; letter-spacing: 2px;[cite: 2]}
     
-    .btn { padding: 12px 22px; background: var(--primary); color: white; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
-    .btn:hover { background: var(--primary-hover); transform: translateY(-1px); }
-    .btn.danger { background: #ef4444; }
-    .btn.danger:hover { background: #dc2626; }
-    .btn.secondary { background: #475569; }
-    .btn.secondary:hover { background: #334155; }
+    .btn { padding: 12px 22px; background: var(--primary); color: white; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; transition: all 0.2s;[cite: 2]}
+    .btn:hover { background: var(--primary-hover); transform: translateY(-1px);[cite: 2]}
+    .btn.danger { background: #ef4444;[cite: 2]}
+    .btn.danger:hover { background: #dc2626;[cite: 2]}
+    .btn.secondary { background: #475569;[cite: 2]}
+    .btn.secondary:hover { background: #334155;[cite: 2]}
 
-    .issue-list { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 14px; padding: 24px; margin-top: 20px; }
-    .issue-item { padding: 10px 0; border-bottom: 1px solid var(--border-color); color: #ef4444; font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 8px; }
-    .issue-item:last-child { border-bottom: none; }
+    .issue-list { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 14px; padding: 24px; margin-top: 20px;[cite: 2]}
+    .issue-item { padding: 10px 0; border-bottom: 1px solid var(--border-color); color: #ef4444; font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 8px;[cite: 2]}
+    .issue-item:last-child { border-bottom: none;[cite: 2]}
     
-    .ai-bar-bg { background: var(--bg-color); height: 12px; border-radius: 6px; overflow: hidden; margin: 15px 0; border: 1px solid var(--border-color); }
-    .ai-bar-fill { height: 100%; background: var(--primary); width: 0%; transition: width 0.5s ease; border-radius: 6px; }
+    .ai-bar-bg { background: var(--bg-color); height: 12px; border-radius: 6px; overflow: hidden; margin: 15px 0; border: 1px solid var(--border-color);[cite: 2]}
+    .ai-bar-fill { height: 100%; background: var(--primary); width: 0%; transition: width 0.5s ease; border-radius: 6px;[cite: 2]}
 
-    .url-input-group { display: flex; gap: 10px; margin-bottom: 24px; flex-wrap: wrap; }
-    .url-input-group input { flex: 1; min-width: 200px; padding: 14px 16px; font-size: 15px; border: 1px solid var(--border-color); border-radius: 12px; outline: none; background: var(--textarea-bg); color: var(--text-color); }
-    .url-input-group input:focus { border-color: var(--primary); box-shadow: 0 0 0 4px var(--primary-light); }
+    .url-input-group { display: flex; gap: 10px; margin-bottom: 24px; flex-wrap: wrap;[cite: 2]}
+    .url-input-group input { flex: 1; min-width: 200px; padding: 14px 16px; font-size: 15px; border: 1px solid var(--border-color); border-radius: 12px; outline: none; background: var(--textarea-bg); color: var(--text-color);[cite: 2]}
+    .url-input-group input:focus { border-color: var(--primary); box-shadow: 0 0 0 4px var(--primary-light);[cite: 2]}
 
-    .qr-preview-box { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 35px; text-align: center; margin-top: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 250px; }
-    .qr-preview-box img { max-width: 200px; height: auto; border-radius: 10px; border: 1px solid var(--border-color); padding: 10px; background: white; margin-bottom: 16px; }
+    .qr-preview-box { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 35px; text-align: center; margin-top: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 250px;[cite: 2]}
+    .qr-preview-box img { max-width: 200px; height: auto; border-radius: 10px; border: 1px solid var(--border-color); padding: 10px; background: white; margin-bottom: 16px;[cite: 2]}
 
-    .tts-controls-row { display: flex; gap: 15px; margin-bottom: 15px; flex-wrap: wrap; }
-    .tts-control-group { flex: 1; min-width: 200px; }
-    .tts-control-group label { display: block; margin-bottom: 6px; font-size: 13px; font-weight: 600; color: var(--text-muted); }
-    .tts-select { width: 100%; padding: 12px; background: var(--textarea-bg); border: 1px solid var(--border-color); border-radius: 10px; color: var(--text-color); font-size: 15px; outline: none; }
-    .tts-select:focus { border-color: var(--primary); box-shadow: 0 0 0 4px var(--primary-light); }
+    .tts-controls-row { display: flex; gap: 15px; margin-bottom: 15px; flex-wrap: wrap;[cite: 2]}
+    .tts-control-group { flex: 1; min-width: 200px;[cite: 2]}
+    .tts-control-group label { display: block; margin-bottom: 6px; font-size: 13px; font-weight: 600; color: var(--text-muted);[cite: 2]}
+    .tts-select { width: 100%; padding: 12px; background: var(--textarea-bg); border: 1px solid var(--border-color); border-radius: 10px; color: var(--text-color); font-size: 15px; outline: none;[cite: 2]}
+    .tts-select:focus { border-color: var(--primary); box-shadow: 0 0 0 4px var(--primary-light);[cite: 2]}
     
-    .translation-preview { margin-top: 20px; padding: 16px; background: var(--card-bg); border-radius: 12px; border: 1px dashed var(--border-color); font-size: 15px; color: var(--text-color); line-height: 1.6; min-height: 70px; word-break: break-word; }
+    .translation-preview { margin-top: 20px; padding: 16px; background: var(--card-bg); border-radius: 12px; border: 1px dashed var(--border-color); font-size: 15px; color: var(--text-color); line-height: 1.6; min-height: 70px; word-break: break-word;[cite: 2]}
 
-    .ad-space { margin-top: 40px; padding: 24px; background: var(--card-bg); border: 1px dashed var(--border-color); text-align: center; color: var(--text-muted); border-radius: 14px; font-size: 14px; font-weight: 500; }
+    .ad-space { margin-top: 40px; padding: 24px; background: var(--card-bg); border: 1px dashed var(--border-color); text-align: center; color: var(--text-muted); border-radius: 14px; font-size: 14px; font-weight: 500;[cite: 2]}
 
-    .security-footer { margin-top: 40px; padding: 20px 24px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 14px; display: flex; align-items: center; justify-content: space-around; flex-wrap: wrap; gap: 15px; font-size: 13px; color: var(--text-muted); font-weight: 500; }
-    .sec-item { display: flex; align-items: center; gap: 8px; font-weight: 600; color: var(--text-color); }
-    .sec-icon { font-size: 16px; color: var(--primary); }
+    .security-footer { margin-top: 40px; padding: 20px 24px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 14px; display: flex; align-items: center; justify-content: space-around; flex-wrap: wrap; gap: 15px; font-size: 13px; color: var(--text-muted); font-weight: 500;[cite: 2]}
+    .sec-item { display: flex; align-items: center; gap: 8px; font-weight: 600; color: var(--text-color);[cite: 2]}
+    .sec-icon { font-size: 16px; color: var(--primary);[cite: 2]}
 
-    .section-header-wrapper { margin-bottom: 25px; }
-    h2.section-title { font-size: 26px; font-weight: 800; color: var(--text-color); margin: 0 0 8px 0; letter-spacing: -0.5px; }
-    .section-subtitle { color: var(--text-muted); font-size: 15px; margin: 0; font-weight: 400; }
+    .section-header-wrapper { margin-bottom: 25px;[cite: 2]}
+    h2.section-title { font-size: 26px; font-weight: 800; color: var(--text-color); margin: 0 0 8px 0; letter-spacing: -0.5px;[cite: 2]}
+    .section-subtitle { color: var(--text-muted); font-size: 15px; margin: 0; font-weight: 400;[cite: 2]}
   </style>
 </head>
 <body data-theme="light">
 
   <div class="language-overlay" id="languageOverlay">
     <div class="language-modal">
-      <h2>Welcome / Welkommen / Bienvenue</h2>
+      <h2>Welcome / Welkommen / Bienvenue / Bienvenida</h2>
       <p>Kies je taal om te starten / Choose your language to start:</p>
       <div class="lang-grid">
         <button class="lang-card-btn" onclick="setInitialLanguage('nl')">🇳🇱 Nederlands</button>
         <button class="lang-card-btn" onclick="setInitialLanguage('en')">🇬🇧 English</button>
         <button class="lang-card-btn" onclick="setInitialLanguage('de')">🇩🇪 Deutsch</button>
         <button class="lang-card-btn" onclick="setInitialLanguage('fr')">🇫🇷 Français</button>
+        <button class="lang-card-btn" onclick="setInitialLanguage('es')">🇪🇸 Español</button>
       </div>
     </div>
   </div>
@@ -228,6 +229,8 @@
         <button id="langBtnNl" class="active" onclick="selectTool(currentTool, 'nl')">NL</button>
         <button id="langBtnEn" onclick="selectTool(currentTool, 'en')">EN</button>
         <button id="langBtnDe" onclick="selectTool(currentTool, 'de')">DE</button>
+        <button id="langBtnFr" onclick="selectTool(currentTool, 'fr')">FR</button>
+        <button id="langBtnEs" onclick="selectTool(currentTool, 'es')">ES</button>
       </div>
       <button class="top-action-btn" onclick="shareSite()" id="shareBtnText">🔗 Deel</button>
     </div>
@@ -257,6 +260,8 @@
         <button class="lang-opt" onclick="selectTool('timer', 'nl')">🇳🇱 Nederlands</button>
         <button class="lang-opt" onclick="selectTool('timer', 'de')">🇩🇪 Deutsch</button>
         <button class="lang-opt" onclick="selectTool('timer', 'en')">🇬🇧 English</button>
+        <button class="lang-opt" onclick="selectTool('timer', 'fr')">🇫🇷 Français</button>
+        <button class="lang-opt" onclick="selectTool('timer', 'es')">🇪🇸 Español</button>
       </div>
     </div>
 
@@ -270,6 +275,8 @@
         <button class="lang-opt" onclick="selectTool('checker', 'nl')">🇳🇱 Nederlands</button>
         <button class="lang-opt" onclick="selectTool('checker', 'de')">🇩🇪 Deutsch</button>
         <button class="lang-opt" onclick="selectTool('checker', 'en')">🇬🇧 English</button>
+        <button class="lang-opt" onclick="selectTool('checker', 'fr')">🇫🇷 Français</button>
+        <button class="lang-opt" onclick="selectTool('checker', 'es')">🇪🇸 Español</button>
       </div>
     </div>
 
@@ -283,6 +290,8 @@
         <button class="lang-opt" onclick="selectTool('ai', 'nl')">🇳🇱 Nederlands</button>
         <button class="lang-opt" onclick="selectTool('ai', 'de')">🇩🇪 Deutsch</button>
         <button class="lang-opt" onclick="selectTool('ai', 'en')">🇬🇧 English</button>
+        <button class="lang-opt" onclick="selectTool('ai', 'fr')">🇫🇷 Français</button>
+        <button class="lang-opt" onclick="selectTool('ai', 'es')">🇪🇸 Español</button>
       </div>
     </div>
 
@@ -422,7 +431,6 @@
       </div>
     </div>
 
-    <!-- TEKST-NAAR-SPRAAK TAB -->
     <div id="tab-tts" class="tab-content">
       <div class="section-header-wrapper">
         <h2 class="section-title" id="tts-title">Tekst-naar-Spraak</h2>
@@ -455,7 +463,6 @@
       </div>
     </div>
 
-    <!-- VERTAAL TOOL TAB -->
     <div id="tab-translate" class="tab-content">
       <div class="section-header-wrapper">
         <h2 class="section-title" id="translate-title">Vertaal Tool</h2>
@@ -487,7 +494,6 @@
       </div>
     </div>
 
-    <!-- QR CODE GENERATOR TAB -->
     <div id="tab-qr" class="tab-content">
       <div class="section-header-wrapper">
         <h2 class="section-title" id="qr-title">QR Code Generator</h2>
@@ -549,7 +555,7 @@
         faq4Q: "Hoe betrouwbaar is de AI-Tekst Detector?",
         faq4A: "De AI-detector kijkt naar statistische kenmerken zoals zinslengte en variatie in schrijfstijl. Het geeft een goede indicatie, maar het blijft een schatting en geen 100% sluitend bewijs.",
         faq5Q: "Kan ik de gegenereerde audio downloaden?",
-        faq5A: "Ja, in de Tekst-naار-Spraak tool kun je direct na het invoeren van je tekst klikken op de downloadknop om het audiobestand (.WAV) op te slaan op je apparaat.",
+        faq5A: "Ja, in de Tekst-naar-Spraak tool kun je direct na het invoeren van je tekst klikken op de downloadknop om het audiobestand (.WAV) op te slaan op je apparaat.",
         faq6Q: "Moet ik software installeren om deze tools te gebruiken?",
         faq6A: "Nee, absoluut niet. Every-Tool werkt volledig web-based in elke moderne browser op je computer, tablet of smartphone.",
         faq7Q: "Hoe werkt de Grammatica Bot?",
@@ -684,6 +690,116 @@
         adSpace: "Ad Space (Google AdSense)",
         sec1: "256-bit SSL Security", sec2: "100% Privacy - Local Processing", sec3: "Instant Results",
         speeds: { slow: 110, norm: 130, fast: 160 }
+      },
+      fr: {
+        placeholder: "Collez votre texte ici...",
+        menuHeader: "Sélectionner un outil",
+        menuHome: "🏠 Accueil / Aperçu",
+        menuTimer: "⏱️ Minuteur de discours",
+        menuChecker: "✍️ Bot Grammaire",
+        menuAi: "🤖 Détecteur de texte IA",
+        menuTts: "🔊 Synthèse vocale",
+        menuTranslate: "🌍 Outil de Traduction",
+        menuQr: "📱 Générateur de Code QR",
+        langTitle: "Langue / Language:",
+        shareBtn: "🔗 Partager",
+        heroTag: "Meet Every-Tool",
+        homeHeading: "Outils intelligents pour le texte et la parole",
+        homeSub: "Optimisez vos présentations, vérifiez l'orthographe ou analysez des structures de phrases en un instant.",
+        searchPlaceholder: "Rechercher un outil...",
+        searchBtn: "Rechercher",
+        aboutTitle: "💡 À propos d'Every-Tool",
+        aboutText: "Tous les calculs sont effectués directement dans votre navigateur (côté client), garantissant une confidentialité maximale.",
+        faqTitle: "❓ Foire Aux Questions (FAQ)",
+        faq1Q: "Comment fonctionne le minuteur de discours ?",
+        faq1A: "Collez votre texte pour calculer instantanément le temps de parole en fonction de différentes vitesses.",
+        faq2Q: "Mes textes sont-ils enregistrés ?",
+        faq2A: "Non, tout le traitement est effectué localement dans votre navigateur.",
+        faq3Q: "Est-ce gratuit ?",
+        faq3A: "Oui, tous les outils de cette plateforme sont entièrement gratuits.",
+        faq4Q: "Quelle est la fiabilité du détecteur IA ?",
+        faq4A: "Le détecteur analyse les caractéristiques statistiques. Il donne une bonne indication, mais reste une estimation.",
+        faq5Q: "Puis-je télécharger l'audio généré ?",
+        faq5A: "Oui, dans l'outil de synthèse vocale, vous pouvez télécharger le fichier audio (.WAV).",
+        faq6Q: "Dois-je installer un logiciel ?",
+        faq6A: "Non, Every-Tool fonctionne entièrement dans votre navigateur Web.",
+        faq7Q: "Comment fonctionne le bot de grammaire ?",
+        faq7A: "Il utilise l'API LanguageTool pour analyser automatiquement votre texte.",
+        t1Title: "Minuteur de discours", t1Sub: "Calculez la durée de lecture de votre texte.",
+        slow: "🐢 Lent", norm: "🚶 Normal", fast: "🐇 Rapide", practice: "Pratiquez en direct :", startBtn: "Démarrer", pauseBtn: "Pause", resumeBtn: "Reprendre", resetBtn: "Réinitialiser",
+        t2Title: "Correcteur Grammatical", t2Sub: "Vérification automatique via LanguageTool.",
+        t2Issues: "Problèmes détectés :",
+        btnClean: "✨ Correction automatique", btnCopy: "📋 Copier", copyAlert: "Copié dans le presse-papier !",
+        noText: "Aucun texte saisi.", noIssues: "✅ Aucun problème détecté !",
+        t3Title: "Détecteur de texte IA", t3Sub: "Analysez la structure des phrases.",
+        t3Score: "Probabilité IA estimée", aiShort: "Entrez au moins 50 caractères.",
+        aiHigh: "Forte régularité détectée.", aiLow: "Variation naturelle détectée.",
+        ttsTitle: "Synthèse vocale", ttsSub: "Écoutez votre texte ou téléchargez l'audio.",
+        ttsLabelLang: "Langue de la voix :", speakBtn: "🔊 Lire à haute voix", downloadAudioBtn: "📥 Télécharger l'audio (.WAV)", stopSpeechBtn: "⏹️ Arrêter", ttsStatusPlaceholder: "Statut : Prêt...",
+        translateTitle: "Outil de Traduction", translateSub: "Traduisez rapidement vos textes.",
+        translateLabelLang: "Choisir la langue cible :", translateBtn: "🌍 Traduire le texte", translatePreviewPlaceholder: "Le texte traduit apparaîtra ici...",
+        qrTitle: "Générateur de Code QR", qrSub: "Entrez une URL pour générer un code QR.",
+        qrPlaceholder: "Entrez une URL...",
+        qrGenBtn: "Générer",
+        downloadQR: "📥 Télécharger le code QR",
+        adSpace: "Espace Publicitaire (Google AdSense)",
+        sec1: "Sécurité SSL 256 bits", sec2: "100% Confidentialité - Traitement local", sec3: "Résultat instantané",
+        speeds: { slow: 90, norm: 100, fast: 125 }
+      },
+      es: {
+        placeholder: "Pega tu texto aquí...",
+        menuHeader: "Seleccionar Herramienta",
+        menuHome: "🏠 Inicio / Resumen",
+        menuTimer: "⏱️ Temporizador de Discurso",
+        menuChecker: "✍️ Bot de Gramática",
+        menuAi: "🤖 Detector de Texto IA",
+        menuTts: "🔊 Texto a Voz",
+        menuTranslate: "🌍 Herramienta de Traducción",
+        menuQr: "📱 Generador de Códigos QR",
+        langTitle: "Idioma / Language:",
+        shareBtn: "🔗 Compartir",
+        heroTag: "Meet Every-Tool",
+        homeHeading: "Herramientas inteligentes para texto y voz",
+        homeSub: "Optimiza tus presentaciones, comprueba la ortografía o analiza estructuras de frases al instante.",
+        searchPlaceholder: "Escribe para buscar una herramienta...",
+        searchBtn: "Buscar",
+        aboutTitle: "💡 Sobre Every-Tool y Características",
+        aboutText: "Todos los cálculos se realizan directamente en tu navegador (del lado del cliente), garantizando la máxima privacidad.",
+        faqTitle: "❓ Preguntas Frecuentes (FAQ)",
+        faq1Q: "¿Cómo funciona el temporizador de discurso?",
+        faq1A: "Pega tu texto para calcular instantáneamente el tiempo de duración según diferentes velocidades.",
+        faq2Q: "¿Se guardan mis textos?",
+        faq2A: "No, todo el procesamiento se realiza localmente en tu navegador.",
+        faq3Q: "¿Es gratuito?",
+        faq3A: "Sí, todas las herramientas de esta plataforma son completamente gratuitas.",
+        faq4Q: "¿Qué tan confiable es el detector de IA?",
+        faq4A: "El detector analiza propiedades estadísticas. Ofrece una buena indicación pero no es una prueba definitiva.",
+        faq5Q: "¿Puedo descargar el audio generado?",
+        faq5A: "Sí, en la herramienta de Texto a Voz puedes descargar el archivo de audio (.WAV).",
+        faq6Q: "¿Necesito instalar software?",
+        faq6A: "No, Every-Tool se ejecuta completamente en tu navegador web.",
+        faq7Q: "¿Cómo funciona el Bot de Gramática?",
+        faq7A: "Utiliza la API de LanguageTool para escanear automáticamente errores ortográficos y gramaticales.",
+        t1Title: "Temporizador de Discurso y Presentación", t1Sub: "Calcula instantáneamente cuánto dura tu texto.",
+        slow: "🐢 Lento", norm: "🚶 Normal", fast: "🐇 Rápido", practice: "Practica tu discurso en vivo:", startBtn: "Iniciar", pauseBtn: "Pausa", resumeBtn: "Reanudar", resetBtn: "Reiniciar",
+        t2Title: "Corrector de Gramática y Ortografía", t2Sub: "Comprobación automática mediante LanguageTool.",
+        t2Issues: "Problemas detectados:",
+        btnClean: "✨ Corrección automática", btnCopy: "📋 Copiar", copyAlert: "¡Copiado al portapapeles!",
+        noText: "Ningún texto introducido.", noIssues: "✅ ¡No se encontraron errores!",
+        t3Title: "Indicador Detector de Texto IA", t3Sub: "Analiza la estructura de las oraciones en busca de características de IA.",
+        t3Score: "Probabilidad estimada de IA", aiShort: "Introduce al menos 50 caracteres.",
+        aiHigh: "Alta regularidad estructural detectada.", aiLow: "Variación natural detectada.",
+        ttsTitle: "Texto a Voz", ttsSub: "Lee tu texto en voz alta o descarga el archivo de audio.",
+        ttsLabelLang: "Idioma de voz:", speakBtn: "🔊 Leer en voz alta", downloadAudioBtn: "📥 Descargar Audio (.WAV)", stopSpeechBtn: "⏹️ Parar", ttsStatusPlaceholder: "Estado: Listo para hablar o descargar...",
+        translateTitle: "Herramienta de Traducción", translateSub: "Traduce tus textos rápidamente a diferentes idiomas.",
+        translateLabelLang: "Elige idioma de destino:", translateBtn: "🌍 Traducir Texto", translatePreviewPlaceholder: "El texto traducido aparecerá aquí...",
+        qrTitle: "Generador de Códigos QR", qrSub: "Introduce una URL para generar un código QR al instante.",
+        qrPlaceholder: "Introduce una URL...",
+        qrGenBtn: "Generar",
+        downloadQR: "📥 Descargar código QR",
+        adSpace: "Espacio Publicitario (Google AdSense)",
+        sec1: "Seguridad SSL de 256 bits", sec2: "100% Privacidad - Procesamiento local", sec3: "Resultado instantáneo",
+        speeds: { slow: 110, norm: 130, fast: 160 }
       }
     };
 
@@ -750,6 +866,8 @@
       if(lang === 'nl') document.getElementById('langBtnNl').classList.add('active');
       if(lang === 'en') document.getElementById('langBtnEn').classList.add('active');
       if(lang === 'de') document.getElementById('langBtnDe').classList.add('active');
+      if(lang === 'fr') document.getElementById('langBtnFr').classList.add('active');
+      if(lang === 'es') document.getElementById('langBtnEs').classList.add('active');
 
       const t = translations[lang] || translations['nl'];
       
@@ -924,10 +1042,16 @@
       container.innerHTML = "⏳ Bezig met controleren...";
 
       try {
+        let apiLang = 'en-US';
+        if(currentLang === 'nl') apiLang = 'nl';
+        else if(currentLang === 'de') apiLang = 'de';
+        else if(currentLang === 'fr') apiLang = 'fr';
+        else if(currentLang === 'es') apiLang = 'es';
+
         const response = await fetch("https://api.languagetool.org/v2/check", {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: new URLSearchParams({ text: text, language: currentLang === 'nl' ? 'nl' : currentLang === 'de' ? 'de' : 'en-US' })
+          body: new URLSearchParams({ text: text, language: apiLang })
         });
         const data = await response.json();
         const matches = data.matches;
