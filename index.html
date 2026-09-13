@@ -816,7 +816,22 @@
           if(id === 'qrUrlInput') generateQRFromInput();
         }
       });
+
+      // Router initialisatie op basis van URL pad (bijv. /home, /timer, etc.)
+      handleRoute();
+      window.addEventListener('popstate', handleRoute);
     });
+
+    function handleRoute() {
+      const path = window.location.pathname.replace(/^\/+|\/+$/g, ''); // haalt slashes weg
+      let toolId = 'home';
+      
+      if (['timer', 'checker', 'ai', 'tts', 'translate', 'qr'].includes(path)) {
+        toolId = path;
+      }
+      
+      selectTool(toolId, currentLang, false);
+    }
 
     function saveToLocal(id, val) {
       localStorage.setItem(id, val);
@@ -858,11 +873,19 @@
       alert((translations[currentLang] || translations['nl']).copyAlert);
     }
 
-    function selectTool(toolId, lang) {
+    function selectTool(toolId, lang, pushHistory = true) {
       currentTool = toolId;
       currentLang = lang;
+      
+      // Update de URL in de browser zonder herladen (bijv. /home/, /timer/, etc.)
+      if (pushHistory) {
+        const newPath = toolId === 'home' ? '/' : `/${toolId}/`;
+        window.history.pushState({tool: toolId}, '', newPath);
+      }
+
       document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-      document.getElementById('tab-' + toolId).classList.add('active');
+      const targetTab = document.getElementById('tab-' + toolId);
+      if (targetTab) targetTab.classList.add('active');
 
       document.querySelectorAll('.lang-switcher-top button').forEach(b => b.classList.remove('active'));
       if(lang === 'nl') document.getElementById('langBtnNl').classList.add('active');
