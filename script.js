@@ -395,6 +395,14 @@ function selectTool(toolId, lang, pushHistory = true) {
   const targetTab = document.getElementById('tab-' + toolId);
   if (targetTab) targetTab.classList.add('active');
 
+  // Sluit automatisch de sidebar, overlay en openstaande dropdowns
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('overlay');
+  if (sidebar) sidebar.classList.remove('open');
+  if (overlay) overlay.classList.remove('open');
+  document.querySelectorAll('.lang-dropdown').forEach(d => d.classList.remove('show'));
+  document.querySelectorAll('.tool-btn').forEach(b => b.classList.remove('open'));
+
   document.querySelectorAll('.lang-switcher-top button').forEach(b => b.classList.remove('active'));
   if(lang === 'nl') document.getElementById('langBtnNl').classList.add('active');
   if(lang === 'en') document.getElementById('langBtnEn').classList.add('active');
@@ -502,7 +510,6 @@ function selectTool(toolId, lang, pushHistory = true) {
   document.getElementById('sec2').innerText = t.sec2;
   document.getElementById('sec3').innerText = t.sec3;
 
-  if(document.getElementById('sidebar').classList.contains('open')) toggleSidebar();
   document.getElementById('searchSuggestions').classList.remove('show');
 }
 
