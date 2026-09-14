@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
+<!-- Heic2any bibliotheek voor conversie -->
+<script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>
  <meta name="google-site-verification" content="dRqlmVRgjVvYHjLUpZepsxuLzY7t73oeTPpBF2LJMho" />
  <meta name="google-adsense-account" content="ca-pub-3253400496231224">
   <meta charset="UTF-8" />
@@ -148,7 +150,20 @@
   </nav>
 
   <main class="container">
+<div id="tab-heic" class="tab-content">
+      <div class="section-header-wrapper">
+        <h2 class="section-title">HEIC naar JPG Converter</h2>
+        <p class="section-subtitle">Converteer je Apple HEIC-afbeeldingen direct lokaal naar een gangbaar JPG-bestand.</p>
+      </div>
+      
+      <div class="url-input-group" style="flex-direction: column; align-items: stretch; gap: 12px;">
+        <input type="file" id="heicInput" accept=".heic, image/heic" onchange="convertHeicFile(event)" style="padding: 12px; border: 2px dashed var(--border); border-radius: 8px; cursor: pointer;" />
+      </div>
 
+      <div class="qr-preview-box" id="heicPreviewBox" style="margin-top: 20px; text-align: center;">
+        <p style="color: var(--text-muted); font-size: 14px; margin: 0;" id="heicStatusText">Selecteer een HEIC-bestand om te starten...</p>
+      </div>
+    </div>
     <div id="tab-home" class="tab-content active">
       <section class="hero-section">
         <span class="hero-tag" id="heroTag">Meet Every-Tool</span>
