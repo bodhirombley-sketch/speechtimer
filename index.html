@@ -178,79 +178,88 @@
           <p id="aboutText">Alle berekeningen vinden direct plaats in je eigen webbrowser (client-side), wat maximale privacy garandeert. Geen van je teksten wordt opgeslagen op externe servers.</p>
         </section>
 
-        <!-- Aangepaste Slimme FAQ Sectie -->
+        <!-- Uitgebreide FAQ Sectie zonder losse zoekbalk -->
         <section class="info-card faq-section-wrapper">
           <h3 id="faqTitle">❓ Veelgestelde Vragen (FAQ)</h3>
-          
-          <!-- Zoekbalk binnen de FAQ -->
-          <div class="faq-search-box" style="margin-bottom: 16px;">
-            <input type="text" id="faqSearchInput" placeholder="Zoek in veelgestelde vragen..." oninput="filterFaqItems()" style="width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg-main); color: var(--text-main); font-size: 14px;" autocomplete="off">
-          </div>
 
           <!-- Populairste Vragen (Direct Zichtbaar) -->
-          <div id="faqListContainer">
-            <div class="faq-item" data-keywords="speech timer spreken tijd">
+          <div id="faqListContainer" style="display: flex; flex-direction: column; gap: 12px;">
+            <div class="faq-item">
               <details>
                 <summary id="faq1Q">Hoe werkt de Speech Timer?</summary>
                 <p id="faq1A">Plak je presentatietekst in de tool om direct je spreektijd te berekenen op basis van verschillende snelheden (langzaam, normaal, snel). <br><a href="#" onclick="selectTool('timer', currentLang); return false;" style="color: var(--primary); font-weight: 600; text-decoration: none;">👉 Open Speech Timer direct</a></p>
               </details>
             </div>
 
-            <div class="faq-item" data-keywords="tekst opslaan privacy lokaal">
+            <div class="faq-item">
               <details>
                 <summary id="faq2Q">Worden mijn teksten opgeslagen?</summary>
                 <p id="faq2A">Nee, alle verwerking gebeurt lokaal in je browser. Dankzij LocalStorage onthoudt je browser wel tijdelijk je invoer, zodat je niets kwijtraakt als je per ongeluk de pagina vernieuwt.</p>
               </details>
             </div>
 
-            <div class="faq-item" data-keywords="gratis betalen kosten">
+            <div class="faq-item">
               <details>
                 <summary id="faq3Q">Is het gebruik van Every-Tool gratis?</summary>
                 <p id="faq3A">Ja, alle tools op dit platform zijn volledig gratis te gebruiken voor studenten, professionals en contentmakers.</p>
               </details>
             </div>
 
-            <div class="faq-item" data-keywords="grammatica bot spelfouten languagetool">
+            <div class="faq-item">
               <details>
                 <summary id="faq7Q">Hoe werkt de Grammatica Bot?</summary>
                 <p id="faq7A">De Grammatica Bot maakt gebruik van de LanguageTool API om automatisch je tekst te scannen op spelfouten, stijlfouten en grammaticale onjuistheden, met handige correctiesuccessen. <br><a href="#" onclick="selectTool('checker', currentLang); return false;" style="color: var(--primary); font-weight: 600; text-decoration: none;">👉 Open Grammatica Bot direct</a></p>
               </details>
             </div>
-          </div>
 
-          <!-- Meer FAQ (Uitklapbare Sectie voor Overige Vragen) -->
-          <details id="moreFaqDetails" style="margin-top: 16px; border-top: 1px dashed var(--border); padding-top: 12px;">
-            <summary style="font-weight: 600; color: var(--primary); cursor: pointer;" id="moreFaqToggleText">📂 Meer FAQ / Uitgebreide vragen bekijken</summary>
-            
-            <div id="moreFaqListContainer" style="margin-top: 12px; display: flex; flex-direction: column; gap: 12px;">
-              <div class="faq-item" data-keywords="ai detector betrouwbaar chatgpt">
-                <details>
-                  <summary id="faq4Q">Hoe betrouwbaar is de AI-Tekst Detector?</summary>
-                  <p id="faq4A">De AI-detector kijkt naar statistische kenmerken zoals zinslengte en variatie in schrijfstijl. Het geeft een goede indicatie, maar het blijft een schatting en geen 100% sluitend bewijs. <br><a href="#" onclick="selectTool('ai', currentLang); return false;" style="color: var(--primary); font-weight: 600; text-decoration: none;">👉 Open AI Detector direct</a></p>
-                </details>
-              </div>
-
-              <div class="faq-item" data-keywords="audio downloaden wav stem">
-                <details>
-                  <summary id="faq5Q">Kan ik de gegenereerde audio downloaden?</summary>
-                  <p id="faq5A">Ja, in de Tekst-naar-Spraak tool kun je direct na het invoeren van je tekst klikken op de downloadknop om het audiobestand (.WAV) op te slaan op je apparaat. <br><a href="#" onclick="selectTool('tts', currentLang); return false;" style="color: var(--primary); font-weight: 600; text-decoration: none;">👉 Open Tekst-naar-Spraak direct</a></p>
-                </details>
-              </div>
-
-              <div class="faq-item" data-keywords="software installeren browser">
-                <details>
-                  <summary id="faq6Q">Moet ik software installeren om deze tools te gebruiken?</summary>
-                  <p id="faq6A">Nee, absoluut niet. Every-Tool werkt volledig web-based in elke moderne browser op je computer, tablet of smartphone.</p>
-                </details>
-              </div>
+            <div class="faq-item">
+              <details>
+                <summary>Hoe maak ik een QR-code aan?</summary>
+                <p>Ga in het menu naar de QR Code Generator, typ of plak de gewenste URL in het invoerveld en de QR-code wordt direct automatisch gegenereerd. <br><a href="#" onclick="selectTool('qr', currentLang); return false;" style="color: var(--primary); font-weight: 600; text-decoration: none;">👉 Open QR Code Generator direct</a></p>
+              </details>
             </div>
-          </details>
+
+            <div class="faq-item">
+              <details>
+                <summary>Hoe werkt de Vertaal Tool?</summary>
+                <p>In de vertaaltool selecteer je de gewenste doeltaal en voer je je tekst in. De tool helpt je om je tekst snel en eenvoudig om te zetten naar een andere taal. <br><a href="#" onclick="selectTool('translate', currentLang); return false;" style="color: var(--primary); font-weight: 600; text-decoration: none;">👉 Open Vertaal Tool direct</a></p>
+              </details>
+            </div>
+
+            <div class="faq-item">
+              <details>
+                <summary>Wat kan ik met de Universele Converter doen?</summary>
+                <p>Met de converter kun je specifieke bestanden, zoals HEIC-afbeeldingen van Apple, eenvoudig omzetten naar gangbare formaten zoals JPG of PNG direct in je browser. <br><a href="#" onclick="selectTool('converter', currentLang); return false;" style="color: var(--primary); font-weight: 600; text-decoration: none;">👉 Open Universele Converter direct</a></p>
+              </details>
+            </div>
+
+            <div class="faq-item">
+              <details>
+                <summary>Werkt Every-Tool ook op mijn telefoon of tablet?</summary>
+                <p>Ja, de website is volledig responsive ontworpen. Je kunt alle tools (zoals de speech timer en de grammatica bot) dus ook zorgeloos op je smartphone of tablet gebruiken.</p>
+              </details>
+            </div>
+
+            <div class="faq-item">
+              <details>
+                <summary>Hoe betrouwbaar is de AI-Tekst Detector?</summary>
+                <p>De AI-detector kijkt naar statistische kenmerken zoals zinslengte en variatie in schrijfstijl. Het geeft een goede indicatie, maar het blijft een schatting en geen 100% sluitend bewijs. <br><a href="#" onclick="selectTool('ai', currentLang); return false;" style="color: var(--primary); font-weight: 600; text-decoration: none;">👉 Open AI Detector direct</a></p>
+              </details>
+            </div>
+
+            <div class="faq-item">
+              <details>
+                <summary>Kan ik de gegenereerde audio downloaden?</summary>
+                <p>Ja, in de Tekst-naar-Spraak tool kun je direct na het invoeren van je tekst klikken op de downloadknop om het audiobestand (.WAV) op te slaan op je apparaat. <br><a href="#" onclick="selectTool('tts', currentLang); return false;" style="color: var(--primary); font-weight: 600; text-decoration: none;">👉 Open Tekst-naar-Spraak direct</a></p>
+              </details>
+            </div>
+          </div>
 
         </section>
       </div>
     </div>
 
-    <!-- Overige Tabs (Timer, Checker, AI, TTS, Translate, QR, Converter) blijven hieronder ongewijzigd -->
+    <!-- Overige Tabs (Timer, Checker, AI, TTS, Translate, QR, Converter) -->
     <div id="tab-timer" class="tab-content">
       <div class="section-header-wrapper">
         <h2 class="section-title" id="t1-title">Speech & Presentatie Timer</h2>
