@@ -351,19 +351,39 @@
         <p style="color: var(--text-muted); font-size: 14px; margin: 0;" id="qrPlaceholderText">Vul een URL in...</p>
       </div>
     </div>
-
-    <div id="tab-heic" class="tab-content">
+<div id="tab-converter" class="tab-content">
       <div class="section-header-wrapper">
-        <h2 class="section-title" id="heic-title">HEIC naar JPG Converter</h2>
-        <p class="section-subtitle" id="heic-sub">Converteer je Apple HEIC-afbeeldingen direct lokaal naar een gangbaar JPG-bestand.</p>
+        <h2 class="section-title" id="conv-title">Universele Converter</h2>
+        <p class="section-subtitle" id="conv-sub">Converteer foto's, documenten of data eenvoudig naar een ander bestandsformaat.</p>
       </div>
       
-      <div class="url-input-group" style="flex-direction: column; align-items: stretch; gap: 12px;">
-        <input type="file" id="heicInput" accept=".heic, image/heic" onchange="convertHeicFile(event)" style="padding: 12px; border: 2px dashed var(--border); border-radius: 8px; cursor: pointer;" />
+      <div class="tts-controls-row" style="margin-bottom: 20px;">
+        <div class="tts-control-group" style="flex: 1;">
+          <label for="convertFrom" id="conv-label-from">Wat wil je converteren?</label>
+          <select id="convertFrom" class="tts-select" onchange="updateConverterUI()">
+            <option value="heic">📷 HEIC Afbeelding (Apple)</option>
+            <!-- Hier kun je later makkelijk opties toevoegen, bijv. pdf, png, etc. -->
+          </select>
+        </div>
+        <div class="tts-control-group" style="flex: 1;">
+          <label for="convertTo" id="conv-label-to">Waar naartoe converteren?</label>
+          <select id="convertTo" class="tts-select">
+            <option value="jpg">🖼️ JPG Afbeelding</option>
+            <option value="png">🖼️ PNG Afbeelding</option>
+          </select>
+        </div>
       </div>
 
-      <div class="qr-preview-box" id="heicPreviewBox" style="margin-top: 20px; text-align: center;">
-        <p style="color: var(--text-muted); font-size: 14px; margin: 0;" id="heicStatusText">Selecteer een HEIC-bestand om te starten...</p>
+      <div class="url-input-group" id="converterInputWrapper" style="flex-direction: column; align-items: stretch; gap: 12px;">
+        <input type="file" id="universalFileInput" accept=".heic, image/heic" style="padding: 12px; border: 2px dashed var(--border); border-radius: 8px; cursor: pointer; background: var(--bg-card); color: var(--text-main); width: 100%;" />
+      </div>
+
+      <div style="margin-top: 20px; text-align: center;">
+        <button class="btn" id="convActionBtn" onclick="executeUniversalConversion()">Start Conversie</button>
+      </div>
+
+      <div class="qr-preview-box" id="converterPreviewBox" style="margin-top: 20px; text-align: center;">
+        <p style="color: var(--text-muted); font-size: 14px; margin: 0;" id="converterStatusText">Selecteer een bestand en klik op start...</p>
       </div>
     </div>
 
