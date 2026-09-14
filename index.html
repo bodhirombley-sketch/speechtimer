@@ -74,7 +74,12 @@
   <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
 
   <nav class="nav-sidebar" id="sidebar">
-    <div class="sidebar-header">
+   <div class="tool-group">
+      <button class="tool-btn" onclick="selectTool('heic', currentLang)">
+        <span>📷 HEIC Converter</span>
+      </button>
+    </div>
+   <div class="sidebar-header">
       <h2 id="menuHeader">Kies een Tool</h2>
       <button class="close-btn" onclick="toggleSidebar()" aria-label="Sluit menu">✕</button>
     </div>
