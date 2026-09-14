@@ -13,7 +13,7 @@ const translations = {
     menuTts: "🔊 Tekst-naar-Spraak",
     menuTranslate: "🌍 Vertaal Tool",
     menuQr: "📱 QR Code Generator",
-    menuHeic: "📷 HEIC Converter",
+    menuConverter: "🔄 Universele Converter",
     langTitle: "Taal / Language:",
     shareBtn: "🔗 Deel",
     heroTag: "Meet Every-Tool",
@@ -55,9 +55,12 @@ const translations = {
     qrPlaceholder: "Vul een URL in...",
     qrGenBtn: "Genereer",
     downloadQR: "📥 Download QR-code",
-    heicTitle: "HEIC naar JPG Converter",
-    heicSub: "Converteer je Apple HEIC-afbeeldingen direct lokaal naar een gangbaar JPG-bestand.",
-    heicStatus: "Selecteer een HEIC-bestand om te starten...",
+    convTitle: "Universele Converter",
+    convSub: "Converteer foto's, documenten of data eenvoudig naar een ander bestandsformaat.",
+    convLabelFrom: "Wat wil je converteren?",
+    convLabelTo: "Waar naartoe converteren?",
+    convActionBtn: "Start Conversie",
+    convStatus: "Selecteer een bestand en klik op start...",
     adSpace: "Advertentie Ruimte (Google AdSense)",
     sec1: "256-bit SSL-beveiliging", sec2: "100% Privacy - Lokale verwerking", sec3: "Direct resultaat",
     speeds: { slow: 90, norm: 100, fast: 125 }
@@ -72,7 +75,7 @@ const translations = {
     menuTts: "🔊 Text-to-Speech",
     menuTranslate: "🌍 Übersetzung",
     menuQr: "📱 QR Code Generator",
-    menuHeic: "📷 HEIC Converter",
+    menuConverter: "🔄 Universeller Konverter",
     langTitle: "Sprache / Language:",
     shareBtn: "🔗 Teilen",
     heroTag: "Meet Every-Tool",
@@ -114,9 +117,12 @@ const translations = {
     qrPlaceholder: "URL eingeben...",
     qrGenBtn: "Generieren",
     downloadQR: "📥 Herunterladen",
-    heicTitle: "HEIC zu JPG Converter",
-    heicSub: "Konvertieren Sie Ihre Apple HEIC-Bilder direkt lokal in eine gängige JPG-Datei.",
-    heicStatus: "Wählen Sie eine HEIC-Datei aus...",
+    convTitle: "Universeller Konverter",
+    convSub: "Konvertieren Sie Fotos, Dokumente oder Daten einfach in ein anderes Format.",
+    convLabelFrom: "Was möchten Sie konvertieren?",
+    convLabelTo: "Wohin konvertieren?",
+    convActionBtn: "Konvertierung starten",
+    convStatus: "Wählen Sie eine Datei aus und klicken Sie auf Start...",
     adSpace: "Werbeplatz (Google AdSense)",
     sec1: "256-bit SSL-Sicherheit", sec2: "100% Datenschutz - Lokale Verarbeitung", sec3: "Sofortiges Ergebnis",
     speeds: { slow: 110, norm: 130, fast: 160 }
@@ -131,7 +137,7 @@ const translations = {
     menuTts: "🔊 Text-to-Speech",
     menuTranslate: "🌍 Translate Tool",
     menuQr: "📱 QR Code Generator",
-    menuHeic: "📷 HEIC Converter",
+    menuConverter: "🔄 Universal Converter",
     langTitle: "Language:",
     shareBtn: "🔗 Share",
     heroTag: "Meet Every-Tool",
@@ -173,9 +179,12 @@ const translations = {
     qrPlaceholder: "Enter a URL...",
     qrGenBtn: "Generate",
     downloadQR: "📥 Download QR Code",
-    heicTitle: "HEIC to JPG Converter",
-    heicSub: "Convert your Apple HEIC images directly locally to a common JPG file.",
-    heicStatus: "Select a HEIC file to start...",
+    convTitle: "Universal Converter",
+    convSub: "Convert photos, documents, or data easily to another file format.",
+    convLabelFrom: "What do you want to convert?",
+    convLabelTo: "Convert to what?",
+    convActionBtn: "Start Conversion",
+    convStatus: "Select a file and click start...",
     adSpace: "Ad Space (Google AdSense)",
     sec1: "256-bit SSL Security", sec2: "100% Privacy - Local Processing", sec3: "Instant Results",
     speeds: { slow: 110, norm: 130, fast: 160 }
@@ -190,7 +199,7 @@ const translations = {
     menuTts: "🔊 Synthèse vocale",
     menuTranslate: "🌍 Outil de Traduction",
     menuQr: "📱 Générateur de Code QR",
-    menuHeic: "📷 Convertisseur HEIC",
+    menuConverter: "🔄 Convertisseur Universel",
     langTitle: "Langue / Language:",
     shareBtn: "🔗 Partager",
     heroTag: "Meet Every-Tool",
@@ -232,9 +241,12 @@ const translations = {
     qrPlaceholder: "Entrez une URL...",
     qrGenBtn: "Générer",
     downloadQR: "📥 Télécharger le code QR",
-    heicTitle: "Convertisseur HEIC vers JPG",
-    heicSub: "Convertissez vos images HEIC Apple localement en JPG.",
-    heicStatus: "Sélectionnez un fichier HEIC...",
+    convTitle: "Convertisseur Universel",
+    convSub: "Convertissez facilement des photos, documents ou données vers un autre format.",
+    convLabelFrom: "Que souhaitez-vous convertir ?",
+    convLabelTo: "Convertir vers ?",
+    convActionBtn: "Lancer la conversion",
+    convStatus: "Sélectionnez un fichier et cliquez sur Démarrer...",
     adSpace: "Espace Publicitaire (Google AdSense)",
     sec1: "Sécurité SSL 256 bits", sec2: "100% Confidentialité - Traitement local", sec3: "Résultat instantané",
     speeds: { slow: 90, norm: 100, fast: 125 }
@@ -249,7 +261,7 @@ const translations = {
     menuTts: "🔊 Texto a Voz",
     menuTranslate: "🌍 Herramienta de Traducción",
     menuQr: "📱 Generador de Códigos QR",
-    menuHeic: "📷 Convertidor HEIC",
+    menuConverter: "🔄 Conversor Universal",
     langTitle: "Idioma / Language:",
     shareBtn: "🔗 Compartir",
     heroTag: "Meet Every-Tool",
@@ -291,9 +303,12 @@ const translations = {
     qrPlaceholder: "Introduce una URL...",
     qrGenBtn: "Generar",
     downloadQR: "📥 Descargar código QR",
-    heicTitle: "Convertidor de HEIC a JPG",
-    heicSub: "Convierte tus imágenes HEIC de Apple localmente a JPG.",
-    heicStatus: "Selecciona un archivo HEIC...",
+    convTitle: "Conversor Universal",
+    convSub: "Convierte fotos, documentos o datos fácilmente a otro formato.",
+    convLabelFrom: "¿Qué deseas convertir?",
+    convLabelTo: "¿Convertir a?",
+    convActionBtn: "Iniciar conversión",
+    convStatus: "Selecciona un archivo y haz clic en iniciar...",
     adSpace: "Espacio Publicitario (Google AdSense)",
     sec1: "Seguridad SSL de 256 bits", sec2: "100% Privacidad - Procesamiento local", sec3: "Resultado instantáneo",
     speeds: { slow: 110, norm: 130, fast: 160 }
@@ -320,7 +335,7 @@ function handleRoute() {
   const path = window.location.pathname.replace(/^\/+|\/+$/g, '');
   let toolId = 'home';
   
-  if (['timer', 'checker', 'ai', 'tts', 'translate', 'qr', 'heic'].includes(path)) {
+  if (['timer', 'checker', 'ai', 'tts', 'translate', 'qr', 'converter'].includes(path)) {
     toolId = path;
   }
   
@@ -397,7 +412,7 @@ function selectTool(toolId, lang, pushHistory = true) {
   document.getElementById('menuTts').innerText = t.menuTts;
   document.getElementById('menuTranslate').innerText = t.menuTranslate;
   document.getElementById('menuQr').innerText = t.menuQr;
-  document.getElementById('menuHeic').innerText = t.menuHeic;
+  document.getElementById('menuConverter').innerText = t.menuConverter;
   document.getElementById('langTitle1').innerText = t.langTitle;
   document.getElementById('langTitle2').innerText = t.langTitle;
   document.getElementById('langTitle3').innerText = t.langTitle;
@@ -471,11 +486,15 @@ function selectTool(toolId, lang, pushHistory = true) {
   document.getElementById('qrGenBtn').innerText = t.qrGenBtn;
   document.getElementById('qrPlaceholderText').innerText = t.qrPlaceholder;
 
-  document.getElementById('heic-title').innerText = t.heicTitle;
-  document.getElementById('heic-sub').innerText = t.heicSub;
-  const heicStatus = document.getElementById('heicStatusText');
-  if (heicStatus && !heicStatus.dataset.converted) {
-    heicStatus.innerText = t.heicStatus;
+  document.getElementById('conv-title').innerText = t.convTitle;
+  document.getElementById('conv-sub').innerText = t.convSub;
+  document.getElementById('conv-label-from').innerText = t.convLabelFrom;
+  document.getElementById('conv-label-to').innerText = t.convLabelTo;
+  document.getElementById('convActionBtn').innerText = t.convActionBtn;
+  
+  const convStatus = document.getElementById('converterStatusText');
+  if (convStatus && !convStatus.dataset.converted) {
+    convStatus.innerText = t.convStatus;
   }
 
   document.getElementById('adSpaceText').innerText = t.adSpace;
@@ -497,7 +516,7 @@ function filterTools() {
     { id: 'tts', name: '🔊 Tekst-naar-Spraak', keywords: ['spraak', 'tekst', 'voorlezen', 'tts', 'audio'] },
     { id: 'translate', name: '🌍 Vertaal Tool', keywords: ['vertalen', 'vertaal', 'translate'] },
     { id: 'qr', name: '📱 QR Code Generator', keywords: ['qr', 'code', 'url'] },
-    { id: 'heic', name: '📷 HEIC Converter', keywords: ['heic', 'jpg', 'converter', 'foto', 'apple'] }
+    { id: 'converter', name: '🔄 Universele Converter', keywords: ['converter', 'omzetten', 'heic', 'jpg', 'bestand'] }
   ];
 
   if (!input) { suggestionsBox.classList.remove('show'); return; }
@@ -781,33 +800,54 @@ function downloadQRCode() {
   imageObj.src = img.src;
 }
 
-async function convertHeicFile(event) {
-  const file = event.target.files[0];
-  const statusText = document.getElementById('heicStatusText');
-  const box = document.getElementById('heicPreviewBox');
+function updateConverterUI() {
+  const fromType = document.getElementById('convertFrom').value;
+  const fileInput = document.getElementById('universalFileInput');
+  
+  if (fromType === 'heic') {
+    fileInput.accept = ".heic, image/heic";
+  }
+}
 
-  if (!file) return;
+async function executeUniversalConversion() {
+  const fromType = document.getElementById('convertFrom').value;
+  const toType = document.getElementById('convertTo').value;
+  const fileInput = document.getElementById('universalFileInput');
+  const statusText = document.getElementById('converterStatusText');
+  const box = document.getElementById('converterPreviewBox');
+
+  const file = fileInput.files[0];
+  if (!file) {
+    alert('Selecteer eerst een bestand!');
+    return;
+  }
 
   statusText.dataset.converted = "false";
-  statusText.innerHTML = '⏳ Bezig met converteren van HEIC naar JPG...';
+  statusText.innerHTML = '⏳ Bezig met omzetten...';
 
   try {
-    const convertedBlob = await heic2any({
-      blob: file,
-      toType: 'image/jpeg',
-      quality: 0.8
-    });
+    if (fromType === 'heic' && (toType === 'jpg' || toType === 'png')) {
+      const mimeType = toType === 'png' ? 'image/png' : 'image/jpeg';
+      
+      const convertedBlob = await heic2any({
+        blob: file,
+        toType: mimeType,
+        quality: 0.8
+      });
 
-    const downloadUrl = URL.createObjectURL(convertedBlob);
-    const fileName = file.name.replace(/\.[^/.]+$/, "") + '.jpg';
+      const downloadUrl = URL.createObjectURL(convertedBlob);
+      const fileName = file.name.replace(/\.[^/.]+$/, "") + `.${toType}`;
 
-    statusText.dataset.converted = "true";
-    box.innerHTML = `
-      <p style="font-size: 14px; color: var(--primary); font-weight: 600; margin-bottom: 12px;">✅ Succesvol geconverteerd!</p>
-      <a href="${downloadUrl}" download="${fileName}" class="btn" style="display: inline-block; text-decoration: none;">📥 Download JPG (${fileName})</a>
-    `;
+      statusText.dataset.converted = "true";
+      box.innerHTML = `
+        <p style="font-size: 14px; color: var(--primary); font-weight: 600; margin-bottom: 12px;">✅ Succesvol omgezet naar ${toType.toUpperCase()}!</p>
+        <a href="${downloadUrl}" download="${fileName}" class="btn" style="display: inline-block; text-decoration: none;">📥 Download ${toType.toUpperCase()} (${fileName})</a>
+      `;
+    } else {
+      statusText.innerHTML = '❌ Deze conversiecombinatie wordt nog niet ondersteund.';
+    }
   } catch (error) {
     console.error(error);
-    statusText.innerHTML = '❌ Er is iets misgegaan bij het converteren van het bestand.';
+    statusText.innerHTML = '❌ Er is iets misgegaan tijdens de conversie.';
   }
 }
