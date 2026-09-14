@@ -31,10 +31,9 @@
   }
   </script>
 
-  <!-- Koppeling naar het externe CSS-bestand -->
   <link rel="stylesheet" href="style.css">
   
-  <!-- Heic2any bibliotheek voor HEIC naar JPG conversie -->
+  <!-- Heic2any bibliotheek voor conversies -->
   <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>
 </head>
 <body data-theme="light">
@@ -150,8 +149,8 @@
     </div>
 
     <div class="tool-group">
-      <button class="tool-btn" onclick="selectTool('heic', currentLang)">
-        <span id="menuHeic">📷 HEIC Converter</span>
+      <button class="tool-btn" onclick="selectTool('converter', currentLang)">
+        <span id="menuConverter">🔄 Universele Converter</span>
       </button>
     </div>
   </nav>
@@ -351,7 +350,8 @@
         <p style="color: var(--text-muted); font-size: 14px; margin: 0;" id="qrPlaceholderText">Vul een URL in...</p>
       </div>
     </div>
-<div id="tab-converter" class="tab-content">
+
+    <div id="tab-converter" class="tab-content">
       <div class="section-header-wrapper">
         <h2 class="section-title" id="conv-title">Universele Converter</h2>
         <p class="section-subtitle" id="conv-sub">Converteer foto's, documenten of data eenvoudig naar een ander bestandsformaat.</p>
@@ -362,7 +362,6 @@
           <label for="convertFrom" id="conv-label-from">Wat wil je converteren?</label>
           <select id="convertFrom" class="tts-select" onchange="updateConverterUI()">
             <option value="heic">📷 HEIC Afbeelding (Apple)</option>
-            <!-- Hier kun je later makkelijk opties toevoegen, bijv. pdf, png, etc. -->
           </select>
         </div>
         <div class="tts-control-group" style="flex: 1;">
@@ -397,7 +396,6 @@
 
   </main>
 
-  <!-- Koppeling naar het externe JavaScript-bestand -->
   <script src="script.js"></script>
 </body>
 </html>
