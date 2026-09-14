@@ -55,13 +55,7 @@
       <button class="hamburger-btn" onclick="toggleSidebar()" aria-label="Open menu">☰ Menu</button>
       <div class="app-title" id="topTitle" onclick="selectTool('home', currentLang)">Every-Tool</div>
     </div>
-    <div class="heic-converter">
-    <h3>HEIC naar JPG Converter</h3>
-    <input type="file" id="heicInput" accept=".heic, image/heic">
-    <br>
-    <canvas id="outputCanvas" style="display:none;"></canvas>
-    <a id="downloadLink" style="display:none;" download="geconverteerd.jpg">Download JPG</a>
-</div>
+    
     <div class="topbar-right">
       <button class="top-action-btn" onclick="toggleDarkMode()" id="darkModeBtn">🌙 Dark Mode</button>
       <div class="lang-switcher-top">
@@ -361,6 +355,5 @@
 
   <!-- Koppeling naar het externe JavaScript-bestand -->
   <script src="script.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script> 
 </body>
 </html>
