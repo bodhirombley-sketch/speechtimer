@@ -304,11 +304,11 @@ const translations = {
     qrGenBtn: "Generar",
     downloadQR: "📥 Descargar código QR",
     convTitle: "Conversor Universal",
-    convSub: "Convierte fotos, documentos o datos fácilmente a otro format.",
+    convSub: "Convierte fotos, documentos o datos fácilmente a otro formato.",
     convLabelFrom: "¿Qué deseas convertir?",
     convLabelTo: "¿Convertir a?",
     convActionBtn: "Iniciar conversión",
-    convStatus: "Selecciona un archivo y haz clic en iniciar...",
+    convStatus: "Selecciona un archivo en la herramienta...",
     adSpace: "Espacio Publicitario (Google AdSense)",
     sec1: "Seguridad SSL de 256 bits", sec2: "100% Privacidad - Procesamiento local", sec3: "Resultado instantáneo",
     speeds: { slow: 110, norm: 130, fast: 160 }
@@ -493,6 +493,7 @@ function selectTool(toolId, lang, pushHistory = true) {
   document.getElementById('qrGenBtn').innerText = t.qrGenBtn;
   document.getElementById('qrPlaceholderText').innerText = t.qrPlaceholder;
 
+  // NIEUW: Koppeling voor de Converter vertalingen
   document.getElementById('conv-title').innerText = t.convTitle;
   document.getElementById('conv-sub').innerText = t.convSub;
   document.getElementById('conv-label-from').innerText = t.convLabelFrom;
