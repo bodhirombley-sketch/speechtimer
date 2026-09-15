@@ -304,7 +304,7 @@ const translations = {
     qrGenBtn: "Generar",
     downloadQR: "📥 Descargar código QR",
     convTitle: "Conversor Universal",
-    convSub: "Convierte fotos, documentos o datos fácilmente a otro formato.",
+    convSub: "Convierte fotos, documentos o datos fácilmente a otro format.",
     convLabelFrom: "¿Qué deseas convertir?",
     convLabelTo: "¿Convertir a?",
     convActionBtn: "Iniciar conversión",
