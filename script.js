@@ -441,6 +441,14 @@ const translations = {
 };
 
 window.addEventListener('DOMContentLoaded', () => {
+  // Opgeslagen taal herstellen als deze er is
+  const savedLang = localStorage.getItem('everyToolLang');
+  if (savedLang && translations[savedLang]) {
+    currentLang = savedLang;
+    const overlay = document.getElementById('languageOverlay');
+    if (overlay) overlay.classList.add('hidden');
+  }
+
   ['text-timer', 'text-checker', 'text-ai', 'text-tts', 'text-translate', 'qrUrlInput'].forEach(id => {
     const saved = localStorage.getItem(id);
     if(saved) {
@@ -473,6 +481,7 @@ function saveToLocal(id, val) {
 
 function setInitialLanguage(lang) {
   currentLang = lang;
+  localStorage.setItem('everyToolLang', lang);
   document.getElementById('languageOverlay').classList.add('hidden');
   selectTool('home', lang);
 }
@@ -510,6 +519,7 @@ function shareSite() {
 function selectTool(toolId, lang, pushHistory = true) {
   currentTool = toolId;
   currentLang = lang;
+  localStorage.setItem('everyToolLang', lang); // Taalkeuze opslaan
   
   if (pushHistory) {
     const newPath = toolId === 'home' ? '/' : `/${toolId}/`;
