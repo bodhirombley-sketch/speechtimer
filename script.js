@@ -545,7 +545,6 @@ function selectTool(toolId, lang, pushHistory = true) {
 
   const t = translations[lang] || translations['nl'];
   
-  // --- AUTOMATISCHE LOOP DIE ALLE ELEMENTEN MET EEN ID VERTAALT ---
   const allElements = document.querySelectorAll('[id]');
   allElements.forEach(el => {
     const id = el.id;
@@ -558,7 +557,6 @@ function selectTool(toolId, lang, pushHistory = true) {
     }
   });
 
-  // Handmatige updates voor specifieke elementen zoals zoekknop of dynamische statussen
   const searchBtn = document.getElementById('homeSearchBtn');
   if(searchBtn) searchBtn.innerHTML = `<span>${t.searchBtn}</span> 🔍`;
 
@@ -975,7 +973,7 @@ async function executeUniversalConversion() {
 function triggerDownload(blob, fileName, formatName, box, statusText) {
   const downloadUrl = URL.createObjectURL(blob);
   const t = translations[currentLang] || translations['nl'];
-  statusStatus.dataset.converted = "true";
+  statusText.dataset.converted = "true";
   box.innerHTML = `
     <p style="font-size: 14px; color: var(--primary); font-weight: 600; margin-bottom: 12px;">${t.convSuccess} ${formatName.toUpperCase()}!</p>
     <a href="${downloadUrl}" download="${fileName}" class="btn" style="display: inline-block; text-decoration: none;">📥 Download ${formatName.toUpperCase()} (${fileName})</a>
