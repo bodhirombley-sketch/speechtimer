@@ -545,123 +545,30 @@ function selectTool(toolId, lang, pushHistory = true) {
 
   const t = translations[lang] || translations['nl'];
   
-  document.getElementById('menuHeader').innerText = t.menuHeader;
-  document.getElementById('menuHome').innerText = t.menuHome;
-  document.getElementById('menuTimer').innerText = t.menuTimer;
-  document.getElementById('menuChecker').innerText = t.menuChecker;
-  document.getElementById('menuAi').innerText = t.menuAi;
-  document.getElementById('menuTts').innerText = t.menuTts;
-  document.getElementById('menuTranslate').innerText = t.menuTranslate;
-  document.getElementById('menuQr').innerText = t.menuQr;
-  document.getElementById('menuConverter').innerText = t.menuConverter;
-  document.getElementById('langTitle1').innerText = t.langTitle;
-  document.getElementById('langTitle2').innerText = t.langTitle;
-  document.getElementById('langTitle3').innerText = t.langTitle;
+  // --- AUTOMATISCHE LOOP DIE ALLE ELEMENTEN MET EEN ID VERTAALT ---
+  const allElements = document.querySelectorAll('[id]');
+  allElements.forEach(el => {
+    const id = el.id;
+    if (t[id] !== undefined) {
+      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+        el.placeholder = t[id];
+      } else {
+        el.innerText = t[id];
+      }
+    }
+  });
 
-  document.getElementById('shareBtnText').innerText = t.shareBtn;
-  document.getElementById('heroTag').innerText = t.heroTag;
-  document.getElementById('homeHeading').innerText = t.homeHeading;
-  document.getElementById('homeSub').innerText = t.homeSub;
-  document.getElementById('homeSearchInput').placeholder = t.searchPlaceholder;
-  document.getElementById('homeSearchBtn').innerHTML = `<span>${t.searchBtn}</span> 🔍`;
-  
-  document.getElementById('aboutTitle').innerText = t.aboutTitle;
-  document.getElementById('aboutText').innerText = t.aboutText;
-  
-  document.getElementById('faqTitle').innerText = t.faqTitle;
-  document.getElementById('faq1Q').innerText = t.faq1Q;
-  document.getElementById('faq1A').innerText = t.faq1A;
-  document.getElementById('faq2Q').innerText = t.faq2Q;
-  document.getElementById('faq2A').innerText = t.faq2A;
-  document.getElementById('faq3Q').innerText = t.faq3Q;
-  document.getElementById('faq3A').innerText = t.faq3A;
-  document.getElementById('faq4Q').innerText = t.faq4Q;
-  document.getElementById('faq4A').innerText = t.faq4A;
-  document.getElementById('faq5Q').innerText = t.faq5Q;
-  document.getElementById('faq5A').innerText = t.faq5A;
-  document.getElementById('faq6Q').innerText = t.faq6Q;
-  document.getElementById('faq6A').innerText = t.faq6A;
-  document.getElementById('faq7Q').innerText = t.faq7Q;
-  document.getElementById('faq7A').innerText = t.faq7A;
+  // Handmatige updates voor specifieke elementen zoals zoekknop of dynamische statussen
+  const searchBtn = document.getElementById('homeSearchBtn');
+  if(searchBtn) searchBtn.innerHTML = `<span>${t.searchBtn}</span> 🔍`;
 
-  // ALLE TITELS EN SUBTITELS BIJWERKEN VOOR ELKE TOOL:
-  document.getElementById('t1-title').innerText = t.t1Title;
-  document.getElementById('t1-sub').innerText = t.t1Sub;
-  document.getElementById('text-timer').placeholder = t.placeholder;
-  document.getElementById('t1-slow').innerText = t.slow;
-  document.getElementById('t1-norm').innerText = t.norm;
-  document.getElementById('t1-fast').innerText = t.fast;
-  document.getElementById('t1-practice').innerText = t.practice;
-  document.getElementById('startBtn').innerText = timerInt ? t.pauseBtn : t.startBtn;
-  document.getElementById('resetBtn').innerText = t.resetBtn;
-
-  document.getElementById('t2-title').innerText = t.t2Title;
-  document.getElementById('t2-sub').innerText = t.t2Sub;
-  document.getElementById('text-checker').placeholder = t.placeholder;
-  document.getElementById('t2-issues').innerText = t.t2Issues;
-  document.getElementById('btnClean').innerText = t.btnClean;
-  document.getElementById('btnCopy').innerText = t.btnCopy;
-
-  document.getElementById('t3-title').innerText = t.t3Title;
-  document.getElementById('t3-sub').innerText = t.t3Sub;
-  document.getElementById('text-ai').placeholder = t.placeholder;
-  document.getElementById('t3-score').innerText = t.t3Score;
-
-  document.getElementById('tts-title').innerText = t.ttsTitle;
-  document.getElementById('tts-sub').innerText = t.ttsSub;
-  document.getElementById('text-tts').placeholder = t.placeholder;
-  document.getElementById('tts-label-lang').innerText = t.ttsLabelLang;
-  document.getElementById('speakBtn').innerText = t.speakBtn;
-  document.getElementById('downloadAudioBtn').innerText = t.downloadAudioBtn;
-  document.getElementById('stopSpeechBtn').innerText = t.stopSpeechBtn;
-  document.getElementById('tts-status-placeholder').innerText = t.ttsStatusPlaceholder;
-
-  document.getElementById('translate-title').innerText = t.translateTitle;
-  document.getElementById('translate-sub').innerText = t.translateSub;
-  document.getElementById('text-translate').placeholder = t.placeholder;
-  document.getElementById('translate-label-lang').innerText = t.translateLabelLang;
-  document.getElementById('translateBtn').innerText = t.translateBtn;
-  document.getElementById('translate-preview-placeholder').innerText = t.translatePreviewPlaceholder;
-
-  document.getElementById('qr-title').innerText = t.qrTitle;
-  document.getElementById('qr-sub').innerText = t.qrSub;
-  document.getElementById('qrGenBtn').innerText = t.qrGenBtn;
-  document.getElementById('qrPlaceholderText').innerText = t.qrPlaceholder;
-
-  document.getElementById('conv-title').innerText = t.convTitle;
-  document.getElementById('conv-sub').innerText = t.convSub;
-  document.getElementById('conv-label-from').innerText = t.convLabelFrom;
-  document.getElementById('conv-label-to').innerText = t.convLabelTo;
-  document.getElementById('convActionBtn').innerText = t.convActionBtn;
-  
   const convStatus = document.getElementById('converterStatusText');
   if (convStatus && !convStatus.dataset.converted) {
     convStatus.innerText = t.convStatus;
   }
 
-  document.getElementById('optNlVoice').innerText = t.optNl;
-  document.getElementById('optEnVoice').innerText = t.optEn;
-  document.getElementById('optDeVoice').innerText = t.optDe;
-  document.getElementById('optFrVoice').innerText = t.optFr;
-  document.getElementById('optEsVoice').innerText = t.optEs;
-
-  document.getElementById('optNlTrans').innerText = t.optNl;
-  document.getElementById('optEnTrans').innerText = t.optEn;
-  document.getElementById('optFrTrans').innerText = t.optFr;
-  document.getElementById('optDeTrans').innerText = t.optDe;
-  document.getElementById('optEsTrans').innerText = t.optEs;
-
-  document.getElementById('optHeic').innerText = t.optHeic;
-  document.getElementById('optImg').innerText = t.optImg;
-  document.getElementById('optTxt').innerText = t.optTxt;
-  document.getElementById('optJpg').innerText = t.optJpg;
-  document.getElementById('optPng').innerText = t.optPng;
-  document.getElementById('optWebp').innerText = t.optWebp;
-
-  document.getElementById('adSpaceText').innerText = t.adSpace;
-  document.getElementById('sec1').innerText = t.sec1;
-  document.getElementById('sec2').innerText = t.sec2;
-  document.getElementById('sec3').innerText = t.sec3;
+  const startBtn = document.getElementById('startBtn');
+  if(startBtn) startBtn.innerText = timerInt ? t.pauseBtn : t.startBtn;
 
   document.getElementById('searchSuggestions').classList.remove('show');
 }
@@ -1068,7 +975,7 @@ async function executeUniversalConversion() {
 function triggerDownload(blob, fileName, formatName, box, statusText) {
   const downloadUrl = URL.createObjectURL(blob);
   const t = translations[currentLang] || translations['nl'];
-  statusText.dataset.converted = "true";
+  statusStatus.dataset.converted = "true";
   box.innerHTML = `
     <p style="font-size: 14px; color: var(--primary); font-weight: 600; margin-bottom: 12px;">${t.convSuccess} ${formatName.toUpperCase()}!</p>
     <a href="${downloadUrl}" download="${fileName}" class="btn" style="display: inline-block; text-decoration: none;">📥 Download ${formatName.toUpperCase()} (${fileName})</a>
