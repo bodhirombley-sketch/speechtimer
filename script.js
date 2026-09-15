@@ -75,6 +75,17 @@ const translations = {
     convLoading: "⏳ Bezig met omzetten...",
     convSuccess: "✅ Succesvol omgezet naar",
     convError: "❌ Er is iets misgegaan tijdens de conversie.",
+    optNl: "🇳🇱 Nederlands",
+    optEn: "🇬🇧 Engels",
+    optDe: "🇩🇪 Duits",
+    optFr: "🇫🇷 Frans",
+    optEs: "🇪🇸 Spaans",
+    optHeic: "📷 HEIC Afbeelding (Apple)",
+    optImg: "🖼️ Standaard Afbeelding (PNG/JPG/WebP)",
+    optTxt: "📄 Tekstbestand (.txt)",
+    optJpg: "🖼️ JPG Afbeelding",
+    optPng: "🖼️ PNG Afbeelding",
+    optWebp: "🌐 WebP Afbeelding",
     adSpace: "Advertentie Ruimte (Google AdSense)",
     sec1: "256-bit SSL-beveiliging", sec2: "100% Privacy - Lokale verwerking", sec3: "Direct resultaat",
     speeds: { slow: 90, norm: 100, fast: 125 }
@@ -151,6 +162,17 @@ const translations = {
     convLoading: "⏳ Konvertierung läuft...",
     convSuccess: "✅ Erfolgreich konvertiert nach",
     convError: "❌ Bei der Konvertierung ist ein Fehler aufgetreten.",
+    optNl: "🇳🇱 Niederländisch",
+    optEn: "🇬🇧 Englisch",
+    optDe: "🇩🇪 Deutsch",
+    optFr: "🇫🇷 Französisch",
+    optEs: "🇪🇸 Spanisch",
+    optHeic: "📷 HEIC Bild (Apple)",
+    optImg: "🖼️ Standard Bild (PNG/JPG/WebP)",
+    optTxt: "📄 Textdatei (.txt)",
+    optJpg: "🖼️ JPG Bild",
+    optPng: "🖼️ PNG Bild",
+    optWebp: "🌐 WebP Bild",
     adSpace: "Werbeplatz (Google AdSense)",
     sec1: "256-bit SSL-Sicherheit", sec2: "100% Datenschutz - Lokale Verarbeitung", sec3: "Sofortiges Ergebnis",
     speeds: { slow: 110, norm: 130, fast: 160 }
@@ -227,6 +249,17 @@ const translations = {
     convLoading: "⏳ Converting...",
     convSuccess: "✅ Successfully converted to",
     convError: "❌ Something went wrong during conversion.",
+    optNl: "🇳🇱 Dutch",
+    optEn: "🇬🇧 English",
+    optDe: "🇩🇪 German",
+    optFr: "🇫🇷 French",
+    optEs: "🇪🇸 Spanish",
+    optHeic: "📷 HEIC Image (Apple)",
+    optImg: "🖼️ Standard Image (PNG/JPG/WebP)",
+    optTxt: "📄 Text File (.txt)",
+    optJpg: "🖼️ JPG Image",
+    optPng: "🖼️ PNG Image",
+    optWebp: "🌐 WebP Image",
     adSpace: "Ad Space (Google AdSense)",
     sec1: "256-bit SSL Security", sec2: "100% Privacy - Local Processing", sec3: "Instant Results",
     speeds: { slow: 110, norm: 130, fast: 160 }
@@ -303,6 +336,17 @@ const translations = {
     convLoading: "⏳ Conversion en cours...",
     convSuccess: "✅ Converti avec succès en",
     convError: "❌ Une erreur s'est produite lors de la conversion.",
+    optNl: "🇳🇱 Néerlandais",
+    optEn: "🇬🇧 Anglais",
+    optDe: "🇩🇪 Allemand",
+    optFr: "🇫🇷 Français",
+    optEs: "🇪🇸 Espagnol",
+    optHeic: "📷 Image HEIC (Apple)",
+    optImg: "🖼️ Image standard (PNG/JPG/WebP)",
+    optTxt: "📄 Fichier texte (.txt)",
+    optJpg: "🖼️ Image JPG",
+    optPng: "🖼️ Image PNG",
+    optWebp: "🌐 Image WebP",
     adSpace: "Espace Publicitaire (Google AdSense)",
     sec1: "Sécurité SSL 256 bits", sec2: "100% Confidentialité - Traitement local", sec3: "Résultat instantané",
     speeds: { slow: 90, norm: 100, fast: 125 }
@@ -370,7 +414,7 @@ const translations = {
     qrGenBtn: "Generar",
     downloadQR: "📥 Descargar código QR",
     convTitle: "Conversor Universal",
-    convSub: "Convierte fotos, documentos o datos fácilmente a otro formato.",
+    convSub: "Convierte fotos, documentos o datos fácilmente a otro format.",
     convLabelFrom: "¿Qué deseas convertir?",
     convLabelTo: "¿Convertir a?",
     convActionBtn: "Iniciar conversión",
@@ -379,6 +423,17 @@ const translations = {
     convLoading: "⏳ Convirtiendo...",
     convSuccess: "✅ Convertido con éxito a",
     convError: "❌ Algo salió mal durante la conversión.",
+    optNl: "🇳🇱 Neerlandés",
+    optEn: "🇬🇧 Inglés",
+    optDe: "🇩🇪 Alemán",
+    optFr: "🇫🇷 Francés",
+    optEs: "🇪🇸 Español",
+    optHeic: "📷 Imagen HEIC (Apple)",
+    optImg: "🖼️ Imagen estándar (PNG/JPG/WebP)",
+    optTxt: "📄 Archivo de texto (.txt)",
+    optJpg: "🖼️ Imagen JPG",
+    optPng: "🖼️ Imagen PNG",
+    optWebp: "🌐 Imagen WebP",
     adSpace: "Espacio Publicitario (Google AdSense)",
     sec1: "Seguridad SSL de 256 bits", sec2: "100% Privacidad - Procesamiento local", sec3: "Resultado instantáneo",
     speeds: { slow: 110, norm: 130, fast: 160 }
@@ -573,6 +628,26 @@ function selectTool(toolId, lang, pushHistory = true) {
   if (convStatus && !convStatus.dataset.converted) {
     convStatus.innerText = t.convStatus;
   }
+
+  // Dropdown opties vertalen
+  document.getElementById('optNlVoice').innerText = t.optNl;
+  document.getElementById('optEnVoice').innerText = t.optEn;
+  document.getElementById('optDeVoice').innerText = t.optDe;
+  document.getElementById('optFrVoice').innerText = t.optFr;
+  document.getElementById('optEsVoice').innerText = t.optEs;
+
+  document.getElementById('optNlTrans').innerText = t.optNl;
+  document.getElementById('optEnTrans').innerText = t.optEn;
+  document.getElementById('optFrTrans').innerText = t.optFr;
+  document.getElementById('optDeTrans').innerText = t.optDe;
+  document.getElementById('optEsTrans').innerText = t.optEs;
+
+  document.getElementById('optHeic').innerText = t.optHeic;
+  document.getElementById('optImg').innerText = t.optImg;
+  document.getElementById('optTxt').innerText = t.optTxt;
+  document.getElementById('optJpg').innerText = t.optJpg;
+  document.getElementById('optPng').innerText = t.optPng;
+  document.getElementById('optWebp').innerText = t.optWebp;
 
   document.getElementById('adSpaceText').innerText = t.adSpace;
   document.getElementById('sec1').innerText = t.sec1;
@@ -884,22 +959,23 @@ function updateConverterUI() {
   const fromType = document.getElementById('convertFrom').value;
   const toTypeSelect = document.getElementById('convertTo');
   const fileInput = document.getElementById('universalFileInput');
+  const t = translations[currentLang] || translations['nl'];
   
   toTypeSelect.innerHTML = '';
 
   if (fromType === 'heic') {
     fileInput.accept = ".heic, image/heic";
     toTypeSelect.innerHTML = `
-      <option value="jpg">🖼️ JPG Afbeelding</option>
-      <option value="png">🖼️ PNG Afbeelding</option>
-      <option value="webp">🌐 WebP Afbeelding</option>
+      <option value="jpg">${t.optJpg}</option>
+      <option value="png">${t.optPng}</option>
+      <option value="webp">${t.optWebp}</option>
     `;
   } else if (fromType === 'image') {
     fileInput.accept = "image/*";
     toTypeSelect.innerHTML = `
-      <option value="png">🖼️ PNG Afbeelding</option>
-      <option value="jpg">🖼️ JPG Afbeelding</option>
-      <option value="webp">🌐 WebP Afbeelding</option>
+      <option value="png">${t.optPng}</option>
+      <option value="jpg">${t.optJpg}</option>
+      <option value="webp">${t.optWebp}</option>
     `;
   } else if (fromType === 'txt') {
     fileInput.accept = ".txt";
