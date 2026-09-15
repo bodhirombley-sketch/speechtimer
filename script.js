@@ -44,13 +44,23 @@ const translations = {
     t2Issues: "Gevonden Aandachtspunten:",
     btnClean: "✨ Automatisch Herstellen", btnCopy: "📋 Kopiëren", copyAlert: "Gekopieerd naar klembord!",
     noText: "Geen tekst ingevoerd.", noIssues: "✅ Geen spelfouten gevonden!",
+    checkingText: "⏳ Bezig met controleren...",
+    apiError: "⚠️ Verbindingsfout met LanguageTool API.",
     t3Title: "AI-Tekst Detector Indicator", t3Sub: "Analyseer zinsstructuur op AI-kenmerken.",
     t3Score: "Geschatte AI-waarschijnlijkheid", aiShort: "Voer minimaal 50 tekens in voor een schatting.",
     aiHigh: "Hoge mate van regelmatige zinsopbouw gedetecteerd.", aiLow: "Natuurlijke variatie in zinslengte gedetecteerd.",
     ttsTitle: "Tekst-naar-Spraak", ttsSub: "Laat je tekst direct voorlezen of download de audio als bestand.",
     ttsLabelLang: "Spraak Taal:", speakBtn: "🔊 Lees Hardop", downloadAudioBtn: "📥 Download Audio (.WAV)", stopSpeechBtn: "⏹️ Stop", ttsStatusPlaceholder: "Status: Klaar om voor te lezen of te downloaden...",
+    ttsSpeaking: "🔊 Bezig met voorlezen...",
+    ttsDone: "✅ Voorlezen voltooid.",
+    ttsStopped: "⏹️ Gestopt.",
+    ttsDownloaded: "📥 Audiobestand succesvol gedownload!",
+    ttsNoTextAlert: "Voer eerst wat tekst in!",
+    ttsNoAudioTextAlert: "Voer eerst tekst in om te kunnen downloaden.",
+    ttsNotSupported: "Je browser ondersteunt geen tekst-naar-spraak.",
     translateTitle: "Vertaal Tool", translateSub: "Vertaal je teksten snel naar verschillende talen.",
     translateLabelLang: "Kies doeltaal:", translateBtn: "🌍 Vertaal Tekst", translatePreviewPlaceholder: "Vertaalde tekst verschijnt hier...",
+    translateAlert: "Voer tekst in om te vertalen.",
     qrTitle: "QR Code Generator", qrSub: "Voer een URL in om direct een QR-code te genereren.",
     qrPlaceholder: "Vul een URL in...",
     qrGenBtn: "Genereer",
@@ -61,6 +71,10 @@ const translations = {
     convLabelTo: "Waar naartoe converteren?",
     convActionBtn: "Start Conversie",
     convStatus: "Selecteer een bestand en klik op start...",
+    convAlert: "Selecteer eerst een bestand!",
+    convLoading: "⏳ Bezig met omzetten...",
+    convSuccess: "✅ Succesvol omgezet naar",
+    convError: "❌ Er is iets misgegaan tijdens de conversie.",
     adSpace: "Advertentie Ruimte (Google AdSense)",
     sec1: "256-bit SSL-beveiliging", sec2: "100% Privacy - Lokale verwerking", sec3: "Direct resultaat",
     speeds: { slow: 90, norm: 100, fast: 125 }
@@ -106,13 +120,23 @@ const translations = {
     t2Issues: "Gefundene Probleme:",
     btnClean: "✨ Korrigieren", btnCopy: "📋 Kopieren", copyAlert: "Kopiert!",
     noText: "Kein Text.", noIssues: "✅ Keine Fehler gefunden!",
+    checkingText: "⏳ Überprüfung läuft...",
+    apiError: "⚠️ Verbindungsfehler mit der LanguageTool API.",
     t3Title: "AI-Text-Detektor", t3Sub: "Analysieren Sie die Satzstruktur.",
     t3Score: "Geschätzte KI-Wahrscheinlichkeit", aiShort: "Mindestens 50 Zeichen eingeben.",
     aiHigh: "Hohe Regelmäßigkeit.", aiLow: "Natürliche Variation.",
     ttsTitle: "Text-to-Speech", ttsSub: "Lassen Sie Ihren Text vorlesen oder als Audiodatei herunterladen.",
     ttsLabelLang: "Sprachauswahl:", speakBtn: "🔊 Vorlesen", downloadAudioBtn: "📥 Audio herunterladen", stopSpeechBtn: "⏹️ Stopp", ttsStatusPlaceholder: "Status: Bereit...",
+    ttsSpeaking: "🔊 Wiedergabe läuft...",
+    ttsDone: "✅ Wiedergabe beendet.",
+    ttsStopped: "⏹️ Gestoppt.",
+    ttsDownloaded: "📥 Audiodatei erfolgreich heruntergeladen!",
+    ttsNoTextAlert: "Bitte geben Sie zuerst Text ein!",
+    ttsNoAudioTextAlert: "Bitte geben Sie Text zum Herunterladen ein.",
+    ttsNotSupported: "Ihr Browser unterstützt Text-to-Speech nicht.",
     translateTitle: "Übersetzungstool", translateSub: "Übersetzen Sie Ihre Texte in verschiedene Sprachen.",
     translateLabelLang: "Zielsprache wählen:", translateBtn: "🌍 Text übersetzen", translatePreviewPlaceholder: "Übersetzter Text erscheint hier...",
+    translateAlert: "Bitte Text zum Übersetzen eingeben.",
     qrTitle: "QR Code Generator", qrSub: "Geben Sie eine URL ein.",
     qrPlaceholder: "URL eingeben...",
     qrGenBtn: "Generieren",
@@ -123,6 +147,10 @@ const translations = {
     convLabelTo: "Wohin konvertieren?",
     convActionBtn: "Konvertierung starten",
     convStatus: "Wählen Sie eine Datei aus und klicken Sie auf Start...",
+    convAlert: "Bitte wählen Sie zuerst eine Datei aus!",
+    convLoading: "⏳ Konvertierung läuft...",
+    convSuccess: "✅ Erfolgreich konvertiert nach",
+    convError: "❌ Bei der Konvertierung ist ein Fehler aufgetreten.",
     adSpace: "Werbeplatz (Google AdSense)",
     sec1: "256-bit SSL-Sicherheit", sec2: "100% Datenschutz - Lokale Verarbeitung", sec3: "Sofortiges Ergebnis",
     speeds: { slow: 110, norm: 130, fast: 160 }
@@ -168,13 +196,23 @@ const translations = {
     t2Issues: "Detected Issues:",
     btnClean: "✨ Auto Correct", btnCopy: "📋 Copy", copyAlert: "Copied!",
     noText: "No text entered.", noIssues: "✅ No issues found!",
+    checkingText: "⏳ Checking text...",
+    apiError: "⚠️ Connection error with LanguageTool API.",
     t3Title: "AI Text Detector", t3Sub: "Analyze sentence variation.",
     t3Score: "Estimated AI Probability", aiShort: "Enter at least 50 characters.",
     aiHigh: "High regularity.", aiLow: "Natural variation.",
     ttsTitle: "Text-to-Speech", ttsSub: "Read text aloud or download the audio file directly.",
     ttsLabelLang: "Voice Language:", speakBtn: "🔊 Read Aloud", downloadAudioBtn: "📥 Download Audio (.WAV)", stopSpeechBtn: "⏹️ Stop", ttsStatusPlaceholder: "Status: Ready to speak or download...",
+    ttsSpeaking: "🔊 Speaking...",
+    ttsDone: "✅ Speech completed.",
+    ttsStopped: "⏹️ Stopped.",
+    ttsDownloaded: "📥 Audio file successfully downloaded!",
+    ttsNoTextAlert: "Please enter some text first!",
+    ttsNoAudioTextAlert: "Please enter text to download.",
+    ttsNotSupported: "Your browser does not support text-to-speech.",
     translateTitle: "Translate Tool", translateSub: "Translate your texts quickly into different languages.",
     translateLabelLang: "Select target language:", translateBtn: "🌍 Translate Text", translatePreviewPlaceholder: "Translated text will appear here...",
+    translateAlert: "Please enter text to translate.",
     qrTitle: "QR Code Generator", qrSub: "Enter a URL to generate a QR code.",
     qrPlaceholder: "Enter a URL...",
     qrGenBtn: "Generate",
@@ -185,6 +223,10 @@ const translations = {
     convLabelTo: "Convert to what?",
     convActionBtn: "Start Conversion",
     convStatus: "Select a file and click start...",
+    convAlert: "Please select a file first!",
+    convLoading: "⏳ Converting...",
+    convSuccess: "✅ Successfully converted to",
+    convError: "❌ Something went wrong during conversion.",
     adSpace: "Ad Space (Google AdSense)",
     sec1: "256-bit SSL Security", sec2: "100% Privacy - Local Processing", sec3: "Instant Results",
     speeds: { slow: 110, norm: 130, fast: 160 }
@@ -230,13 +272,23 @@ const translations = {
     t2Issues: "Problèmes détectés :",
     btnClean: "✨ Correction automatique", btnCopy: "📋 Copier", copyAlert: "Copié dans le presse-papier !",
     noText: "Aucun texte saisi.", noIssues: "✅ Aucun problème détecté !",
+    checkingText: "⏳ Vérification en cours...",
+    apiError: "⚠️ Erreur de connexion avec l'API LanguageTool.",
     t3Title: "Détecteur de texte IA", t3Sub: "Analysez la structure des phrases.",
     t3Score: "Probabilité IA estimée", aiShort: "Entrez au moins 50 caractères.",
     aiHigh: "Forte régularité détectée.", aiLow: "Variation naturelle détectée.",
     ttsTitle: "Synthèse vocale", ttsSub: "Écoutez votre texte ou téléchargez l'audio.",
     ttsLabelLang: "Langue de la voix :", speakBtn: "🔊 Lire à haute voix", downloadAudioBtn: "📥 Télécharger l'audio (.WAV)", stopSpeechBtn: "⏹️ Arrêter", ttsStatusPlaceholder: "Statut : Prêt...",
+    ttsSpeaking: "🔊 Lecture en cours...",
+    ttsDone: "✅ Lecture terminée.",
+    ttsStopped: "⏹️ Arrêté.",
+    ttsDownloaded: "📥 Fichier audio téléchargé avec succès !",
+    ttsNoTextAlert: "Veuillez d'abord entrer du texte !",
+    ttsNoAudioTextAlert: "Veuillez entrer du texte à télécharger.",
+    ttsNotSupported: "Votre navigateur ne prend pas en charge la synthèse vocale.",
     translateTitle: "Outil de Traduction", translateSub: "Traduisez rapidement vos textes.",
     translateLabelLang: "Choisir la langue cible :", translateBtn: "🌍 Traduire le texte", translatePreviewPlaceholder: "Le texte traduit apparaîtra ici...",
+    translateAlert: "Veuillez entrer du texte à traduire.",
     qrTitle: "Générateur de Code QR", qrSub: "Entrez une URL pour générer un code QR.",
     qrPlaceholder: "Entrez une URL...",
     qrGenBtn: "Générer",
@@ -247,6 +299,10 @@ const translations = {
     convLabelTo: "Convertir vers ?",
     convActionBtn: "Lancer la conversion",
     convStatus: "Sélectionnez un fichier et cliquez sur Démarrer...",
+    convAlert: "Veuillez d'abord sélectionner un fichier !",
+    convLoading: "⏳ Conversion en cours...",
+    convSuccess: "✅ Converti avec succès en",
+    convError: "❌ Une erreur s'est produite lors de la conversion.",
     adSpace: "Espace Publicitaire (Google AdSense)",
     sec1: "Sécurité SSL 256 bits", sec2: "100% Confidentialité - Traitement local", sec3: "Résultat instantané",
     speeds: { slow: 90, norm: 100, fast: 125 }
@@ -292,13 +348,23 @@ const translations = {
     t2Issues: "Problemas detectados:",
     btnClean: "✨ Corrección automática", btnCopy: "📋 Copiar", copyAlert: "¡Copiado al portapapeles!",
     noText: "Ningún texto introducido.", noIssues: "✅ ¡No se encontraron errores!",
+    checkingText: "⏳ Comprobando texto...",
+    apiError: "⚠️ Error de conexión con la API de LanguageTool.",
     t3Title: "Indicador Detector de Texto IA", t3Sub: "Analiza la estructura de las oraciones en busca de características de IA.",
     t3Score: "Probabilidad estimada de IA", aiShort: "Introduce al menos 50 caracteres.",
     aiHigh: "Alta regularidad estructural detectada.", aiLow: "Variación natural detectada.",
     ttsTitle: "Texto a Voz", ttsSub: "Lee tu texto en voz alta o descarga el archivo de audio.",
     ttsLabelLang: "Idioma de voz:", speakBtn: "🔊 Leer en voz alta", downloadAudioBtn: "📥 Descargar Audio (.WAV)", stopSpeechBtn: "⏹️ Parar", ttsStatusPlaceholder: "Estado: Listo para hablar o descargar...",
+    ttsSpeaking: "🔊 Leyendo en voz alta...",
+    ttsDone: "✅ Lectura completada.",
+    ttsStopped: "⏹️ Detenido.",
+    ttsDownloaded: "📥 ¡Archivo de audio descargado con éxito!",
+    ttsNoTextAlert: "¡Introduce un texto primero!",
+    ttsNoAudioTextAlert: "Introduce texto para descargar.",
+    ttsNotSupported: "Tu navegador no soporta texto a voz.",
     translateTitle: "Herramienta de Traducción", translateSub: "Traduce tus textos rápidamente a diferentes idiomas.",
     translateLabelLang: "Elige idioma de destino:", translateBtn: "🌍 Traducir Texto", translatePreviewPlaceholder: "El texto traducido aparecerá aquí...",
+    translateAlert: "Introduce texto para traducir.",
     qrTitle: "QR Code Generator", qrSub: "Introduce una URL para generar un código QR al instante.",
     qrPlaceholder: "Introduce una URL...",
     qrGenBtn: "Generar",
@@ -308,7 +374,11 @@ const translations = {
     convLabelFrom: "¿Qué deseas convertir?",
     convLabelTo: "¿Convertir a?",
     convActionBtn: "Iniciar conversión",
-    convStatus: "Selecciona un archivo en la herramienta...",
+    convStatus: "Selecciona un archivo y haz clic en iniciar...",
+    convAlert: "¡Selecciona un archivo primero!",
+    convLoading: "⏳ Convirtiendo...",
+    convSuccess: "✅ Convertido con éxito a",
+    convError: "❌ Algo salió mal durante la conversión.",
     adSpace: "Espacio Publicitario (Google AdSense)",
     sec1: "Seguridad SSL de 256 bits", sec2: "100% Privacidad - Procesamiento local", sec3: "Resultado instantáneo",
     speeds: { slow: 110, norm: 130, fast: 160 }
@@ -493,7 +563,6 @@ function selectTool(toolId, lang, pushHistory = true) {
   document.getElementById('qrGenBtn').innerText = t.qrGenBtn;
   document.getElementById('qrPlaceholderText').innerText = t.qrPlaceholder;
 
-  // NIEUW: Koppeling voor de Converter vertalingen
   document.getElementById('conv-title').innerText = t.convTitle;
   document.getElementById('conv-sub').innerText = t.convSub;
   document.getElementById('conv-label-from').innerText = t.convLabelFrom;
@@ -592,7 +661,7 @@ async function checkAndFixWithLanguageTool() {
   let text = textarea.value;
 
   if(!text.trim()) { container.innerHTML = t.noText; return; }
-  container.innerHTML = "⏳ Bezig met controleren...";
+  container.innerHTML = t.checkingText;
 
   try {
     let apiLang = 'en-US';
@@ -630,7 +699,7 @@ async function checkAndFixWithLanguageTool() {
     textarea.value = correctedText;
     updateCheckerStats();
   } catch (error) {
-    container.innerHTML = `<span style='color:#ef4444;'>⚠️ Verbindingsfout met LanguageTool API.</span>`;
+    container.innerHTML = `<span style='color:#ef4444;'>${t.apiError}</span>`;
   }
 }
 
@@ -671,37 +740,40 @@ function checkAI() {
 function speakText() {
   const text = document.getElementById('text-tts').value.trim();
   const statusBox = document.getElementById('ttsStatusBox');
+  const t = translations[currentLang] || translations['nl'];
   
   if (!text) {
-    alert('Voer eerst wat tekst in!');
+    alert(t.ttsNoTextAlert);
     return;
   }
 
   const lang = document.getElementById('voiceLangTts').value;
-  statusBox.innerHTML = `🔊 Bezig met voorlezen...`;
+  statusBox.innerHTML = t.ttsSpeaking;
 
   if ('speechSynthesis' in window) {
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = lang;
-    utterance.onend = () => { statusBox.innerHTML = `✅ Voorlezen voltooid.`; };
+    utterance.onend = () => { statusBox.innerHTML = t.ttsDone; };
     window.speechSynthesis.speak(utterance);
   } else {
-    alert('Je browser ondersteunt geen tekst-naar-spraak.');
+    alert(t.ttsNotSupported);
   }
 }
 
 function stopSpeech() {
+  const t = translations[currentLang] || translations['nl'];
   if ('speechSynthesis' in window) {
     window.speechSynthesis.cancel();
-    document.getElementById('ttsStatusBox').innerHTML = `⏹️ Gestopt.`;
+    document.getElementById('ttsStatusBox').innerHTML = t.ttsStopped;
   }
 }
 
 function downloadAudioFile() {
   const text = document.getElementById('text-tts').value.trim();
+  const t = translations[currentLang] || translations['nl'];
   if (!text) {
-    alert('Voer eerst tekst in om te kunnen downloaden.');
+    alert(t.ttsNoAudioTextAlert);
     return;
   }
 
@@ -742,7 +814,7 @@ function downloadAudioFile() {
   a.click();
   document.body.removeChild(a);
   
-  document.getElementById('ttsStatusBox').innerHTML = `📥 Audiobestand succesvol gedownload!`;
+  document.getElementById('ttsStatusBox').innerHTML = t.ttsDownloaded;
 }
 
 function writeString(view, offset, string) {
@@ -755,9 +827,10 @@ function executeTranslation() {
   const text = document.getElementById('text-translate').value.trim();
   const targetLang = document.getElementById('targetLangTranslate').value;
   const resultBox = document.getElementById('translationResultBox');
+  const t = translations[currentLang] || translations['nl'];
 
   if (!text) {
-    alert('Voer tekst in om te vertalen.');
+    alert(t.translateAlert);
     return;
   }
 
@@ -843,15 +916,16 @@ async function executeUniversalConversion() {
   const fileInput = document.getElementById('universalFileInput');
   const statusText = document.getElementById('converterStatusText');
   const box = document.getElementById('converterPreviewBox');
+  const t = translations[currentLang] || translations['nl'];
 
   const file = fileInput.files[0];
   if (!file) {
-    alert('Selecteer eerst een bestand!');
+    alert(t.convAlert);
     return;
   }
 
   statusText.dataset.converted = "false";
-  statusText.innerHTML = '⏳ Bezig met omzetten...';
+  statusText.innerHTML = t.convLoading;
 
   try {
     if (fromType === 'heic') {
@@ -902,15 +976,16 @@ async function executeUniversalConversion() {
     }
   } catch (error) {
     console.error(error);
-    statusText.innerHTML = '❌ Er is iets misgegaan tijdens de conversie.';
+    statusText.innerHTML = t.convError;
   }
 }
 
 function triggerDownload(blob, fileName, formatName, box, statusText) {
   const downloadUrl = URL.createObjectURL(blob);
+  const t = translations[currentLang] || translations['nl'];
   statusText.dataset.converted = "true";
   box.innerHTML = `
-    <p style="font-size: 14px; color: var(--primary); font-weight: 600; margin-bottom: 12px;">✅ Succesvol omgezet naar ${formatName.toUpperCase()}!</p>
+    <p style="font-size: 14px; color: var(--primary); font-weight: 600; margin-bottom: 12px;">${t.convSuccess} ${formatName.toUpperCase()}!</p>
     <a href="${downloadUrl}" download="${fileName}" class="btn" style="display: inline-block; text-decoration: none;">📥 Download ${formatName.toUpperCase()} (${fileName})</a>
   `;
 }
