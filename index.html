@@ -33,6 +33,13 @@
 
   <link rel="stylesheet" href="style.css">
   
+  <!-- Voorkom flits van het welkomstscherm als de taal al is opgeslagen -->
+  <script>
+    if (localStorage.getItem('everyToolLang')) {
+      document.write('<style>.language-overlay { display: none !important; }</style>');
+    }
+  </script>
+
   <!-- Heic2any bibliotheek voor conversies -->
   <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>
 </head>
