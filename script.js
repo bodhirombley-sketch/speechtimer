@@ -148,10 +148,10 @@ const translations = {
     translateTitle: "Übersetzungstool", translateSub: "Übersetzen Sie Ihre Texte in verschiedene Sprachen.",
     translateLabelLang: "Zielsprache wählen:", translateBtn: "🌍 Text übersetzen", translatePreviewPlaceholder: "Übersetzter Text erscheint hier...",
     translateAlert: "Bitte Text zum Übersetzen eingeben.",
-    qrTitle: "QR Code Generator", qrSub: "Geben Sie eine URL ein.",
-    qrPlaceholder: "URL eingeben...",
+    qrTitle: "QR Code Generator", qrSub: "Geben Sie eine URL ein, um sofort einen QR-Code zu generieren.",
+    qrPlaceholder: "Geben Sie eine URL ein...",
     qrGenBtn: "Generieren",
-    downloadQR: "📥 Herunterladen",
+    downloadQR: "📥 QR-Code herunterladen",
     convTitle: "Universeller Konverter",
     convSub: "Konvertieren Sie Fotos, Dokumente oder Daten einfach in ein anderes Format.",
     convLabelFrom: "Was möchten Sie konvertieren?",
@@ -235,7 +235,7 @@ const translations = {
     translateTitle: "Translate Tool", translateSub: "Translate your texts quickly into different languages.",
     translateLabelLang: "Select target language:", translateBtn: "🌍 Translate Text", translatePreviewPlaceholder: "Translated text will appear here...",
     translateAlert: "Please enter text to translate.",
-    qrTitle: "QR Code Generator", qrSub: "Enter a URL to generate a QR code.",
+    qrTitle: "QR Code Generator", qrSub: "Enter a URL to instantly generate a QR code.",
     qrPlaceholder: "Enter a URL...",
     qrGenBtn: "Generate",
     downloadQR: "📥 Download QR Code",
@@ -322,7 +322,7 @@ const translations = {
     translateTitle: "Outil de Traduction", translateSub: "Traduisez rapidement vos textes.",
     translateLabelLang: "Choisir la langue cible :", translateBtn: "🌍 Traduire le texte", translatePreviewPlaceholder: "Le texte traduit apparaîtra ici...",
     translateAlert: "Veuillez entrer du texte à traduire.",
-    qrTitle: "Générateur de Code QR", qrSub: "Entrez une URL pour générer un code QR.",
+    qrTitle: "Générateur de Code QR", qrSub: "Entrez une URL pour générer un code QR instantanément.",
     qrPlaceholder: "Entrez une URL...",
     qrGenBtn: "Générer",
     downloadQR: "📥 Télécharger le code QR",
@@ -414,7 +414,7 @@ const translations = {
     qrGenBtn: "Generar",
     downloadQR: "📥 Descargar código QR",
     convTitle: "Conversor Universal",
-    convSub: "Convierte fotos, documentos o datos fácilmente a otro format.",
+    convSub: "Convierte fotos, documentos o datos fácilmente a otro formato.",
     convLabelFrom: "¿Qué deseas convertir?",
     convLabelTo: "¿Convertir a?",
     convActionBtn: "Iniciar conversión",
@@ -429,7 +429,7 @@ const translations = {
     optFr: "🇫🇷 Francés",
     optEs: "🇪🇸 Español",
     optHeic: "📷 Imagen HEIC (Apple)",
-    optImg: "🖼️ Imagen estándar (PNG/JPG/WebP)",
+    optImg: "🖼️ Image standard (PNG/JPG/WebP)",
     optTxt: "📄 Archivo de texto (.txt)",
     optJpg: "🖼️ Imagen JPG",
     optPng: "🖼️ Imagen PNG",
@@ -441,7 +441,6 @@ const translations = {
 };
 
 window.addEventListener('DOMContentLoaded', () => {
-  // Opgeslagen taal herstellen als deze er is
   const savedLang = localStorage.getItem('everyToolLang');
   if (savedLang && translations[savedLang]) {
     currentLang = savedLang;
@@ -519,7 +518,7 @@ function shareSite() {
 function selectTool(toolId, lang, pushHistory = true) {
   currentTool = toolId;
   currentLang = lang;
-  localStorage.setItem('everyToolLang', lang); // Taalkeuze opslaan
+  localStorage.setItem('everyToolLang', lang);
   
   if (pushHistory) {
     const newPath = toolId === 'home' ? '/' : `/${toolId}/`;
@@ -585,6 +584,7 @@ function selectTool(toolId, lang, pushHistory = true) {
   document.getElementById('faq7Q').innerText = t.faq7Q;
   document.getElementById('faq7A').innerText = t.faq7A;
 
+  // ALLE TITELS EN SUBTITELS BIJWERKEN VOOR ELKE TOOL:
   document.getElementById('t1-title').innerText = t.t1Title;
   document.getElementById('t1-sub').innerText = t.t1Sub;
   document.getElementById('text-timer').placeholder = t.placeholder;
@@ -639,7 +639,6 @@ function selectTool(toolId, lang, pushHistory = true) {
     convStatus.innerText = t.convStatus;
   }
 
-  // Dropdown opties vertalen
   document.getElementById('optNlVoice').innerText = t.optNl;
   document.getElementById('optEnVoice').innerText = t.optEn;
   document.getElementById('optDeVoice').innerText = t.optDe;
