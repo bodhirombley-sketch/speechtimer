@@ -395,7 +395,6 @@ function selectTool(toolId, lang, pushHistory = true) {
   const targetTab = document.getElementById('tab-' + toolId);
   if (targetTab) targetTab.classList.add('active');
 
-  // Sluit automatisch de sidebar, overlay en openstaande dropdowns
   const sidebar = document.getElementById('sidebar');
   const overlay = document.getElementById('overlay');
   if (sidebar) sidebar.classList.remove('open');
@@ -809,10 +808,31 @@ function downloadQRCode() {
 
 function updateConverterUI() {
   const fromType = document.getElementById('convertFrom').value;
+  const toTypeSelect = document.getElementById('convertTo');
   const fileInput = document.getElementById('universalFileInput');
   
+  toTypeSelect.innerHTML = '';
+
   if (fromType === 'heic') {
     fileInput.accept = ".heic, image/heic";
+    toTypeSelect.innerHTML = `
+      <option value="jpg">🖼️ JPG Afbeelding</option>
+      <option value="png">🖼️ PNG Afbeelding</option>
+      <option value="webp">🌐 WebP Afbeelding</option>
+    `;
+  } else if (fromType === 'image') {
+    fileInput.accept = "image/*";
+    toTypeSelect.innerHTML = `
+      <option value="png">🖼️ PNG Afbeelding</option>
+      <option value="jpg">🖼️ JPG Afbeelding</option>
+      <option value="webp">🌐 WebP Afbeelding</option>
+    `;
+  } else if (fromType === 'txt') {
+    fileInput.accept = ".txt";
+    toTypeSelect.innerHTML = `
+      <option value="json">📊 JSON Bestand</option>
+      <option value="html">🌐 HTML Bestand</option>
+    `;
   }
 }
 
@@ -833,28 +853,63 @@ async function executeUniversalConversion() {
   statusText.innerHTML = '⏳ Bezig met omzetten...';
 
   try {
-    if (fromType === 'heic' && (toType === 'jpg' || toType === 'png')) {
-      const mimeType = toType === 'png' ? 'image/png' : 'image/jpeg';
-      
-      const convertedBlob = await heic2any({
-        blob: file,
-        toType: mimeType,
-        quality: 0.8
-      });
+    if (fromType === 'heic') {
+      const mimeMap = { jpg: 'image/jpeg', png: 'image/png', webp: 'image/webp' };
+      const convertedBlob = await heic2any({ blob: file, toType: mimeMap[toType], quality: 0.85 });
+      triggerDownload(convertedBlob, file.name.replace(/\.[^/.]+$/, "") + `.${toType}`, toType, box, statusText);
+    }
+    else if (fromType === 'image') {
+      const reader = new FileReader();
+      reader.onload = function(event) {
+        const img = new Image();
+        img.onload = function() {
+          const canvas = document.createElement('canvas');
+          canvas.width = img.width;
+          canvas.height = img.height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0);
 
-      const downloadUrl = URL.createObjectURL(convertedBlob);
-      const fileName = file.name.replace(/\.[^/.]+$/, "") + `.${toType}`;
+          const mimeMap = { jpg: 'image/jpeg', png: 'image/png', webp: 'image/webp' };
+          canvas.toBlob(function(blob) {
+            triggerDownload(blob, file.name.replace(/\.[^/.]+$/, "") + `.${toType}`, toType, box, statusText);
+          }, mimeMap[toType], 0.9);
+        };
+        img.src = event.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+    else if (fromType === 'txt') {
+      const reader = new FileReader();
+      reader.onload = function(event) {
+        const textContent = event.target.result;
+        let outputData, mimeType, extension;
 
-      statusText.dataset.converted = "true";
-      box.innerHTML = `
-        <p style="font-size: 14px; color: var(--primary); font-weight: 600; margin-bottom: 12px;">✅ Succesvol omgezet naar ${toType.toUpperCase()}!</p>
-        <a href="${downloadUrl}" download="${fileName}" class="btn" style="display: inline-block; text-decoration: none;">📥 Download ${toType.toUpperCase()} (${fileName})</a>
-      `;
-    } else {
-      statusText.innerHTML = '❌ Deze conversiecombinatie wordt nog niet ondersteund.';
+        if (toType === 'json') {
+          outputData = JSON.stringify({ filename: file.name, content: textContent }, null, 2);
+          mimeType = 'application/json';
+          extension = 'json';
+        } else if (toType === 'html') {
+          outputData = `<!DOCTYPE html>\n<html lang="nl">\n<head><meta charset="UTF-8"><title>${file.name}</title></head>\n<body>\n  <pre>${textContent}</pre>\n</body>\n</html>`;
+          mimeType = 'text/html';
+          extension = 'html';
+        }
+
+        const blob = new Blob([outputData], { type: mimeType });
+        triggerDownload(blob, file.name.replace(/\.[^/.]+$/, "") + `.${extension}`, extension, box, statusText);
+      };
+      reader.readAsText(file);
     }
   } catch (error) {
     console.error(error);
     statusText.innerHTML = '❌ Er is iets misgegaan tijdens de conversie.';
   }
+}
+
+function triggerDownload(blob, fileName, formatName, box, statusText) {
+  const downloadUrl = URL.createObjectURL(blob);
+  statusText.dataset.converted = "true";
+  box.innerHTML = `
+    <p style="font-size: 14px; color: var(--primary); font-weight: 600; margin-bottom: 12px;">✅ Succesvol omgezet naar ${formatName.toUpperCase()}!</p>
+    <a href="${downloadUrl}" download="${fileName}" class="btn" style="display: inline-block; text-decoration: none;">📥 Download ${formatName.toUpperCase()} (${fileName})</a>
+  `;
 }
