@@ -335,11 +335,11 @@
         <div class="tts-control-group">
           <label for="voiceLangTts" id="tts-label-lang">Spraak Taal:</label>
           <select id="voiceLangTts" class="tts-select">
-            <option value="nl-NL">🇳🇱 Nederlands</option>
-            <option value="en-US">🇬🇧 Engels</option>
-            <option value="de-DE">🇩🇪 Duits</option>
-            <option value="fr-FR">🇫🇷 Frans</option>
-            <option value="es-ES">🇪🇸 Spaans</option>
+            <option value="nl-NL" id="optNlVoice">🇳🇱 Nederlands</option>
+            <option value="en-US" id="optEnVoice">🇬🇧 Engels</option>
+            <option value="de-DE" id="optDeVoice">🇩🇪 Duits</option>
+            <option value="fr-FR" id="optFrVoice">🇫🇷 Frans</option>
+            <option value="es-ES" id="optEsVoice">🇪🇸 Spaans</option>
           </select>
         </div>
       </div>
@@ -367,11 +367,11 @@
         <div class="tts-control-group">
           <label for="targetLangTranslate" id="translate-label-lang">Kies doeltaal:</label>
           <select id="targetLangTranslate" class="tts-select">
-            <option value="nl">🇳🇱 Nederlands</option>
-            <option value="en">🇬🇧 Engels</option>
-            <option value="fr">🇫🇷 Frans</option>
-            <option value="de">🇩🇪 Duits</option>
-            <option value="es">🇪🇸 Spaans</option>
+            <option value="nl" id="optNlTrans">🇳🇱 Nederlands</option>
+            <option value="en" id="optEnTrans">🇬🇧 Engels</option>
+            <option value="fr" id="optFrTrans">🇫🇷 Frans</option>
+            <option value="de" id="optDeTrans">🇩🇪 Duits</option>
+            <option value="es" id="optEsTrans">🇪🇸 Español</option>
           </select>
         </div>
       </div>
@@ -412,17 +412,17 @@
         <div class="tts-control-group" style="flex: 1;">
           <label for="convertFrom" id="conv-label-from">Wat wil je converteren?</label>
           <select id="convertFrom" class="tts-select" onchange="updateConverterUI()">
-            <option value="heic">📷 HEIC Afbeelding (Apple)</option>
-            <option value="image">🖼️ Standaard Afbeelding (PNG/JPG/WebP)</option>
-            <option value="txt">📄 Tekstbestand (.txt)</option>
+            <option value="heic" id="optHeic">📷 HEIC Afbeelding (Apple)</option>
+            <option value="image" id="optImg">🖼️ Standaard Afbeelding (PNG/JPG/WebP)</option>
+            <option value="txt" id="optTxt">📄 Tekstbestand (.txt)</option>
           </select>
         </div>
         <div class="tts-control-group" style="flex: 1;">
           <label for="convertTo" id="conv-label-to">Waar naartoe converteren?</label>
           <select id="convertTo" class="tts-select">
-            <option value="jpg">🖼️ JPG Afbeelding</option>
-            <option value="png">🖼️ PNG Afbeelding</option>
-            <option value="webp">🌐 WebP Afbeelding</option>
+            <option value="jpg" id="optJpg">🖼️ JPG Afbeelding</option>
+            <option value="png" id="optPng">🖼️ PNG Afbeelding</option>
+            <option value="webp" id="optWebp">🌐 WebP Afbeelding</option>
           </select>
         </div>
       </div>
