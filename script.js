@@ -1,7 +1,4 @@
-let currentLang = 'nl';
-let currentTool = 'home';
-let currentQRUrl = '';
-
+// Talenobject met alle vertalingen voor de interface én de API-foutmeldingen
 const translations = {
   nl: {
     placeholder: "Plak hier je tekst...",
@@ -60,7 +57,9 @@ const translations = {
     ttsNotSupported: "Je browser ondersteunt geen tekst-naar-spraak.",
     translateTitle: "Vertaal Tool", translateSub: "Vertaal je teksten snel naar verschillende talen.",
     translateLabelLang: "Kies doeltaal:", translateBtn: "🌍 Vertaal Tekst", translatePreviewPlaceholder: "Vertaalde tekst verschijnt hier...",
-    translateAlert: "Voer tekst in om te vertalen.",
+    translateAlert: "Vul alstublieft tekst in om te vertalen.",
+    translatingText: "⏳ Bezig met vertalen...",
+    translateError: "⚠️ Verbindingsfout met de vertaal API.",
     qrTitle: "QR Code Generator", qrSub: "Voer een URL in om direct een QR-code te genereren.",
     qrPlaceholder: "Vul een URL in...",
     qrGenBtn: "Genereer",
@@ -147,7 +146,9 @@ const translations = {
     ttsNotSupported: "Ihr Browser unterstützt Text-to-Speech nicht.",
     translateTitle: "Übersetzungstool", translateSub: "Übersetzen Sie Ihre Texte in verschiedene Sprachen.",
     translateLabelLang: "Zielsprache wählen:", translateBtn: "🌍 Text übersetzen", translatePreviewPlaceholder: "Übersetzter Text erscheint hier...",
-    translateAlert: "Bitte Text zum Übersetzen eingeben.",
+    translateAlert: "Bitte geben Sie Text zum Übersetzen ein.",
+    translatingText: "⏳ Übersetzung läuft...",
+    translateError: "⚠️ Verbindungsfehler mit der Übersetzungs-API.",
     qrTitle: "QR Code Generator", qrSub: "Geben Sie eine URL ein, um sofort einen QR-Code zu generieren.",
     qrPlaceholder: "Geben Sie eine URL ein...",
     qrGenBtn: "Generieren",
@@ -235,6 +236,8 @@ const translations = {
     translateTitle: "Translate Tool", translateSub: "Translate your texts quickly into different languages.",
     translateLabelLang: "Select target language:", translateBtn: "🌍 Translate Text", translatePreviewPlaceholder: "Translated text will appear here...",
     translateAlert: "Please enter text to translate.",
+    translatingText: "⏳ Translating text...",
+    translateError: "⚠️ Connection error with translation API.",
     qrTitle: "QR Code Generator", qrSub: "Enter a URL to instantly generate a QR code.",
     qrPlaceholder: "Enter a URL...",
     qrGenBtn: "Generate",
@@ -322,6 +325,8 @@ const translations = {
     translateTitle: "Outil de Traduction", translateSub: "Traduisez rapidement vos textes.",
     translateLabelLang: "Choisir la langue cible :", translateBtn: "🌍 Traduire le texte", translatePreviewPlaceholder: "Le texte traduit apparaîtra ici...",
     translateAlert: "Veuillez entrer du texte à traduire.",
+    translatingText: "⏳ Traduction en cours...",
+    translateError: "⚠️ Erreur de connexion avec l'API de traduction.",
     qrTitle: "Générateur de Code QR", qrSub: "Entrez une URL pour générer un code QR instantanément.",
     qrPlaceholder: "Entrez une URL...",
     qrGenBtn: "Générer",
@@ -409,6 +414,8 @@ const translations = {
     translateTitle: "Herramienta de Traducción", translateSub: "Traduce tus textos rápidamente a diferentes idiomas.",
     translateLabelLang: "Elige idioma de destino:", translateBtn: "🌍 Traducir Texto", translatePreviewPlaceholder: "El texto traducido aparecerá aquí...",
     translateAlert: "Introduce texto para traducir.",
+    translatingText: "⏳ Traduciendo texto...",
+    translateError: "⚠️ Error de conexión con la API de traducción.",
     qrTitle: "QR Code Generator", qrSub: "Introduce una URL para generar un código QR al instante.",
     qrPlaceholder: "Introduce una URL...",
     qrGenBtn: "Generar",
@@ -812,7 +819,7 @@ function writeString(view, offset, string) {
   }
 }
 
-function executeTranslation() {
+async function executeTranslation() {
   const text = document.getElementById('text-translate').value.trim();
   const targetLang = document.getElementById('targetLangTranslate').value;
   const resultBox = document.getElementById('translationResultBox');
@@ -823,8 +830,21 @@ function executeTranslation() {
     return;
   }
 
-  let translated = `[${targetLang.toUpperCase()}] ${text} (Vertaald naar ${targetLang})`;
-  resultBox.innerText = translated;
+  resultBox.innerHTML = t.translatingText;
+
+  try {
+    const sourceLang = currentLang || 'nl';
+    const response = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${sourceLang}|${targetLang}`);
+    const data = await response.json();
+
+    if (data && data.responseData && data.responseData.translatedText) {
+      resultBox.innerText = data.responseData.translatedText;
+    } else {
+      resultBox.innerText = `[${targetLang.toUpperCase()}] ${text}`;
+    }
+  } catch (error) {
+    resultBox.innerText = t.translateError;
+  }
 }
 
 function generateQRFromInput() {
