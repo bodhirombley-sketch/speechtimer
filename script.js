@@ -834,13 +834,26 @@ async function executeTranslation() {
 
   try {
     const sourceLang = currentLang || 'nl';
-    const response = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${sourceLang}|${targetLang}`);
+    
+    const response = await fetch("https://libretranslate.de/translate", {
+      method: "POST",
+      body: JSON.stringify({
+        q: text,
+        source: sourceLang,
+        target: targetLang,
+        format: "text"
+      }),
+      headers: { "Content-Type": "application/json" }
+    });
+
     const data = await response.json();
 
-    if (data && data.responseData && data.responseData.translatedText) {
-      resultBox.innerText = data.responseData.translatedText;
+    if (data && data.translatedText) {
+      resultBox.innerText = data.translatedText;
+    } else if (data && data.error) {
+      resultBox.innerText = `⚠️ ${data.error}`;
     } else {
-      resultBox.innerText = `[${targetLang.toUpperCase()}] ${text}`;
+      resultBox.innerText = t.translateError;
     }
   } catch (error) {
     resultBox.innerText = t.translateError;
