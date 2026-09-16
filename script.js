@@ -421,7 +421,7 @@ const translations = {
     qrGenBtn: "Generar",
     downloadQR: "📥 Descargar código QR",
     convTitle: "Conversor Universal",
-    convSub: "Convierte fotos, documentos o datos fácilmente a otro formato.",
+    convSub: "Convierte fotos, documentos o datos fácilmente a otro format.",
     convLabelFrom: "¿Qué deseas convertir?",
     convLabelTo: "¿Convertir a?",
     convActionBtn: "Iniciar conversión",
@@ -581,14 +581,16 @@ function selectTool(toolId, lang, pushHistory = true) {
 function filterTools() {
   const input = document.getElementById('homeSearchInput').value.toLowerCase().trim();
   const suggestionsBox = document.getElementById('searchSuggestions');
+  const t = translations[currentLang] || translations['nl'];
+
   const allTools = [
-    { id: 'timer', name: '⏱️ Speech & Presentatie', keywords: ['timer', 'speech', 'spreken'] },
-    { id: 'checker', name: '✍️ Grammatica Bot', keywords: ['grammatica', 'spelling', 'fouten'] },
-    { id: 'ai', name: '🤖 AI-Tekst Detector', keywords: ['ai', 'detector', 'chatgpt'] },
-    { id: 'tts', name: '🔊 Tekst-naar-Spraak', keywords: ['spraak', 'tekst', 'voorlezen', 'tts', 'audio'] },
-    { id: 'translate', name: '🌍 Vertaal Tool', keywords: ['vertalen', 'vertaal', 'translate'] },
-    { id: 'qr', name: '📱 QR Code Generator', keywords: ['qr', 'code', 'url'] },
-    { id: 'converter', name: '🔄 Universele Converter', keywords: ['converter', 'omzetten', 'heic', 'jpg', 'bestand'] }
+    { id: 'timer', name: t.menuTimer, keywords: ['timer', 'speech', 'spreken', 'rede', 'präsentation'] },
+    { id: 'checker', name: t.menuChecker, keywords: ['grammatica', 'spelling', 'fouten', 'grammatik', 'rechtschreibung'] },
+    { id: 'ai', name: t.menuAi, keywords: ['ai', 'detector', 'chatgpt', 'text'] },
+    { id: 'tts', name: t.menuTts, keywords: ['spraak', 'tekst', 'voorlezen', 'tts', 'audio', 'speech'] },
+    { id: 'translate', name: t.menuTranslate, keywords: ['vertalen', 'vertaal', 'translate', 'übersetzung'] },
+    { id: 'qr', name: t.menuQr, keywords: ['qr', 'code', 'url', 'generator'] },
+    { id: 'converter', name: t.menuConverter, keywords: ['converter', 'omzetten', 'heic', 'jpg', 'bestand', 'konverter'] }
   ];
 
   if (!input) { suggestionsBox.classList.remove('show'); return; }
@@ -598,7 +600,8 @@ function filterTools() {
     suggestionsBox.innerHTML = matches.map(m => `<div class="suggestion-item" onclick="selectTool('${m.id}', currentLang)">${m.name}</div>`).join('');
     suggestionsBox.classList.add('show');
   } else {
-    suggestionsBox.innerHTML = `<div class="suggestion-item" style="color: var(--text-muted); cursor: default;">Geen tools gevonden...</div>`;
+    const noFoundText = currentLang === 'de' ? 'Keine Tools gefunden...' : currentLang === 'en' ? 'No tools found...' : currentLang === 'fr' ? 'Aucun outil trouvé...' : currentLang === 'es' ? 'No se encontraron herramientas...' : 'Geen tools gevonden...';
+    suggestionsBox.innerHTML = `<div class="suggestion-item" style="color: var(--text-muted); cursor: default;">${noFoundText}</div>`;
     suggestionsBox.classList.add('show');
   }
 }
