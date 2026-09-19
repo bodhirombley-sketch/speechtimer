@@ -1,4 +1,3 @@
-// Talenobject met alle vertalingen voor de interface én de API-foutmeldingen
 const translations = {
   nl: {
     placeholder: "Plak hier je tekst...",
