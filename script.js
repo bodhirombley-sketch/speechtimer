@@ -16,7 +16,7 @@ const translations = {
     homeHeading: "Slimme tools voor al je tekst en spraak",
     homeSub: "Optimaliseer je presentaties, controleer op spelfouten of analyseer zinsstructuren in een handomdraai. Snel, veilig en betrouwbaar.",
     searchPlaceholder: "Typ om een tool te zoeken...",
-    searchBtn: "Zoek",
+    searchBtn: "Zoeken",
     aboutTitle: "💡 Over Every-Tool & Onze Functionaliteiten",
     aboutText: "Alle berekeningen vinden direct plaats in je eigen webbrowser (client-side), wat maximale privacy garandeert. Geen van je teksten wordt opgeslagen op externe servers.",
     faqTitle: "❓ Veelgestelde Vragen (FAQ)",
