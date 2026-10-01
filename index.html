@@ -95,6 +95,76 @@
     }
   </style>
 
+
+  <style>
+    .article-preview-card {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .article-preview-card .hero-tag {
+      display: inline-block;
+      margin-bottom: 14px;
+    }
+
+    .article-preview-card .section-title {
+      margin-bottom: 12px;
+    }
+
+    .article-preview-card .section-subtitle {
+      margin-bottom: 24px;
+    }
+
+    .article-card {
+      line-height: 1.75;
+    }
+
+    .article-card h2 {
+      margin: 32px 0 10px;
+      font-size: 22px;
+      color: var(--text-main);
+    }
+
+    .article-card p {
+      margin: 0 0 16px;
+    }
+
+    .article-card ul {
+      margin: 0 0 20px 22px;
+      padding: 0;
+    }
+
+    .article-card li {
+      margin: 6px 0;
+    }
+
+    .article-cta {
+      margin-top: 36px;
+      padding: 24px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--bg-card);
+    }
+
+    .article-cta h2 {
+      margin-top: 0;
+    }
+
+    @media (max-width: 700px) {
+      .article-card h2 {
+        font-size: 20px;
+      }
+
+      .article-card {
+        line-height: 1.65;
+      }
+
+      .article-cta .btn {
+        margin: 6px 0 0 !important;
+      }
+    }
+  </style>
+
 </head>
 <body data-theme="light">
 
@@ -482,6 +552,22 @@
 
     <div id="tab-article" class="tab-content">
       <article class="article-page">
+        <div class="info-card article-card article-preview-card">
+          <span class="hero-tag">Every-Tool</span>
+          <h1 class="section-title">10 handige gratis online tools voor studenten en contentmakers</h1>
+          <p class="section-subtitle">Ontdek handige gratis tools voor school, schrijven, presentaties, content maken en dagelijks gebruik.</p>
+          <p>
+            Op zoek naar handige online tools zonder ingewikkelde installatie of abonnement?
+            Op <strong>Every-Tool</strong> vind je verschillende gratis tools die je kunnen helpen
+            met school, schrijven, content maken en dagelijkse taken.
+          </p>
+          <button class="btn" onclick="showFullArticle()">📖 Lees het volledige artikel</button>
+        </div>
+      </article>
+    </div>
+
+    <div id="tab-article-full" class="tab-content">
+      <article class="article-page">
         <div class="section-header-wrapper">
           <span class="hero-tag">Every-Tool</span>
           <h1 class="section-title">10 handige gratis online tools voor studenten en contentmakers</h1>
@@ -641,6 +727,9 @@
             <button class="btn" onclick="selectTool('home', currentLang); window.scrollTo({top: 0, behavior: 'smooth'});">
               🏠 Bekijk alle tools
             </button>
+            <button class="btn secondary" onclick="showArticle()" style="margin-left: 8px;">
+              ← Terug naar artikeloverzicht
+            </button>
           </div>
         </div>
       </article>
@@ -657,27 +746,5 @@
   </main>
 
   <script src="script.js"></script>
-
-  <script>
-    function showArticle() {
-      document.querySelectorAll('.tab-content').forEach(function(tab) {
-        tab.classList.remove('active');
-      });
-
-      var article = document.getElementById('tab-article');
-      if (article) {
-        article.classList.add('active');
-      }
-
-      var sidebar = document.getElementById('sidebar');
-      var overlay = document.getElementById('overlay');
-
-      if (sidebar) sidebar.classList.remove('open');
-      if (overlay) overlay.classList.remove('active');
-
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  </script>
-
 </body>
 </html>
