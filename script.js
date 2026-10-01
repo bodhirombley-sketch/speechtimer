@@ -4,7 +4,7 @@ const translations = {
     menuHeader: "Kies een Tool",
     menuHome: "🏠 Overzicht / Home",
     menuTimer: "⏱️ Speech & Presentatie",
-    menuChecker: "✍️ Grammatica Bot",
+    menuChecker: "✍️️ Grammatica Bot",
     menuAi: "🤖 AI-Tekst Detector",
     menuTts: "🔊 Tekst-naar-Spraak",
     menuTranslate: "🌍 Vertaal Tool",
@@ -69,7 +69,7 @@ const translations = {
     ttsLabelLang: "Spraak Taal:",
     speakBtn: "🔊 Lees Hardop",
     downloadAudioBtn: "📥 Download Audio (.WAV)",
-    stopSpeechBtn: "⏹️ Stop",
+    stopSpeechBtn: "⏹️️ Stop",
     ttsStatusPlaceholder: "Status: Klaar om voor te lezen of te downloaden...",
     ttsSpeaking: "🔊 Bezig met voorlezen...",
     ttsDone: "✅ Voorlezen voltooid.",
@@ -469,7 +469,7 @@ const translations = {
     optHeic: "📷 Image HEIC (Apple)",
     optImg: "🖼️ Image standard (PNG/JPG/WebP)",
     optTxt: "📄 Fichier texte (.txt)",
-    optJpg: "🖼️️ Image JPG",
+    optJpg: "🖼️ Image JPG",
     optPng: "🖼️ Image PNG",
     optWebp: "🌐 Image WebP",
     adSpace: "Espace Publicitaire (Google AdSense)",
@@ -483,7 +483,7 @@ const translations = {
     placeholder: "Pega tu texto aquí...",
     menuHeader: "Seleccionar Herramienta",
     menuHome: "🏠 Inicio / Resumen",
-    menuTimer: "⏱️ Temporizador de Discurso",
+    menuTimer: "⏱️️ Temporizador de Discurso",
     menuChecker: "✍️ Bot de Gramática",
     menuAi: "🤖 Detector de Texto IA",
     menuTts: "🔊 Texto a Voz",
@@ -537,7 +537,7 @@ const translations = {
     noText: "Ningún texto introducido.",
     noIssues: "✅ ¡No se encontraron errores!",
     checkingText: "⏳ Comprobando texto...",
-    apiError: "⚠️ Error de conexión con la API de LanguageTool.",
+    apiError: "⚠️️ Error de conexión con la API de LanguageTool.",
     t3Title: "Indicador Detector de Texto IA",
     t3Sub: "Analiza la estructura de las oraciones en busca de características de IA.",
     t3Score: "Probabilidad estimada de IA",
@@ -612,6 +612,13 @@ window.addEventListener('DOMContentLoaded', () => {
     if (overlay) overlay.classList.add('hidden');
   }
 
+  const savedTheme = localStorage.getItem('everyToolTheme');
+  if (savedTheme === 'dark') {
+    document.body.setAttribute('data-theme', 'dark');
+    const btn = document.getElementById('darkModeBtn');
+    if (btn) btn.innerText = "☀️ Light Mode";
+  }
+
   ['text-timer', 'text-checker', 'text-ai', 'text-tts', 'text-translate', 'qrUrlInput'].forEach(id => {
     const saved = localStorage.getItem(id);
     if (saved) {
@@ -655,9 +662,11 @@ function toggleDarkMode() {
   const btn = document.getElementById('darkModeBtn');
   if (body.getAttribute('data-theme') === 'light') {
     body.setAttribute('data-theme', 'dark');
+    localStorage.setItem('everyToolTheme', 'dark');
     btn.innerText = "☀️ Light Mode";
   } else {
     body.setAttribute('data-theme', 'light');
+    localStorage.setItem('everyToolTheme', 'light');
     btn.innerText = "🌙 Dark Mode";
   }
 }
@@ -720,6 +729,16 @@ function selectTool(toolId, lang, pushHistory = true) {
   document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
   const targetTab = document.getElementById('tab-' + toolId);
   if (targetTab) targetTab.classList.add('active');
+
+  // Sluit eventuele open blog details als je wegnavigeert
+  if (toolId !== 'blog') {
+    const fullContent = document.getElementById('blogFullContent');
+    const listContainer = document.getElementById('blogListContainer');
+    if (fullContent && listContainer) {
+      fullContent.classList.remove('active');
+      listContainer.style.display = 'block';
+    }
+  }
 
   closeSidebar();
   document.querySelectorAll('.lang-dropdown').forEach(d => d.classList.remove('show'));
