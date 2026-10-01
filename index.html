@@ -42,6 +42,59 @@
 
   <!-- Heic2any bibliotheek voor conversies -->
   <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>
+
+  <style>
+    .article-page {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .article-card {
+      line-height: 1.75;
+    }
+
+    .article-card h2 {
+      margin: 32px 0 10px;
+      font-size: 22px;
+      color: var(--text-main);
+    }
+
+    .article-card p {
+      margin: 0 0 16px;
+    }
+
+    .article-card ul {
+      margin: 0 0 20px 22px;
+      padding: 0;
+    }
+
+    .article-card li {
+      margin: 6px 0;
+    }
+
+    .article-cta {
+      margin-top: 36px;
+      padding: 24px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--bg-card);
+    }
+
+    .article-cta h2 {
+      margin-top: 0;
+    }
+
+    @media (max-width: 700px) {
+      .article-card h2 {
+        font-size: 20px;
+      }
+
+      .article-card {
+        line-height: 1.65;
+      }
+    }
+  </style>
+
 </head>
 <body data-theme="light">
 
@@ -158,6 +211,12 @@
     <div class="tool-group">
       <button class="tool-btn" onclick="selectTool('converter', currentLang)">
         <span id="menuConverter">🔄 Universele Converter</span>
+      </button>
+    </div>
+
+    <div class="tool-group">
+      <button class="tool-btn" onclick="showArticle()">
+        <span>📰 Artikel</span>
       </button>
     </div>
   </nav>
@@ -420,6 +479,173 @@
       </div>
     </div>
 
+
+    <div id="tab-article" class="tab-content">
+      <article class="article-page">
+        <div class="section-header-wrapper">
+          <span class="hero-tag">Every-Tool</span>
+          <h1 class="section-title">10 handige gratis online tools voor studenten en contentmakers</h1>
+          <p class="section-subtitle">Ontdek handige gratis tools voor school, schrijven, presentaties, content maken en dagelijks gebruik.</p>
+        </div>
+
+        <div class="info-card article-card">
+          <p>
+            Op zoek naar handige online tools zonder ingewikkelde installatie of abonnement?
+            Op <strong>Every-Tool</strong> vind je verschillende gratis tools die je kunnen helpen
+            met school, schrijven, content maken en dagelijkse taken.
+          </p>
+
+          <h2>1. Tekst verbeteren</h2>
+          <p>
+            Heb je een tekst geschreven, maar zitten er spelfouten of onduidelijke zinnen in?
+            Een tekstverbeteringstool kan helpen om je tekst duidelijker en netter te maken.
+          </p>
+          <p>Dit is bijvoorbeeld handig voor:</p>
+          <ul>
+            <li>Schoolopdrachten</li>
+            <li>E-mails</li>
+            <li>Artikelen</li>
+            <li>Socialmediaberichten</li>
+          </ul>
+
+          <h2>2. Grammatica controleren</h2>
+          <p>
+            Een kleine grammaticafout kan ervoor zorgen dat een tekst minder professioneel overkomt.
+            Met een grammaticacontrole kun je snel controleren of je zinnen correct zijn geschreven.
+          </p>
+          <p>
+            Je kunt bijvoorbeeld een tekst kopiëren, controleren en daarna de verbeterde versie gebruiken.
+          </p>
+
+          <h2>3. Tekst naar spraak</h2>
+          <p>
+            Wil je een tekst liever beluisteren dan lezen? Met een tekst-naar-spraak-tool kun je
+            geschreven tekst laten voorlezen.
+          </p>
+          <p>Dit kan handig zijn wanneer je:</p>
+          <ul>
+            <li>Een tekst wilt beluisteren tijdens het leren</li>
+            <li>Een script wilt controleren</li>
+            <li>Een tekst toegankelijker wilt maken</li>
+            <li>De uitspraak van woorden wilt horen</li>
+          </ul>
+
+          <h2>4. QR-code maken</h2>
+          <p>
+            Een QR-code is een snelle manier om iemand naar een website, tekst of andere informatie
+            te sturen.
+          </p>
+          <p>Je kunt een QR-code bijvoorbeeld gebruiken voor:</p>
+          <ul>
+            <li>Een website</li>
+            <li>Een evenement</li>
+            <li>Een document</li>
+            <li>Een socialmediaprofiel</li>
+          </ul>
+          <p>
+            In plaats van een lange link over te typen, kan iemand simpelweg de QR-code scannen.
+          </p>
+
+          <h2>5. Tekst vertalen</h2>
+          <p>
+            Wanneer je informatie in een andere taal nodig hebt, kan een vertaaltool veel tijd besparen.
+          </p>
+          <p>
+            Vertalen kan bijvoorbeeld handig zijn voor websites, korte berichten, schoolwerk of
+            wanneer je met iemand communiceert die een andere taal spreekt.
+          </p>
+          <p>
+            Let er bij belangrijke teksten wel op dat een automatische vertaling niet altijd perfect is.
+          </p>
+
+          <h2>6. Speech Timer</h2>
+          <p>
+            Een speech of presentatie oefenen is een stuk makkelijker wanneer je weet hoe lang je tekst duurt.
+          </p>
+          <p>Met een speech timer kun je bijvoorbeeld oefenen voor:</p>
+          <ul>
+            <li>Presentaties</li>
+            <li>Spreekbeurten</li>
+            <li>Video's</li>
+            <li>Podcasts</li>
+            <li>Toespraken</li>
+          </ul>
+          <p>
+            Zo kun je controleren of je binnen de gewenste tijd blijft.
+          </p>
+
+          <h2>7. AI-tekst controleren</h2>
+          <p>
+            AI wordt steeds vaker gebruikt om teksten te schrijven en te verbeteren. Daardoor kan het
+            soms lastig zijn om te bepalen hoe een tekst tot stand is gekomen.
+          </p>
+          <p>
+            Een AI-tekstindicator kan een extra hulpmiddel zijn om een tekst te analyseren.
+          </p>
+          <p>
+            Houd er wel rekening mee dat dergelijke systemen nooit met volledige zekerheid kunnen bepalen
+            of een tekst door AI is geschreven.
+          </p>
+
+          <h2>8. Tekst analyseren</h2>
+          <p>
+            Soms wil je snel weten hoeveel woorden of tekens een tekst bevat. Een tekst-analysetool kan
+            daarbij helpen.
+          </p>
+          <p>
+            Dit is vooral handig wanneer je een bepaalde woordlimiet moet gebruiken voor bijvoorbeeld
+            een schoolopdracht, artikel of socialmediapost.
+          </p>
+
+          <h2>9. Handige tools voor contentmakers</h2>
+          <p>
+            Maak je video's, artikelen of socialmediacontent? Dan kunnen kleine online hulpmiddelen
+            veel tijd besparen.
+          </p>
+          <p>
+            Denk bijvoorbeeld aan het controleren van scripts, het voorbereiden van een presentatie,
+            het omzetten van tekst naar spraak of het maken van QR-codes.
+          </p>
+          <p>
+            Door verschillende eenvoudige tools te combineren, kun je een groot deel van je workflow
+            online uitvoeren.
+          </p>
+
+          <h2>10. Alles op één plek</h2>
+          <p>
+            Het grootste voordeel van een website met meerdere tools is dat je niet voor iedere kleine
+            taak een nieuwe website hoeft te zoeken.
+          </p>
+          <p>
+            Every-Tool brengt verschillende handige hulpmiddelen samen op één plek. Daardoor kun je snel
+            van de ene tool naar de andere gaan en verschillende taken uitvoeren zonder steeds nieuwe
+            software te installeren.
+          </p>
+
+          <h2>Waarom gratis online tools handig zijn</h2>
+          <p>
+            Online tools zijn vooral handig omdat je ze meestal direct vanuit je browser kunt gebruiken.
+            Je hoeft dus niet eerst een programma te downloaden of installeren.
+          </p>
+          <p>
+            Voor studenten, docenten, contentmakers en andere internetgebruikers kunnen kleine tools
+            een hoop tijd besparen.
+          </p>
+
+          <div class="article-cta">
+            <h2>Probeer Every-Tool</h2>
+            <p>
+              Wil je verschillende gratis online tools uitproberen? Bekijk dan de tools op Every-Tool
+              en ontdek welke hulpmiddelen voor jou het handigst zijn.
+            </p>
+            <button class="btn" onclick="selectTool('home', currentLang); window.scrollTo({top: 0, behavior: 'smooth'});">
+              🏠 Bekijk alle tools
+            </button>
+          </div>
+        </div>
+      </article>
+    </div>
+
     <div class="ad-space" id="adSpace">Advertentie Ruimte (Google AdSense)</div>
 
     <footer class="security-footer">
@@ -431,5 +657,27 @@
   </main>
 
   <script src="script.js"></script>
+
+  <script>
+    function showArticle() {
+      document.querySelectorAll('.tab-content').forEach(function(tab) {
+        tab.classList.remove('active');
+      });
+
+      var article = document.getElementById('tab-article');
+      if (article) {
+        article.classList.add('active');
+      }
+
+      var sidebar = document.getElementById('sidebar');
+      var overlay = document.getElementById('overlay');
+
+      if (sidebar) sidebar.classList.remove('open');
+      if (overlay) overlay.classList.remove('active');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+
 </body>
 </html>
