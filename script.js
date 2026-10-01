@@ -4,7 +4,7 @@ const translations = {
     menuHeader: "Kies een Tool",
     menuHome: "🏠 Overzicht / Home",
     menuTimer: "⏱️ Speech & Presentatie",
-    menuChecker: "✍️️ Grammatica Bot",
+    menuChecker: "✍️ Grammatica Bot",
     menuAi: "🤖 AI-Tekst Detector",
     menuTts: "🔊 Tekst-naar-Spraak",
     menuTranslate: "🌍 Vertaal Tool",
@@ -53,6 +53,7 @@ const translations = {
     t2Issues: "Gevonden Aandachtspunten:",
     btnClean: "✨ Automatisch Herstellen",
     btnCopy: "📋 Kopiëren",
+    clearText: "🗑️ Wis tekst",
     copyAlert: "Gekopieerd naar klembord!",
     noText: "Geen tekst ingevoerd.",
     noIssues: "✅ Geen spelfouten gevonden!",
@@ -69,7 +70,7 @@ const translations = {
     ttsLabelLang: "Spraak Taal:",
     speakBtn: "🔊 Lees Hardop",
     downloadAudioBtn: "📥 Download Audio (.WAV)",
-    stopSpeechBtn: "⏹️️ Stop",
+    stopSpeechBtn: "⏹️ Stop",
     ttsStatusPlaceholder: "Status: Klaar om voor te lezen of te downloaden...",
     ttsSpeaking: "🔊 Bezig met voorlezen...",
     ttsDone: "✅ Voorlezen voltooid.",
@@ -173,6 +174,7 @@ const translations = {
     t2Issues: "Gefundene Probleme:",
     btnClean: "✨ Korrigieren",
     btnCopy: "📋 Kopieren",
+    clearText: "🗑️ Text löschen",
     copyAlert: "Kopiert!",
     noText: "Kein Text.",
     noIssues: "✅ Keine Fehler gefunden!",
@@ -293,6 +295,7 @@ const translations = {
     t2Issues: "Detected Issues:",
     btnClean: "✨ Auto Correct",
     btnCopy: "📋 Copy",
+    clearText: "🗑️️ Clear text",
     copyAlert: "Copied!",
     noText: "No text entered.",
     noIssues: "✅ No issues found!",
@@ -413,6 +416,7 @@ const translations = {
     t2Issues: "Problèmes détectés :",
     btnClean: "✨ Correction automatique",
     btnCopy: "📋 Copier",
+    clearText: "🗑️ Effacer",
     copyAlert: "Copié dans le presse-papier !",
     noText: "Aucun texte saisi.",
     noIssues: "✅ Aucun problème détecté !",
@@ -445,7 +449,7 @@ const translations = {
     translatePreviewPlaceholder: "Le texte traduit apparaîtra ici...",
     translateAlert: "Veuillez entrer du texte à traduire.",
     translatingText: "⏳ Traduction en cours...",
-    translateError: "⚠️ Erreur de connexion avec l'API de traduction.",
+    translateError: "⚠️️ Erreur de connexion avec l'API de traduction.",
     qrTitle: "Générateur de Code QR",
     qrSub: "Entrez une URL pour générer un code QR instantanément.",
     qrPlaceholder: "Entrez une URL...",
@@ -469,7 +473,7 @@ const translations = {
     optHeic: "📷 Image HEIC (Apple)",
     optImg: "🖼️ Image standard (PNG/JPG/WebP)",
     optTxt: "📄 Fichier texte (.txt)",
-    optJpg: "🖼️ Image JPG",
+    optJpg: "🖼️️ Image JPG",
     optPng: "🖼️ Image PNG",
     optWebp: "🌐 Image WebP",
     adSpace: "Espace Publicitaire (Google AdSense)",
@@ -483,7 +487,7 @@ const translations = {
     placeholder: "Pega tu texto aquí...",
     menuHeader: "Seleccionar Herramienta",
     menuHome: "🏠 Inicio / Resumen",
-    menuTimer: "⏱️️ Temporizador de Discurso",
+    menuTimer: "⏱️ Temporizador de Discurso",
     menuChecker: "✍️ Bot de Gramática",
     menuAi: "🤖 Detector de Texto IA",
     menuTts: "🔊 Texto a Voz",
@@ -533,11 +537,12 @@ const translations = {
     t2Issues: "Problemas detectados:",
     btnClean: "✨ Corrección automática",
     btnCopy: "📋 Copiar",
+    clearText: "🗑️ Borrar texto",
     copyAlert: "¡Copiado al portapapeles!",
     noText: "Ningún texto introducido.",
     noIssues: "✅ ¡No se encontraron errores!",
     checkingText: "⏳ Comprobando texto...",
-    apiError: "⚠️️ Error de conexión con la API de LanguageTool.",
+    apiError: "⚠️ Error de conexión con la API de LanguageTool.",
     t3Title: "Indicador Detector de Texto IA",
     t3Sub: "Analiza la estructura de las oraciones en busca de características de IA.",
     t3Score: "Probabilidad estimada de IA",
@@ -635,6 +640,19 @@ window.addEventListener('DOMContentLoaded', () => {
 
   handleRoute();
   window.addEventListener('popstate', handleRoute);
+
+  // Sneltoetsen listener (Ctrl + Enter)
+  document.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+      if (currentTool === 'checker') {
+        checkAndFixWithLanguageTool();
+      } else if (currentTool === 'translate') {
+        executeTranslation();
+      } else if (currentTool === 'qr') {
+        generateQRFromInput();
+      }
+    }
+  });
 });
 
 function handleRoute() {
@@ -716,6 +734,18 @@ function shareSite() {
   alert((translations[currentLang] || translations['nl']).copyAlert);
 }
 
+function clearTextArea(id, statsId) {
+  const el = document.getElementById(id);
+  if (el) {
+    el.value = '';
+    localStorage.removeItem(id);
+    if (id === 'text-timer') calcTimer();
+    if (id === 'text-checker') updateCheckerStats();
+    if (id === 'text-ai') checkAI();
+    if (id === 'qrUrlInput') generateQRFromInput();
+  }
+}
+
 function selectTool(toolId, lang, pushHistory = true) {
   currentTool = toolId;
   currentLang = lang;
@@ -730,7 +760,6 @@ function selectTool(toolId, lang, pushHistory = true) {
   const targetTab = document.getElementById('tab-' + toolId);
   if (targetTab) targetTab.classList.add('active');
 
-  // Sluit eventuele open blog details als je wegnavigeert
   if (toolId !== 'blog') {
     const fullContent = document.getElementById('blogFullContent');
     const listContainer = document.getElementById('blogListContainer');
@@ -759,6 +788,11 @@ function selectTool(toolId, lang, pushHistory = true) {
         el.innerText = t[id];
       }
     }
+  });
+
+  // Dynamische vertaling van de wis-knoppen
+  document.querySelectorAll('.clear-btn').forEach(btn => {
+    btn.innerText = t.clearText;
   });
 
   const searchBtn = document.getElementById('homeSearchBtn');
@@ -821,12 +855,21 @@ function calcTimer() {
   const words = text ? text.split(/\s+/).filter(w => w.length > 0).length : 0;
   const chars = text.length;
 
-  document.getElementById('stats-timer').innerText = `Woorden: ${words} | Tekens: ${chars}`;
+  document.getElementById('stats-timer-text').innerText = `Woorden: ${words} | Tekens: ${chars}`;
   const sp = (translations[currentLang] || translations['nl']).speeds;
 
+  const timeNormSec = words ? (words / sp.norm) * 60 : 0;
   document.getElementById('timeSlow').innerText = formatTime(words ? (words / sp.slow) * 60 : 0);
-  document.getElementById('timeNorm').innerText = formatTime(words ? (words / sp.norm) * 60 : 0);
+  document.getElementById('timeNorm').innerText = formatTime(timeNormSec);
   document.getElementById('timeFast').innerText = formatTime(words ? (words / sp.fast) * 60 : 0);
+
+  // Visuele waarschuwing als presentatie langer duurt dan 5 minuten (300 seconden)
+  const normCard = document.getElementById('cardNorm');
+  if (timeNormSec > 300) {
+    normCard.classList.add('warning');
+  } else {
+    normCard.classList.remove('warning');
+  }
 }
 
 let timerInt = null;
@@ -860,7 +903,7 @@ function updateCheckerStats() {
   const val = document.getElementById('text-checker').value;
   saveToLocal('text-checker', val);
   const words = val.trim() ? val.trim().split(/\s+/).length : 0;
-  document.getElementById('stats-checker').innerText = `Woorden: ${words} | Tekens: ${val.length}`;
+  document.getElementById('stats-checker-text').innerText = `Woorden: ${words} | Tekens: ${val.length}`;
 }
 
 async function checkAndFixWithLanguageTool() {
@@ -925,11 +968,14 @@ function checkAI() {
   saveToLocal('text-ai', text);
   const t = translations[currentLang] || translations['nl'];
   const words = text ? text.split(/\s+/).length : 0;
-  document.getElementById('stats-ai').innerText = `Woorden: ${words} | Tekens: ${text.length}`;
+  document.getElementById('stats-ai-text').innerText = `Woorden: ${words} | Tekens: ${text.length}`;
+
+  const barFill = document.getElementById('aiBar');
 
   if (text.length < 50) {
     document.getElementById('aiScore').innerText = "0%";
-    document.getElementById('aiBar').style.width = "0%";
+    barFill.style.width = "0%";
+    barFill.style.backgroundColor = "var(--primary)";
     document.getElementById('aiAnalysis').innerText = t.aiShort;
     return;
   }
@@ -941,7 +987,17 @@ function checkAI() {
   let score = Math.max(5, Math.min(98, Math.round(100 - variance * 10)));
 
   document.getElementById('aiScore').innerText = score + "%";
-  document.getElementById('aiBar').style.width = score + "%";
+  barFill.style.width = score + "%";
+
+  // Dynamische kleurverandering balk
+  if (score > 70) {
+    barFill.style.backgroundColor = "#ef4444"; // Rood bij hoge AI-kans
+  } else if (score > 40) {
+    barFill.style.backgroundColor = "#f59e0b"; // Oranje bij twijfel
+  } else {
+    barFill.style.backgroundColor = "#22c55e"; // Groen bij menselijk
+  }
+
   document.getElementById('aiAnalysis').innerText = score > 60 ? t.aiHigh : t.aiLow;
 }
 
