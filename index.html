@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
- <meta name="google-site-verification" content="dRqlmVRgjVvYHjLUpZepsxuLzY7t73oeTPpBF2LJMho" />
- <meta name="google-adsense-account" content="ca-pub-3253400496231224">
+  <meta name="google-site-verification" content="dRqlmVRgjVvYHjLUpZepsxuLzY7t73oeTPpBF2LJMho" />
+  <meta name="google-adsense-account" content="ca-pub-3253400496231224">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Every-Tool - Slimme Tools voor Tekst, Speech Timer en Grammatica</title>
@@ -33,138 +33,13 @@
 
   <link rel="stylesheet" href="style.css">
   
-  <!-- Voorkom flits van het welkomstscherm als de taal al is opgeslagen -->
   <script>
     if (localStorage.getItem('everyToolLang')) {
       document.write('<style>.language-overlay { display: none !important; }</style>');
     }
   </script>
 
-  <!-- Heic2any bibliotheek voor conversies -->
   <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>
-
-  <style>
-    .article-page {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .article-card {
-      line-height: 1.75;
-    }
-
-    .article-card h2 {
-      margin: 32px 0 10px;
-      font-size: 22px;
-      color: var(--text-main);
-    }
-
-    .article-card p {
-      margin: 0 0 16px;
-    }
-
-    .article-card ul {
-      margin: 0 0 20px 22px;
-      padding: 0;
-    }
-
-    .article-card li {
-      margin: 6px 0;
-    }
-
-    .article-cta {
-      margin-top: 36px;
-      padding: 24px;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      background: var(--bg-card);
-    }
-
-    .article-cta h2 {
-      margin-top: 0;
-    }
-
-    @media (max-width: 700px) {
-      .article-card h2 {
-        font-size: 20px;
-      }
-
-      .article-card {
-        line-height: 1.65;
-      }
-    }
-  </style>
-
-
-  <style>
-    .article-preview-card {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .article-preview-card .hero-tag {
-      display: inline-block;
-      margin-bottom: 14px;
-    }
-
-    .article-preview-card .section-title {
-      margin-bottom: 12px;
-    }
-
-    .article-preview-card .section-subtitle {
-      margin-bottom: 24px;
-    }
-
-    .article-card {
-      line-height: 1.75;
-    }
-
-    .article-card h2 {
-      margin: 32px 0 10px;
-      font-size: 22px;
-      color: var(--text-main);
-    }
-
-    .article-card p {
-      margin: 0 0 16px;
-    }
-
-    .article-card ul {
-      margin: 0 0 20px 22px;
-      padding: 0;
-    }
-
-    .article-card li {
-      margin: 6px 0;
-    }
-
-    .article-cta {
-      margin-top: 36px;
-      padding: 24px;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      background: var(--bg-card);
-    }
-
-    .article-cta h2 {
-      margin-top: 0;
-    }
-
-    @media (max-width: 700px) {
-      .article-card h2 {
-        font-size: 20px;
-      }
-
-      .article-card {
-        line-height: 1.65;
-      }
-
-      .article-cta .btn {
-        margin: 6px 0 0 !important;
-      }
-    }
-  </style>
-
 </head>
 <body data-theme="light">
 
@@ -210,9 +85,7 @@
     </div>
 
     <div class="tool-group">
-      <button class="tool-btn" onclick="selectTool('home', currentLang)">
-        <span id="menuHome">🏠 Overzicht / Home</span>
-      </button>
+      <button class="tool-btn" onclick="selectTool('home', currentLang)"><span id="menuHome">🏠 Overzicht / Home</span></button>
     </div>
 
     <div class="tool-group">
@@ -236,7 +109,7 @@
         <span class="arrow">▼</span>
       </button>
       <div class="lang-dropdown" id="drop-checker">
-        <div class="lang-title" id="langTitle">Taal / Language:</div>
+        <div class="lang-title">Taal / Language:</div>
         <button class="lang-opt" onclick="selectTool('checker', 'nl')">🇳🇱 Nederlands</button>
         <button class="lang-opt" onclick="selectTool('checker', 'de')">🇩🇪 Deutsch</button>
         <button class="lang-opt" onclick="selectTool('checker', 'en')">🇬🇧 English</button>
@@ -251,7 +124,7 @@
         <span class="arrow">▼</span>
       </button>
       <div class="lang-dropdown" id="drop-ai">
-        <div class="lang-title" id="langTitle">Taal / Language:</div>
+        <div class="lang-title">Taal / Language:</div>
         <button class="lang-opt" onclick="selectTool('ai', 'nl')">🇳🇱 Nederlands</button>
         <button class="lang-opt" onclick="selectTool('ai', 'de')">🇩🇪 Deutsch</button>
         <button class="lang-opt" onclick="selectTool('ai', 'en')">🇬🇧 English</button>
@@ -260,35 +133,11 @@
       </div>
     </div>
 
-    <div class="tool-group">
-      <button class="tool-btn" onclick="selectTool('tts', currentLang)">
-        <span id="menuTts">🔊 Tekst-naar-Spraak</span>
-      </button>
-    </div>
-
-    <div class="tool-group">
-      <button class="tool-btn" onclick="selectTool('translate', currentLang)">
-        <span id="menuTranslate">🌍 Vertaal Tool</span>
-      </button>
-    </div>
-
-    <div class="tool-group">
-      <button class="tool-btn" onclick="selectTool('qr', currentLang)">
-        <span id="menuQr">📱 QR Code Generator</span>
-      </button>
-    </div>
-
-    <div class="tool-group">
-      <button class="tool-btn" onclick="selectTool('converter', currentLang)">
-        <span id="menuConverter">🔄 Universele Converter</span>
-      </button>
-    </div>
-
-    <div class="tool-group">
-      <button class="tool-btn" onclick="showArticle()">
-        <span id="menuArticle">📰 Artikel</span>
-      </button>
-    </div>
+    <div class="tool-group"><button class="tool-btn" onclick="selectTool('tts', currentLang)"><span id="menuTts">🔊 Tekst-naar-Spraak</span></button></div>
+    <div class="tool-group"><button class="tool-btn" onclick="selectTool('translate', currentLang)"><span id="menuTranslate">🌍 Vertaal Tool</span></button></div>
+    <div class="tool-group"><button class="tool-btn" onclick="selectTool('qr', currentLang)"><span id="menuQr">📱 QR Code Generator</span></button></div>
+    <div class="tool-group"><button class="tool-btn" onclick="selectTool('converter', currentLang)"><span id="menuConverter">🔄 Universele Converter</span></button></div>
+    <div class="tool-group"><button class="tool-btn" onclick="showArticle()"><span id="menuArticle">📰 Artikel</span></button></div>
   </nav>
 
   <main class="container">
@@ -316,58 +165,50 @@
 
         <section class="info-card faq-section-wrapper">
           <h3 id="faqTitle">❓ Veelgestelde Vragen (FAQ)</h3>
-
           <div id="faqListContainer" style="display: flex; flex-direction: column; gap: 12px;">
             <div class="faq-item">
               <details>
                 <summary id="faq1Q">Hoe werkt de Speech Timer?</summary>
-                <p id="faq1A">Plak je presentatietekst in de tool om direct je spreektijd te berekenen op basis van verschillende snelheden (langzaam, normaal, snel). <br><a href="#" onclick="selectTool('timer', currentLang); return false;" style="color: var(--primary); font-weight: 600; text-decoration: none;">👉 Open Speech Timer direct</a></p>
+                <p id="faq1A">Plak je presentatietekst in de tool om direct je spreektijd te berekenen op basis van verschillende snelheden. <br><a href="#" onclick="selectTool('timer', currentLang); return false;" style="color: var(--primary); font-weight: 600; text-decoration: none;">👉 Open Speech Timer direct</a></p>
               </details>
             </div>
-
             <div class="faq-item">
               <details>
                 <summary id="faq2Q">Worden mijn teksten opgeslagen?</summary>
-                <p id="faq2A">Nee, alle verwerking gebeurt lokaal in je browser. Dankzij LocalStorage onthoudt je browser wel tijdelijk je invoer, zodat je niets kwijtraakt als je per ongeluk de pagina vernieuwt.</p>
+                <p id="faq2A">Nee, alle verwerking gebeurt lokaal in je browser via LocalStorage.</p>
               </details>
             </div>
-
             <div class="faq-item">
               <details>
                 <summary id="faq3Q">Is het gebruik van Every-Tool gratis?</summary>
-                <p id="faq3A">Ja, alle tools op dit platform zijn volledig gratis te gebruiken voor studenten, professionals en contentmakers.</p>
+                <p id="faq3A">Ja, alle tools op dit platform zijn volledig gratis te gebruiken.</p>
               </details>
             </div>
-
             <div class="faq-item">
               <details>
                 <summary id="faq4Q">Hoe betrouwbaar is de AI-Tekst Detector?</summary>
-                <p id="faq4A">De AI-detector kijkt naar statistische kenmerken zoals zinslengte en variatie in schrijfstijl. Het geeft een goede indicatie, maar het blijft een schatting en geen 100% sluitend bewijs.</p>
+                <p id="faq4A">De detector kijkt naar statistische kenmerken en geeft een indicatie, maar geen 100% sluitend bewijs.</p>
               </details>
             </div>
-
             <div class="faq-item">
               <details>
                 <summary id="faq5Q">Kan ik de gegenereerde audio downloaden?</summary>
-                <p id="faq5A">Ja, in de Tekst-naar-Spraak tool kun je direct na het invoeren van je tekst klikken op de downloadknop om het audiobestand (.WAV) op te slaan op je apparaat.</p>
+                <p id="faq5A">Ja, je kunt direct het audiobestand (.WAV) opslaan op je apparaat.</p>
               </details>
             </div>
-
             <div class="faq-item">
               <details>
                 <summary id="faq6Q">Moet ik software installeren om deze tools te gebruiken?</summary>
-                <p id="faq6A">Nee, absoluut niet. Every-Tool werkt volledig web-based in elke moderne browser op je computer, tablet of smartphone.</p>
+                <p id="faq6A">Nee, Every-Tool werkt volledig web-based in elke moderne browser.</p>
               </details>
             </div>
-
             <div class="faq-item">
               <details>
                 <summary id="faq7Q">Hoe werkt de Grammatica Bot?</summary>
-                <p id="faq7A">De Grammatica Bot maakt gebruik van de LanguageTool API om automatisch je tekst te scannen op spelfouten, stijlfouten en grammaticale onjuistheden, met handige correctiesuccessen. <br><a href="#" onclick="selectTool('checker', currentLang); return false;" style="color: var(--primary); font-weight: 600; text-decoration: none;">👉 Open Grammatica Bot direct</a></p>
+                <p id="faq7A">De bot scant automatisch je tekst op spelfouten en stijlfouten. <br><a href="#" onclick="selectTool('checker', currentLang); return false;" style="color: var(--primary); font-weight: 600; text-decoration: none;">👉 Open Grammatica Bot direct</a></p>
               </details>
             </div>
           </div>
-
         </section>
       </div>
     </div>
@@ -401,7 +242,6 @@
         <h2 class="section-title" id="t2Title">Grammatica & Spelfout Bot</h2>
         <p class="section-subtitle" id="t2Sub">Controleer automatisch op spelfouten via LanguageTool.</p>
       </div>
-      
       <textarea id="text-checker" placeholder="Plak hier je tekst..." oninput="updateCheckerStats()"></textarea>
       <div class="stats-bar" id="stats-checker">Woorden: 0 | Tekens: 0</div>
 
@@ -437,7 +277,6 @@
         <h2 class="section-title" id="ttsTitle">Tekst-naar-Spraak</h2>
         <p class="section-subtitle" id="ttsSub">Laat je tekst direct voorlezen of download de audio als bestand.</p>
       </div>
-      
       <textarea id="text-tts" placeholder="Typ of plak hier je tekst om voor te lezen..." oninput="saveToLocal('text-tts', this.value)"></textarea>
       
       <div class="tts-controls-row">
@@ -469,7 +308,6 @@
         <h2 class="section-title" id="translateTitle">Vertaal Tool</h2>
         <p class="section-subtitle" id="translateSub">Vertaal je teksten snel naar verschillende talen.</p>
       </div>
-      
       <textarea id="text-translate" placeholder="Typ of plak hier de tekst die je wilt vertalen..." oninput="saveToLocal('text-translate', this.value)"></textarea>
       
       <div class="tts-controls-row">
@@ -487,7 +325,7 @@
 
       <div class="action-bar">
         <button class="btn" id="translateBtn" onclick="executeTranslation()">🌍 Vertaal Tekst</button>
-        <button class="btn secondary" id="btnCopy" onclick="copyText('translationResultBox')">📋 Kopiëren</button>
+        <button class="btn secondary" onclick="copyText('translationResultBox')">📋 Kopiëren</button>
       </div>
 
       <div class="translation-preview" id="translationResultBox">
@@ -500,12 +338,10 @@
         <h2 class="section-title" id="qrTitle">QR Code Generator</h2>
         <p class="section-subtitle" id="qrSub">Voer een URL in om direct een QR-code te genereren.</p>
       </div>
-      
       <div class="url-input-group">
         <input type="url" id="qrUrlInput" placeholder="https://jouwwebsite.nl" oninput="generateQRFromInput()" />
         <button class="btn" id="qrGenBtn" onclick="generateQRFromInput()">Genereer</button>
       </div>
-
       <div class="qr-preview-box" id="qrPreviewBox">
         <p style="color: var(--text-muted); font-size: 14px; margin: 0;" id="qrPlaceholder">Vul een URL in...</p>
       </div>
@@ -536,8 +372,8 @@
         </div>
       </div>
 
-      <div class="url-input-group" id="converterInputWrapper" style="flex-direction: column; align-items: stretch; gap: 12px;">
-        <input type="file" id="universalFileInput" accept=".heic, image/heic" style="padding: 12px; border: 2px dashed var(--border); border-radius: 8px; cursor: pointer; background: var(--bg-card); color: var(--text-main); width: 100%;" />
+      <div class="url-input-group" style="flex-direction: column; align-items: stretch; gap: 12px;">
+        <input type="file" id="universalFileInput" accept=".heic, image/heic" style="padding: 12px; border: 2px dashed var(--border-color); border-radius: 8px; cursor: pointer; background: var(--card-bg); color: var(--text-color); width: 100%;" />
       </div>
 
       <div style="margin-top: 20px; text-align: center;">
@@ -549,16 +385,9 @@
       </div>
     </div>
 
-
     <div id="tab-article" class="tab-content">
       <article class="article-page">
         <div id="articleOverviewContainer"></div>
-      </article>
-    </div>
-
-    <div id="tab-article-full" class="tab-content">
-      <article class="article-page">
-        <div id="articleFullContainer"></div>
       </article>
     </div>
 
