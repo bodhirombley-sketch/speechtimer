@@ -3,13 +3,14 @@ const translations = {
     placeholder: "Plak hier je tekst...",
     menuHeader: "Kies een Tool",
     menuHome: "🏠 Overzicht / Home",
-    menuTimer: "⏱️ Speech & Presentatie",
+    menuTimer: "⏱️️ Speech & Presentatie",
     menuChecker: "✍️ Grammatica Bot",
     menuAi: "🤖 AI-Tekst Detector",
     menuTts: "🔊 Tekst-naar-Spraak",
     menuTranslate: "🌍 Vertaal Tool",
     menuQr: "📱 QR Code Generator",
     menuConverter: "🔄 Universele Converter",
+    menuBlog: "📰 Blog",
     langTitle: "Taal / Language:",
     shareBtn: "🔗 Deel",
     heroTag: "Meet Every-Tool",
@@ -53,7 +54,7 @@ const translations = {
     noText: "Geen tekst ingevoerd.",
     noIssues: "✅ Geen spelfouten gevonden!",
     checkingText: "⏳ Bezig met controleren...",
-    apiError: "⚠️ Verbindingsfout met LanguageTool API.",
+    apiError: "⚠️️ Verbindingsfout met LanguageTool API.",
     t3Title: "AI-Tekst Detector Indicator",
     t3Sub: "Analyseer zinsstructuur op AI-kenmerken.",
     t3Score: "Geschatte AI-waarschijnlijkheid",
@@ -81,7 +82,7 @@ const translations = {
     translatePreviewPlaceholder: "Vertaalde tekst verschijnt hier...",
     translateAlert: "Vul alstublieft tekst in om te vertalen.",
     translatingText: "⏳ Bezig met vertalen...",
-    translateError: "⚠️️ Verbindingsfout met de vertaal API.",
+    translateError: "⚠️ Verbindingsfout met de vertaal API.",
     qrTitle: "QR Code Generator",
     qrSub: "Voer een URL in om direct een QR-code te genereren.",
     qrPlaceholder: "Vul een URL in...",
@@ -126,6 +127,7 @@ const translations = {
     menuTranslate: "🌍 Übersetzung",
     menuQr: "📱 QR Code Generator",
     menuConverter: "🔄 Universeller Konverter",
+    menuBlog: "📰 Blog",
     langTitle: "Sprache / Language:",
     shareBtn: "🔗 Teilen",
     heroTag: "Meet Every-Tool",
@@ -242,6 +244,7 @@ const translations = {
     menuTranslate: "🌍 Translate Tool",
     menuQr: "📱 QR Code Generator",
     menuConverter: "🔄 Universal Converter",
+    menuBlog: "📰 Blog",
     langTitle: "Language:",
     shareBtn: "🔗 Share",
     heroTag: "Meet Every-Tool",
@@ -352,12 +355,13 @@ const translations = {
     menuHeader: "Sélectionner un outil",
     menuHome: "🏠 Accueil / Aperçu",
     menuTimer: "⏱️ Minuteur de discours",
-    menuChecker: "✍️️ Bot Grammaire",
+    menuChecker: "✍️ Bot Grammaire",
     menuAi: "🤖 Détecteur de texte IA",
     menuTts: "🔊 Synthèse vocale",
     menuTranslate: "🌍 Outil de Traduction",
     menuQr: "📱 Générateur de Code QR",
     menuConverter: "🔄 Convertisseur Universel",
+    menuBlog: "📰 Blog",
     langTitle: "Langue / Language:",
     shareBtn: "🔗 Partager",
     heroTag: "Meet Every-Tool",
@@ -467,13 +471,14 @@ const translations = {
     placeholder: "Pega tu texto aquí...",
     menuHeader: "Seleccionar Herramienta",
     menuHome: "🏠 Inicio / Resumen",
-    menuTimer: "⏱️ Temporizador de Discurso",
+    menuTimer: "⏱️️ Temporizador de Discurso",
     menuChecker: "✍️ Bot de Gramática",
     menuAi: "🤖 Detector de Texto IA",
     menuTts: "🔊 Texto a Voz",
     menuTranslate: "🌍 Herramienta de Traducción",
     menuQr: "📱 Generador de Códigos QR",
     menuConverter: "🔄 Conversor Universal",
+    menuBlog: "📰 Blog",
     langTitle: "Idioma / Language:",
     shareBtn: "🔗 Compartir",
     heroTag: "Meet Every-Tool",
@@ -613,7 +618,7 @@ window.addEventListener('DOMContentLoaded', () => {
 function handleRoute() {
   const path = window.location.pathname.replace(/^\/+|\/+$/g, '');
   let toolId = 'home';
-  if (['timer', 'checker', 'ai', 'tts', 'translate', 'qr', 'converter'].includes(path)) {
+  if (['timer', 'checker', 'ai', 'tts', 'translate', 'qr', 'converter', 'blog'].includes(path)) {
     toolId = path;
   }
   selectTool(toolId, currentLang, false);
@@ -627,7 +632,7 @@ function setInitialLanguage(lang) {
   currentLang = lang;
   localStorage.setItem('everyToolLang', lang);
   document.getElementById('languageOverlay').classList.add('hidden');
-  selectTool('home', lang);
+  selectTool(currentTool, lang);
 }
 
 function toggleDarkMode() {
@@ -658,14 +663,8 @@ function closeSidebar() {
   if (overlay) overlay.classList.remove('open');
 }
 
-function showArticle() {
-  document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-  const article = document.getElementById('tab-article');
-  if (article) article.classList.add('active');
-  closeSidebar();
-  document.querySelectorAll('.lang-dropdown').forEach(d => d.classList.remove('show'));
-  document.querySelectorAll('.tool-btn').forEach(b => b.classList.remove('open'));
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+function showBlog() {
+  selectTool('blog', currentLang);
 }
 
 function toggleDropdown(dropId, btn) {
@@ -740,7 +739,8 @@ function filterTools() {
     { id: 'tts', name: t.menuTts, keywords: ['spraak', 'tekst', 'voorlezen', 'tts', 'audio'] },
     { id: 'translate', name: t.menuTranslate, keywords: ['vertalen', 'vertaal', 'translate'] },
     { id: 'qr', name: t.menuQr, keywords: ['qr', 'code', 'url', 'generator'] },
-    { id: 'converter', name: t.menuConverter, keywords: ['converter', 'omzetten', 'heic', 'jpg'] }
+    { id: 'converter', name: t.menuConverter, keywords: ['converter', 'omzetten', 'heic', 'jpg'] },
+    { id: 'blog', name: t.menuBlog, keywords: ['blog', 'artikel', 'nieuws'] }
   ];
 
   if (!input) {
