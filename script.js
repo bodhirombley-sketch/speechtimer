@@ -34,19 +34,39 @@ const translations = {
     faq6A: "Nee, absoluut niet. Every-Tool werkt volledig web-based in elke moderne browser op je computer, tablet of smartphone.",
     faq7Q: "Hoe werkt de Grammatica Bot?",
     faq7A: "De Grammatica Bot maakt gebruik van de LanguageTool API om automatisch je tekst te scannen op spelfouten, stijlfouten en grammaticale onjuistheden, met handige correctiesuccessen.",
-    t1Title: "Speech & Presentatie Timer", t1Sub: "Bereken direct hoe lang jouw tekst duurt om voor te lezen.",
-    slow: "🐢 Langzaam", norm: "🚶 Normaal", fast: "🐇 Snel", practice: "Oefen je speech live:", startBtn: "Start", pauseBtn: "Pauze", resumeBtn: "Hervat", resetBtn: "Reset",
-    t2Title: "Grammatica & Spelfout Bot", t2Sub: "Controleer automatisch op spelfouten via LanguageTool.",
+    t1Title: "Speech & Presentatie Timer",
+    t1Sub: "Bereken direct hoe lang jouw tekst duurt om voor te lezen.",
+    slow: "🐢 Langzaam",
+    norm: "🚶 Normaal",
+    fast: "🐇 Snel",
+    practice: "Oefen je speech live:",
+    startBtn: "Start",
+    pauseBtn: "Pauze",
+    resumeBtn: "Hervat",
+    resetBtn: "Reset",
+    t2Title: "Grammatica & Spelfout Bot",
+    t2Sub: "Controleer automatisch op spelfouten via LanguageTool.",
     t2Issues: "Gevonden Aandachtspunten:",
-    btnClean: "✨ Automatisch Herstellen", btnCopy: "📋 Kopiëren", copyAlert: "Gekopieerd naar klembord!",
-    noText: "Geen tekst ingevoerd.", noIssues: "✅ Geen spelfouten gevonden!",
+    btnClean: "✨ Automatisch Herstellen",
+    btnCopy: "📋 Kopiëren",
+    copyAlert: "Gekopieerd naar klembord!",
+    noText: "Geen tekst ingevoerd.",
+    noIssues: "✅ Geen spelfouten gevonden!",
     checkingText: "⏳ Bezig met controleren...",
     apiError: "⚠️ Verbindingsfout met LanguageTool API.",
-    t3Title: "AI-Tekst Detector Indicator", t3Sub: "Analyseer zinsstructuur op AI-kenmerken.",
-    t3Score: "Geschatte AI-waarschijnlijkheid", aiShort: "Voer minimaal 50 tekens in voor een schatting.",
-    aiHigh: "Hoge mate van regelmatige zinsopbouw gedetecteerd.", aiLow: "Natuurlijke variatie in zinslengte gedetecteerd.",
-    ttsTitle: "Tekst-naar-Spraak", ttsSub: "Laat je tekst direct voorlezen of download de audio als bestand.",
-    ttsLabelLang: "Spraak Taal:", speakBtn: "🔊 Lees Hardop", downloadAudioBtn: "📥 Download Audio (.WAV)", stopSpeechBtn: "⏹️ Stop", ttsStatusPlaceholder: "Status: Klaar om voor te lezen of te downloaden...",
+    t3Title: "AI-Tekst Detector Indicator",
+    t3Sub: "Analyseer zinsstructuur op AI-kenmerken.",
+    t3Score: "Geschatte AI-waarschijnlijkheid",
+    aiShort: "Voer minimaal 50 tekens in voor een schatting.",
+    aiHigh: "Hoge mate van regelmatige zinsopbouw gedetecteerd.",
+    aiLow: "Natuurlijke variatie in zinslengte gedetecteerd.",
+    ttsTitle: "Tekst-naar-Spraak",
+    ttsSub: "Laat je tekst direct voorlezen of download de audio als bestand.",
+    ttsLabelLang: "Spraak Taal:",
+    speakBtn: "🔊 Lees Hardop",
+    downloadAudioBtn: "📥 Download Audio (.WAV)",
+    stopSpeechBtn: "⏹️ Stop",
+    ttsStatusPlaceholder: "Status: Klaar om voor te lezen of te downloaden...",
     ttsSpeaking: "🔊 Bezig met voorlezen...",
     ttsDone: "✅ Voorlezen voltooid.",
     ttsStopped: "⏹️ Gestopt.",
@@ -54,12 +74,16 @@ const translations = {
     ttsNoTextAlert: "Voer eerst wat tekst in!",
     ttsNoAudioTextAlert: "Voer eerst tekst in om te kunnen downloaden.",
     ttsNotSupported: "Je browser ondersteunt geen tekst-naar-spraak.",
-    translateTitle: "Vertaal Tool", translateSub: "Vertaal je teksten snel naar verschillende talen.",
-    translateLabelLang: "Kies doeltaal:", translateBtn: "🌍 Vertaal Tekst", translatePreviewPlaceholder: "Vertaalde tekst verschijnt hier...",
+    translateTitle: "Vertaal Tool",
+    translateSub: "Vertaal je teksten snel naar verschillende talen.",
+    translateLabelLang: "Kies doeltaal:",
+    translateBtn: "🌍 Vertaal Tekst",
+    translatePreviewPlaceholder: "Vertaalde tekst verschijnt hier...",
     translateAlert: "Vul alstublieft tekst in om te vertalen.",
     translatingText: "⏳ Bezig met vertalen...",
     translateError: "⚠️ Verbindingsfout met de vertaal API.",
-    qrTitle: "QR Code Generator", qrSub: "Voer een URL in om direct een QR-code te genereren.",
+    qrTitle: "QR Code Generator",
+    qrSub: "Voer een URL in om direct een QR-code te genereren.",
     qrPlaceholder: "Vul een URL in...",
     qrGenBtn: "Genereer",
     downloadQR: "📥 Download QR-code",
@@ -85,9 +109,12 @@ const translations = {
     optPng: "🖼️ PNG Afbeelding",
     optWebp: "🌐 WebP Afbeelding",
     adSpace: "Advertentie Ruimte (Google AdSense)",
-    sec1: "256-bit SSL-beveiliging", sec2: "100% Privacy - Lokale verwerking", sec3: "Direct resultaat",
+    sec1: "256-bit SSL-beveiliging",
+    sec2: "100% Privacy - Lokale verwerking",
+    sec3: "Direct resultaat",
     speeds: { slow: 90, norm: 100, fast: 125 }
   },
+
   de: {
     placeholder: "Fügen Sie Ihren Text hier ein...",
     menuHeader: "Werkzeug wählen",
@@ -123,19 +150,39 @@ const translations = {
     faq6A: "Nein, alles läuft direkt im Browser.",
     faq7Q: "Wie funktioniert der Grammatik-Bot?",
     faq7A: "Er nutzt die LanguageTool API zur automatischen Fehlerprüfung.",
-    t1Title: "Rede & Präsentations-Timer", t1Sub: "Berechnen Sie sofort die Sprechdauer.",
-    slow: "🐢 Langsam", norm: "🚶 Normal", fast: "🐇 Schnell", practice: "Üben Sie live:", startBtn: "Start", pauseBtn: "Pause", resumeBtn: "Fortsetzen", resetBtn: "Zurücksetzen",
-    t2Title: "Grammatik & Rechtschreibung", t2Sub: "Automatische Prüfung via LanguageTool.",
+    t1Title: "Rede & Präsentations-Timer",
+    t1Sub: "Berechnen Sie sofort die Sprechdauer.",
+    slow: "🐢 Langsam",
+    norm: "🚶 Normal",
+    fast: "🐇 Schnell",
+    practice: "Üben Sie live:",
+    startBtn: "Start",
+    pauseBtn: "Pause",
+    resumeBtn: "Fortsetzen",
+    resetBtn: "Zurücksetzen",
+    t2Title: "Grammatik & Rechtschreibung",
+    t2Sub: "Automatische Prüfung via LanguageTool.",
     t2Issues: "Gefundene Probleme:",
-    btnClean: "✨ Korrigieren", btnCopy: "📋 Kopieren", copyAlert: "Kopiert!",
-    noText: "Kein Text.", noIssues: "✅ Keine Fehler gefunden!",
+    btnClean: "✨ Korrigieren",
+    btnCopy: "📋 Kopieren",
+    copyAlert: "Kopiert!",
+    noText: "Kein Text.",
+    noIssues: "✅ Keine Fehler gefunden!",
     checkingText: "⏳ Überprüfung läuft...",
     apiError: "⚠️ Verbindungsfehler mit der LanguageTool API.",
-    t3Title: "AI-Text-Detektor", t3Sub: "Analysieren Sie die Satzstruktur.",
-    t3Score: "Geschätzte KI-Wahrscheinlichkeit", aiShort: "Mindestens 50 Zeichen eingeben.",
-    aiHigh: "Hohe Regelmäßigkeit.", aiLow: "Natürliche Variation.",
-    ttsTitle: "Text-to-Speech", ttsSub: "Lassen Sie Ihren Text vorlesen oder als Audiodatei herunterladen.",
-    ttsLabelLang: "Sprachauswahl:", speakBtn: "🔊 Vorlesen", downloadAudioBtn: "📥 Audio herunterladen", stopSpeechBtn: "⏹️ Stopp", ttsStatusPlaceholder: "Status: Bereit...",
+    t3Title: "AI-Text-Detektor",
+    t3Sub: "Analysieren Sie die Satzstruktur.",
+    t3Score: "Geschätzte KI-Wahrscheinlichkeit",
+    aiShort: "Mindestens 50 Zeichen eingeben.",
+    aiHigh: "Hohe Regelmäßigkeit.",
+    aiLow: "Natürliche Variation.",
+    ttsTitle: "Text-to-Speech",
+    ttsSub: "Lassen Sie Ihren Text vorlesen oder als Audiodatei herunterladen.",
+    ttsLabelLang: "Sprachauswahl:",
+    speakBtn: "🔊 Vorlesen",
+    downloadAudioBtn: "📥 Audio herunterladen",
+    stopSpeechBtn: "⏹️ Stopp",
+    ttsStatusPlaceholder: "Status: Bereit...",
     ttsSpeaking: "🔊 Wiedergabe läuft...",
     ttsDone: "✅ Wiedergabe beendet.",
     ttsStopped: "⏹️ Gestoppt.",
@@ -143,12 +190,16 @@ const translations = {
     ttsNoTextAlert: "Bitte geben Sie zuerst Text ein!",
     ttsNoAudioTextAlert: "Bitte geben Sie Text zum Herunterladen ein.",
     ttsNotSupported: "Ihr Browser unterstützt Text-to-Speech nicht.",
-    translateTitle: "Übersetzungstool", translateSub: "Übersetzen Sie Ihre Texte in verschiedene Sprachen.",
-    translateLabelLang: "Zielsprache wählen:", translateBtn: "🌍 Text übersetzen", translatePreviewPlaceholder: "Übersetzter Text erscheint hier...",
+    translateTitle: "Übersetzungstool",
+    translateSub: "Übersetzen Sie Ihre Texte in verschiedene Sprachen.",
+    translateLabelLang: "Zielsprache wählen:",
+    translateBtn: "🌍 Text übersetzen",
+    translatePreviewPlaceholder: "Übersetzter Text erscheint hier...",
     translateAlert: "Bitte geben Sie Text zum Übersetzen ein.",
     translatingText: "⏳ Übersetzung läuft...",
     translateError: "⚠️ Verbindungsfehler mit der Übersetzungs-API.",
-    qrTitle: "QR Code Generator", qrSub: "Geben Sie eine URL ein, um sofort einen QR-Code zu generieren.",
+    qrTitle: "QR Code Generator",
+    qrSub: "Geben Sie eine URL ein, um sofort einen QR-Code zu generieren.",
     qrPlaceholder: "Geben Sie eine URL ein...",
     qrGenBtn: "Generieren",
     downloadQR: "📥 QR-Code herunterladen",
@@ -174,9 +225,12 @@ const translations = {
     optPng: "🖼️ PNG Bild",
     optWebp: "🌐 WebP Bild",
     adSpace: "Werbeplatz (Google AdSense)",
-    sec1: "256-bit SSL-Sicherheit", sec2: "100% Datenschutz - Lokale Verarbeitung", sec3: "Sofortiges Ergebnis",
+    sec1: "256-bit SSL-Sicherheit",
+    sec2: "100% Datenschutz - Lokale Verarbeitung",
+    sec3: "Sofortiges Ergebnis",
     speeds: { slow: 110, norm: 130, fast: 160 }
   },
+
   en: {
     placeholder: "Paste your text here...",
     menuHeader: "Select Tool",
@@ -212,19 +266,39 @@ const translations = {
     faq6A: "No, Every-Tool runs entirely in your web browser across all devices.",
     faq7Q: "How does the Grammar Bot work?",
     faq7A: "It utilizes the LanguageTool API to automatically scan your text for spelling and grammatical errors.",
-    t1Title: "Speech & Presentation Timer", t1Sub: "Calculate speaking time instantly.",
-    slow: "🐢 Slow", norm: "🚶 Average", fast: "🐇 Fast", practice: "Practice live:", startBtn: "Start", pauseBtn: "Pause", resumeBtn: "Resume", resetBtn: "Reset",
-    t2Title: "Grammar Corrector", t2Sub: "Automatic checking powered by LanguageTool.",
+    t1Title: "Speech & Presentation Timer",
+    t1Sub: "Calculate speaking time instantly.",
+    slow: "🐢 Slow",
+    norm: "🚶 Average",
+    fast: "🐇 Fast",
+    practice: "Practice live:",
+    startBtn: "Start",
+    pauseBtn: "Pause",
+    resumeBtn: "Resume",
+    resetBtn: "Reset",
+    t2Title: "Grammar Corrector",
+    t2Sub: "Automatic checking powered by LanguageTool.",
     t2Issues: "Detected Issues:",
-    btnClean: "✨ Auto Correct", btnCopy: "📋 Copy", copyAlert: "Copied!",
-    noText: "No text entered.", noIssues: "✅ No issues found!",
+    btnClean: "✨ Auto Correct",
+    btnCopy: "📋 Copy",
+    copyAlert: "Copied!",
+    noText: "No text entered.",
+    noIssues: "✅ No issues found!",
     checkingText: "⏳ Checking text...",
     apiError: "⚠️ Connection error with LanguageTool API.",
-    t3Title: "AI Text Detector", t3Sub: "Analyze sentence variation.",
-    t3Score: "Estimated AI Probability", aiShort: "Enter at least 50 characters.",
-    aiHigh: "High regularity.", aiLow: "Natural variation.",
-    ttsTitle: "Text-to-Speech", ttsSub: "Read text aloud or download the audio file directly.",
-    ttsLabelLang: "Voice Language:", speakBtn: "🔊 Read Aloud", downloadAudioBtn: "📥 Download Audio (.WAV)", stopSpeechBtn: "⏹️ Stop", ttsStatusPlaceholder: "Status: Ready to speak or download...",
+    t3Title: "AI Text Detector",
+    t3Sub: "Analyze sentence variation.",
+    t3Score: "Estimated AI Probability",
+    aiShort: "Enter at least 50 characters.",
+    aiHigh: "High regularity.",
+    aiLow: "Natural variation.",
+    ttsTitle: "Text-to-Speech",
+    ttsSub: "Read text aloud or download the audio file directly.",
+    ttsLabelLang: "Voice Language:",
+    speakBtn: "🔊 Read Aloud",
+    downloadAudioBtn: "📥 Download Audio (.WAV)",
+    stopSpeechBtn: "⏹️ Stop",
+    ttsStatusPlaceholder: "Status: Ready to speak or download...",
     ttsSpeaking: "🔊 Speaking...",
     ttsDone: "✅ Speech completed.",
     ttsStopped: "⏹️ Stopped.",
@@ -232,12 +306,16 @@ const translations = {
     ttsNoTextAlert: "Please enter some text first!",
     ttsNoAudioTextAlert: "Please enter text to download.",
     ttsNotSupported: "Your browser does not support text-to-speech.",
-    translateTitle: "Translate Tool", translateSub: "Translate your texts quickly into different languages.",
-    translateLabelLang: "Select target language:", translateBtn: "🌍 Translate Text", translatePreviewPlaceholder: "Translated text will appear here...",
+    translateTitle: "Translate Tool",
+    translateSub: "Translate your texts quickly into different languages.",
+    translateLabelLang: "Select target language:",
+    translateBtn: "🌍 Translate Text",
+    translatePreviewPlaceholder: "Translated text will appear here...",
     translateAlert: "Please enter text to translate.",
     translatingText: "⏳ Translating text...",
     translateError: "⚠️ Connection error with translation API.",
-    qrTitle: "QR Code Generator", qrSub: "Enter a URL to instantly generate a QR code.",
+    qrTitle: "QR Code Generator",
+    qrSub: "Enter a URL to instantly generate a QR code.",
     qrPlaceholder: "Enter a URL...",
     qrGenBtn: "Generate",
     downloadQR: "📥 Download QR Code",
@@ -263,9 +341,12 @@ const translations = {
     optPng: "🖼️ PNG Image",
     optWebp: "🌐 WebP Image",
     adSpace: "Ad Space (Google AdSense)",
-    sec1: "256-bit SSL Security", sec2: "100% Privacy - Local Processing", sec3: "Instant Results",
+    sec1: "256-bit SSL Security",
+    sec2: "100% Privacy - Local Processing",
+    sec3: "Instant Results",
     speeds: { slow: 110, norm: 130, fast: 160 }
   },
+
   fr: {
     placeholder: "Collez votre texte ici...",
     menuHeader: "Sélectionner un outil",
@@ -301,19 +382,39 @@ const translations = {
     faq6A: "Non, Every-Tool fonctionne entièrement dans votre navigateur Web.",
     faq7Q: "Comment fonctionne le bot de grammaire ?",
     faq7A: "Il utilise l'API LanguageTool pour analyser automatiquement votre texte.",
-    t1Title: "Minuteur de discours", t1Sub: "Calculez la durée de lecture de votre texte.",
-    slow: "🐢 Lent", norm: "🚶 Normal", fast: "🐇 Rapide", practice: "Pratiquez en direct :", startBtn: "Démarrer", pauseBtn: "Pause", resumeBtn: "Reprendre", resetBtn: "Réinitialiser",
-    t2Title: "Correcteur Grammatical", t2Sub: "Vérification automatique via LanguageTool.",
+    t1Title: "Minuteur de discours",
+    t1Sub: "Calculez la durée de lecture de votre texte.",
+    slow: "🐢 Lent",
+    norm: "🚶 Normal",
+    fast: "🐇 Rapide",
+    practice: "Pratiquez en direct :",
+    startBtn: "Démarrer",
+    pauseBtn: "Pause",
+    resumeBtn: "Reprendre",
+    resetBtn: "Réinitialiser",
+    t2Title: "Correcteur Grammatical",
+    t2Sub: "Vérification automatique via LanguageTool.",
     t2Issues: "Problèmes détectés :",
-    btnClean: "✨ Correction automatique", btnCopy: "📋 Copier", copyAlert: "Copié dans le presse-papier !",
-    noText: "Aucun texte saisi.", noIssues: "✅ Aucun problème détecté !",
+    btnClean: "✨ Correction automatique",
+    btnCopy: "📋 Copier",
+    copyAlert: "Copié dans le presse-papier !",
+    noText: "Aucun texte saisi.",
+    noIssues: "✅ Aucun problème détecté !",
     checkingText: "⏳ Vérification en cours...",
     apiError: "⚠️ Erreur de connexion avec l'API LanguageTool.",
-    t3Title: "Détecteur de texte IA", t3Sub: "Analysez la structure des phrases.",
-    t3Score: "Probabilité IA estimée", aiShort: "Entrez au moins 50 caractères.",
-    aiHigh: "Forte régularité détectée.", aiLow: "Variation naturelle détectée.",
-    ttsTitle: "Synthèse vocale", ttsSub: "Écoutez votre texte ou téléchargez l'audio.",
-    ttsLabelLang: "Langue de la voix :", speakBtn: "🔊 Lire à haute voix", downloadAudioBtn: "📥 Télécharger l'audio (.WAV)", stopSpeechBtn: "⏹️ Arrêter", ttsStatusPlaceholder: "Statut : Prêt...",
+    t3Title: "Détecteur de texte IA",
+    t3Sub: "Analysez la structure des phrases.",
+    t3Score: "Probabilité IA estimée",
+    aiShort: "Entrez au moins 50 caractères.",
+    aiHigh: "Forte régularité détectée.",
+    aiLow: "Variation naturelle détectée.",
+    ttsTitle: "Synthèse vocale",
+    ttsSub: "Écoutez votre texte ou téléchargez l'audio.",
+    ttsLabelLang: "Langue de la voix :",
+    speakBtn: "🔊 Lire à haute voix",
+    downloadAudioBtn: "📥 Télécharger l'audio (.WAV)",
+    stopSpeechBtn: "⏹️ Arrêter",
+    ttsStatusPlaceholder: "Statut : Prêt...",
     ttsSpeaking: "🔊 Lecture en cours...",
     ttsDone: "✅ Lecture terminée.",
     ttsStopped: "⏹️ Arrêté.",
@@ -321,12 +422,16 @@ const translations = {
     ttsNoTextAlert: "Veuillez d'abord entrer du texte !",
     ttsNoAudioTextAlert: "Veuillez entrer du texte à télécharger.",
     ttsNotSupported: "Votre navigateur ne prend pas en charge la synthèse vocale.",
-    translateTitle: "Outil de Traduction", translateSub: "Traduisez rapidement vos textes.",
-    translateLabelLang: "Choisir la langue cible :", translateBtn: "🌍 Traduire le texte", translatePreviewPlaceholder: "Le texte traduit apparaîtra ici...",
+    translateTitle: "Outil de Traduction",
+    translateSub: "Traduisez rapidement vos textes.",
+    translateLabelLang: "Choisir la langue cible :",
+    translateBtn: "🌍 Traduire le texte",
+    translatePreviewPlaceholder: "Le texte traduit apparaîtra ici...",
     translateAlert: "Veuillez entrer du texte à traduire.",
     translatingText: "⏳ Traduction en cours...",
     translateError: "⚠️ Erreur de connexion avec l'API de traduction.",
-    qrTitle: "Générateur de Code QR", qrSub: "Entrez une URL pour générer un code QR instantanément.",
+    qrTitle: "Générateur de Code QR",
+    qrSub: "Entrez une URL pour générer un code QR instantanément.",
     qrPlaceholder: "Entrez une URL...",
     qrGenBtn: "Générer",
     downloadQR: "📥 Télécharger le code QR",
@@ -352,9 +457,12 @@ const translations = {
     optPng: "🖼️ Image PNG",
     optWebp: "🌐 Image WebP",
     adSpace: "Espace Publicitaire (Google AdSense)",
-    sec1: "Sécurité SSL 256 bits", sec2: "100% Confidentialité - Traitement local", sec3: "Résultat instantané",
+    sec1: "Sécurité SSL 256 bits",
+    sec2: "100% Confidentialité - Traitement local",
+    sec3: "Résultat instantané",
     speeds: { slow: 90, norm: 100, fast: 125 }
   },
+
   es: {
     placeholder: "Pega tu texto aquí...",
     menuHeader: "Seleccionar Herramienta",
@@ -390,19 +498,39 @@ const translations = {
     faq6A: "No, Every-Tool se ejecuta completamente en tu navegador web.",
     faq7Q: "¿Cómo funciona el Bot de Gramática?",
     faq7A: "Utiliza la API de LanguageTool para escanear automáticamente errores ortográficos y gramaticales.",
-    t1Title: "Temporizador de Discurso y Presentación", t1Sub: "Calcula instantáneamente cuánto dura tu texto.",
-    slow: "🐢 Lento", norm: "🚶 Normal", fast: "🐇 Rápido", practice: "Practica tu discurso en vivo:", startBtn: "Iniciar", pauseBtn: "Pausar", resumeBtn: "Reanudar", resetBtn: "Reiniciar",
-    t2Title: "Corrector de Gramática y Ortografía", t2Sub: "Comprobación automática mediante LanguageTool.",
+    t1Title: "Temporizador de Discurso y Presentación",
+    t1Sub: "Calcula instantáneamente cuánto dura tu texto.",
+    slow: "🐢 Lento",
+    norm: "🚶 Normal",
+    fast: "🐇 Rápido",
+    practice: "Practica tu discurso en vivo:",
+    startBtn: "Iniciar",
+    pauseBtn: "Pausar",
+    resumeBtn: "Reanudar",
+    resetBtn: "Reiniciar",
+    t2Title: "Corrector de Gramática y Ortografía",
+    t2Sub: "Comprobación automática mediante LanguageTool.",
     t2Issues: "Problemas detectados:",
-    btnClean: "✨ Corrección automática", btnCopy: "📋 Copiar", copyAlert: "¡Copiado al portapapeles!",
-    noText: "Ningún texto introducido.", noIssues: "✅ ¡No se encontraron errores!",
+    btnClean: "✨ Corrección automática",
+    btnCopy: "📋 Copiar",
+    copyAlert: "¡Copiado al portapapeles!",
+    noText: "Ningún texto introducido.",
+    noIssues: "✅ ¡No se encontraron errores!",
     checkingText: "⏳ Comprobando texto...",
     apiError: "⚠️ Error de conexión con la API de LanguageTool.",
-    t3Title: "Indicador Detector de Texto IA", t3Sub: "Analiza la estructura de las oraciones en busca de características de IA.",
-    t3Score: "Probabilidad estimada de IA", aiShort: "Introduce al menos 50 caracteres.",
-    aiHigh: "Alta regularidad estructural detectada.", aiLow: "Variación natural detectada.",
-    ttsTitle: "Texto a Voz", ttsSub: "Lee tu texto en voz alta o descarga el archivo de audio.",
-    ttsLabelLang: "Idioma de voz:", speakBtn: "🔊 Leer en voz alta", downloadAudioBtn: "📥 Descargar Audio (.WAV)", stopSpeechBtn: "⏹️ Parar", ttsStatusPlaceholder: "Estado: Listo para hablar o descargar...",
+    t3Title: "Indicador Detector de Texto IA",
+    t3Sub: "Analiza la estructura de las oraciones en busca de características de IA.",
+    t3Score: "Probabilidad estimada de IA",
+    aiShort: "Introduce al menos 50 caracteres.",
+    aiHigh: "Alta regularidad estructural detectada.",
+    aiLow: "Variación natural detectada.",
+    ttsTitle: "Texto a Voz",
+    ttsSub: "Lee tu texto en voz alta o descarga el archivo de audio.",
+    ttsLabelLang: "Idioma de voz:",
+    speakBtn: "🔊 Leer en voz alta",
+    downloadAudioBtn: "📥 Descargar Audio (.WAV)",
+    stopSpeechBtn: "⏹️ Parar",
+    ttsStatusPlaceholder: "Estado: Listo para hablar o descargar...",
     ttsSpeaking: "🔊 Leyendo en voz alta...",
     ttsDone: "✅ Lectura completada.",
     ttsStopped: "⏹️ Detenido.",
@@ -410,12 +538,16 @@ const translations = {
     ttsNoTextAlert: "¡Introduce un texto primero!",
     ttsNoAudioTextAlert: "Introduce texto para descargar.",
     ttsNotSupported: "Tu navegador no soporta texto a voz.",
-    translateTitle: "Herramienta de Traducción", translateSub: "Traduce tus textos rápidamente a diferentes idiomas.",
-    translateLabelLang: "Elige idioma de destino:", translateBtn: "🌍 Traducir Texto", translatePreviewPlaceholder: "El texto traducido aparecerá aquí...",
+    translateTitle: "Herramienta de Traducción",
+    translateSub: "Traduce tus textos rápidamente a diferentes idiomas.",
+    translateLabelLang: "Elige idioma de destino:",
+    translateBtn: "🌍 Traducir Texto",
+    translatePreviewPlaceholder: "El texto traducido aparecerá aquí...",
     translateAlert: "Introduce texto para traducir.",
     translatingText: "⏳ Traduciendo texto...",
     translateError: "⚠️ Error de conexión con la API de traducción.",
-    qrTitle: "QR Code Generator", qrSub: "Introduce una URL para generar un código QR al instante.",
+    qrTitle: "QR Code Generator",
+    qrSub: "Introduce una URL para generar un código QR al instante.",
     qrPlaceholder: "Introduce una URL...",
     qrGenBtn: "Generar",
     downloadQR: "📥 Descargar código QR",
@@ -441,27 +573,43 @@ const translations = {
     optPng: "🖼️ Imagen PNG",
     optWebp: "🌐 Imagen WebP",
     adSpace: "Espacio Publicitario (Google AdSense)",
-    sec1: "Seguridad SSL de 256 bits", sec2: "100% Privacidad - Procesamiento local", sec3: "Resultado instantáneo",
+    sec1: "Seguridad SSL de 256 bits",
+    sec2: "100% Privacidad - Procesamiento local",
+    sec3: "Resultado instantáneo",
     speeds: { slow: 110, norm: 130, fast: 160 }
   }
 };
 
 window.addEventListener('DOMContentLoaded', () => {
   const savedLang = localStorage.getItem('everyToolLang');
+
   if (savedLang && translations[savedLang]) {
     currentLang = savedLang;
+
     const overlay = document.getElementById('languageOverlay');
-    if (overlay) overlay.classList.add('hidden');
+
+    if (overlay) {
+      overlay.classList.add('hidden');
+    }
   }
 
-  ['text-timer', 'text-checker', 'text-ai', 'text-tts', 'text-translate', 'qrUrlInput'].forEach(id => {
+  [
+    'text-timer',
+    'text-checker',
+    'text-ai',
+    'text-tts',
+    'text-translate',
+    'qrUrlInput'
+  ].forEach(id => {
     const saved = localStorage.getItem(id);
-    if(saved) {
+
+    if (saved) {
       document.getElementById(id).value = saved;
-      if(id === 'text-timer') calcTimer();
-      if(id === 'text-checker') updateCheckerStats();
-      if(id === 'text-ai') checkAI();
-      if(id === 'qrUrlInput') generateQRFromInput();
+
+      if (id === 'text-timer') calcTimer();
+      if (id === 'text-checker') updateCheckerStats();
+      if (id === 'text-ai') checkAI();
+      if (id === 'qrUrlInput') generateQRFromInput();
     }
   });
 
@@ -472,11 +620,14 @@ window.addEventListener('DOMContentLoaded', () => {
 function handleRoute() {
   const path = window.location.pathname.replace(/^\/+|\/+$/g, '');
   let toolId = 'home';
-  
-  if (['timer', 'checker', 'ai', 'tts', 'translate', 'qr', 'converter'].includes(path)) {
+
+  if (
+    ['timer', 'checker', 'ai', 'tts', 'translate', 'qr', 'converter']
+      .includes(path)
+  ) {
     toolId = path;
   }
-  
+
   selectTool(toolId, currentLang, false);
 }
 
@@ -487,14 +638,19 @@ function saveToLocal(id, val) {
 function setInitialLanguage(lang) {
   currentLang = lang;
   localStorage.setItem('everyToolLang', lang);
-  document.getElementById('languageOverlay').classList.add('hidden');
+
+  document
+    .getElementById('languageOverlay')
+    .classList.add('hidden');
+
   selectTool('home', lang);
 }
 
 function toggleDarkMode() {
   const body = document.body;
   const btn = document.getElementById('darkModeBtn');
-  if(body.getAttribute('data-theme') === 'light') {
+
+  if (body.getAttribute('data-theme') === 'light') {
     body.setAttribute('data-theme', 'dark');
     btn.innerText = "☀️ Light Mode";
   } else {
@@ -503,59 +659,209 @@ function toggleDarkMode() {
   }
 }
 
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
 function toggleSidebar() {
-  document.getElementById('sidebar').classList.toggle('open');
-  document.getElementById('overlay').classList.toggle('open');
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('overlay');
+
+  if (!sidebar || !overlay) return;
+
+  const shouldOpen = !sidebar.classList.contains('open');
+
+  sidebar.classList.toggle('open', shouldOpen);
+  overlay.classList.toggle('open', shouldOpen);
 }
+
+function closeSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('overlay');
+
+  if (sidebar) {
+    sidebar.classList.remove('open');
+  }
+
+  if (overlay) {
+    overlay.classList.remove('open');
+  }
+}
+
+
+/* =========================================================
+   ARTIKEL
+   ========================================================= */
+
+function showArticle() {
+  document
+    .querySelectorAll('.tab-content')
+    .forEach(tab => tab.classList.remove('active'));
+
+  const article = document.getElementById('tab-article');
+
+  if (article) {
+    article.classList.add('active');
+  }
+
+  closeSidebar();
+
+  document
+    .querySelectorAll('.lang-dropdown')
+    .forEach(d => d.classList.remove('show'));
+
+  document
+    .querySelectorAll('.tool-btn')
+    .forEach(b => b.classList.remove('open'));
+
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+}
+
+function showFullArticle() {
+  document
+    .querySelectorAll('.tab-content')
+    .forEach(tab => tab.classList.remove('active'));
+
+  const article = document.getElementById('tab-article-full');
+
+  if (article) {
+    article.classList.add('active');
+  }
+
+  closeSidebar();
+
+  document
+    .querySelectorAll('.lang-dropdown')
+    .forEach(d => d.classList.remove('show'));
+
+  document
+    .querySelectorAll('.tool-btn')
+    .forEach(b => b.classList.remove('open'));
+
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+}
+
+
+/* =========================================================
+   DROPDOWN / SHARE
+   ========================================================= */
 
 function toggleDropdown(dropId, btn) {
   const drop = document.getElementById(dropId);
   const isOpen = drop.classList.contains('show');
-  document.querySelectorAll('.lang-dropdown').forEach(d => d.classList.remove('show'));
-  document.querySelectorAll('.tool-btn').forEach(b => b.classList.remove('open'));
-  if(!isOpen) { drop.classList.add('show'); btn.classList.add('open'); }
+
+  document
+    .querySelectorAll('.lang-dropdown')
+    .forEach(d => d.classList.remove('show'));
+
+  document
+    .querySelectorAll('.tool-btn')
+    .forEach(b => b.classList.remove('open'));
+
+  if (!isOpen) {
+    drop.classList.add('show');
+    btn.classList.add('open');
+  }
 }
 
 function shareSite() {
   navigator.clipboard.writeText(window.location.href);
-  alert((translations[currentLang] || translations['nl']).copyAlert);
+
+  alert(
+    (translations[currentLang] || translations['nl']).copyAlert
+  );
 }
+
+
+/* =========================================================
+   TOOL SELECTIE
+   ========================================================= */
 
 function selectTool(toolId, lang, pushHistory = true) {
   currentTool = toolId;
   currentLang = lang;
+
   localStorage.setItem('everyToolLang', lang);
-  
+
   if (pushHistory) {
-    const newPath = toolId === 'home' ? '/' : `/${toolId}/`;
-    window.history.pushState({tool: toolId}, '', newPath);
+    const newPath =
+      toolId === 'home'
+        ? '/'
+        : `/${toolId}/`;
+
+    window.history.pushState(
+      { tool: toolId },
+      '',
+      newPath
+    );
   }
 
-  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-  const targetTab = document.getElementById('tab-' + toolId);
-  if (targetTab) targetTab.classList.add('active');
+  document
+    .querySelectorAll('.tab-content')
+    .forEach(t => t.classList.remove('active'));
 
-  const sidebar = document.getElementById('sidebar');
-  const overlay = document.getElementById('overlay');
-  if (sidebar) sidebar.classList.remove('open');
-  if (overlay) overlay.classList.remove('open');
-  document.querySelectorAll('.lang-dropdown').forEach(d => d.classList.remove('show'));
-  document.querySelectorAll('.tool-btn').forEach(b => b.classList.remove('open'));
+  const targetTab =
+    document.getElementById('tab-' + toolId);
 
-  document.querySelectorAll('.lang-switcher-top button').forEach(b => b.classList.remove('active'));
-  if(lang === 'nl') document.getElementById('langBtnNl').classList.add('active');
-  if(lang === 'en') document.getElementById('langBtnEn').classList.add('active');
-  if(lang === 'de') document.getElementById('langBtnDe').classList.add('active');
-  if(lang === 'fr') document.getElementById('langBtnFr').classList.add('active');
-  if(lang === 'es') document.getElementById('langBtnEs').classList.add('active');
+  if (targetTab) {
+    targetTab.classList.add('active');
+  }
 
-  const t = translations[lang] || translations['nl'];
-  
-  const allElements = document.querySelectorAll('[id]');
+  closeSidebar();
+
+  document
+    .querySelectorAll('.lang-dropdown')
+    .forEach(d => d.classList.remove('show'));
+
+  document
+    .querySelectorAll('.tool-btn')
+    .forEach(b => b.classList.remove('open'));
+
+  document
+    .querySelectorAll('.lang-switcher-top button')
+    .forEach(b => b.classList.remove('active'));
+
+  if (lang === 'nl') {
+    document.getElementById('langBtnNl')?.classList.add('active');
+  }
+
+  if (lang === 'en') {
+    document.getElementById('langBtnEn')?.classList.add('active');
+  }
+
+  if (lang === 'de') {
+    document.getElementById('langBtnDe')?.classList.add('active');
+  }
+
+  if (lang === 'fr') {
+    document.getElementById('langBtnFr')?.classList.add('active');
+  }
+
+  if (lang === 'es') {
+    document.getElementById('langBtnEs')?.classList.add('active');
+  }
+
+  const t =
+    translations[lang] || translations['nl'];
+
+  const allElements =
+    document.querySelectorAll('[id]');
+
   allElements.forEach(el => {
     const id = el.id;
+
     if (t[id] !== undefined) {
-      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+      if (
+        el.tagName === 'INPUT' ||
+        el.tagName === 'TEXTAREA'
+      ) {
         el.placeholder = t[id];
       } else {
         el.innerText = t[id];
@@ -563,454 +869,1402 @@ function selectTool(toolId, lang, pushHistory = true) {
     }
   });
 
-  const searchBtn = document.getElementById('homeSearchBtn');
-  if(searchBtn) searchBtn.innerHTML = `<span>${t.searchBtn}</span> 🔍`;
+  const searchBtn =
+    document.getElementById('homeSearchBtn');
 
-  const convStatus = document.getElementById('converterStatusText');
-  if (convStatus && !convStatus.dataset.converted) {
+  if (searchBtn) {
+    searchBtn.innerHTML =
+      `<span>${t.searchBtn}</span> 🔍`;
+  }
+
+  const convStatus =
+    document.getElementById('converterStatusText');
+
+  if (
+    convStatus &&
+    !convStatus.dataset.converted
+  ) {
     convStatus.innerText = t.convStatus;
   }
 
-  const startBtn = document.getElementById('startBtn');
-  if(startBtn) startBtn.innerText = timerInt ? t.pauseBtn : t.startBtn;
+  const startBtn =
+    document.getElementById('startBtn');
 
-  document.getElementById('searchSuggestions').classList.remove('show');
+  if (startBtn) {
+    startBtn.innerText =
+      timerInt
+        ? t.pauseBtn
+        : t.startBtn;
+  }
+
+  const searchSuggestions =
+    document.getElementById('searchSuggestions');
+
+  if (searchSuggestions) {
+    searchSuggestions.classList.remove('show');
+  }
 }
 
+
+/* =========================================================
+   TOOL ZOEKEN
+   ========================================================= */
+
 function filterTools() {
-  const input = document.getElementById('homeSearchInput').value.toLowerCase().trim();
-  const suggestionsBox = document.getElementById('searchSuggestions');
-  const t = translations[currentLang] || translations['nl'];
+  const input =
+    document.getElementById('homeSearchInput')
+      .value
+      .toLowerCase()
+      .trim();
+
+  const suggestionsBox =
+    document.getElementById('searchSuggestions');
+
+  const t =
+    translations[currentLang] ||
+    translations['nl'];
 
   const allTools = [
-    { id: 'timer', name: t.menuTimer, keywords: ['timer', 'speech', 'spreken', 'rede', 'präsentation'] },
-    { id: 'checker', name: t.menuChecker, keywords: ['grammatica', 'spelling', 'fouten', 'grammatik', 'rechtschreibung'] },
-    { id: 'ai', name: t.menuAi, keywords: ['ai', 'detector', 'chatgpt', 'text'] },
-    { id: 'tts', name: t.menuTts, keywords: ['spraak', 'tekst', 'voorlezen', 'tts', 'audio', 'speech'] },
-    { id: 'translate', name: t.menuTranslate, keywords: ['vertalen', 'vertaal', 'translate', 'übersetzung'] },
-    { id: 'qr', name: t.menuQr, keywords: ['qr', 'code', 'url', 'generator'] },
-    { id: 'converter', name: t.menuConverter, keywords: ['converter', 'omzetten', 'heic', 'jpg', 'bestand', 'konverter'] }
+    {
+      id: 'timer',
+      name: t.menuTimer,
+      keywords: [
+        'timer',
+        'speech',
+        'spreken',
+        'rede',
+        'präsentation'
+      ]
+    },
+    {
+      id: 'checker',
+      name: t.menuChecker,
+      keywords: [
+        'grammatica',
+        'spelling',
+        'fouten',
+        'grammatik',
+        'rechtschreibung'
+      ]
+    },
+    {
+      id: 'ai',
+      name: t.menuAi,
+      keywords: [
+        'ai',
+        'detector',
+        'chatgpt',
+        'text'
+      ]
+    },
+    {
+      id: 'tts',
+      name: t.menuTts,
+      keywords: [
+        'spraak',
+        'tekst',
+        'voorlezen',
+        'tts',
+        'audio',
+        'speech'
+      ]
+    },
+    {
+      id: 'translate',
+      name: t.menuTranslate,
+      keywords: [
+        'vertalen',
+        'vertaal',
+        'translate',
+        'übersetzung'
+      ]
+    },
+    {
+      id: 'qr',
+      name: t.menuQr,
+      keywords: [
+        'qr',
+        'code',
+        'url',
+        'generator'
+      ]
+    },
+    {
+      id: 'converter',
+      name: t.menuConverter,
+      keywords: [
+        'converter',
+        'omzetten',
+        'heic',
+        'jpg',
+        'bestand',
+        'konverter'
+      ]
+    }
   ];
 
-  if (!input) { suggestionsBox.classList.remove('show'); return; }
-  const matches = allTools.filter(tool => tool.name.toLowerCase().includes(input) || tool.keywords.some(kw => kw.includes(input)));
+  if (!input) {
+    suggestionsBox.classList.remove('show');
+    return;
+  }
+
+  const matches =
+    allTools.filter(tool =>
+      tool.name.toLowerCase().includes(input) ||
+      tool.keywords.some(kw =>
+        kw.includes(input)
+      )
+    );
 
   if (matches.length > 0) {
-    suggestionsBox.innerHTML = matches.map(m => `<div class="suggestion-item" onclick="selectTool('${m.id}', currentLang)">${m.name}</div>`).join('');
+    suggestionsBox.innerHTML =
+      matches
+        .map(
+          m =>
+            `<div class="suggestion-item" onclick="selectTool('${m.id}', currentLang)">${m.name}</div>`
+        )
+        .join('');
+
     suggestionsBox.classList.add('show');
   } else {
-    const noFoundText = currentLang === 'de' ? 'Keine Tools gefunden...' : currentLang === 'en' ? 'No tools found...' : currentLang === 'fr' ? 'Aucun outil trouvé...' : currentLang === 'es' ? 'No se encontraron herramientas...' : 'Geen tools gevonden...';
-    suggestionsBox.innerHTML = `<div class="suggestion-item" style="color: var(--text-muted); cursor: default;">${noFoundText}</div>`;
+    const noFoundText =
+      currentLang === 'de'
+        ? 'Keine Tools gefunden...'
+        : currentLang === 'en'
+        ? 'No tools found...'
+        : currentLang === 'fr'
+        ? 'Aucun outil trouvé...'
+        : currentLang === 'es'
+        ? 'No se encontraron herramientas...'
+        : 'Geen tools gevonden...';
+
+    suggestionsBox.innerHTML =
+      `<div class="suggestion-item" style="color: var(--text-muted); cursor: default;">${noFoundText}</div>`;
+
     suggestionsBox.classList.add('show');
   }
 }
+
+
+/* =========================================================
+   TIMER
+   ========================================================= */
 
 function formatTime(sec) {
   const m = Math.floor(sec / 60);
   const s = Math.floor(sec % 60);
-  return `${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+
+  return `${m.toString().padStart(2, '0')}:${s
+    .toString()
+    .padStart(2, '0')}`;
 }
 
 function handleTimerInput() {
-  const val = document.getElementById('text-timer').value;
+  const val =
+    document.getElementById('text-timer').value;
+
   saveToLocal('text-timer', val);
   calcTimer();
 }
 
 function calcTimer() {
-  const text = document.getElementById('text-timer').value.trim();
-  const words = text ? text.split(/\s+/).filter(w=>w.length>0).length : 0;
-  const chars = text.length;
-  document.getElementById('stats-timer').innerText = `Woorden: ${words} | Tekens: ${chars}`;
+  const text =
+    document.getElementById('text-timer')
+      .value
+      .trim();
 
-  const sp = (translations[currentLang] || translations['nl']).speeds;
-  document.getElementById('timeSlow').innerText = formatTime(words ? (words/sp.slow)*60 : 0);
-  document.getElementById('timeNorm').innerText = formatTime(words ? (words/sp.norm)*60 : 0);
-  document.getElementById('timeFast').innerText = formatTime(words ? (words/sp.fast)*60 : 0);
+  const words =
+    text
+      ? text
+          .split(/\s+/)
+          .filter(w => w.length > 0)
+          .length
+      : 0;
+
+  const chars = text.length;
+
+  document.getElementById('stats-timer')
+    .innerText =
+      `Woorden: ${words} | Tekens: ${chars}`;
+
+  const sp =
+    (translations[currentLang] ||
+      translations['nl']).speeds;
+
+  document.getElementById('timeSlow')
+    .innerText =
+      formatTime(
+        words
+          ? (words / sp.slow) * 60
+          : 0
+      );
+
+  document.getElementById('timeNorm')
+    .innerText =
+      formatTime(
+        words
+          ? (words / sp.norm) * 60
+          : 0
+      );
+
+  document.getElementById('timeFast')
+    .innerText =
+      formatTime(
+        words
+          ? (words / sp.fast) * 60
+          : 0
+      );
 }
 
-let timerInt = null, secs = 0;
+let timerInt = null;
+let secs = 0;
+
 function startTimer() {
-  const b = document.getElementById('startBtn');
-  const t = translations[currentLang] || translations['nl'];
-  if(timerInt) { clearInterval(timerInt); timerInt = null; b.innerText = t.resumeBtn; } 
-  else {
+  const b =
+    document.getElementById('startBtn');
+
+  const t =
+    translations[currentLang] ||
+    translations['nl'];
+
+  if (timerInt) {
+    clearInterval(timerInt);
+    timerInt = null;
+    b.innerText = t.resumeBtn;
+  } else {
     b.innerText = t.pauseBtn;
-    timerInt = setInterval(() => { secs++; document.getElementById('stopwatch').innerText = formatTime(secs); }, 1000);
+
+    timerInt = setInterval(() => {
+      secs++;
+
+      document.getElementById('stopwatch')
+        .innerText =
+          formatTime(secs);
+    }, 1000);
   }
 }
+
 function resetTimer() {
-  clearInterval(timerInt); timerInt = null; secs = 0;
-  document.getElementById('stopwatch').innerText = "00:00";
-  document.getElementById('startBtn').innerText = (translations[currentLang] || translations['nl']).startBtn;
+  clearInterval(timerInt);
+
+  timerInt = null;
+  secs = 0;
+
+  document.getElementById('stopwatch')
+    .innerText = "00:00";
+
+  document.getElementById('startBtn')
+    .innerText =
+      (
+        translations[currentLang] ||
+        translations['nl']
+      ).startBtn;
 }
 
+
+/* =========================================================
+   GRAMMATICA
+   ========================================================= */
+
 function updateCheckerStats() {
-  const val = document.getElementById('text-checker').value;
+  const val =
+    document.getElementById('text-checker')
+      .value;
+
   saveToLocal('text-checker', val);
-  const words = val.trim() ? val.trim().split(/\s+/).length : 0;
-  document.getElementById('stats-checker').innerText = `Woorden: ${words} | Tekens: ${val.length}`;
+
+  const words =
+    val.trim()
+      ? val.trim().split(/\s+/).length
+      : 0;
+
+  document.getElementById('stats-checker')
+    .innerText =
+      `Woorden: ${words} | Tekens: ${val.length}`;
 }
 
 async function checkAndFixWithLanguageTool() {
-  const textarea = document.getElementById('text-checker');
-  const container = document.getElementById('issuesContainer');
-  const t = translations[currentLang] || translations['nl'];
+  const textarea =
+    document.getElementById('text-checker');
+
+  const container =
+    document.getElementById('issuesContainer');
+
+  const t =
+    translations[currentLang] ||
+    translations['nl'];
+
   let text = textarea.value;
 
-  if(!text.trim()) { container.innerHTML = t.noText; return; }
-  container.innerHTML = t.checkingText;
+  if (!text.trim()) {
+    container.innerHTML = t.noText;
+    return;
+  }
+
+  container.innerHTML =
+    t.checkingText;
 
   try {
     let apiLang = 'en-US';
-    if(currentLang === 'nl') apiLang = 'nl';
-    else if(currentLang === 'de') apiLang = 'de';
-    else if(currentLang === 'fr') apiLang = 'fr';
-    else if(currentLang === 'es') apiLang = 'es';
 
-    const response = await fetch("https://api.languagetool.org/v2/check", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams({ text: text, language: apiLang })
-    });
-    const data = await response.json();
-    const matches = data.matches;
+    if (currentLang === 'nl') {
+      apiLang = 'nl';
+    } else if (currentLang === 'de') {
+      apiLang = 'de';
+    } else if (currentLang === 'fr') {
+      apiLang = 'fr';
+    } else if (currentLang === 'es') {
+      apiLang = 'es';
+    }
+
+    const response =
+      await fetch(
+        "https://api.languagetool.org/v2/check",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type":
+              "application/x-www-form-urlencoded"
+          },
+          body:
+            new URLSearchParams({
+              text: text,
+              language: apiLang
+            })
+        }
+      );
+
+    const data =
+      await response.json();
+
+    const matches =
+      data.matches;
 
     if (matches.length === 0) {
-      container.innerHTML = `<span style='color:var(--primary); font-weight:600;'>${t.noIssues}</span>`;
+      container.innerHTML =
+        `<span style='color:var(--primary); font-weight:600;'>${t.noIssues}</span>`;
+
       return;
     }
 
     let issueHtml = "";
+
     matches.forEach(m => {
-      let suggestionText = m.replacements.length > 0 ? ` (Suggestie: <strong>${m.replacements[0].value}</strong>)` : '';
-      issueHtml += `<div class="issue-item">⚠️ ${m.message}${suggestionText}</div>`;
+      let suggestionText =
+        m.replacements.length > 0
+          ? ` (Suggestie: <strong>${m.replacements[0].value}</strong>)`
+          : '';
+
+      issueHtml +=
+        `<div class="issue-item">⚠️ ${m.message}${suggestionText}</div>`;
     });
-    container.innerHTML = issueHtml;
+
+    container.innerHTML =
+      issueHtml;
 
     let correctedText = text;
-    matches.sort((a, b) => b.offset - a.offset).forEach(m => {
-      if (m.replacements.length > 0) {
-        correctedText = correctedText.substring(0, m.offset) + m.replacements[0].value + correctedText.substring(m.offset + m.length);
-      }
-    });
-    textarea.value = correctedText;
+
+    matches
+      .sort((a, b) =>
+        b.offset - a.offset
+      )
+      .forEach(m => {
+        if (m.replacements.length > 0) {
+          correctedText =
+            correctedText.substring(
+              0,
+              m.offset
+            ) +
+            m.replacements[0].value +
+            correctedText.substring(
+              m.offset + m.length
+            );
+        }
+      });
+
+    textarea.value =
+      correctedText;
+
     updateCheckerStats();
+
   } catch (error) {
-    container.innerHTML = `<span style='color:#ef4444;'>${t.apiError}</span>`;
+    container.innerHTML =
+      `<span style='color:#ef4444;'>${t.apiError}</span>`;
   }
 }
 
 function copyText(id) {
-  const el = document.getElementById(id);
-  const val = el.value || el.innerText;
-  if(val && val !== "Vertaalde tekst verschijnt hier...") {
+  const el =
+    document.getElementById(id);
+
+  const val =
+    el.value || el.innerText;
+
+  if (
+    val &&
+    val !==
+      "Vertaalde tekst verschijnt hier..."
+  ) {
     navigator.clipboard.writeText(val);
-    alert((translations[currentLang] || translations['nl']).copyAlert);
+
+    alert(
+      (
+        translations[currentLang] ||
+        translations['nl']
+      ).copyAlert
+    );
   }
 }
 
-function checkAI() {
-  const text = document.getElementById('text-ai').value.trim();
-  saveToLocal('text-ai', text);
-  const t = translations[currentLang] || translations['nl'];
-  const words = text ? text.split(/\s+/).length : 0;
-  document.getElementById('stats-ai').innerText = `Woorden: ${words} | Tekens: ${text.length}`;
 
-  if(text.length < 50) {
-    document.getElementById('aiScore').innerText = "0%";
-    document.getElementById('aiBar').style.width = "0%";
-    document.getElementById('aiAnalysis').innerText = t.aiShort;
+/* =========================================================
+   AI DETECTOR
+   ========================================================= */
+
+function checkAI() {
+  const text =
+    document.getElementById('text-ai')
+      .value
+      .trim();
+
+  saveToLocal('text-ai', text);
+
+  const t =
+    translations[currentLang] ||
+    translations['nl'];
+
+  const words =
+    text
+      ? text.split(/\s+/).length
+      : 0;
+
+  document.getElementById('stats-ai')
+    .innerText =
+      `Woorden: ${words} | Tekens: ${text.length}`;
+
+  if (text.length < 50) {
+    document.getElementById('aiScore')
+      .innerText = "0%";
+
+    document.getElementById('aiBar')
+      .style.width = "0%";
+
+    document.getElementById('aiAnalysis')
+      .innerText = t.aiShort;
+
     return;
   }
 
-  const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
-  let lengths = sentences.map(s => s.trim().split(/\s+/).length);
-  let avgLength = words / (sentences.length || 1);
-  let variance = lengths.reduce((acc, l) => acc + Math.abs(l - avgLength), 0) / (sentences.length || 1);
+  const sentences =
+    text
+      .split(/[.!?]+/)
+      .filter(
+        s => s.trim().length > 0
+      );
 
-  let score = Math.max(5, Math.min(98, Math.round(100 - (variance * 10))));
-  document.getElementById('aiScore').innerText = score + "%";
-  document.getElementById('aiBar').style.width = score + "%";
-  document.getElementById('aiAnalysis').innerText = score > 60 ? t.aiHigh : t.aiLow;
+  let lengths =
+    sentences.map(
+      s =>
+        s.trim()
+          .split(/\s+/)
+          .length
+    );
+
+  let avgLength =
+    words /
+    (sentences.length || 1);
+
+  let variance =
+    lengths.reduce(
+      (acc, l) =>
+        acc +
+        Math.abs(
+          l - avgLength
+        ),
+      0
+    ) /
+    (sentences.length || 1);
+
+  let score =
+    Math.max(
+      5,
+      Math.min(
+        98,
+        Math.round(
+          100 - variance * 10
+        )
+      )
+    );
+
+  document.getElementById('aiScore')
+    .innerText =
+      score + "%";
+
+  document.getElementById('aiBar')
+    .style.width =
+      score + "%";
+
+  document.getElementById('aiAnalysis')
+    .innerText =
+      score > 60
+        ? t.aiHigh
+        : t.aiLow;
 }
 
+
+/* =========================================================
+   TEKST NAAR SPRAAK
+   ========================================================= */
+
 function speakText() {
-  const text = document.getElementById('text-tts').value.trim();
-  const statusBox = document.getElementById('ttsStatusBox');
-  const t = translations[currentLang] || translations['nl'];
-  
+  const text =
+    document.getElementById('text-tts')
+      .value
+      .trim();
+
+  const statusBox =
+    document.getElementById('ttsStatusBox');
+
+  const t =
+    translations[currentLang] ||
+    translations['nl'];
+
   if (!text) {
     alert(t.ttsNoTextAlert);
     return;
   }
 
-  const lang = document.getElementById('voiceLangTts').value;
-  statusBox.innerHTML = t.ttsSpeaking;
+  const lang =
+    document.getElementById(
+      'voiceLangTts'
+    ).value;
+
+  statusBox.innerHTML =
+    t.ttsSpeaking;
 
   if ('speechSynthesis' in window) {
     window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(text);
+
+    const utterance =
+      new SpeechSynthesisUtterance(text);
+
     utterance.lang = lang;
-    utterance.onend = () => { statusBox.innerHTML = t.ttsDone; };
-    window.speechSynthesis.speak(utterance);
+
+    utterance.onend = () => {
+      statusBox.innerHTML =
+        t.ttsDone;
+    };
+
+    window.speechSynthesis
+      .speak(utterance);
+
   } else {
     alert(t.ttsNotSupported);
   }
 }
 
 function stopSpeech() {
-  const t = translations[currentLang] || translations['nl'];
+  const t =
+    translations[currentLang] ||
+    translations['nl'];
+
   if ('speechSynthesis' in window) {
     window.speechSynthesis.cancel();
-    document.getElementById('ttsStatusBox').innerHTML = t.ttsStopped;
+
+    document.getElementById(
+      'ttsStatusBox'
+    ).innerHTML =
+      t.ttsStopped;
   }
 }
 
 function downloadAudioFile() {
-  const text = document.getElementById('text-tts').value.trim();
-  const t = translations[currentLang] || translations['nl'];
+  const text =
+    document.getElementById('text-tts')
+      .value
+      .trim();
+
+  const t =
+    translations[currentLang] ||
+    translations['nl'];
+
   if (!text) {
     alert(t.ttsNoAudioTextAlert);
     return;
   }
 
   const sampleRate = 22050;
-  const durationSeconds = Math.max(2, Math.min(10, text.length / 10));
-  const numChannels = 1;
-  const numSamples = sampleRate * durationSeconds;
-  const buffer = new ArrayBuffer(44 + numSamples * 2);
-  const view = new DataView(buffer);
+  const durationSeconds =
+    Math.max(
+      2,
+      Math.min(
+        10,
+        text.length / 10
+      )
+    );
 
-  writeString(view, 0, 'RIFF');
-  view.setUint32(4, 36 + numSamples * 2, true);
-  writeString(view, 8, 'WAVE');
-  writeString(view, 12, 'fmt ');
-  view.setUint32(16, 16, true);
-  view.setUint16(20, 1, true);
-  view.setUint16(22, numChannels, true);
-  view.setUint32(24, sampleRate, true);
-  view.setUint32(28, sampleRate * numChannels * 2, true);
-  view.setUint16(32, numChannels * 2, true);
-  view.setUint16(34, 16, true);
-  writeString(view, 36, 'data');
-  view.setUint32(40, numSamples * 2, true);
+  const numChannels = 1;
+
+  const numSamples =
+    sampleRate * durationSeconds;
+
+  const buffer =
+    new ArrayBuffer(
+      44 + numSamples * 2
+    );
+
+  const view =
+    new DataView(buffer);
+
+  writeString(
+    view,
+    0,
+    'RIFF'
+  );
+
+  view.setUint32(
+    4,
+    36 + numSamples * 2,
+    true
+  );
+
+  writeString(
+    view,
+    8,
+    'WAVE'
+  );
+
+  writeString(
+    view,
+    12,
+    'fmt '
+  );
+
+  view.setUint32(
+    16,
+    16,
+    true
+  );
+
+  view.setUint16(
+    20,
+    1,
+    true
+  );
+
+  view.setUint16(
+    22,
+    numChannels,
+    true
+  );
+
+  view.setUint32(
+    24,
+    sampleRate,
+    true
+  );
+
+  view.setUint32(
+    28,
+    sampleRate *
+      numChannels *
+      2,
+    true
+  );
+
+  view.setUint16(
+    32,
+    numChannels * 2,
+    true
+  );
+
+  view.setUint16(
+    34,
+    16,
+    true
+  );
+
+  writeString(
+    view,
+    36,
+    'data'
+  );
+
+  view.setUint32(
+    40,
+    numSamples * 2,
+    true
+  );
 
   let offset = 44;
-  for (let i = 0; i < numSamples; i++) {
-    let sample = Math.sin(i * 0.05) * 32767 * 0.1;
-    view.setInt16(offset, sample, true);
+
+  for (
+    let i = 0;
+    i < numSamples;
+    i++
+  ) {
+    let sample =
+      Math.sin(i * 0.05) *
+      32767 *
+      0.1;
+
+    view.setInt16(
+      offset,
+      sample,
+      true
+    );
+
     offset += 2;
   }
 
-  const blob = new Blob([view], { type: 'audio/wav' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
+  const blob =
+    new Blob(
+      [view],
+      {
+        type: 'audio/wav'
+      }
+    );
+
+  const url =
+    URL.createObjectURL(blob);
+
+  const a =
+    document.createElement('a');
+
   a.href = url;
-  a.download = 'gesproken-tekst.wav';
+  a.download =
+    'gesproken-tekst.wav';
+
   document.body.appendChild(a);
+
   a.click();
+
   document.body.removeChild(a);
-  
-  document.getElementById('ttsStatusBox').innerHTML = t.ttsDownloaded;
+
+  document.getElementById(
+    'ttsStatusBox'
+  ).innerHTML =
+    t.ttsDownloaded;
 }
 
-function writeString(view, offset, string) {
-  for (let i = 0; i < string.length; i++) {
-    view.setUint8(offset + i, string.charCodeAt(i));
+function writeString(
+  view,
+  offset,
+  string
+) {
+  for (
+    let i = 0;
+    i < string.length;
+    i++
+  ) {
+    view.setUint8(
+      offset + i,
+      string.charCodeAt(i)
+    );
   }
 }
 
+
+/* =========================================================
+   VERTALER
+   ========================================================= */
+
 async function executeTranslation() {
-  const text = document.getElementById('text-translate').value.trim();
-  const targetLang = document.getElementById('targetLangTranslate').value;
-  const resultBox = document.getElementById('translationResultBox');
-  const t = translations[currentLang] || translations['nl'];
+  const text =
+    document.getElementById(
+      'text-translate'
+    ).value.trim();
+
+  const targetLang =
+    document.getElementById(
+      'targetLangTranslate'
+    ).value;
+
+  const resultBox =
+    document.getElementById(
+      'translationResultBox'
+    );
+
+  const t =
+    translations[currentLang] ||
+    translations['nl'];
 
   if (!text) {
     alert(t.translateAlert);
     return;
   }
 
-  resultBox.innerHTML = t.translatingText;
+  resultBox.innerHTML =
+    t.translatingText;
 
   try {
-    const sourceLang = currentLang || 'nl';
-    
-    const response = await fetch("https://libretranslate.de/translate", {
-      method: "POST",
-      body: JSON.stringify({
-        q: text,
-        source: sourceLang,
-        target: targetLang,
-        format: "text"
-      }),
-      headers: { "Content-Type": "application/json" }
-    });
+    const sourceLang =
+      currentLang || 'nl';
 
-    const data = await response.json();
+    const response =
+      await fetch(
+        "https://libretranslate.de/translate",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            q: text,
+            source: sourceLang,
+            target: targetLang,
+            format: "text"
+          }),
+          headers: {
+            "Content-Type":
+              "application/json"
+          }
+        }
+      );
 
-    if (data && data.translatedText) {
-      resultBox.innerText = data.translatedText;
-    } else if (data && data.error) {
-      resultBox.innerText = `⚠️ ${data.error}`;
+    const data =
+      await response.json();
+
+    if (
+      data &&
+      data.translatedText
+    ) {
+      resultBox.innerText =
+        data.translatedText;
+
+    } else if (
+      data &&
+      data.error
+    ) {
+      resultBox.innerText =
+        `⚠️ ${data.error}`;
+
     } else {
-      resultBox.innerText = t.translateError;
+      resultBox.innerText =
+        t.translateError;
     }
+
   } catch (error) {
-    resultBox.innerText = t.translateError;
+    resultBox.innerText =
+      t.translateError;
   }
 }
 
+
+/* =========================================================
+   QR CODE
+   ========================================================= */
+
 function generateQRFromInput() {
-  const inputUrl = document.getElementById('qrUrlInput').value.trim();
-  saveToLocal('qrUrlInput', inputUrl);
-  const box = document.getElementById('qrPreviewBox');
-  const t = translations[currentLang] || translations['nl'];
+  const inputUrl =
+    document.getElementById(
+      'qrUrlInput'
+    ).value.trim();
+
+  saveToLocal(
+    'qrUrlInput',
+    inputUrl
+  );
+
+  const box =
+    document.getElementById(
+      'qrPreviewBox'
+    );
+
+  const t =
+    translations[currentLang] ||
+    translations['nl'];
 
   if (!inputUrl) {
-    box.innerHTML = `<p style="color: var(--text-muted); font-size: 14px; margin: 0;">${t.qrPlaceholder}</p>`;
+    box.innerHTML =
+      `<p style="color: var(--text-muted); font-size: 14px; margin: 0;">${t.qrPlaceholder}</p>`;
+
     return;
   }
 
-  currentQRUrl = inputUrl;
-  const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=` + encodeURIComponent(currentQRUrl);
-  
+  currentQRUrl =
+    inputUrl;
+
+  const qrApiUrl =
+    `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=` +
+    encodeURIComponent(
+      currentQRUrl
+    );
+
   box.innerHTML = `
-    <img id="generatedQrImg" src="${qrApiUrl}" alt="QR Code" crossorigin="anonymous" />
-    <p style="font-size: 13px; color: var(--text-muted); margin-top: 6px; margin-bottom: 16px;">Gekoppeld aan: <span style="color:var(--primary); font-weight: 600;">${currentQRUrl}</span></p>
-    <button class="btn" onclick="downloadQRCode()">${t.downloadQR}</button>
+    <img
+      id="generatedQrImg"
+      src="${qrApiUrl}"
+      alt="QR Code"
+      crossorigin="anonymous"
+    />
+
+    <p
+      style="
+        font-size: 13px;
+        color: var(--text-muted);
+        margin-top: 6px;
+        margin-bottom: 16px;
+      "
+    >
+      Gekoppeld aan:
+      <span
+        style="
+          color:var(--primary);
+          font-weight: 600;
+        "
+      >
+        ${currentQRUrl}
+      </span>
+    </p>
+
+    <button
+      class="btn"
+      onclick="downloadQRCode()"
+    >
+      ${t.downloadQR}
+    </button>
   `;
 }
 
 function downloadQRCode() {
-  const img = document.getElementById('generatedQrImg');
+  const img =
+    document.getElementById(
+      'generatedQrImg'
+    );
+
   if (!img) return;
-  const canvas = document.createElement('canvas');
-  canvas.width = img.naturalWidth || 250;
-  canvas.height = img.naturalHeight || 250;
-  const ctx = canvas.getContext('2d');
-  const imageObj = new Image();
-  imageObj.crossOrigin = "anonymous";
-  imageObj.onload = function() {
-    ctx.drawImage(imageObj, 0, 0);
-    const a = document.createElement('a');
-    a.href = canvas.toDataURL('image/png');
-    a.download = `qr-code.png`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-  };
-  imageObj.src = img.src;
+
+  const canvas =
+    document.createElement(
+      'canvas'
+    );
+
+  canvas.width =
+    img.naturalWidth || 250;
+
+  canvas.height =
+    img.naturalHeight || 250;
+
+  const ctx =
+    canvas.getContext('2d');
+
+  const imageObj =
+    new Image();
+
+  imageObj.crossOrigin =
+    "anonymous";
+
+  imageObj.onload =
+    function() {
+      ctx.drawImage(
+        imageObj,
+        0,
+        0
+      );
+
+      const a =
+        document.createElement('a');
+
+      a.href =
+        canvas.toDataURL(
+          'image/png'
+        );
+
+      a.download =
+        `qr-code.png`;
+
+      document.body.appendChild(a);
+
+      a.click();
+
+      document.body.removeChild(a);
+    };
+
+  imageObj.src =
+    img.src;
 }
 
+
+/* =========================================================
+   UNIVERSAL CONVERTER
+   ========================================================= */
+
 function updateConverterUI() {
-  const fromType = document.getElementById('convertFrom').value;
-  const toTypeSelect = document.getElementById('convertTo');
-  const fileInput = document.getElementById('universalFileInput');
-  const t = translations[currentLang] || translations['nl'];
-  
-  toTypeSelect.innerHTML = '';
+  const fromType =
+    document.getElementById(
+      'convertFrom'
+    ).value;
+
+  const toTypeSelect =
+    document.getElementById(
+      'convertTo'
+    );
+
+  const fileInput =
+    document.getElementById(
+      'universalFileInput'
+    );
+
+  const t =
+    translations[currentLang] ||
+    translations['nl'];
+
+  toTypeSelect.innerHTML =
+    '';
 
   if (fromType === 'heic') {
-    fileInput.accept = ".heic, image/heic";
+    fileInput.accept =
+      ".heic, image/heic";
+
     toTypeSelect.innerHTML = `
-      <option value="jpg">${t.optJpg}</option>
-      <option value="png">${t.optPng}</option>
-      <option value="webp">${t.optWebp}</option>
+      <option value="jpg">
+        ${t.optJpg}
+      </option>
+
+      <option value="png">
+        ${t.optPng}
+      </option>
+
+      <option value="webp">
+        ${t.optWebp}
+      </option>
     `;
-  } else if (fromType === 'image') {
-    fileInput.accept = "image/*";
+
+  } else if (
+    fromType === 'image'
+  ) {
+    fileInput.accept =
+      "image/*";
+
     toTypeSelect.innerHTML = `
-      <option value="png">${t.optPng}</option>
-      <option value="jpg">${t.optJpg}</option>
-      <option value="webp">${t.optWebp}</option>
+      <option value="png">
+        ${t.optPng}
+      </option>
+
+      <option value="jpg">
+        ${t.optJpg}
+      </option>
+
+      <option value="webp">
+        ${t.optWebp}
+      </option>
     `;
-  } else if (fromType === 'txt') {
-    fileInput.accept = ".txt";
+
+  } else if (
+    fromType === 'txt'
+  ) {
+    fileInput.accept =
+      ".txt";
+
     toTypeSelect.innerHTML = `
-      <option value="json">📊 JSON Bestand</option>
-      <option value="html">🌐 HTML Bestand</option>
+      <option value="json">
+        📊 JSON Bestand
+      </option>
+
+      <option value="html">
+        🌐 HTML Bestand
+      </option>
     `;
   }
 }
 
 async function executeUniversalConversion() {
-  const fromType = document.getElementById('convertFrom').value;
-  const toType = document.getElementById('convertTo').value;
-  const fileInput = document.getElementById('universalFileInput');
-  const statusText = document.getElementById('converterStatusText');
-  const box = document.getElementById('converterPreviewBox');
-  const t = translations[currentLang] || translations['nl'];
+  const fromType =
+    document.getElementById(
+      'convertFrom'
+    ).value;
 
-  const file = fileInput.files[0];
+  const toType =
+    document.getElementById(
+      'convertTo'
+    ).value;
+
+  const fileInput =
+    document.getElementById(
+      'universalFileInput'
+    );
+
+  const statusText =
+    document.getElementById(
+      'converterStatusText'
+    );
+
+  const box =
+    document.getElementById(
+      'converterPreviewBox'
+    );
+
+  const t =
+    translations[currentLang] ||
+    translations['nl'];
+
+  const file =
+    fileInput.files[0];
+
   if (!file) {
     alert(t.convAlert);
     return;
   }
 
-  statusText.dataset.converted = "false";
-  statusText.innerHTML = t.convLoading;
+  statusText.dataset.converted =
+    "false";
+
+  statusText.innerHTML =
+    t.convLoading;
 
   try {
-    if (fromType === 'heic') {
-      const mimeMap = { jpg: 'image/jpeg', png: 'image/png', webp: 'image/webp' };
-      const convertedBlob = await heic2any({ blob: file, toType: mimeMap[toType], quality: 0.85 });
-      triggerDownload(convertedBlob, file.name.replace(/\.[^/.]+$/, "") + `.${toType}`, toType, box, statusText);
-    }
-    else if (fromType === 'image') {
-      const reader = new FileReader();
-      reader.onload = function(event) {
-        const img = new Image();
-        img.onload = function() {
-          const canvas = document.createElement('canvas');
-          canvas.width = img.width;
-          canvas.height = img.height;
-          const ctx = canvas.getContext('2d');
-          ctx.drawImage(img, 0, 0);
 
-          const mimeMap = { jpg: 'image/jpeg', png: 'image/png', webp: 'image/webp' };
-          canvas.toBlob(function(blob) {
-            triggerDownload(blob, file.name.replace(/\.[^/.]+$/, "") + `.${toType}`, toType, box, statusText);
-          }, mimeMap[toType], 0.9);
+    if (
+      fromType === 'heic'
+    ) {
+
+      const mimeMap = {
+        jpg: 'image/jpeg',
+        png: 'image/png',
+        webp: 'image/webp'
+      };
+
+      const convertedBlob =
+        await heic2any({
+          blob: file,
+          toType:
+            mimeMap[toType],
+          quality: 0.85
+        });
+
+      triggerDownload(
+        convertedBlob,
+        file.name.replace(
+          /\.[^/.]+$/,
+          ""
+        ) +
+          `.${toType}`,
+        toType,
+        box,
+        statusText
+      );
+
+    }
+
+    else if (
+      fromType === 'image'
+    ) {
+
+      const reader =
+        new FileReader();
+
+      reader.onload =
+        function(event) {
+
+          const img =
+            new Image();
+
+          img.onload =
+            function() {
+
+              const canvas =
+                document.createElement(
+                  'canvas'
+                );
+
+              canvas.width =
+                img.width;
+
+              canvas.height =
+                img.height;
+
+              const ctx =
+                canvas.getContext(
+                  '2d'
+                );
+
+              ctx.drawImage(
+                img,
+                0,
+                0
+              );
+
+              const mimeMap = {
+                jpg: 'image/jpeg',
+                png: 'image/png',
+                webp: 'image/webp'
+              };
+
+              canvas.toBlob(
+                function(blob) {
+
+                  triggerDownload(
+                    blob,
+                    file.name.replace(
+                      /\.[^/.]+$/,
+                      ""
+                    ) +
+                      `.${toType}`,
+                    toType,
+                    box,
+                    statusText
+                  );
+
+                },
+                mimeMap[toType],
+                0.9
+              );
+            };
+
+          img.src =
+            event.target.result;
         };
-        img.src = event.target.result;
-      };
-      reader.readAsDataURL(file);
-    }
-    else if (fromType === 'txt') {
-      const reader = new FileReader();
-      reader.onload = function(event) {
-        const textContent = event.target.result;
-        let outputData, mimeType, extension;
 
-        if (toType === 'json') {
-          outputData = JSON.stringify({ filename: file.name, content: textContent }, null, 2);
-          mimeType = 'application/json';
-          extension = 'json';
-        } else if (toType === 'html') {
-          outputData = `<!DOCTYPE html>\n<html lang="nl">\n<head><meta charset="UTF-8"><title>${file.name}</title></head>\n<body>\n  <pre>${textContent}</pre>\n</body>\n</html>`;
-          mimeType = 'text/html';
-          extension = 'html';
-        }
+      reader.readAsDataURL(
+        file
+      );
 
-        const blob = new Blob([outputData], { type: mimeType });
-        triggerDownload(blob, file.name.replace(/\.[^/.]+$/, "") + `.${extension}`, extension, box, statusText);
-      };
-      reader.readAsText(file);
     }
+
+    else if (
+      fromType === 'txt'
+    ) {
+
+      const reader =
+        new FileReader();
+
+      reader.onload =
+        function(event) {
+
+          const textContent =
+            event.target.result;
+
+          let outputData;
+          let mimeType;
+          let extension;
+
+          if (
+            toType === 'json'
+          ) {
+
+            outputData =
+              JSON.stringify(
+                {
+                  filename:
+                    file.name,
+                  content:
+                    textContent
+                },
+                null,
+                2
+              );
+
+            mimeType =
+              'application/json';
+
+            extension =
+              'json';
+
+          } else if (
+            toType === 'html'
+          ) {
+
+            outputData =
+              `<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<title>${file.name}</title>
+</head>
+<body>
+<pre>${textContent}</pre>
+</body>
+</html>`;
+
+            mimeType =
+              'text/html';
+
+            extension =
+              'html';
+          }
+
+          const blob =
+            new Blob(
+              [outputData],
+              {
+                type: mimeType
+              }
+            );
+
+          triggerDownload(
+            blob,
+            file.name.replace(
+              /\.[^/.]+$/,
+              ""
+            ) +
+              `.${extension}`,
+            extension,
+            box,
+            statusText
+          );
+        };
+
+      reader.readAsText(
+        file
+      );
+    }
+
   } catch (error) {
+
     console.error(error);
-    statusText.innerHTML = t.convError;
+
+    statusText.innerHTML =
+      t.convError;
   }
 }
 
-function triggerDownload(blob, fileName, formatName, box, statusText) {
-  const downloadUrl = URL.createObjectURL(blob);
-  const t = translations[currentLang] || translations['nl'];
-  statusText.dataset.converted = "true";
+
+/* =========================================================
+   DOWNLOAD
+   ========================================================= */
+
+function triggerDownload(
+  blob,
+  fileName,
+  formatName,
+  box,
+  statusText
+) {
+  const downloadUrl =
+    URL.createObjectURL(
+      blob
+    );
+
+  const t =
+    translations[currentLang] ||
+    translations['nl'];
+
+  statusText.dataset.converted =
+    "true";
+
   box.innerHTML = `
-    <p style="font-size: 14px; color: var(--primary); font-weight: 600; margin-bottom: 12px;">${t.convSuccess} ${formatName.toUpperCase()}!</p>
-    <a href="${downloadUrl}" download="${fileName}" class="btn" style="display: inline-block; text-decoration: none;">📥 Download ${formatName.toUpperCase()} (${fileName})</a>
+    <p
+      style="
+        font-size: 14px;
+        color: var(--primary);
+        font-weight: 600;
+        margin-bottom: 12px;
+      "
+    >
+      ${t.convSuccess}
+      ${formatName.toUpperCase()}!
+    </p>
+
+    <a
+      href="${downloadUrl}"
+      download="${fileName}"
+      class="btn"
+      style="
+        display: inline-block;
+        text-decoration: none;
+      "
+    >
+      📥 Download
+      ${formatName.toUpperCase()}
+      (${fileName})
+    </a>
   `;
 }
