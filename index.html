@@ -137,7 +137,7 @@
     <div class="tool-group"><button class="tool-btn" onclick="selectTool('translate', currentLang)"><span id="menuTranslate">🌍 Vertaal Tool</span></button></div>
     <div class="tool-group"><button class="tool-btn" onclick="selectTool('qr', currentLang)"><span id="menuQr">📱 QR Code Generator</span></button></div>
     <div class="tool-group"><button class="tool-btn" onclick="selectTool('converter', currentLang)"><span id="menuConverter">🔄 Universele Converter</span></button></div>
-    <div class="tool-group"><button class="tool-btn" onclick="showArticle()"><span id="menuArticle">📰 Artikel</span></button></div>
+    <div class="tool-group"><button class="tool-btn" onclick="selectTool('blog', currentLang)"><span id="menuBlog">📰 Blog</span></button></div>
   </nav>
 
   <main class="container">
@@ -358,7 +358,7 @@
           <label for="convertFrom" id="convLabelFrom">Wat wil je converteren?</label>
           <select id="convertFrom" class="tts-select" onchange="updateConverterUI()">
             <option value="heic" id="optHeic">📷 HEIC Afbeelding (Apple)</option>
-            <option value="image" id="optImg">🖼️ Standaard Afbeelding (PNG/JPG/WebP)</option>
+            <option value="image" id="optImg">🖼️️ Standaard Afbeelding (PNG/JPG/WebP)</option>
             <option value="txt" id="optTxt">📄 Tekstbestand (.txt)</option>
           </select>
         </div>
@@ -385,9 +385,15 @@
       </div>
     </div>
 
-    <div id="tab-article" class="tab-content">
-      <article class="article-page">
-        <div id="articleOverviewContainer"></div>
+    <!-- Blog Tab -->
+    <div id="tab-blog" class="tab-content">
+      <article class="blog-page">
+        <div class="blog-card info-card">
+          <h2>Welkom op de Every-Tool Blog</h2>
+          <p>Hier vind je handige artikelen, updates en tips over hoe je onze tools optimaal kunt inzetten voor je schoolprojecten, presentaties en dagelijkse workflow.</p>
+          <h2>Waarom kiezen voor client-side tools?</h2>
+          <p>Alle handelingen op Every-Tool gebeuren rechtstreeks in je eigen browser. Dit betekent dat je bestanden en teksten nooit worden geüpload naar externe servers, wat je volledige privacy waarborgt.</p>
+        </div>
       </article>
     </div>
 
