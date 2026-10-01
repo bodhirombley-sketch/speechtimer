@@ -358,7 +358,7 @@
           <label for="convertFrom" id="convLabelFrom">Wat wil je converteren?</label>
           <select id="convertFrom" class="tts-select" onchange="updateConverterUI()">
             <option value="heic" id="optHeic">📷 HEIC Afbeelding (Apple)</option>
-            <option value="image" id="optImg">🖼️️ Standaard Afbeelding (PNG/JPG/WebP)</option>
+            <option value="image" id="optImg">🖼️ Standaard Afbeelding (PNG/JPG/WebP)</option>
             <option value="txt" id="optTxt">📄 Tekstbestand (.txt)</option>
           </select>
         </div>
@@ -388,11 +388,100 @@
     <!-- Blog Tab -->
     <div id="tab-blog" class="tab-content">
       <article class="blog-page">
-        <div class="blog-card info-card">
-          <h2>Welkom op de Every-Tool Blog</h2>
-          <p>Hier vind je handige artikelen, updates en tips over hoe je onze tools optimaal kunt inzetten voor je schoolprojecten, presentaties en dagelijkse workflow.</p>
-          <h2>Waarom kiezen voor client-side tools?</h2>
-          <p>Alle handelingen op Every-Tool gebeuren rechtstreeks in je eigen browser. Dit betekent dat je bestanden en teksten nooit worden geüpload naar externe servers, wat je volledige privacy waarborgt.</p>
+        <!-- Overzicht / Inleiding Card -->
+        <div id="blogListContainer">
+          <div class="blog-list-card" onclick="openFullBlog()">
+            <h3 id="blogTitle">10 handige gratis online tools voor studenten en contentmakers</h3>
+            <p id="blogIntro">Op zoek naar handige online tools zonder ingewikkelde installatie of abonnement? Ontdek 10 gratis toepassingen die je helpen met school, schrijven en content maken.</p>
+            <span style="color: var(--primary); font-weight: 600; font-size: 14px;">Lees volledig artikel →</span>
+          </div>
+        </div>
+
+        <!-- Volledig Artikel Container (Smooth uitklapbaar) -->
+        <div id="blogFullContent" class="blog-full-content">
+          <button class="btn secondary" onclick="closeFullBlog()" style="margin-bottom: 20px;" id="blogBackBtn">← Terug naar overzicht</button>
+          
+          <h2 style="margin-top:0;">10 handige gratis online tools voor studenten en contentmakers</h2>
+          <p>Op zoek naar handige online tools zonder ingewikkelde installatie of abonnement? Op Every-Tool vind je verschillende gratis tools die je kunnen helpen met school, schrijven, content maken en dagelijkse taken.</p>
+          <p>In dit artikel zetten we 10 handige toepassingen op een rij.</p>
+
+          <h3>1. Tekst verbeteren</h3>
+          <p>Heb je een tekst geschreven, maar zitten er spelfouten of onduidelijke zinnen in? Een tekstverbeteringstool kan helpen om je tekst duidelijker en netter te maken.</p>
+          <p>Dit is bijvoorbeeld handig voor:</p>
+          <ul>
+            <li>Schoolopdrachten</li>
+            <li>E-mails</li>
+            <li>Artikelen</li>
+            <li>Socialmediaberichten</li>
+          </ul>
+
+          <h3>2. Grammatica controleren</h3>
+          <p>Een kleine grammaticafout kan ervoor zorgen dat een tekst minder professioneel overkomt. Met een grammaticacontrole kun je snel controleren of je zinnen correct zijn geschreven.</p>
+          <p>Je kunt bijvoorbeeld een tekst kopiëren, controleren en daarna de verbeterde versie gebruiken.</p>
+
+          <h3>3. Tekst naar spraak</h3>
+          <p>Wil je een tekst liever beluisteren dan lezen? Met een tekst-naar-spraak-tool kun je geschreven tekst laten voorlezen.</p>
+          <p>Dit kan handig zijn wanneer je:</p>
+          <ul>
+            <li>Een tekst wilt beluisteren tijdens het leren</li>
+            <li>Een script wilt controleren</li>
+            <li>Een tekst toegankelijker wilt maken</li>
+            <li>De uitspraak van woorden wilt horen</li>
+          </ul>
+
+          <h3>4. QR-code maken</h3>
+          <p>Een QR-code is een snelle manier om iemand naar een website, tekst of andere informatie te sturen.</p>
+          <p>Je kunt bijvoorbeeld een QR-code gebruiken voor:</p>
+          <ul>
+            <li>Een website</li>
+            <li>Een evenement</li>
+            <li>Een document</li>
+            <li>Een socialmediaprofiel</li>
+          </ul>
+          <p>In plaats van een lange link over te typen, kan iemand simpelweg de QR-code scannen.</p>
+
+          <h3>5. Tekst vertalen</h3>
+          <p>Wanneer je informatie in een andere taal nodig hebt, kan een vertaaltool veel tijd besparen.</p>
+          <p>Vertalen kan bijvoorbeeld handig zijn voor websites, korte berichten, schoolwerk of wanneer je met iemand communiceert die een andere taal spreekt.</p>
+          <p>Let er bij belangrijke teksten wel op dat een automatische vertaling niet altijd perfect is.</p>
+
+          <h3>6. Speech Timer</h3>
+          <p>Een speech of presentatie oefenen is een stuk makkelijker wanneer je weet hoe lang je tekst duurt.</p>
+          <p>Met een speech timer kun je bijvoorbeeld oefenen voor:</p>
+          <ul>
+            <li>Presentaties</li>
+            <li>Spreekbeurten</li>
+            <li>Video's</li>
+            <li>Podcasts</li>
+            <li>Toespraken</li>
+          </ul>
+          <p>Zo kun je controleren of je binnen de gewenste tijd blijft.</p>
+
+          <h3>7. AI-tekst controleren</h3>
+          <p>AI wordt steeds vaker gebruikt om teksten te schrijven en te verbeteren. Daardoor kan het soms lastig zijn om te bepalen hoe een tekst tot stand is gekomen.</p>
+          <p>Een AI-tekstindicator kan een extra hulpmiddel zijn om een tekst te analyseren.</p>
+          <p>Houd er wel rekening mee dat dergelijke systemen nooit met volledige zekerheid kunnen bepalen of een tekst door AI is geschreven.</p>
+
+          <h3>8. Tekst analyseren</h3>
+          <p>Soms wil je snel weten hoeveel woorden of tekens een tekst bevat. Een tekst-analysetool kan daarbij helpen.</p>
+          <p>Dit is vooral handig wanneer je een bepaalde woordlimiet moet gebruiken voor bijvoorbeeld een schoolopdracht, artikel of socialmediapost.</p>
+
+          <h3>9. Handige tools voor contentmakers</h3>
+          <p>Maak je video's, artikelen of socialmediacontent? Dan kunnen kleine online hulpmiddelen veel tijd besparen.</p>
+          <p>Denk bijvoorbeeld aan het controleren van scripts, het voorbereiden van een presentatie, het omzetten van tekst naar spraak of het maken van QR-codes.</p>
+          <p>Door verschillende eenvoudige tools te combineren, kun je een groot deel van je workflow online uitvoeren.</p>
+
+          <h3>10. Alles op één plek</h3>
+          <p>Het grootste voordeel van een website met meerdere tools is dat je niet voor iedere kleine taak een nieuwe website hoeft te zoeken.</p>
+          <p>Every-Tool brengt verschillende handige hulpmiddelen samen op één plek. Daardoor kun je snel van de ene tool naar de andere gaan en verschillende talen of taken uitvoeren zonder steeds nieuwe software te installeren.</p>
+
+          <h3>Waarom gratis online tools handig zijn</h3>
+          <p>Online tools zijn vooral handig omdat je ze meestal direct vanuit je browser kunt gebruiken. Je hoeft dus niet eerst een programma te downloaden of installeren.</p>
+          <p>Voor studenten, docenten, contentmakers en andere internetgebruikers kunnen kleine tools een hoop tijd besparen.</p>
+
+          <h3>Probeer Every-Tool</h3>
+          <p>Wil je verschillende gratis online tools uitproberen? Bekijk dan de tools op Every-Tool en ontdek welke hulpmiddelen voor jou het handigst zijn.</p>
+          <p>Of je nu een tekst wilt verbeteren, een QR-code wilt maken, een presentatie wilt oefenen of tekst wilt laten voorlezen: er is altijd wel een tool die je kan helpen.</p>
         </div>
       </article>
     </div>
