@@ -3,7 +3,7 @@ const translations = {
     placeholder: "Plak hier je tekst...",
     menuHeader: "Kies een Tool",
     menuHome: "🏠 Overzicht / Home",
-    menuTimer: "⏱️️ Speech & Presentatie",
+    menuTimer: "⏱️ Speech & Presentatie",
     menuChecker: "✍️ Grammatica Bot",
     menuAi: "🤖 AI-Tekst Detector",
     menuTts: "🔊 Tekst-naar-Spraak",
@@ -11,6 +11,9 @@ const translations = {
     menuQr: "📱 QR Code Generator",
     menuConverter: "🔄 Universele Converter",
     menuBlog: "📰 Blog",
+    blogTitle: "10 handige gratis online tools voor studenten en contentmakers",
+    blogIntro: "Op zoek naar handige online tools zonder ingewikkelde installatie of abonnement? Ontdek 10 gratis toepassingen die je helpen met school, schrijven en content maken.",
+    blogBackBtn: "← Terug naar overzicht",
     langTitle: "Taal / Language:",
     shareBtn: "🔗 Deel",
     heroTag: "Meet Every-Tool",
@@ -22,19 +25,19 @@ const translations = {
     aboutText: "Alle berekeningen vinden direct plaats in je eigen webbrowser (client-side), wat maximale privacy garandeert. Geen van je teksten wordt opgeslagen op externe servers.",
     faqTitle: "❓ Veelgestelde Vragen (FAQ)",
     faq1Q: "Hoe werkt de Speech Timer?",
-    faq1A: "Plak je presentatietekst in de tool om direct je spreektijd te berekenen op basis van verschillende snelheden (langzaam, normaal, snel).",
+    faq1A: "Plak je presentatietekst in de tool om direct je spreektijd te berekenen op basis van verschillende snelheden.",
     faq2Q: "Worden mijn teksten opgeslagen?",
-    faq2A: "Nee, alle verwerking gebeurt lokaal in je browser. Dankzij LocalStorage onthoudt je browser wel tijdelijk je invoer, zodat je niets kwijtraakt als je per ongeluk de pagina vernieuwt.",
+    faq2A: "Nee, alle verwerking gebeurt lokaal in je browser. Dankzij LocalStorage onthoudt je browser wel tijdelijk je invoer.",
     faq3Q: "Is het gebruik van Every-Tool gratis?",
     faq3A: "Ja, alle tools op dit platform zijn volledig gratis te gebruiken voor studenten, professionals en contentmakers.",
     faq4Q: "Hoe betrouwbaar is de AI-Tekst Detector?",
-    faq4A: "De AI-detector kijkt naar statistische kenmerken zoals zinslengte en variatie in schrijfstijl. Het geeft een goede indicatie, maar het blijft een schatting en geen 100% sluitend bewijs.",
+    faq4A: "De AI-detector kijkt naar statistische kenmerken zoals zinslengte en variatie in schrijfstijl.",
     faq5Q: "Kan ik de gegenereerde audio downloaden?",
-    faq5A: "Ja, in de Tekst-naar-Spraak tool kun je direct na het invoeren van je tekst klikken op de downloadknop om het audiobestand (.WAV) op te slaan op je apparaat.",
+    faq5A: "Ja, in de Tekst-naar-Spraak tool kun je direct na het invoeren klikken om het audiobestand (.WAV) op te slaan.",
     faq6Q: "Moet ik software installeren om deze tools te gebruiken?",
-    faq6A: "Nee, absoluut niet. Every-Tool werkt volledig web-based in elke moderne browser op je computer, tablet of smartphone.",
+    faq6A: "Nee, absoluut niet. Every-Tool werkt volledig web-based in elke moderne browser.",
     faq7Q: "Hoe werkt de Grammatica Bot?",
-    faq7A: "De Grammatica Bot maakt gebruik van de LanguageTool API om automatisch je tekst te scannen op spelfouten, stijlfouten en grammaticale onjuistheden, met handige correctiesuccessen.",
+    faq7A: "De Grammatica Bot maakt gebruik van de LanguageTool API om automatisch je tekst te scannen op spelfouten.",
     t1Title: "Speech & Presentatie Timer",
     t1Sub: "Bereken direct hoe lang jouw tekst duurt om voor te lezen.",
     slow: "🐢 Langzaam",
@@ -54,7 +57,7 @@ const translations = {
     noText: "Geen tekst ingevoerd.",
     noIssues: "✅ Geen spelfouten gevonden!",
     checkingText: "⏳ Bezig met controleren...",
-    apiError: "⚠️️ Verbindingsfout met LanguageTool API.",
+    apiError: "⚠️ Verbindingsfout met LanguageTool API.",
     t3Title: "AI-Tekst Detector Indicator",
     t3Sub: "Analyseer zinsstructuur op AI-kenmerken.",
     t3Score: "Geschatte AI-waarschijnlijkheid",
@@ -128,6 +131,9 @@ const translations = {
     menuQr: "📱 QR Code Generator",
     menuConverter: "🔄 Universeller Konverter",
     menuBlog: "📰 Blog",
+    blogTitle: "10 nützliche kostenlose Online-Tools für Studenten und Creator",
+    blogIntro: "Auf der Suche nach praktischen Online-Tools ohne Installation? Entdecken Sie 10 kostenlose Anwendungen für Schule, Schreiben und Content-Erstellung.",
+    blogBackBtn: "← Zurück zur Übersicht",
     langTitle: "Sprache / Language:",
     shareBtn: "🔗 Teilen",
     heroTag: "Meet Every-Tool",
@@ -245,6 +251,9 @@ const translations = {
     menuQr: "📱 QR Code Generator",
     menuConverter: "🔄 Universal Converter",
     menuBlog: "📰 Blog",
+    blogTitle: "10 useful free online tools for students and creators",
+    blogIntro: "Looking for handy online tools without installation? Discover 10 free applications to help with school, writing, and content creation.",
+    blogBackBtn: "← Back to overview",
     langTitle: "Language:",
     shareBtn: "🔗 Share",
     heroTag: "Meet Every-Tool",
@@ -362,6 +371,9 @@ const translations = {
     menuQr: "📱 Générateur de Code QR",
     menuConverter: "🔄 Convertisseur Universel",
     menuBlog: "📰 Blog",
+    blogTitle: "10 outils en ligne gratuits et utiles pour étudiants et créateurs",
+    blogIntro: "À la recherche d'outils en ligne pratiques sans installation ? Découvrez 10 applications gratuites pour l'école et la création.",
+    blogBackBtn: "← Retour à la vue d'ensemble",
     langTitle: "Langue / Language:",
     shareBtn: "🔗 Partager",
     heroTag: "Meet Every-Tool",
@@ -457,7 +469,7 @@ const translations = {
     optHeic: "📷 Image HEIC (Apple)",
     optImg: "🖼️ Image standard (PNG/JPG/WebP)",
     optTxt: "📄 Fichier texte (.txt)",
-    optJpg: "🖼️ Image JPG",
+    optJpg: "🖼️️ Image JPG",
     optPng: "🖼️ Image PNG",
     optWebp: "🌐 Image WebP",
     adSpace: "Espace Publicitaire (Google AdSense)",
@@ -471,7 +483,7 @@ const translations = {
     placeholder: "Pega tu texto aquí...",
     menuHeader: "Seleccionar Herramienta",
     menuHome: "🏠 Inicio / Resumen",
-    menuTimer: "⏱️️ Temporizador de Discurso",
+    menuTimer: "⏱️ Temporizador de Discurso",
     menuChecker: "✍️ Bot de Gramática",
     menuAi: "🤖 Detector de Texto IA",
     menuTts: "🔊 Texto a Voz",
@@ -479,6 +491,9 @@ const translations = {
     menuQr: "📱 Generador de Códigos QR",
     menuConverter: "🔄 Conversor Universal",
     menuBlog: "📰 Blog",
+    blogTitle: "10 útiles herramientas online gratuitas para estudiantes y creadores",
+    blogIntro: "¿Buscas herramientas online prácticas sin instalación? Descubre 10 aplicaciones gratuitas para la escuela y la creación de contenido.",
+    blogBackBtn: "← Volver al resumen",
     langTitle: "Idioma / Language:",
     shareBtn: "🔗 Compartir",
     heroTag: "Meet Every-Tool",
@@ -556,7 +571,7 @@ const translations = {
     qrPlaceholder: "Introduce una URL...",
     qrGenBtn: "Generar",
     downloadQR: "📥 Descargar código QR",
-    convTitle: "Conversor Universal",
+    convTitle: "Universeller Konverter",
     convSub: "Convierte fotos, documentos o datos fácilmente a otro format.",
     convLabelFrom: "¿Qué deseas convertir?",
     convLabelTo: "¿Convertir a?",
@@ -663,8 +678,17 @@ function closeSidebar() {
   if (overlay) overlay.classList.remove('open');
 }
 
-function showBlog() {
-  selectTool('blog', currentLang);
+function openFullBlog() {
+  document.getElementById('blogListContainer').style.display = 'none';
+  const fullContent = document.getElementById('blogFullContent');
+  fullContent.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function closeFullBlog() {
+  document.getElementById('blogFullContent').classList.remove('active');
+  document.getElementById('blogListContainer').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function toggleDropdown(dropId, btn) {
