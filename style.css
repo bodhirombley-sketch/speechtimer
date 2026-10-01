@@ -24,8 +24,8 @@
   --textarea-bg: #0f172a;
 }
 
-* { box-sizing: border-box; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-body { margin: 0; padding: 0; background: var(--bg-color); color: var(--text-color); display: flex; flex-direction: column; min-height: 100vh; transition: background 0.3s, color 0.3s; }
+* { box-sizing: border-box; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; touch-action: manipulation; }
+body { margin: 0; padding: 0; background: var(--bg-color); color: var(--text-color); display: flex; flex-direction: column; min-height: 100vh; transition: background-color 0.3s ease, color 0.3s ease; }
 
 .language-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(4px); z-index: 1000; display: flex; align-items: center; justify-content: center; transition: opacity 0.3s ease; }
 .language-overlay.hidden { display: none; }
@@ -110,8 +110,9 @@ details[open] { border-color: var(--primary); background: var(--primary-light); 
 summary { font-weight: 700; color: var(--text-color); font-size: 15px; outline: none; }
 details p { margin: 10px 0 0 0; color: var(--text-muted); font-size: 14px; line-height: 1.6; }
 
-textarea { width: 100%; height: 160px; padding: 16px; font-size: 15px; border: 1px solid var(--border-color); border-radius: 12px; resize: vertical; outline: none; margin-bottom: 10px; background: var(--textarea-bg); color: var(--text-color); transition: all 0.2s; }
-textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 4px var(--primary-light); }
+textarea, input[type="text"], input[type="url"] { width: 100%; padding: 16px; font-size: 15px; border: 1px solid var(--border-color); border-radius: 12px; outline: none; background: var(--textarea-bg); color: var(--text-color); transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+textarea { height: 160px; resize: vertical; margin-bottom: 10px; }
+textarea:focus, input:focus { border-color: var(--primary); box-shadow: 0 0 0 4px var(--primary-light); }
 
 .stats-bar { font-size: 13px; color: var(--text-muted); font-weight: 600; margin-bottom: 16px; display: flex; gap: 15px; }
 .action-bar { display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
@@ -139,8 +140,7 @@ textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 4px var(--prima
 .ai-bar-fill { height: 100%; background: var(--primary); width: 0%; transition: width 0.5s ease; border-radius: 6px; }
 
 .url-input-group { display: flex; gap: 10px; margin-bottom: 24px; flex-wrap: wrap; }
-.url-input-group input { flex: 1; min-width: 200px; padding: 14px 16px; font-size: 15px; border: 1px solid var(--border-color); border-radius: 12px; outline: none; background: var(--textarea-bg); color: var(--text-color); }
-.url-input-group input:focus { border-color: var(--primary); box-shadow: 0 0 0 4px var(--primary-light); }
+.url-input-group input { flex: 1; min-width: 200px; }
 
 .qr-preview-box { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 35px; text-align: center; margin-top: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 250px; }
 .qr-preview-box img { max-width: 200px; height: auto; border-radius: 10px; border: 1px solid var(--border-color); padding: 10px; background: white; margin-bottom: 16px; }
@@ -162,3 +162,18 @@ textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 4px var(--prima
 .section-header-wrapper { margin-bottom: 25px; }
 h2.section-title { font-size: 26px; font-weight: 800; color: var(--text-color); margin: 0 0 8px 0; letter-spacing: -0.5px; }
 .section-subtitle { color: var(--text-muted); font-size: 15px; margin: 0; font-weight: 400; }
+
+/* Artikel styling */
+.article-page { max-width: 900px; margin: 0 auto; }
+.article-card { line-height: 1.75; }
+.article-card h2 { margin: 32px 0 10px; font-size: 22px; color: var(--text-main); }
+.article-card p { margin: 0 0 16px; }
+.article-card ul { margin: 0 0 20px 22px; padding: 0; }
+.article-card li { margin: 6px 0; }
+.article-cta { margin-top: 36px; padding: 24px; border: 1px solid var(--border-color); border-radius: 14px; background: var(--card-bg); }
+.article-cta h2 { margin-top: 0; }
+
+@media (max-width: 700px) {
+  .article-card h2 { font-size: 20px; }
+  .article-card { line-height: 1.65; }
+}
