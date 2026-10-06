@@ -117,7 +117,18 @@ const translations = {
     sec1: "256-bit SSL-beveiliging",
     sec2: "100% Privacy - Lokale verwerking",
     sec3: "Direct resultaat",
-    speeds: { slow: 90, norm: 100, fast: 125 }
+    speeds: { slow: 90, norm: 100, fast: 125 },
+    pageTitles: {
+      home: "Every-Tool | Gratis Online Handige Tools & Conversie",
+      timer: "Speech & Presentatie Timer | Every-Tool",
+      checker: "Grammatica & Spelfout Bot | Every-Tool",
+      ai: "AI-Tekst Detector Indicator | Every-Tool",
+      tts: "Tekst-naar-Spraak Generator | Every-Tool",
+      translate: "Gratis Online Vertaal Tool | Every-Tool",
+      qr: "Gratis QR Code Generator | Every-Tool",
+      converter: "Universele Bestandsconverter | Every-Tool",
+      blog: "Blog & Artikelen | Every-Tool"
+    }
   },
 
   de: {
@@ -238,7 +249,18 @@ const translations = {
     sec1: "256-bit SSL-Sicherheit",
     sec2: "100% Datenschutz - Lokale Verarbeitung",
     sec3: "Sofortiges Ergebnis",
-    speeds: { slow: 110, norm: 130, fast: 160 }
+    speeds: { slow: 110, norm: 130, fast: 160 },
+    pageTitles: {
+      home: "Every-Tool | Nützliche Online-Tools & Konvertierung",
+      timer: "Rede & Präsentations-Timer | Every-Tool",
+      checker: "Grammatik & Rechtschreibung Bot | Every-Tool",
+      ai: "KI-Text-Detektor | Every-Tool",
+      tts: "Text-to-Speech Generator | Every-Tool",
+      translate: "Kostenloses Übersetzungstool | Every-Tool",
+      qr: "Kostenloser QR-Code-Generator | Every-Tool",
+      converter: "Universeller Dateikonverter | Every-Tool",
+      blog: "Blog & Artikel | Every-Tool"
+    }
   },
 
   en: {
@@ -316,7 +338,7 @@ const translations = {
     ttsStatusPlaceholder: "Status: Ready to speak or download...",
     ttsSpeaking: "🔊 Speaking...",
     ttsDone: "✅ Speech completed.",
-    ttsStopped: "⏹️ Stopped.",
+    ttsStopped: "⏹️️ Stopped.",
     ttsDownloaded: "📥 Audio file successfully downloaded!",
     ttsNoTextAlert: "Please enter some text first!",
     ttsNoAudioTextAlert: "Please enter text to download.",
@@ -359,7 +381,18 @@ const translations = {
     sec1: "256-bit SSL Security",
     sec2: "100% Privacy - Local Processing",
     sec3: "Instant Results",
-    speeds: { slow: 110, norm: 130, fast: 160 }
+    speeds: { slow: 110, norm: 130, fast: 160 },
+    pageTitles: {
+      home: "Every-Tool | Free Handy Online Tools & Conversion",
+      timer: "Speech & Presentation Timer | Every-Tool",
+      checker: "Grammar & Spell Checker Bot | Every-Tool",
+      ai: "AI Text Detector Indicator | Every-Tool",
+      tts: "Text-to-Speech Generator | Every-Tool",
+      translate: "Free Online Translation Tool | Every-Tool",
+      qr: "Free QR Code Generator | Every-Tool",
+      converter: "Universal File Converter | Every-Tool",
+      blog: "Blog & Articles | Every-Tool"
+    }
   },
 
   fr: {
@@ -480,7 +513,18 @@ const translations = {
     sec1: "Sécurité SSL 256 bits",
     sec2: "100% Confidentialité - Traitement local",
     sec3: "Résultat instantané",
-    speeds: { slow: 90, norm: 100, fast: 125 }
+    speeds: { slow: 90, norm: 100, fast: 125 },
+    pageTitles: {
+      home: "Every-Tool | Outils en ligne gratuits & Conversion",
+      timer: "Minuteur de discours & présentation | Every-Tool",
+      checker: "Correcteur Grammatical & Orthographe | Every-Tool",
+      ai: "Détecteur de texte IA | Every-Tool",
+      tts: "Générateur de Synthèse vocale | Every-Tool",
+      translate: "Outil de Traduction en ligne gratuit | Every-Tool",
+      qr: "Générateur de Code QR gratuit | Every-Tool",
+      converter: "Convertisseur de fichiers universel | Every-Tool",
+      blog: "Blog & Articles | Every-Tool"
+    }
   },
 
   es: {
@@ -576,8 +620,8 @@ const translations = {
     qrPlaceholder: "Introduce una URL...",
     qrGenBtn: "Generar",
     downloadQR: "📥 Descargar código QR",
-    convTitle: "Universeller Konverter",
-    convSub: "Convierte fotos, documentos o datos fácilmente a otro format.",
+    convTitle: "Conversor Universal",
+    convSub: "Convierte fotos, documentos o datos fácilmente a otro formato.",
     convLabelFrom: "¿Qué deseas convertir?",
     convLabelTo: "¿Convertir a?",
     convActionBtn: "Iniciar conversión",
@@ -589,10 +633,10 @@ const translations = {
     optNl: "🇳🇱 Neerlandés",
     optEn: "🇬🇧 Inglés",
     optDe: "🇩🇪 Alemán",
-    optFr: "🇫🇷 Francés",
+    optFr: "🇫🇷 Français",
     optEs: "🇪🇸 Español",
     optHeic: "📷 Imagen HEIC (Apple)",
-    optImg: "🖼️ Image standard (PNG/JPG/WebP)",
+    optImg: "🖼️ Imagen estándar (PNG/JPG/WebP)",
     optTxt: "📄 Archivo de texto (.txt)",
     optJpg: "🖼️ Imagen JPG",
     optPng: "🖼️ Imagen PNG",
@@ -601,7 +645,18 @@ const translations = {
     sec1: "Seguridad SSL de 256 bits",
     sec2: "100% Privacidad - Procesamiento local",
     sec3: "Resultado instantáneo",
-    speeds: { slow: 110, norm: 130, fast: 160 }
+    speeds: { slow: 110, norm: 130, fast: 160 },
+    pageTitles: {
+      home: "Every-Tool | Herramientas Online Gratuitas y Conversión",
+      timer: "Temporizador de Discurso y Presentación | Every-Tool",
+      checker: "Bot Corrector de Gramática | Every-Tool",
+      ai: "Detector de Texto IA | Every-Tool",
+      tts: "Generador de Texto a Voz | Every-Tool",
+      translate: "Herramienta de Traducción Gratuita | Every-Tool",
+      qr: "Generador de Códigos QR Gratuito | Every-Tool",
+      converter: "Conversor Universal de Archivos | Every-Tool",
+      blog: "Blog y Artículos | Every-Tool"
+    }
   }
 };
 
@@ -641,7 +696,7 @@ window.addEventListener('DOMContentLoaded', () => {
   handleRoute();
   window.addEventListener('popstate', handleRoute);
 
-  // Sneltoetsen listener (Ctrl + Enter)
+  // Sneltoetsen listener (Ctrl + Enter of Cmd + Enter)
   document.addEventListener('keydown', (e) => {
     if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
       if (currentTool === 'checker') {
@@ -671,21 +726,22 @@ function saveToLocal(id, val) {
 function setInitialLanguage(lang) {
   currentLang = lang;
   localStorage.setItem('everyToolLang', lang);
-  document.getElementById('languageOverlay').classList.add('hidden');
+  const overlay = document.getElementById('languageOverlay');
+  if (overlay) overlay.classList.add('hidden');
   selectTool(currentTool, lang);
 }
 
 function toggleDarkMode() {
   const body = document.body;
   const btn = document.getElementById('darkModeBtn');
-  if (body.getAttribute('data-theme') === 'light') {
+  if (body.getAttribute('data-theme') === 'light' || !body.hasAttribute('data-theme')) {
     body.setAttribute('data-theme', 'dark');
     localStorage.setItem('everyToolTheme', 'dark');
-    btn.innerText = "☀️ Light Mode";
+    if (btn) btn.innerText = "☀️ Light Mode";
   } else {
     body.setAttribute('data-theme', 'light');
     localStorage.setItem('everyToolTheme', 'light');
-    btn.innerText = "🌙 Dark Mode";
+    if (btn) btn.innerText = "🌙 Dark Mode";
   }
 }
 
@@ -706,26 +762,30 @@ function closeSidebar() {
 }
 
 function openFullBlog() {
-  document.getElementById('blogListContainer').style.display = 'none';
+  const listContainer = document.getElementById('blogListContainer');
   const fullContent = document.getElementById('blogFullContent');
-  fullContent.classList.add('active');
+  if (listContainer) listContainer.style.display = 'none';
+  if (fullContent) fullContent.classList.add('active');
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function closeFullBlog() {
-  document.getElementById('blogFullContent').classList.remove('active');
-  document.getElementById('blogListContainer').style.display = 'block';
+  const fullContent = document.getElementById('blogFullContent');
+  const listContainer = document.getElementById('blogListContainer');
+  if (fullContent) fullContent.classList.remove('active');
+  if (listContainer) listContainer.style.display = 'block';
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function toggleDropdown(dropId, btn) {
   const drop = document.getElementById(dropId);
+  if (!drop) return;
   const isOpen = drop.classList.contains('show');
   document.querySelectorAll('.lang-dropdown').forEach(d => d.classList.remove('show'));
   document.querySelectorAll('.tool-btn').forEach(b => b.classList.remove('open'));
   if (!isOpen) {
     drop.classList.add('show');
-    btn.classList.add('open');
+    if (btn) btn.classList.add('open');
   }
 }
 
@@ -734,7 +794,7 @@ function shareSite() {
   alert((translations[currentLang] || translations['nl']).copyAlert);
 }
 
-function clearTextArea(id, statsId) {
+function clearTextArea(id) {
   const el = document.getElementById(id);
   if (el) {
     el.value = '';
@@ -756,10 +816,12 @@ function selectTool(toolId, lang, pushHistory = true) {
     window.history.pushState({ tool: toolId }, '', newPath);
   }
 
+  // Actieve tab tonen
   document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
   const targetTab = document.getElementById('tab-' + toolId);
   if (targetTab) targetTab.classList.add('active');
 
+  // Blog resetten bij wissel van tool
   if (toolId !== 'blog') {
     const fullContent = document.getElementById('blogFullContent');
     const listContainer = document.getElementById('blogListContainer');
@@ -774,11 +836,20 @@ function selectTool(toolId, lang, pushHistory = true) {
   document.querySelectorAll('.tool-btn').forEach(b => b.classList.remove('open'));
   document.querySelectorAll('.lang-switcher-top button').forEach(b => b.classList.remove('active'));
 
-  if (['nl', 'en', 'de', 'fr', 'es'].includes(lang)) {
-    document.getElementById(`langBtn${lang.charAt(0).toUpperCase() + lang.slice(1)}`)?.classList.add('active');
-  }
+  const langCap = lang.charAt(0).toUpperCase() + lang.slice(1);
+  const langBtn = document.getElementById(`langBtn${langCap}`);
+  if (langBtn) langBtn.classList.add('active');
 
   const t = translations[lang] || translations['nl'];
+
+  // Dynamische SEO Paginatitel per taal
+  if (t.pageTitles && t.pageTitles[toolId]) {
+    document.title = t.pageTitles[toolId];
+  } else {
+    document.title = "Every-Tool | Gratis Online Handige Tools";
+  }
+
+  // Vertalingen toepassen op elementen met ID
   document.querySelectorAll('[id]').forEach(el => {
     const id = el.id;
     if (t[id] !== undefined) {
@@ -805,8 +876,11 @@ function selectTool(toolId, lang, pushHistory = true) {
 }
 
 function filterTools() {
-  const input = document.getElementById('homeSearchInput').value.toLowerCase().trim();
+  const inputEl = document.getElementById('homeSearchInput');
+  if (!inputEl) return;
+  const input = inputEl.value.toLowerCase().trim();
   const suggestionsBox = document.getElementById('searchSuggestions');
+  if (!suggestionsBox) return;
   const t = translations[currentLang] || translations['nl'];
 
   const allTools = [
@@ -845,30 +919,42 @@ function formatTime(sec) {
 }
 
 function handleTimerInput() {
-  const val = document.getElementById('text-timer').value;
+  const timerInput = document.getElementById('text-timer');
+  if (!timerInput) return;
+  const val = timerInput.value;
   saveToLocal('text-timer', val);
   calcTimer();
 }
 
 function calcTimer() {
-  const text = document.getElementById('text-timer').value.trim();
+  const timerInput = document.getElementById('text-timer');
+  if (!timerInput) return;
+  const text = timerInput.value.trim();
   const words = text ? text.split(/\s+/).filter(w => w.length > 0).length : 0;
   const chars = text.length;
 
-  document.getElementById('stats-timer-text').innerText = `Woorden: ${words} | Tekens: ${chars}`;
-  const sp = (translations[currentLang] || translations['nl']).speeds;
+  const statsEl = document.getElementById('stats-timer-text');
+  if (statsEl) statsEl.innerText = `Woorden: ${words} | Tekens: ${chars}`;
 
+  const sp = (translations[currentLang] || translations['nl']).speeds;
   const timeNormSec = words ? (words / sp.norm) * 60 : 0;
-  document.getElementById('timeSlow').innerText = formatTime(words ? (words / sp.slow) * 60 : 0);
-  document.getElementById('timeNorm').innerText = formatTime(timeNormSec);
-  document.getElementById('timeFast').innerText = formatTime(words ? (words / sp.fast) * 60 : 0);
+
+  const slowEl = document.getElementById('timeSlow');
+  const normEl = document.getElementById('timeNorm');
+  const fastEl = document.getElementById('timeFast');
+
+  if (slowEl) slowEl.innerText = formatTime(words ? (words / sp.slow) * 60 : 0);
+  if (normEl) normEl.innerText = formatTime(timeNormSec);
+  if (fastEl) fastEl.innerText = formatTime(words ? (words / sp.fast) * 60 : 0);
 
   // Visuele waarschuwing als presentatie langer duurt dan 5 minuten (300 seconden)
   const normCard = document.getElementById('cardNorm');
-  if (timeNormSec > 300) {
-    normCard.classList.add('warning');
-  } else {
-    normCard.classList.remove('warning');
+  if (normCard) {
+    if (timeNormSec > 300) {
+      normCard.classList.add('warning');
+    } else {
+      normCard.classList.remove('warning');
+    }
   }
 }
 
@@ -877,16 +963,18 @@ let secs = 0;
 
 function startTimer() {
   const b = document.getElementById('startBtn');
+  const stopwatch = document.getElementById('stopwatch');
   const t = translations[currentLang] || translations['nl'];
+
   if (timerInt) {
     clearInterval(timerInt);
     timerInt = null;
-    b.innerText = t.resumeBtn;
+    if (b) b.innerText = t.resumeBtn;
   } else {
-    b.innerText = t.pauseBtn;
+    if (b) b.innerText = t.pauseBtn;
     timerInt = setInterval(() => {
       secs++;
-      document.getElementById('stopwatch').innerText = formatTime(secs);
+      if (stopwatch) stopwatch.innerText = formatTime(secs);
     }, 1000);
   }
 }
@@ -895,21 +983,27 @@ function resetTimer() {
   clearInterval(timerInt);
   timerInt = null;
   secs = 0;
-  document.getElementById('stopwatch').innerText = "00:00";
-  document.getElementById('startBtn').innerText = (translations[currentLang] || translations['nl']).startBtn;
+  const stopwatch = document.getElementById('stopwatch');
+  const b = document.getElementById('startBtn');
+  if (stopwatch) stopwatch.innerText = "00:00";
+  if (b) b.innerText = (translations[currentLang] || translations['nl']).startBtn;
 }
 
 function updateCheckerStats() {
-  const val = document.getElementById('text-checker').value;
+  const el = document.getElementById('text-checker');
+  if (!el) return;
+  const val = el.value;
   saveToLocal('text-checker', val);
   const words = val.trim() ? val.trim().split(/\s+/).length : 0;
-  document.getElementById('stats-checker-text').innerText = `Woorden: ${words} | Tekens: ${val.length}`;
+  const statsEl = document.getElementById('stats-checker-text');
+  if (statsEl) statsEl.innerText = `Woorden: ${words} | Tekens: ${val.length}`;
 }
 
 async function checkAndFixWithLanguageTool() {
   const textarea = document.getElementById('text-checker');
   const container = document.getElementById('issuesContainer');
   const t = translations[currentLang] || translations['nl'];
+  if (!textarea || !container) return;
   let text = textarea.value;
 
   if (!text.trim()) {
@@ -956,6 +1050,7 @@ async function checkAndFixWithLanguageTool() {
 
 function copyText(id) {
   const el = document.getElementById(id);
+  if (!el) return;
   const val = el.value || el.innerText;
   if (val) {
     navigator.clipboard.writeText(val);
@@ -964,19 +1059,27 @@ function copyText(id) {
 }
 
 function checkAI() {
-  const text = document.getElementById('text-ai').value.trim();
+  const el = document.getElementById('text-ai');
+  if (!el) return;
+  const text = el.value.trim();
   saveToLocal('text-ai', text);
   const t = translations[currentLang] || translations['nl'];
   const words = text ? text.split(/\s+/).length : 0;
-  document.getElementById('stats-ai-text').innerText = `Woorden: ${words} | Tekens: ${text.length}`;
+  
+  const statsEl = document.getElementById('stats-ai-text');
+  if (statsEl) statsEl.innerText = `Woorden: ${words} | Tekens: ${text.length}`;
 
   const barFill = document.getElementById('aiBar');
+  const scoreEl = document.getElementById('aiScore');
+  const analysisEl = document.getElementById('aiAnalysis');
 
   if (text.length < 50) {
-    document.getElementById('aiScore').innerText = "0%";
-    barFill.style.width = "0%";
-    barFill.style.backgroundColor = "var(--primary)";
-    document.getElementById('aiAnalysis').innerText = t.aiShort;
+    if (scoreEl) scoreEl.innerText = "0%";
+    if (barFill) {
+      barFill.style.width = "0%";
+      barFill.style.backgroundColor = "var(--primary)";
+    }
+    if (analysisEl) analysisEl.innerText = t.aiShort;
     return;
   }
 
@@ -986,34 +1089,39 @@ function checkAI() {
   let variance = lengths.reduce((acc, l) => acc + Math.abs(l - avgLength), 0) / (sentences.length || 1);
   let score = Math.max(5, Math.min(98, Math.round(100 - variance * 10)));
 
-  document.getElementById('aiScore').innerText = score + "%";
-  barFill.style.width = score + "%";
-
-  // Dynamische kleurverandering balk
-  if (score > 70) {
-    barFill.style.backgroundColor = "#ef4444"; // Rood bij hoge AI-kans
-  } else if (score > 40) {
-    barFill.style.backgroundColor = "#f59e0b"; // Oranje bij twijfel
-  } else {
-    barFill.style.backgroundColor = "#22c55e"; // Groen bij menselijk
+  if (scoreEl) scoreEl.innerText = score + "%";
+  if (barFill) {
+    barFill.style.width = score + "%";
+    if (score > 70) {
+      barFill.style.backgroundColor = "#ef4444"; // Rood bij hoge AI-kans
+    } else if (score > 40) {
+      barFill.style.backgroundColor = "#f59e0b"; // Oranje bij twijfel
+    } else {
+      barFill.style.backgroundColor = "#22c55e"; // Groen bij menselijk
+    }
   }
 
-  document.getElementById('aiAnalysis').innerText = score > 60 ? t.aiHigh : t.aiLow;
+  if (analysisEl) analysisEl.innerText = score > 60 ? t.aiHigh : t.aiLow;
 }
 
 function speakText() {
-  const text = document.getElementById('text-tts').value.trim();
+  const inputEl = document.getElementById('text-tts');
   const statusBox = document.getElementById('ttsStatusBox');
+  const voiceLangEl = document.getElementById('voiceLangTts');
   const t = translations[currentLang] || translations['nl'];
+
+  if (!inputEl) return;
+  const text = inputEl.value.trim();
   if (!text) { alert(t.ttsNoTextAlert); return; }
-  const lang = document.getElementById('voiceLangTts').value;
-  statusBox.innerHTML = t.ttsSpeaking;
+
+  const lang = voiceLangEl ? voiceLangEl.value : 'nl-NL';
+  if (statusBox) statusBox.innerHTML = t.ttsSpeaking;
 
   if ('speechSynthesis' in window) {
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = lang;
-    utterance.onend = () => { statusBox.innerHTML = t.ttsDone; };
+    utterance.onend = () => { if (statusBox) statusBox.innerHTML = t.ttsDone; };
     window.speechSynthesis.speak(utterance);
   } else {
     alert(t.ttsNotSupported);
@@ -1022,15 +1130,18 @@ function speakText() {
 
 function stopSpeech() {
   const t = translations[currentLang] || translations['nl'];
+  const statusBox = document.getElementById('ttsStatusBox');
   if ('speechSynthesis' in window) {
     window.speechSynthesis.cancel();
-    document.getElementById('ttsStatusBox').innerHTML = t.ttsStopped;
+    if (statusBox) statusBox.innerHTML = t.ttsStopped;
   }
 }
 
 function downloadAudioFile() {
-  const text = document.getElementById('text-tts').value.trim();
+  const inputEl = document.getElementById('text-tts');
   const t = translations[currentLang] || translations['nl'];
+  if (!inputEl) return;
+  const text = inputEl.value.trim();
   if (!text) { alert(t.ttsNoAudioTextAlert); return; }
 
   const sampleRate = 22050;
@@ -1068,7 +1179,9 @@ function downloadAudioFile() {
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
-  document.getElementById('ttsStatusBox').innerHTML = t.ttsDownloaded;
+
+  const statusBox = document.getElementById('ttsStatusBox');
+  if (statusBox) statusBox.innerHTML = t.ttsDownloaded;
 }
 
 function writeString(view, offset, string) {
@@ -1078,10 +1191,15 @@ function writeString(view, offset, string) {
 }
 
 async function executeTranslation() {
-  const text = document.getElementById('text-translate').value.trim();
-  const targetLang = document.getElementById('targetLangTranslate').value;
+  const inputEl = document.getElementById('text-translate');
+  const targetLangEl = document.getElementById('targetLangTranslate');
   const resultBox = document.getElementById('translationResultBox');
   const t = translations[currentLang] || translations['nl'];
+
+  if (!inputEl || !resultBox || !targetLangEl) return;
+  const text = inputEl.value.trim();
+  const targetLang = targetLangEl.value;
+
   if (!text) { alert(t.translateAlert); return; }
 
   resultBox.innerHTML = t.translatingText;
@@ -1113,14 +1231,13 @@ function generateQRFromInput() {
     return;
   }
 
-  // Controleer of de URL begint met http:// of https://. Zo niet, voeg https:// automatisch toe.
+  // Automatische https:// toevoegen indien afwezig
   if (!/^https?:\/\//i.test(inputUrl)) {
     inputUrl = 'https://' + inputUrl;
-    if (inputEl) inputEl.value = inputUrl; // Update direct het invoerveld
+    if (inputEl) inputEl.value = inputUrl;
   }
 
   saveToLocal('qrUrlInput', inputUrl);
-
   currentQRUrl = inputUrl;
   const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=` + encodeURIComponent(currentQRUrl);
 
@@ -1157,10 +1274,13 @@ function downloadQRCode() {
 }
 
 function updateConverterUI() {
-  const fromType = document.getElementById('convertFrom').value;
+  const fromTypeEl = document.getElementById('convertFrom');
   const toTypeSelect = document.getElementById('convertTo');
   const fileInput = document.getElementById('universalFileInput');
   const t = translations[currentLang] || translations['nl'];
+
+  if (!fromTypeEl || !toTypeSelect || !fileInput) return;
+  const fromType = fromTypeEl.value;
   toTypeSelect.innerHTML = '';
 
   if (fromType === 'heic') {
@@ -1176,18 +1296,26 @@ function updateConverterUI() {
 }
 
 async function executeUniversalConversion() {
-  const fromType = document.getElementById('convertFrom').value;
-  const toType = document.getElementById('convertTo').value;
+  const fromTypeEl = document.getElementById('convertFrom');
+  const toTypeEl = document.getElementById('convertTo');
   const fileInput = document.getElementById('universalFileInput');
   const statusText = document.getElementById('converterStatusText');
   const box = document.getElementById('converterPreviewBox');
   const t = translations[currentLang] || translations['nl'];
+
+  if (!fileInput || !fileInput.files.length) {
+    alert(t.convAlert);
+    return;
+  }
+
+  const fromType = fromTypeEl.value;
+  const toType = toTypeEl.value;
   const file = fileInput.files[0];
 
-  if (!file) { alert(t.convAlert); return; }
-
-  statusText.dataset.converted = "false";
-  statusText.innerHTML = t.convLoading;
+  if (statusText) {
+    statusText.dataset.converted = "false";
+    statusText.innerHTML = t.convLoading;
+  }
 
   try {
     if (fromType === 'heic') {
@@ -1232,20 +1360,22 @@ async function executeUniversalConversion() {
       reader.readAsText(file);
     }
   } catch (error) {
-    statusText.innerHTML = t.convError;
+    if (statusText) statusText.innerHTML = t.convError;
   }
 }
 
 function triggerDownload(blob, fileName, formatName, box, statusText) {
   const downloadUrl = URL.createObjectURL(blob);
   const t = translations[currentLang] || translations['nl'];
-  statusText.dataset.converted = "true";
-  box.innerHTML = `
-    <p style="font-size: 14px; color: var(--primary); font-weight: 600; margin-bottom: 12px;">
-      ${t.convSuccess} ${formatName.toUpperCase()}!
-    </p>
-    <a href="${downloadUrl}" download="${fileName}" class="btn" style="display: inline-block; text-decoration: none;">
-      📥 Download ${formatName.toUpperCase()} (${fileName})
-    </a>
-  `;
+  if (statusText) statusText.dataset.converted = "true";
+  if (box) {
+    box.innerHTML = `
+      <p style="font-size: 14px; color: var(--primary); font-weight: 600; margin-bottom: 12px;">
+        ${t.convSuccess} ${formatName.toUpperCase()}!
+      </p>
+      <a href="${downloadUrl}" download="${fileName}" class="btn" style="display: inline-block; text-decoration: none;">
+        📥 Download ${formatName.toUpperCase()} (${fileName})
+      </a>
+    `;
+  }
 }
