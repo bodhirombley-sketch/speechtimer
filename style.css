@@ -16,7 +16,7 @@
   --primary-hover: #4338ca;
   --primary-gradient: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
   --primary-light: rgba(79, 70, 229, 0.06);
-  --accent-glow: rgba(99, 102, 241, 0.06); /* Heel subtiel in light mode */
+  --accent-glow: rgba(99, 102, 241, 0.06);
   
   --sidebar-bg: rgba(255, 255, 255, 0.95);
   --textarea-bg: #f1f5f9;
@@ -65,7 +65,7 @@ html {
   background-color: var(--bg-color);
 }
 
-/* Light Mode: Zeer lichte, frisse accenten op de achtergrond */
+/* Light Mode background */
 body { 
   margin: 0; 
   padding: 0; 
@@ -84,7 +84,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Dark Mode: Rijke en diepe paarse gloeidatums */
+/* Dark Mode background */
 [data-theme="dark"] body {
   background-image: 
     radial-gradient(circle at 0% 50%, rgba(99, 102, 241, 0.45) 0%, transparent 55%),
@@ -376,7 +376,7 @@ body {
 .info-card h3 { margin-top: 0; font-size: 20px; color: var(--text-color); font-weight: 800; letter-spacing: -0.4px; }
 .info-card p { color: var(--text-muted); font-size: 15px; line-height: 1.7; margin-bottom: 0; }
 
-details { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 18px 22px; transition: var(--transition); cursor: pointer; }
+details { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 18px 22px; transition: var(--transition); cursor: pointer; margin-bottom: 12px; }
 details[open] { border-color: var(--primary); background: var(--primary-light); }
 summary { font-weight: 700; color: var(--text-color); font-size: 15px; outline: none; }
 details p { margin: 12px 0 0 0; color: var(--text-muted); font-size: 14px; line-height: 1.6; }
@@ -459,11 +459,59 @@ textarea:focus, input:focus { border-color: var(--primary); box-shadow: 0 0 0 4p
 
 .translation-preview { margin-top: 24px; padding: 20px; background: var(--card-bg); border-radius: var(--radius-md); border: 1px dashed var(--border-color); font-size: 15px; color: var(--text-color); line-height: 1.6; min-height: 80px; word-break: break-word; }
 
-.ad-space { margin-top: 48px; padding: 28px; background: var(--card-bg); border: 1px dashed var(--border-color); text-align: center; color: var(--text-muted); border-radius: var(--radius-md); font-size: 14px; font-weight: 600; }
+/* =================================================================
+   ADVERTENTIE EN SECURITY FOOTER BADGES FIXES
+   ================================================================ */
 
-.security-footer { margin-top: 48px; padding: 24px 28px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: space-around; flex-wrap: wrap; gap: 16px; font-size: 14px; color: var(--text-muted); font-weight: 600; box-shadow: var(--shadow-sm); }
-.sec-item { display: flex; align-items: center; gap: 10px; color: var(--text-color); }
-.sec-icon { font-size: 18px; color: var(--primary); }
+.ad-space { 
+  margin-top: 40px; 
+  padding: 20px 24px; 
+  background: var(--card-bg); 
+  border: 1px dashed var(--border-color); 
+  text-align: center; 
+  color: var(--text-muted); 
+  border-radius: var(--radius-md); 
+  font-size: 13px; 
+  font-weight: 600; 
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.security-footer { 
+  margin-top: 20px; 
+  padding: 16px 20px; 
+  background: var(--card-bg); 
+  border: 1px solid var(--border-color); 
+  border-radius: var(--radius-md); 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  flex-wrap: wrap; 
+  gap: 12px; 
+  box-shadow: var(--shadow-sm); 
+  transition: var(--transition);
+}
+
+.sec-item { 
+  display: inline-flex; 
+  align-items: center; 
+  gap: 8px; 
+  font-size: 13px; 
+  font-weight: 600; 
+  color: var(--text-color); 
+  padding: 8px 14px; 
+  background: var(--primary-light); 
+  border: 1px solid var(--border-color); 
+  border-radius: var(--radius-sm); 
+  white-space: nowrap;
+}
+
+.sec-icon { 
+  font-size: 15px; 
+  color: var(--primary); 
+  display: inline-flex;
+  align-items: center;
+}
 
 .section-header-wrapper { margin-bottom: 28px; }
 h2.section-title { font-size: 30px; font-weight: 800; color: var(--text-color); margin: 0 0 8px 0; letter-spacing: -0.8px; }
