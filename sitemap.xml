@@ -7,49 +7,49 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://every-tool.netlify.app/#timer</loc>
+    <loc>https://every-tool.netlify.app/timer/</loc>
     <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://every-tool.netlify.app/#checker</loc>
+    <loc>https://every-tool.netlify.app/checker/</loc>
     <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://every-tool.netlify.app/#ai</loc>
+    <loc>https://every-tool.netlify.app/ai/</loc> 
     <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://every-tool.netlify.app/#tts</loc>
+    <loc>https://every-tool.netlify.app/tts/</loc>
     <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://every-tool.netlify.app/#translate</loc>
+    <loc>https://every-tool.netlify.app/translate/</loc>
     <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://every-tool.netlify.app/#qr</loc>
-    <lastmod>2026-10-06</lastmod>
-    <changeFreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://every-tool.netlify.app/#converter</loc>
+    <loc>https://every-tool.netlify.app/qr/</loc>
     <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://every-tool.netlify.app/#blog</loc>
+    <loc>https://every-tool.netlify.app/converter/</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://every-tool.netlify.app/blog/</loc>
     <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
