@@ -64,15 +64,15 @@ html {
   background-color: var(--bg-color);
 }
 
-/* Body Achtergrond met Paarse Gloei op de Flanken (Gele Cirkels) */
+/* Body Achtergrond met Duidelijke Paarse Gloei aan Zijkanten */
 body { 
   margin: 0; 
   padding: 0; 
   background-color: var(--bg-color); 
   background-image: 
-    radial-gradient(circle at 0% 50%, rgba(99, 102, 241, 0.22) 0%, transparent 45%),
-    radial-gradient(circle at 100% 50%, rgba(79, 70, 229, 0.22) 0%, transparent 45%),
-    radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.12) 0%, transparent 50%);
+    radial-gradient(circle at 0% 50%, rgba(99, 102, 241, 0.35) 0%, transparent 50%),
+    radial-gradient(circle at 100% 50%, rgba(79, 70, 229, 0.35) 0%, transparent 50%),
+    radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.20) 0%, transparent 60%);
   background-attachment: fixed;
   color: var(--text-color); 
   display: flex; 
@@ -85,9 +85,9 @@ body {
 
 [data-theme="dark"] body {
   background-image: 
-    radial-gradient(circle at 0% 50%, rgba(99, 102, 241, 0.30) 0%, transparent 50%),
-    radial-gradient(circle at 100% 50%, rgba(99, 102, 241, 0.30) 0%, transparent 50%),
-    radial-gradient(circle at 50% 0%, rgba(129, 140, 248, 0.20) 0%, transparent 60%);
+    radial-gradient(circle at 0% 50%, rgba(99, 102, 241, 0.50) 0%, transparent 55%),
+    radial-gradient(circle at 100% 50%, rgba(99, 102, 241, 0.50) 0%, transparent 55%),
+    radial-gradient(circle at 50% 0%, rgba(129, 140, 248, 0.25) 0%, transparent 60%);
 }
 
 /* Modals & Overlays */
@@ -296,7 +296,7 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Hero Section Vloeiende Gloei (Rode Cirkel Oplossing) */
+/* Hero Section (Egaliseerde Gloei - Geen Ronde Vlekken) */
 .hero-section { 
   background: var(--card-bg); 
   border: 1px solid var(--border-color); 
@@ -308,14 +308,15 @@ body {
   position: relative;
   overflow: hidden;
 }
+
 .hero-section::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  right: 0;
   height: 100%;
-  background: radial-gradient(ellipse at top, var(--accent-glow) 0%, transparent 70%);
+  background: linear-gradient(180deg, var(--accent-glow) 0%, transparent 85%);
   pointer-events: none;
 }
 
