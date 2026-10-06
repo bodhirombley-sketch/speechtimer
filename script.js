@@ -295,7 +295,7 @@ const translations = {
     t2Issues: "Detected Issues:",
     btnClean: "✨ Auto Correct",
     btnCopy: "📋 Copy",
-    clearText: "🗑️️ Clear text",
+    clearText: "🗑 Clear text",
     copyAlert: "Copied!",
     noText: "No text entered.",
     noIssues: "✅ No issues found!",
@@ -449,7 +449,7 @@ const translations = {
     translatePreviewPlaceholder: "Le texte traduit apparaîtra ici...",
     translateAlert: "Veuillez entrer du texte à traduire.",
     translatingText: "⏳ Traduction en cours...",
-    translateError: "⚠️️ Erreur de connexion avec l'API de traduction.",
+    translateError: "⚠ Erreur de connexion avec l'API de traduction.",
     qrTitle: "Générateur de Code QR",
     qrSub: "Entrez une URL pour générer un code QR instantanément.",
     qrPlaceholder: "Entrez une URL...",
@@ -473,7 +473,7 @@ const translations = {
     optHeic: "📷 Image HEIC (Apple)",
     optImg: "🖼️ Image standard (PNG/JPG/WebP)",
     optTxt: "📄 Fichier texte (.txt)",
-    optJpg: "🖼️️ Image JPG",
+    optJpg: "🖼 Image JPG",
     optPng: "🖼️ Image PNG",
     optWebp: "🌐 Image WebP",
     adSpace: "Espace Publicitaire (Google AdSense)",
@@ -518,7 +518,7 @@ const translations = {
     faq4A: "El detector analiza propiedades estadísticas. Ofrece una buena indicación pero no es una prueba definitiva.",
     faq5Q: "¿Puedo descargar el audio generado?",
     faq5A: "Sí, en la herramienta de Texto a Voz puedes descargar el archivo de audio (.WAV).",
-    faq6Q: "¿Necesito instalar software?",
+    faq6Q: "Navegador no necesita software?",
     faq6A: "No, Every-Tool se ejecuta completamente en tu navegador web.",
     faq7Q: "¿Cómo funciona el Bot de Gramática?",
     faq7A: "Utiliza la API de LanguageTool para escanear automáticamente errores ortográficos y gramaticales.",
@@ -1103,26 +1103,36 @@ async function executeTranslation() {
 }
 
 function generateQRFromInput() {
-  const inputUrl = document.getElementById('qrUrlInput').value.trim();
-  saveToLocal('qrUrlInput', inputUrl);
+  const inputEl = document.getElementById('qrUrlInput');
+  let inputUrl = inputEl ? inputEl.value.trim() : '';
   const box = document.getElementById('qrPreviewBox');
   const t = translations[currentLang] || translations['nl'];
 
   if (!inputUrl) {
-    box.innerHTML = `<p style="color: var(--text-muted); font-size: 14px; margin: 0;">${t.qrPlaceholder}</p>`;
+    if (box) box.innerHTML = `<p style="color: var(--text-muted); font-size: 14px; margin: 0;">${t.qrPlaceholder}</p>`;
     return;
   }
+
+  // Controleer of de URL begint met http:// of https://. Zo niet, voeg https:// automatisch toe.
+  if (!/^https?:\/\//i.test(inputUrl)) {
+    inputUrl = 'https://' + inputUrl;
+    if (inputEl) inputEl.value = inputUrl; // Update direct het invoerveld
+  }
+
+  saveToLocal('qrUrlInput', inputUrl);
 
   currentQRUrl = inputUrl;
   const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=` + encodeURIComponent(currentQRUrl);
 
-  box.innerHTML = `
-    <img id="generatedQrImg" src="${qrApiUrl}" alt="QR Code" crossorigin="anonymous"/>
-    <p style="font-size: 13px; color: var(--text-muted); margin-top: 6px; margin-bottom: 16px;">
-      Gekoppeld aan: <span style="color:var(--primary); font-weight: 600;">${currentQRUrl}</span>
-    </p>
-    <button class="btn" onclick="downloadQRCode()">${t.downloadQR}</button>
-  `;
+  if (box) {
+    box.innerHTML = `
+      <img id="generatedQrImg" src="${qrApiUrl}" alt="QR Code" crossorigin="anonymous"/>
+      <p style="font-size: 13px; color: var(--text-muted); margin-top: 6px; margin-bottom: 16px;">
+        Gekoppeld aan: <span style="color:var(--primary); font-weight: 600;">${currentQRUrl}</span>
+      </p>
+      <button class="btn" onclick="downloadQRCode()">${t.downloadQR}</button>
+    `;
+  }
 }
 
 function downloadQRCode() {
