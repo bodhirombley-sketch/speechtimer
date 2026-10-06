@@ -74,7 +74,7 @@ const translations = {
     ttsStatusPlaceholder: "Status: Klaar om voor te lezen of te downloaden...",
     ttsSpeaking: "🔊 Bezig met voorlezen...",
     ttsDone: "✅ Voorlezen voltooid.",
-    ttsStopped: "⏹️ Gestopt.",
+    ttsStopped: "⏹️️ Gestopt.",
     ttsDownloaded: "📥 Audiobestand succesvol gedownload!",
     ttsNoTextAlert: "Voer eerst wat tekst in!",
     ttsNoAudioTextAlert: "Voer eerst tekst in om te kunnen downloaden.",
@@ -110,7 +110,7 @@ const translations = {
     optHeic: "📷 HEIC Afbeelding (Apple)",
     optImg: "🖼️ Standaard Afbeelding (PNG/JPG/WebP)",
     optTxt: "📄 Tekstbestand (.txt)",
-    optJpg: "🖼️ JPG Afbeelding",
+    optJpg: "🖼️️ JPG Afbeelding",
     optPng: "🖼️ PNG Afbeelding",
     optWebp: "🌐 WebP Afbeelding",
     adSpace: "Advertentie Ruimte (Google AdSense)",
@@ -267,7 +267,7 @@ const translations = {
     placeholder: "Paste your text here...",
     menuHeader: "Select Tool",
     menuHome: "🏠 Overview / Home",
-    menuTimer: "⏱️ Speech & Presentation",
+    menuTimer: "⏱️️ Speech & Presentation",
     menuChecker: "✍️ Grammar Bot",
     menuAi: "🤖 AI Text Detector",
     menuTts: "🔊 Text-to-Speech",
@@ -338,7 +338,7 @@ const translations = {
     ttsStatusPlaceholder: "Status: Ready to speak or download...",
     ttsSpeaking: "🔊 Speaking...",
     ttsDone: "✅ Speech completed.",
-    ttsStopped: "⏹️️ Stopped.",
+    ttsStopped: "⏹ Stopped.",
     ttsDownloaded: "📥 Audio file successfully downloaded!",
     ttsNoTextAlert: "Please enter some text first!",
     ttsNoAudioTextAlert: "Please enter text to download.",
@@ -350,7 +350,7 @@ const translations = {
     translatePreviewPlaceholder: "Translated text will appear here...",
     translateAlert: "Please enter text to translate.",
     translatingText: "⏳ Translating text...",
-    translateError: "⚠️ Connection error with translation API.",
+    translateError: "⚠️️ Connection error with translation API.",
     qrTitle: "QR Code Generator",
     qrSub: "Enter a URL to instantly generate a QR code.",
     qrPlaceholder: "Enter a URL...",
@@ -696,7 +696,6 @@ window.addEventListener('DOMContentLoaded', () => {
   handleRoute();
   window.addEventListener('popstate', handleRoute);
 
-  // Sneltoetsen listener (Ctrl + Enter of Cmd + Enter)
   document.addEventListener('keydown', (e) => {
     if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
       if (currentTool === 'checker') {
@@ -712,10 +711,15 @@ window.addEventListener('DOMContentLoaded', () => {
 
 function handleRoute() {
   const path = window.location.pathname.replace(/^\/+|\/+$/g, '');
+  const hash = window.location.hash.replace('#', '');
   let toolId = 'home';
+  
   if (['timer', 'checker', 'ai', 'tts', 'translate', 'qr', 'converter', 'blog'].includes(path)) {
     toolId = path;
+  } else if (['timer', 'checker', 'ai', 'tts', 'translate', 'qr', 'converter', 'blog'].includes(hash)) {
+    toolId = hash;
   }
+  
   selectTool(toolId, currentLang, false);
 }
 
@@ -816,12 +820,10 @@ function selectTool(toolId, lang, pushHistory = true) {
     window.history.pushState({ tool: toolId }, '', newPath);
   }
 
-  // Actieve tab tonen
   document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
   const targetTab = document.getElementById('tab-' + toolId);
   if (targetTab) targetTab.classList.add('active');
 
-  // Blog resetten bij wissel van tool
   if (toolId !== 'blog') {
     const fullContent = document.getElementById('blogFullContent');
     const listContainer = document.getElementById('blogListContainer');
@@ -842,14 +844,12 @@ function selectTool(toolId, lang, pushHistory = true) {
 
   const t = translations[lang] || translations['nl'];
 
-  // Dynamische SEO Paginatitel per taal
   if (t.pageTitles && t.pageTitles[toolId]) {
     document.title = t.pageTitles[toolId];
   } else {
     document.title = "Every-Tool | Gratis Online Handige Tools";
   }
 
-  // Vertalingen toepassen op elementen met ID
   document.querySelectorAll('[id]').forEach(el => {
     const id = el.id;
     if (t[id] !== undefined) {
@@ -861,7 +861,6 @@ function selectTool(toolId, lang, pushHistory = true) {
     }
   });
 
-  // Dynamische vertaling van de wis-knoppen
   document.querySelectorAll('.clear-btn').forEach(btn => {
     btn.innerText = t.clearText;
   });
@@ -936,7 +935,8 @@ function calcTimer() {
   const statsEl = document.getElementById('stats-timer-text');
   if (statsEl) statsEl.innerText = `Woorden: ${words} | Tekens: ${chars}`;
 
-  const sp = (translations[currentLang] || translations['nl']).speeds;
+  const langObj = translations[currentLang] || translations['nl'];
+  const sp = langObj.speeds || { slow: 90, norm: 100, fast: 125 };
   const timeNormSec = words ? (words / sp.norm) * 60 : 0;
 
   const slowEl = document.getElementById('timeSlow');
@@ -947,7 +947,6 @@ function calcTimer() {
   if (normEl) normEl.innerText = formatTime(timeNormSec);
   if (fastEl) fastEl.innerText = formatTime(words ? (words / sp.fast) * 60 : 0);
 
-  // Visuele waarschuwing als presentatie langer duurt dan 5 minuten (300 seconden)
   const normCard = document.getElementById('cardNorm');
   if (normCard) {
     if (timeNormSec > 300) {
@@ -1093,11 +1092,11 @@ function checkAI() {
   if (barFill) {
     barFill.style.width = score + "%";
     if (score > 70) {
-      barFill.style.backgroundColor = "#ef4444"; // Rood bij hoge AI-kans
+      barFill.style.backgroundColor = "#ef4444";
     } else if (score > 40) {
-      barFill.style.backgroundColor = "#f59e0b"; // Oranje bij twijfel
+      barFill.style.backgroundColor = "#f59e0b";
     } else {
-      barFill.style.backgroundColor = "#22c55e"; // Groen bij menselijk
+      barFill.style.backgroundColor = "#22c55e";
     }
   }
 
@@ -1231,7 +1230,6 @@ function generateQRFromInput() {
     return;
   }
 
-  // Automatische https:// toevoegen indien afwezig
   if (!/^https?:\/\//i.test(inputUrl)) {
     inputUrl = 'https://' + inputUrl;
     if (inputEl) inputEl.value = inputUrl;
