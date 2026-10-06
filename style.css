@@ -141,6 +141,7 @@ body {
   z-index: 50; 
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+  width: 100%;
 }
 
 .topbar-left { display: flex; align-items: center; gap: 16px; }
@@ -265,8 +266,14 @@ body {
 .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(9, 13, 22, 0.6); backdrop-filter: blur(6px); z-index: 90; }
 .overlay.open { display: block; }
 
-/* Layout Container */
-.container { max-width: 1080px; margin: 0 auto; padding: 48px 24px; flex: 1; width: 100%; }
+/* Layout Container - Gebalanceerde breedte */
+.container { 
+  max-width: 1080px; 
+  margin: 0 auto; 
+  padding: 40px 24px; 
+  flex: 1; 
+  width: 100%; 
+}
 .tab-content { display: none; }
 .tab-content.active { display: block; animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 
@@ -280,7 +287,7 @@ body {
   background: var(--card-bg); 
   border: 1px solid var(--border-color); 
   border-radius: var(--radius-lg); 
-  padding: 70px 40px; 
+  padding: 60px 32px; 
   margin-bottom: 40px; 
   box-shadow: var(--shadow-md); 
   text-align: center; 
@@ -312,10 +319,10 @@ body {
   margin-bottom: 24px; 
   letter-spacing: 0.8px; 
 }
-.hero-section h1 { font-size: 44px; font-weight: 800; color: var(--text-color); margin: 0 0 18px 0; letter-spacing: -1.2px; line-height: 1.15; }
-.hero-section p { font-size: 18px; color: var(--text-muted); margin: 0 auto 40px auto; max-width: 660px; line-height: 1.6; }
+.hero-section h1 { font-size: 40px; font-weight: 800; color: var(--text-color); margin: 0 0 18px 0; letter-spacing: -1.2px; line-height: 1.15; }
+.hero-section p { font-size: 17px; color: var(--text-muted); margin: 0 auto 36px auto; max-width: 620px; line-height: 1.6; }
 
-.hero-search-wrapper { position: relative; max-width: 640px; margin: 0 auto; }
+.hero-search-wrapper { position: relative; max-width: 600px; margin: 0 auto; }
 .hero-search-box { display: flex; flex-direction: column; background: var(--bg-color); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 8px; box-shadow: var(--shadow-sm); gap: 8px; }
 @media (min-width: 480px) { .hero-search-box { flex-direction: row; } }
 .hero-search-box input { width: 100%; border: none; padding: 14px 18px; font-size: 16px; outline: none; background: transparent; color: var(--text-color); font-weight: 500; }
@@ -346,7 +353,7 @@ body {
 
 /* Cards & FAQ */
 .home-single-section { margin-top: 40px; display: grid; gap: 28px; }
-.info-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 40px; box-shadow: var(--shadow-sm); text-align: left; transition: var(--transition); }
+.info-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 36px; box-shadow: var(--shadow-sm); text-align: left; transition: var(--transition); }
 .info-card:hover { border-color: rgba(79, 70, 229, 0.4); box-shadow: var(--shadow-md); }
 .info-card h3 { margin-top: 0; font-size: 20px; color: var(--text-color); font-weight: 800; letter-spacing: -0.4px; }
 .info-card p { color: var(--text-muted); font-size: 15px; line-height: 1.7; margin-bottom: 0; }
@@ -450,3 +457,32 @@ h2.section-title { font-size: 30px; font-weight: 800; color: var(--text-color); 
 .blog-list-card:hover { transform: translateY(-3px); border-color: var(--primary); box-shadow: var(--shadow-md); }
 .blog-full-content { display: none; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 40px; box-shadow: var(--shadow-md); line-height: 1.8; }
 .blog-full-content.active { display: block; animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+/* =================================================================
+   MONITOR & DESKTOP OPTIMALISATIES (1200px+)
+   ================================================================ */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+    padding: 52px 32px;
+  }
+  
+  .hero-section {
+    padding: 72px 50px;
+  }
+
+  .hero-section h1 {
+    font-size: 48px;
+  }
+
+  .card-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .container {
+    max-width: 1280px;
+  }
+}
