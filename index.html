@@ -13,14 +13,14 @@
   <meta property="og:title" content="Every-Tool - Slimme Tools voor Tekst en Spraak"/>
   <meta property="og:description" content="Optimaliseer je presentaties, controleer spelfouten of genereer QR-codes in een handomdraai."/>
   <meta property="og:type" content="website"/>
-  <link rel="canonical" href="https://bodhirombley-sketch.github.io/speechtimer/"/>
+  <link rel="canonical" href="https://every-tool.netlify.app/"/>
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "Every-Tool",
-    "url": "https://bodhirombley-sketch.github.io/speechtimer/",
+    "url": "https://every-tool.netlify.app/",
     "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "All",
     "browser": "Requires JavaScript. Powered by HTML5.",
@@ -32,7 +32,7 @@
   }
   </script>
 
-  <!-- Verwijzing naar het CSS-bestand (zonder slash voor maximale compatibiliteit) -->
+  <!-- Verwijzing naar het CSS-bestand -->
   <link rel="stylesheet" href="style.css">
   
   <script>
@@ -306,11 +306,11 @@
         <div class="tts-control-group">
           <label for="voiceLangTts" id="ttsLabelLang">Spraak Taal:</label>
           <select id="voiceLangTts" class="tts-select">
-            <option value="nl-NL" id="optNl">🇳🇱 Nederlands</option>
-            <option value="en-US" id="optEn">🇬🇧 Engels</option>
-            <option value="de-DE" id="optDe">🇩🇪 Duits</option>
-            <option value="fr-FR" id="optFr">🇫🇷 Frans</option>
-            <option value="es-ES" id="optEs">🇪🇸 Spaans</option>
+            <option value="nl-NL" id="ttsOptNl">🇳🇱 Nederlands</option>
+            <option value="en-US" id="ttsOptEn">🇬🇧 Engels</option>
+            <option value="de-DE" id="ttsOptDe">🇩🇪 Duits</option>
+            <option value="fr-FR" id="ttsOptFr">🇫🇷 Frans</option>
+            <option value="es-ES" id="ttsOptEs">🇪🇸 Spaans</option>
           </select>
         </div>
       </div>
@@ -341,11 +341,11 @@
         <div class="tts-control-group">
           <label for="targetLangTranslate" id="translateLabelLang">Kies doeltaal:</label>
           <select id="targetLangTranslate" class="tts-select">
-            <option value="nl" id="optNl">🇳🇱 Nederlands</option>
-            <option value="en" id="optEn">🇬🇧 Engels</option>
-            <option value="fr" id="optFr">🇫🇷 Frans</option>
-            <option value="de" id="optDe">🇩🇪 Duits</option>
-            <option value="es" id="optEs">🇪🇸 Español</option>
+            <option value="nl" id="trOptNl">🇳🇱 Nederlands</option>
+            <option value="en" id="trOptEn">🇬🇧 Engels</option>
+            <option value="fr" id="trOptFr">🇫🇷 Frans</option>
+            <option value="de" id="trOptDe">🇩🇪 Duits</option>
+            <option value="es" id="trOptEs">🇪🇸 Español</option>
           </select>
         </div>
       </div>
@@ -403,7 +403,7 @@
       </div>
 
       <div class="url-input-group" style="flex-direction: column; align-items: stretch; gap: 12px;">
-        <input type="file" id="universalFileInput" accept=".heic, image/heic" style="padding: 12px; border: 2px dashed var(--border-color); border-radius: 8px; cursor: pointer; background: var(--card-bg); color: var(--text-color); width: 100%;" />
+        <input type="file" id="universalFileInput" accept="image/*,.txt" style="padding: 12px; border: 2px dashed var(--border-color); border-radius: 8px; cursor: pointer; background: var(--card-bg); color: var(--text-color); width: 100%;" />
       </div>
 
       <div style="margin-top: 20px; text-align: center;">
@@ -472,7 +472,7 @@
     <!-- Footer -->
     <footer class="security-footer">
       <div class="sec-item"><span class="sec-icon">🔒</span><span id="sec1">256-bit SSL-beveiliging</span></div>
-      <div class="sec-item"><span class="sec-icon">🛡️️</span><span id="sec2">100% Privacy - Lokale verwerking</span></div>
+      <div class="sec-item"><span class="sec-icon">🛡</span><span id="sec2">100% Privacy - Lokale verwerking</span></div>
       <div class="sec-item"><span class="sec-icon">⚡</span><span id="sec3">Direct resultaat</span></div>
     </footer>
 
