@@ -5,26 +5,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 :root {
-  /* Kleurenpalet - Zachter Luxe Off-White & Slate */
-  --bg-color: #f1f5f9; 
+  /* LIGHT MODE - Fris, strak Off-White met scherp contrast */
+  --bg-color: #f8fafc; 
   --card-bg: #ffffff;  
   --text-color: #0f172a;
   --text-muted: #64748b;
-  --border-color: #cbd5e1; 
+  --border-color: #e2e8f0; 
   
   --primary: #4f46e5;
   --primary-hover: #4338ca;
   --primary-gradient: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
-  --primary-light: rgba(79, 70, 229, 0.08);
-  --accent-glow: rgba(99, 102, 241, 0.18);
+  --primary-light: rgba(79, 70, 229, 0.06);
+  --accent-glow: rgba(99, 102, 241, 0.06); /* Heel subtiel in light mode */
   
-  --sidebar-bg: rgba(255, 255, 255, 0.92);
-  --textarea-bg: #f8fafc;
+  --sidebar-bg: rgba(255, 255, 255, 0.95);
+  --textarea-bg: #f1f5f9;
   
-  /* Schaduwen met meer diepte */
-  --shadow-sm: 0 2px 6px rgba(15, 23, 42, 0.05);
-  --shadow-md: 0 12px 28px -6px rgba(15, 23, 42, 0.08), 0 4px 12px -2px rgba(15, 23, 42, 0.03);
-  --shadow-lg: 0 25px 50px -12px rgba(15, 23, 42, 0.15);
+  /* Schone, professionele schaduwen */
+  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+  --shadow-lg: 0 20px 35px -10px rgba(15, 23, 42, 0.12);
   
   --radius-lg: 20px;
   --radius-md: 12px;
@@ -34,6 +34,7 @@
 }
 
 [data-theme="dark"] {
+  /* DARK MODE - Krachtig & diep met felle paarse accenten */
   --bg-color: #0b0f17;
   --card-bg: #151d2a;
   --text-color: #f8fafc;
@@ -64,15 +65,15 @@ html {
   background-color: var(--bg-color);
 }
 
-/* Body Achtergrond met Duidelijke Paarse Gloei aan Zijkanten */
+/* Light Mode: Zeer lichte, frisse accenten op de achtergrond */
 body { 
   margin: 0; 
   padding: 0; 
   background-color: var(--bg-color); 
   background-image: 
-    radial-gradient(circle at 0% 50%, rgba(99, 102, 241, 0.35) 0%, transparent 50%),
-    radial-gradient(circle at 100% 50%, rgba(79, 70, 229, 0.35) 0%, transparent 50%),
-    radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.20) 0%, transparent 60%);
+    radial-gradient(circle at 0% 0%, rgba(99, 102, 241, 0.08) 0%, transparent 45%),
+    radial-gradient(circle at 100% 0%, rgba(79, 70, 229, 0.08) 0%, transparent 45%),
+    radial-gradient(circle at 50% 100%, rgba(99, 102, 241, 0.05) 0%, transparent 50%);
   background-attachment: fixed;
   color: var(--text-color); 
   display: flex; 
@@ -83,11 +84,12 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Dark Mode: Rijke en diepe paarse gloeidatums */
 [data-theme="dark"] body {
   background-image: 
-    radial-gradient(circle at 0% 50%, rgba(99, 102, 241, 0.50) 0%, transparent 55%),
-    radial-gradient(circle at 100% 50%, rgba(99, 102, 241, 0.50) 0%, transparent 55%),
-    radial-gradient(circle at 50% 0%, rgba(129, 140, 248, 0.25) 0%, transparent 60%);
+    radial-gradient(circle at 0% 50%, rgba(99, 102, 241, 0.45) 0%, transparent 55%),
+    radial-gradient(circle at 100% 50%, rgba(99, 102, 241, 0.45) 0%, transparent 55%),
+    radial-gradient(circle at 50% 0%, rgba(129, 140, 248, 0.20) 0%, transparent 60%);
 }
 
 /* Modals & Overlays */
@@ -296,7 +298,7 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Hero Section (Egaliseerde Gloei - Geen Ronde Vlekken) */
+/* Hero Section */
 .hero-section { 
   background: var(--card-bg); 
   border: 1px solid var(--border-color); 
@@ -323,7 +325,7 @@ body {
 .hero-tag { 
   display: inline-block; 
   background: var(--primary-light); 
-  border: 1px solid rgba(79, 70, 229, 0.2);
+  border: 1px solid rgba(79, 70, 229, 0.15);
   color: var(--primary); 
   font-size: 12px; 
   font-weight: 800; 
@@ -339,7 +341,7 @@ body {
 .hero-section p { font-size: 17px; color: var(--text-muted); margin: 0 auto 36px auto; max-width: 620px; line-height: 1.6; position: relative; z-index: 1; }
 
 .hero-search-wrapper { position: relative; max-width: 600px; margin: 0 auto; z-index: 1; }
-.hero-search-box { display: flex; flex-direction: column; background: var(--bg-color); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 8px; box-shadow: var(--shadow-sm); gap: 8px; }
+.hero-search-box { display: flex; flex-direction: column; background: var(--textarea-bg); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 8px; box-shadow: var(--shadow-sm); gap: 8px; }
 @media (min-width: 480px) { .hero-search-box { flex-direction: row; } }
 .hero-search-box input { width: 100%; border: none; padding: 14px 18px; font-size: 16px; outline: none; background: transparent; color: var(--text-color); font-weight: 500; }
 
@@ -370,7 +372,7 @@ body {
 /* Cards & FAQ */
 .home-single-section { margin-top: 40px; display: grid; gap: 28px; }
 .info-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 36px; box-shadow: var(--shadow-sm); text-align: left; transition: var(--transition); }
-.info-card:hover { border-color: rgba(79, 70, 229, 0.4); box-shadow: var(--shadow-md); }
+.info-card:hover { border-color: var(--primary); box-shadow: var(--shadow-md); }
 .info-card h3 { margin-top: 0; font-size: 20px; color: var(--text-color); font-weight: 800; letter-spacing: -0.4px; }
 .info-card p { color: var(--text-muted); font-size: 15px; line-height: 1.7; margin-bottom: 0; }
 
@@ -456,47 +458,3 @@ textarea:focus, input:focus { border-color: var(--primary); box-shadow: 0 0 0 4p
 .tts-select { width: 100%; padding: 14px; background: var(--textarea-bg); border: 1px solid var(--border-color); border-radius: var(--radius-md); color: var(--text-color); font-size: 15px; outline: none; transition: var(--transition); font-weight: 600; }
 
 .translation-preview { margin-top: 24px; padding: 20px; background: var(--card-bg); border-radius: var(--radius-md); border: 1px dashed var(--border-color); font-size: 15px; color: var(--text-color); line-height: 1.6; min-height: 80px; word-break: break-word; }
-
-.ad-space { margin-top: 48px; padding: 28px; background: var(--card-bg); border: 1px dashed var(--border-color); text-align: center; color: var(--text-muted); border-radius: var(--radius-md); font-size: 14px; font-weight: 600; }
-
-.security-footer { margin-top: 48px; padding: 24px 28px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: space-around; flex-wrap: wrap; gap: 16px; font-size: 14px; color: var(--text-muted); font-weight: 600; box-shadow: var(--shadow-sm); }
-.sec-item { display: flex; align-items: center; gap: 10px; color: var(--text-color); }
-.sec-icon { font-size: 18px; color: var(--primary); }
-
-.section-header-wrapper { margin-bottom: 28px; }
-h2.section-title { font-size: 30px; font-weight: 800; color: var(--text-color); margin: 0 0 8px 0; letter-spacing: -0.8px; }
-.section-subtitle { color: var(--text-muted); font-size: 16px; margin: 0; font-weight: 500; }
-
-/* Blog Styling */
-.blog-page { max-width: 900px; margin: 0 auto; }
-.blog-list-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 36px; box-shadow: var(--shadow-sm); transition: var(--transition); cursor: pointer; }
-.blog-list-card:hover { transform: translateY(-3px); border-color: var(--primary); box-shadow: var(--shadow-md); }
-.blog-full-content { display: none; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 40px; box-shadow: var(--shadow-md); line-height: 1.8; }
-.blog-full-content.active { display: block; animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-
-/* Monitor & Desktop Optimalisaties */
-@media (min-width: 1200px) {
-  .container {
-    max-width: 1140px;
-    padding: 52px 32px;
-  }
-  
-  .hero-section {
-    padding: 72px 50px;
-  }
-
-  .hero-section h1 {
-    font-size: 48px;
-  }
-
-  .card-grid {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
-  }
-}
-
-@media (min-width: 1600px) {
-  .container {
-    max-width: 1280px;
-  }
-}
