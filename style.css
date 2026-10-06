@@ -44,7 +44,7 @@
   --primary-hover: #818cf8;
   --primary-gradient: linear-gradient(135deg, #818cf8 0%, #6366f1 100%);
   --primary-light: rgba(99, 102, 241, 0.15);
-  --accent-glow: rgba(99, 102, 241, 0.3);
+  --accent-glow: rgba(99, 102, 241, 0.35);
   
   --sidebar-bg: rgba(21, 29, 42, 0.92);
   --textarea-bg: #0d121d;
@@ -64,13 +64,15 @@ html {
   background-color: var(--bg-color);
 }
 
+/* Body Achtergrond met Paarse Gloei op de Flanken (Gele Cirkels) */
 body { 
   margin: 0; 
   padding: 0; 
   background-color: var(--bg-color); 
   background-image: 
-    radial-gradient(circle at 0% 0%, rgba(99, 102, 241, 0.12) 0%, transparent 70%),
-    radial-gradient(circle at 100% 100%, rgba(79, 70, 229, 0.10) 0%, transparent 70%);
+    radial-gradient(circle at 0% 50%, rgba(99, 102, 241, 0.22) 0%, transparent 45%),
+    radial-gradient(circle at 100% 50%, rgba(79, 70, 229, 0.22) 0%, transparent 45%),
+    radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.12) 0%, transparent 50%);
   background-attachment: fixed;
   color: var(--text-color); 
   display: flex; 
@@ -79,6 +81,13 @@ body {
   width: 100%;
   transition: background-color 0.3s ease, color 0.3s ease; 
   -webkit-font-smoothing: antialiased;
+}
+
+[data-theme="dark"] body {
+  background-image: 
+    radial-gradient(circle at 0% 50%, rgba(99, 102, 241, 0.30) 0%, transparent 50%),
+    radial-gradient(circle at 100% 50%, rgba(99, 102, 241, 0.30) 0%, transparent 50%),
+    radial-gradient(circle at 50% 0%, rgba(129, 140, 248, 0.20) 0%, transparent 60%);
 }
 
 /* Modals & Overlays */
@@ -271,7 +280,7 @@ body {
 .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(9, 13, 22, 0.6); backdrop-filter: blur(6px); z-index: 90; }
 .overlay.open { display: block; }
 
-/* Layout Container - Gebalanceerde breedte */
+/* Layout Container */
 .container { 
   max-width: 1080px; 
   margin: 0 auto; 
@@ -287,7 +296,7 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Hero Section */
+/* Hero Section Vloeiende Gloei (Rode Cirkel Oplossing) */
 .hero-section { 
   background: var(--card-bg); 
   border: 1px solid var(--border-color); 
@@ -302,12 +311,11 @@ body {
 .hero-section::before {
   content: '';
   position: absolute;
-  top: -50%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 600px;
-  height: 300px;
-  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at top, var(--accent-glow) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -323,11 +331,13 @@ body {
   border-radius: 30px; 
   margin-bottom: 24px; 
   letter-spacing: 0.8px; 
+  position: relative;
+  z-index: 1;
 }
-.hero-section h1 { font-size: 40px; font-weight: 800; color: var(--text-color); margin: 0 0 18px 0; letter-spacing: -1.2px; line-height: 1.15; }
-.hero-section p { font-size: 17px; color: var(--text-muted); margin: 0 auto 36px auto; max-width: 620px; line-height: 1.6; }
+.hero-section h1 { font-size: 40px; font-weight: 800; color: var(--text-color); margin: 0 0 18px 0; letter-spacing: -1.2px; line-height: 1.15; position: relative; z-index: 1; }
+.hero-section p { font-size: 17px; color: var(--text-muted); margin: 0 auto 36px auto; max-width: 620px; line-height: 1.6; position: relative; z-index: 1; }
 
-.hero-search-wrapper { position: relative; max-width: 600px; margin: 0 auto; }
+.hero-search-wrapper { position: relative; max-width: 600px; margin: 0 auto; z-index: 1; }
 .hero-search-box { display: flex; flex-direction: column; background: var(--bg-color); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 8px; box-shadow: var(--shadow-sm); gap: 8px; }
 @media (min-width: 480px) { .hero-search-box { flex-direction: row; } }
 .hero-search-box input { width: 100%; border: none; padding: 14px 18px; font-size: 16px; outline: none; background: transparent; color: var(--text-color); font-weight: 500; }
@@ -463,9 +473,7 @@ h2.section-title { font-size: 30px; font-weight: 800; color: var(--text-color); 
 .blog-full-content { display: none; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 40px; box-shadow: var(--shadow-md); line-height: 1.8; }
 .blog-full-content.active { display: block; animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 
-/* =================================================================
-   MONITOR & DESKTOP OPTIMALISATIES (1200px+)
-   ================================================================ */
+/* Monitor & Desktop Optimalisaties */
 @media (min-width: 1200px) {
   .container {
     max-width: 1140px;
