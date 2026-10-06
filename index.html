@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta name="google-site-verification" content="dRqlmVRgjVvYHjLUpZepsxuLzY7t73oeTPpBF2LJMho" />
-  <meta name="google-adsense-account" content="ca-pub-3253400496231224">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Every-Tool | Gratis Online Handige Tools & Conversie</title>
-  <meta name="description" content="Gebruik Every Tool voor het snel converteren van bestanden, bewerken van tekst, genereren van codes en meer. Een gratis, snelle en complete online gereedschapskist zonder registratie."/>
+  
+  <meta name="google-site-verification" content="dRqlmVRgjVvYHjLUpZepsxuLzY7t73oeTPpBF2LJMho" />
+  <meta name="google-adsense-account" content="ca-pub-3253400496231224">
+  <meta name="description" content="Gebruik Every Tool voor het snel converteren van bestanden, bewerken van tekst, genereren van codes en meer. Gratis, snel en zonder registratie."/>
   <meta name="keywords" content="speech timer, grammatica checker, ai detector, qr code generator, online tools"/>
   
   <meta property="og:title" content="Every-Tool - Slimme Tools voor Tekst en Spraak"/>
@@ -31,7 +32,8 @@
   }
   </script>
 
-  <link rel="stylesheet" href="styles.css">
+  <!-- Verwijzing naar het CSS-bestand -->
+  <link rel="stylesheet" href="style.css">
   
   <script>
     if (localStorage.getItem('everyToolLang')) {
@@ -43,9 +45,10 @@
 </head>
 <body data-theme="light">
 
+  <!-- Taalselectie Overlay -->
   <div class="language-overlay" id="languageOverlay">
     <div class="language-modal">
-      <h2>Welcome / Welkommen / Bienvenue / Bienvenida</h2>
+      <h2>Welkom / Welcome / Bienvenue</h2>
       <p>Kies je taal om te starten / Choose your language to start:</p>
       <div class="lang-grid">
         <button class="lang-card-btn" onclick="setInitialLanguage('nl')">🇳🇱 Nederlands</button>
@@ -57,6 +60,7 @@
     </div>
   </div>
 
+  <!-- Topbar Header -->
   <header class="topbar">
     <div class="topbar-left">
       <button class="hamburger-btn" onclick="toggleSidebar()" aria-label="Open menu">☰ Menu</button>
@@ -78,6 +82,7 @@
 
   <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
 
+  <!-- Navigatie Sidebar -->
   <nav class="nav-sidebar" id="sidebar">
     <div class="sidebar-header">
       <h2 id="menuHeader">Kies een Tool</h2>
@@ -140,8 +145,10 @@
     <div class="tool-group"><button class="tool-btn" onclick="selectTool('blog', currentLang)"><span id="menuBlog">📰 Blog</span></button></div>
   </nav>
 
+  <!-- Hoofdinhoud Container -->
   <main class="container">
 
+    <!-- Home Tab -->
     <div id="tab-home" class="tab-content active">
       <section class="hero-section">
         <span class="hero-tag" id="heroTag">Meet Every-Tool</span>
@@ -213,6 +220,7 @@
       </div>
     </div>
 
+    <!-- Speech Timer Tab -->
     <div id="tab-timer" class="tab-content">
       <div class="section-header-wrapper">
         <h2 class="section-title" id="t1Title">Speech & Presentatie Timer</h2>
@@ -240,6 +248,7 @@
       </div>
     </div>
 
+    <!-- Grammatica Bot Tab -->
     <div id="tab-checker" class="tab-content">
       <div class="section-header-wrapper">
         <h2 class="section-title" id="t2Title">Grammatica & Spelfout Bot</h2>
@@ -262,6 +271,7 @@
       </div>
     </div>
 
+    <!-- AI Detector Tab -->
     <div id="tab-ai" class="tab-content">
       <div class="section-header-wrapper">
         <h2 class="section-title" id="t3Title">AI-Tekst Detector Indicator</h2>
@@ -281,6 +291,7 @@
       </div>
     </div>
 
+    <!-- Tekst naar Spraak Tab -->
     <div id="tab-tts" class="tab-content">
       <div class="section-header-wrapper">
         <h2 class="section-title" id="ttsTitle">Tekst-naar-Spraak</h2>
@@ -315,6 +326,7 @@
       </div>
     </div>
 
+    <!-- Vertalen Tab -->
     <div id="tab-translate" class="tab-content">
       <div class="section-header-wrapper">
         <h2 class="section-title" id="translateTitle">Vertaal Tool</h2>
@@ -348,6 +360,7 @@
       </div>
     </div>
 
+    <!-- QR Code Tab -->
     <div id="tab-qr" class="tab-content">
       <div class="section-header-wrapper">
         <h2 class="section-title" id="qrTitle">QR Code Generator</h2>
@@ -363,6 +376,7 @@
       </div>
     </div>
 
+    <!-- Converter Tab -->
     <div id="tab-converter" class="tab-content">
       <div class="section-header-wrapper">
         <h2 class="section-title" id="convTitle">Universele Converter</h2>
@@ -381,7 +395,7 @@
         <div class="tts-control-group" style="flex: 1;">
           <label for="convertTo" id="convLabelTo">Waar naartoe converteren?</label>
           <select id="convertTo" class="tts-select">
-            <option value="jpg" id="optJpg">🖼️️ JPG Afbeelding</option>
+            <option value="jpg" id="optJpg">🖼️ JPG Afbeelding</option>
             <option value="png" id="optPng">🖼️ PNG Afbeelding</option>
             <option value="webp" id="optWebp">🌐 WebP Afbeelding</option>
           </select>
@@ -404,7 +418,6 @@
     <!-- Blog Tab -->
     <div id="tab-blog" class="tab-content">
       <article class="blog-page">
-        <!-- Overzicht / Inleiding Card -->
         <div id="blogListContainer">
           <div class="blog-list-card" onclick="openFullBlog()">
             <h3 id="blogTitle">10 handige gratis online tools voor studenten en contentmakers</h3>
@@ -413,7 +426,6 @@
           </div>
         </div>
 
-        <!-- Volledig Artikel Container (Smooth uitklapbaar) -->
         <div id="blogFullContent" class="blog-full-content">
           <button class="btn secondary" onclick="closeFullBlog()" style="margin-bottom: 20px;" id="blogBackBtn">← Terug naar overzicht</button>
           
@@ -423,87 +435,41 @@
 
           <h3>1. Tekst verbeteren</h3>
           <p>Heb je een tekst geschreven, maar zitten er spelfouten of onduidelijke zinnen in? Een tekstverbeteringstool kan helpen om je tekst duidelijker en netter te maken.</p>
-          <p>Dit is bijvoorbeeld handig voor:</p>
-          <ul>
-            <li>Schoolopdrachten</li>
-            <li>E-mails</li>
-            <li>Artikelen</li>
-            <li>Socialmediaberichten</li>
-          </ul>
 
           <h3>2. Grammatica controleren</h3>
           <p>Een kleine grammaticafout kan ervoor zorgen dat een tekst minder professioneel overkomt. Met een grammaticacontrole kun je snel controleren of je zinnen correct zijn geschreven.</p>
-          <p>Je kunt bijvoorbeeld een tekst kopiëren, controleren en daarna de verbeterde versie gebruiken.</p>
 
           <h3>3. Tekst naar spraak</h3>
           <p>Wil je een tekst liever beluisteren dan lezen? Met een tekst-naar-spraak-tool kun je geschreven tekst laten voorlezen.</p>
-          <p>Dit kan handig zijn wanneer je:</p>
-          <ul>
-            <li>Een tekst wilt beluisteren tijdens het leren</li>
-            <li>Een script wilt controleren</li>
-            <li>Een tekst toegankelijker wilt maken</li>
-            <li>De uitspraak van woorden wilt horen</li>
-          </ul>
 
           <h3>4. QR-code maken</h3>
           <p>Een QR-code is een snelle manier om iemand naar een website, tekst of andere informatie te sturen.</p>
-          <p>Je kunt bijvoorbeeld een QR-code gebruiken voor:</p>
-          <ul>
-            <li>Een website</li>
-            <li>Een evenement</li>
-            <li>Een document</li>
-            <li>Een socialmediaprofiel</li>
-          </ul>
-          <p>In plaats van een lange link over te typen, kan iemand simpelweg de QR-code scannen.</p>
 
           <h3>5. Tekst vertalen</h3>
           <p>Wanneer je informatie in een andere taal nodig hebt, kan een vertaaltool veel tijd besparen.</p>
-          <p>Vertalen kan bijvoorbeeld handig zijn voor websites, korte berichten, schoolwerk of wanneer je met iemand communiceert die een andere taal spreekt.</p>
-          <p>Let er bij belangrijke teksten wel op dat een automatische vertaling niet altijd perfect is.</p>
 
           <h3>6. Speech Timer</h3>
           <p>Een speech of presentatie oefenen is een stuk makkelijker wanneer je weet hoe lang je tekst duurt.</p>
-          <p>Met een speech timer kun je bijvoorbeeld oefenen voor:</p>
-          <ul>
-            <li>Presentaties</li>
-            <li>Spreekbeurten</li>
-            <li>Video's</li>
-            <li>Podcasts</li>
-            <li>Toespraken</li>
-          </ul>
-          <p>Zo kun je controleren of je binnen de gewenste tijd blijft.</p>
 
           <h3>7. AI-tekst controleren</h3>
-          <p>AI wordt steeds vaker gebruikt om teksten te schrijven en te verbeteren. Daardoor kan het soms lastig zijn om te bepalen hoe een tekst tot stand is gekomen.</p>
-          <p>Een AI-tekstindicator kan een extra hulpmiddel zijn om een tekst te analyseren.</p>
-          <p>Houd er wel rekening mee dat dergelijke systemen nooit met volledige zekerheid kunnen bepalen of een tekst door AI is geschreven.</p>
+          <p>AI wordt steeds vaker gebruikt om teksten te schrijven. Een AI-tekstindicator helpt je om patronen in teksten te herkennen.</p>
 
           <h3>8. Tekst analyseren</h3>
-          <p>Soms wil je snel weten hoeveel woorden of tekens een tekst bevat. Een tekst-analysetool kan daarbij helpen.</p>
-          <p>Dit is vooral handig wanneer je een bepaalde woordlimiet moet gebruiken voor bijvoorbeeld een schoolopdracht, artikel of socialmediapost.</p>
+          <p>Soms wil je snel weten hoeveel woorden of tekens een tekst bevat voor een opdracht of essay.</p>
 
           <h3>9. Handige tools voor contentmakers</h3>
-          <p>Maak je video's, artikelen of socialmediacontent? Dan kunnen kleine online hulpmiddelen veel tijd besparen.</p>
-          <p>Denk bijvoorbeeld aan het controleren van scripts, het voorbereiden van een presentatie, het omzetten van tekst naar spraak of het maken van QR-codes.</p>
-          <p>Door verschillende eenvoudige tools te combineren, kun je een groot deel van je workflow online uitvoeren.</p>
+          <p>Maak je video's of artikelen? Kleine online hulpmiddelen besparen je dagelijks veel tijd.</p>
 
           <h3>10. Alles op één plek</h3>
-          <p>Het grootste voordeel van een website met meerdere tools is dat je niet voor iedere kleine taak een nieuwe website hoeft te zoeken.</p>
-          <p>Every-Tool brengt verschillende handige hulpmiddelen samen op één plek. Daardoor kun je snel van de ene tool naar de andere gaan en verschillende talen of taken uitvoeren zonder steeds nieuwe software te installeren.</p>
-
-          <h3>Waarom gratis online tools handig zijn</h3>
-          <p>Online tools zijn vooral handig omdat je ze meestal direct vanuit je browser kunt gebruiken. Je hoeft dus niet eerst een programma te downloaden of installeren.</p>
-          <p>Voor studenten, docenten, contentmakers en andere internetgebruikers kunnen kleine tools een hoop tijd besparen.</p>
-
-          <h3>Probeer Every-Tool</h3>
-          <p>Wil je verschillende gratis online tools uitproberen? Bekijk dan de tools op Every-Tool en ontdek welke hulpmiddelen voor jou het handigst zijn.</p>
-          <p>Of je nu een tekst wilt verbeteren, een QR-code wilt maken, een presentatie wilt oefenen of tekst wilt laten voorlezen: er is altijd wel een tool die je kan helpen.</p>
+          <p>Every-Tool brengt al deze functies samen in één moderne webapplicatie.</p>
         </div>
       </article>
     </div>
 
+    <!-- Advertentie Ruimte -->
     <div class="ad-space" id="adSpace">Advertentie Ruimte (Google AdSense)</div>
 
+    <!-- Footer -->
     <footer class="security-footer">
       <div class="sec-item"><span class="sec-icon">🔒</span><span id="sec1">256-bit SSL-beveiliging</span></div>
       <div class="sec-item"><span class="sec-icon">🛡️</span><span id="sec2">100% Privacy - Lokale verwerking</span></div>
