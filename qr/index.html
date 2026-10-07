@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>QR Code Generator | Every-Tool</title>
+  <meta name="description" content="Voer een URL in en genereer direct een professionele QR-code om te downloaden of te gebruiken."/>
+  <link rel="canonical" href="https://every-tool.netlify.app/qr/"/>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body data-theme="light">
+  <header class="topbar">
+    <div class="topbar-left">
+      <a href="/" class="app-title" style="text-decoration:none; color:inherit;">Every-Tool</a>
+    </div>
+    <div class="topbar-right">
+      <button class="top-action-btn" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="section-header-wrapper">
+      <h2 class="section-title">QR Code Generator</h2>
+      <p class="section-subtitle">Voer een URL in om direct een QR-code te genereren.</p>
+    </div>
+    <div class="url-input-group">
+      <input type="url" id="qrUrlInput" placeholder="https://jouwwebsite.nl" oninput="generateQRFromInput()" />
+      <button class="btn clear-btn" onclick="clearTextArea('qrUrlInput')" style="padding: 10px 14px;">🗑 Wis</button>
+      <button class="btn" onclick="generateQRFromInput()">Genereer</button>
+    </div>
+    <div class="qr-preview-box" id="qrPreviewBox">
+      <p style="color: var(--text-muted); font-size: 14px; margin: 0;">Vul een URL in...</p>
+    </div>
+  </main>
+
+  <script src="/script.js"></script>
+</body>
+</html>
