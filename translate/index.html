@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Online Vertaal Tool | Every-Tool</title>
+  <meta name="description" content="Vertaal je teksten snel en eenvoudig naar verschillende talen zoals Engels, Frans, Duits en Spaans."/>
+  <link rel="canonical" href="https://every-tool.netlify.app/translate/"/>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body data-theme="light">
+  <header class="topbar">
+    <div class="topbar-left">
+      <a href="/" class="app-title" style="text-decoration:none; color:inherit;">Every-Tool</a>
+    </div>
+    <div class="topbar-right">
+      <button class="top-action-btn" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="section-header-wrapper">
+      <h2 class="section-title">Vertaal Tool</h2>
+      <p class="section-subtitle">Vertaal je teksten snel naar verschillende talen.</p>
+    </div>
+    <textarea id="text-translate" placeholder="Typ of plak hier de tekst die je wilt vertalen..." oninput="saveToLocal('text-translate', this.value)"></textarea>
+    <div style="display: flex; justify-content: flex-end; margin-bottom: 12px;">
+      <button class="btn clear-btn" onclick="clearTextArea('text-translate')">🗑️ Wis tekst</button>
+    </div>
+    
+    <div class="tts-controls-row">
+      <div class="tts-control-group">
+        <label for="targetLangTranslate">Kies doeltaal:</label>
+        <select id="targetLangTranslate" class="tts-select">
+          <option value="nl">🇳🇱 Nederlands</option>
+          <option value="en">🇬🇧 Engels</option>
+          <option value="fr">🇫🇷 Frans</option>
+          <option value="de">🇩🇪 Duits</option>
+          <option value="es">🇪🇸 Español</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="action-bar">
+      <button class="btn" onclick="executeTranslation()">🌍 Vertaal Tekst</button>
+      <button class="btn secondary" onclick="copyText('translationResultBox')">📋 Kopiëren</button>
+    </div>
+
+    <div class="translation-preview" id="translationResultBox">
+      <em>Vertaalde tekst verschijnt hier...</em>
+    </div>
+  </main>
+
+  <script src="/script.js"></script>
+</body>
+</html>
