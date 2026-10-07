@@ -7,6 +7,13 @@
   <meta name="description" content="Laat je tekst direct voorlezen in diverse talen of download de gegenereerde audio als WAV-bestand."/>
   <link rel="canonical" href="https://every-tool.netlify.app/tts/"/>
   <link rel="stylesheet" href="../style.css">
+  <script>
+    // Direct bij het laden van de pagina de opgeslagen taal toepassen om 'terugspringen' te voorkomen
+    (function() {
+      const savedLang = localStorage.getItem('selectedLanguage') || 'nl';
+      document.documentElement.lang = savedLang;
+    })();
+  </script>
 </head>
 <body data-theme="light">
 
@@ -37,7 +44,7 @@
     <div class="tool-group"><a href="../translate/" class="tool-btn" style="text-decoration:none; color:inherit;">🌍 Vertaal Tool</a></div>
     <div class="tool-group"><a href="../qr/" class="tool-btn" style="text-decoration:none; color:inherit;">📱 QR Code Generator</a></div>
     <div class="tool-group"><a href="../converter/" class="tool-btn" style="text-decoration:none; color:inherit;">🔄 Universele Converter</a></div>
-    <div class="tool-group"><a href="../blog/" class="tool-btn" style="text-decoration:none; color:inherit;">📰 Blog</a></div>
+    <div class="tool-group"><a href="../blog/" class="tool-btn" style="text-decoration:none; color:isHorizontal;">📰 Blog</a></div>
   </nav>
 
   <main class="container">
