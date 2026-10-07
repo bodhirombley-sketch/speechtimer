@@ -9,14 +9,36 @@
   <link rel="stylesheet" href="../style.css">
 </head>
 <body data-theme="light">
+
   <header class="topbar">
     <div class="topbar-left">
+      <button class="hamburger-btn" onclick="toggleSidebar()" aria-label="Open menu">☰ Menu</button>
       <a href="../" class="app-title" style="text-decoration:none; color:inherit;">Every-Tool</a>
     </div>
+    
     <div class="topbar-right">
-      <button class="top-action-btn" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+      <button class="top-action-btn" onclick="toggleDarkMode()" id="darkModeBtn">🌙 Dark Mode</button>
+      <button class="top-action-btn" onclick="shareSite()" id="shareBtn">🔗 Deel</button>
     </div>
   </header>
+
+  <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+  <nav class="nav-sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h2>Kies een Tool</h2>
+      <button class="close-btn" onclick="toggleSidebar()" aria-label="Sluit menu">✕</button>
+    </div>
+    <div class="tool-group"><a href="../" class="tool-btn" style="text-decoration:none; color:inherit;">🏠 Overzicht / Home</a></div>
+    <div class="tool-group"><a href="../timer/" class="tool-btn" style="text-decoration:none; color:inherit;">⏱️ Speech & Presentatie</a></div>
+    <div class="tool-group"><a href="../checker/" class="tool-btn" style="text-decoration:none; color:inherit;">✍️ Grammatica Bot</a></div>
+    <div class="tool-group"><a href="../ai/" class="tool-btn" style="text-decoration:none; color:inherit;">🤖 AI-Tekst Detector</a></div>
+    <div class="tool-group"><a href="./" class="tool-btn" style="text-decoration:none; color:inherit;">🔊 Tekst-naar-Spraak</a></div>
+    <div class="tool-group"><a href="../translate/" class="tool-btn" style="text-decoration:none; color:inherit;">🌍 Vertaal Tool</a></div>
+    <div class="tool-group"><a href="../qr/" class="tool-btn" style="text-decoration:none; color:inherit;">📱 QR Code Generator</a></div>
+    <div class="tool-group"><a href="../converter/" class="tool-btn" style="text-decoration:none; color:inherit;">🔄 Universele Converter</a></div>
+    <div class="tool-group"><a href="../blog/" class="tool-btn" style="text-decoration:none; color:inherit;">📰 Blog</a></div>
+  </nav>
 
   <main class="container">
     <div class="section-header-wrapper">
