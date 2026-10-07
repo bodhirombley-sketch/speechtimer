@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Grammatica & Spelfout Bot | Every-Tool</title>
+  <meta name="description" content="Controleer automatisch op spelfouten en stijlfouten in je teksten met onze online grammatica checker."/>
+  <link rel="canonical" href="https://every-tool.netlify.app/checker/"/>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body data-theme="light">
+  <header class="topbar">
+    <div class="topbar-left">
+      <a href="/" class="app-title" style="text-decoration:none; color:inherit;">Every-Tool</a>
+    </div>
+    <div class="topbar-right">
+      <button class="top-action-btn" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="section-header-wrapper">
+      <h2 class="section-title">Grammatica & Spelfout Bot</h2>
+      <p class="section-subtitle">Controleer automatisch op spelfouten via LanguageTool.</p>
+    </div>
+    <textarea id="text-checker" placeholder="Plak hier je tekst..." oninput="updateCheckerStats()"></textarea>
+    <div class="stats-bar">
+      <span id="stats-checker-text">Woorden: 0 | Tekens: 0</span>
+      <button class="btn clear-btn" onclick="clearTextArea('text-checker')">🗑️ Wis tekst</button>
+    </div>
+
+    <div class="action-bar">
+      <button class="btn" onclick="checkAndFixWithLanguageTool()">✨ Automatisch Herstellen</button>
+      <button class="btn" onclick="copyText('text-checker')">📋 Kopiëren</button>
+    </div>
+
+    <div class="issue-list">
+      <h4 style="margin-top:0; font-size:15px; font-weight: 700;">Gevonden Aandachtspunten:</h4>
+      <div id="issuesContainer" style="color: var(--text-muted); font-size: 14px;">Klik op 'Automatisch Herstellen' om te controleren.</div>
+    </div>
+  </main>
+
+  <script src="/script.js"></script>
+</body>
+</html>
