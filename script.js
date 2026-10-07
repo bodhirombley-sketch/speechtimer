@@ -74,7 +74,7 @@ const translations = {
     ttsStatusPlaceholder: "Status: Klaar om voor te lezen of te downloaden...",
     ttsSpeaking: "🔊 Bezig met voorlezen...",
     ttsDone: "✅ Voorlezen voltooid.",
-    ttsStopped: "⏹️️ Gestopt.",
+    ttsStopped: "⏹ Gestopt.",
     ttsDownloaded: "📥 Audiobestand succesvol gedownload!",
     ttsNoTextAlert: "Voer eerst wat tekst in!",
     ttsNoAudioTextAlert: "Voer eerst tekst in om te kunnen downloaden.",
@@ -110,7 +110,7 @@ const translations = {
     optHeic: "📷 HEIC Afbeelding (Apple)",
     optImg: "🖼️ Standaard Afbeelding (PNG/JPG/WebP)",
     optTxt: "📄 Tekstbestand (.txt)",
-    optJpg: "🖼️️ JPG Afbeelding",
+    optJpg: "🖼 JPG Afbeelding",
     optPng: "🖼️ PNG Afbeelding",
     optWebp: "🌐 WebP Afbeelding",
     adSpace: "Advertentie Ruimte (Google AdSense)",
@@ -267,7 +267,7 @@ const translations = {
     placeholder: "Paste your text here...",
     menuHeader: "Select Tool",
     menuHome: "🏠 Overview / Home",
-    menuTimer: "⏱️️ Speech & Presentation",
+    menuTimer: "⏱ Speech & Presentation",
     menuChecker: "✍️ Grammar Bot",
     menuAi: "🤖 AI Text Detector",
     menuTts: "🔊 Text-to-Speech",
@@ -350,7 +350,7 @@ const translations = {
     translatePreviewPlaceholder: "Translated text will appear here...",
     translateAlert: "Please enter text to translate.",
     translatingText: "⏳ Translating text...",
-    translateError: "⚠️️ Connection error with translation API.",
+    translateError: "⚠ Connection error with translation API.",
     qrTitle: "QR Code Generator",
     qrSub: "Enter a URL to instantly generate a QR code.",
     qrPlaceholder: "Enter a URL...",
@@ -1178,6 +1178,7 @@ function downloadAudioFile() {
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
+  URL.revokeObjectURL(url);
 
   const statusBox = document.getElementById('ttsStatusBox');
   if (statusBox) statusBox.innerHTML = t.ttsDownloaded;
@@ -1261,8 +1262,9 @@ function downloadQRCode() {
   imageObj.crossOrigin = "anonymous";
   imageObj.onload = function() {
     ctx.drawImage(imageObj, 0, 0);
+    const dataUrl = canvas.toDataURL('image/png');
     const a = document.createElement('a');
-    a.href = canvas.toDataURL('image/png');
+    a.href = dataUrl;
     a.download = `qr-code.png`;
     document.body.appendChild(a);
     a.click();
