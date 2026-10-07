@@ -1,3 +1,7 @@
+// ==========================================
+// EVERY-TOOL - HOOFDSCRIPT MET TAALFIX & COMPLEETE LOGICA
+// ==========================================
+
 const translations = {
   nl: {
     placeholder: "Plak hier je tekst...",
@@ -664,7 +668,7 @@ let currentLang = 'nl';
 let currentTool = 'home';
 let currentQRUrl = '';
 
-// Geïntegreerde functie om de pagina te vertalen op basis van de gekozen taal
+// Functie om de pagina te vertalen op basis van de gekozen taal
 function vertaalPagina(taal) {
   if (translations[taal]) {
     setLanguage(taal);
@@ -673,30 +677,41 @@ function vertaalPagina(taal) {
   }
 }
 
-window.addEventListener('DOMContentLoaded', () => {
-  // Ondersteuning voor zowel 'everyToolLang' als 'gekozenTaal' (uit jouw snippet)
+// ------------------------------------------
+// DOM LOADED INITIALISATIE
+// ------------------------------------------
+document.addEventListener('DOMContentLoaded', () => {
+  // 1. Haal direct de opgeslagen taal op uit localStorage (met dubbele fallback)
   const savedLang = localStorage.getItem('everyToolLang') || localStorage.getItem('gekozenTaal');
+  
   if (savedLang && translations[savedLang]) {
     currentLang = savedLang;
     const overlay = document.getElementById('languageOverlay');
     if (overlay) overlay.classList.add('hidden');
+    vertaalPagina(savedLang);
   }
 
-  // Jouw code voor #language-selector verwerkt binnen DOMContentLoaded
+  // 2. Beheer de taal-dropdown (als deze op de huidige pagina aanwezig is)
   const selector = document.getElementById('language-selector');
   if (selector) {
     const opgeslagenTaal = localStorage.getItem('gekozenTaal') || localStorage.getItem('everyToolLang') || 'nl';
     selector.value = opgeslagenTaal;
     vertaalPagina(opgeslagenTaal);
-
-    selector.addEventListener('change', (event) => {
-      const gekozenTaal = event.target.value;
-      localStorage.setItem('gekozenTaal', gekozenTaal);
+    
+    // Luister naar wijzigingen in de dropdown
+    selector.addEventListener('change', (e) => {
+      const gekozenTaal = e.target.value;
+      currentLang = gekozenTaal;
+      
+      // Sla de keuze op in beide sleutels voor maximale compatibiliteit
       localStorage.setItem('everyToolLang', gekozenTaal);
+      localStorage.setItem('gekozenTaal', gekozenTaal);
+      
       vertaalPagina(gekozenTaal);
     });
   }
 
+  // Thema instellingen laden
   const savedTheme = localStorage.getItem('everyToolTheme');
   if (savedTheme === 'dark') {
     document.body.setAttribute('data-theme', 'dark');
@@ -704,6 +719,7 @@ window.addEventListener('DOMContentLoaded', () => {
     if (btn) btn.innerText = "☀️ Light Mode";
   }
 
+  // Lokale opgeslagen formulieren herstellen
   ['text-timer', 'text-checker', 'text-ai', 'text-tts', 'text-translate', 'qrUrlInput'].forEach(id => {
     const saved = localStorage.getItem(id);
     if (saved) {
@@ -721,6 +737,7 @@ window.addEventListener('DOMContentLoaded', () => {
   handleRoute();
   window.addEventListener('hashchange', handleRoute);
 
+  // Sneltoetsen (Ctrl+Enter)
   document.addEventListener('keydown', (e) => {
     if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
       if (currentTool === 'checker') {
@@ -732,7 +749,15 @@ window.addEventListener('DOMContentLoaded', () => {
       }
     }
   });
+
+  // Zoekfilter initialiseren (indien aanwezig)
+  initSearchFilter();
+  initTools();
 });
+
+// ------------------------------------------
+// ROUTING & NAVIGATIE
+// ------------------------------------------
 
 function handleRoute() {
   const savedLang = localStorage.getItem('everyToolLang') || localStorage.getItem('gekozenTaal');
@@ -765,7 +790,6 @@ function setLanguage(lang) {
   localStorage.setItem('everyToolLang', lang);
   localStorage.setItem('gekozenTaal', lang);
 
-  // Synchroniseer eventuele dropdown als die aanwezig is
   const selector = document.getElementById('language-selector');
   if (selector) selector.value = lang;
 
@@ -893,6 +917,7 @@ function selectTool(toolId, lang, pushHistory = true) {
     document.title = "Every-Tool | Gratis Online Handige Tools";
   }
 
+  // Automatische vertaling van elementen met id's
   document.querySelectorAll('[id]').forEach(el => {
     const id = el.id;
     if (t[id] !== undefined) {
@@ -901,6 +926,22 @@ function selectTool(toolId, lang, pushHistory = true) {
       } else {
         el.innerText = t[id];
       }
+    }
+  });
+
+  // Zoek naar elementen met een data-i18n attribuut en vertaal ze automatisch
+  document.querySelectorAll('[data-i18n]').forEach(element => {
+    const key = element.getAttribute('data-i18n');
+    if (t[key]) {
+      element.textContent = t[key];
+    }
+  });
+
+  // Zoek naar placeholders indien van toepassing
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+    const key = element.getAttribute('data-i18n-placeholder');
+    if (t[key]) {
+      element.placeholder = t[key];
     }
   });
 
@@ -915,6 +956,34 @@ function selectTool(toolId, lang, pushHistory = true) {
   if (convStatus && !convStatus.dataset.converted) {
     convStatus.innerText = t.convStatus;
   }
+}
+
+// ------------------------------------------
+// TOOL FUNCTIES (TIMER, CHECKER, AI, ETC.)
+// ------------------------------------------
+
+function initSearchFilter() {
+  const searchInput = document.getElementById('search-tools') || document.getElementById('homeSearchInput');
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase();
+      const toolCards = document.querySelectorAll('.tool-card');
+      
+      toolCards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        if (text.includes(query)) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      filterTools();
+    });
+  }
+}
+
+function initTools() {
+  console.log("Every-Tool functionaliteiten succesvol geladen.");
 }
 
 function filterTools() {
