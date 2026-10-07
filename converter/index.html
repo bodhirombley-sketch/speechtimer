@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Universele Bestand & Afbeelding Converter | Every-Tool</title>
+  <meta name="description" content="Converteer eenvoudig HEIC-afbeeldingen, standaard afbeeldingen of tekstbestanden naar een ander formaat."/>
+  <link rel="canonical" href="https://every-tool.netlify.app/converter/"/>
+  <link rel="stylesheet" href="/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>
+</head>
+<body data-theme="light">
+  <header class="topbar">
+    <div class="topbar-left">
+      <a href="/" class="app-title" style="text-decoration:none; color:inherit;">Every-Tool</a>
+    </div>
+    <div class="topbar-right">
+      <button class="top-action-btn" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="section-header-wrapper">
+      <h2 class="section-title">Universele Converter</h2>
+      <p class="section-subtitle">Converteer foto's, documenten of data eenvoudig naar een ander bestandsformaat.</p>
+    </div>
+    
+    <div class="tts-controls-row" style="margin-bottom: 20px;">
+      <div class="tts-control-group" style="flex: 1;">
+        <label for="convertFrom">Wat wil je converteren?</label>
+        <select id="convertFrom" class="tts-select" onchange="updateConverterUI()">
+          <option value="heic">📷 HEIC Afbeelding (Apple)</option>
+          <option value="image">🖼️ Standaard Afbeelding (PNG/JPG/WebP)</option>
+          <option value="txt">📄 Tekstbestand (.txt)</option>
+        </select>
+      </div>
+      <div class="tts-control-group" style="flex: 1;">
+        <label for="convertTo">Waar naartoe converteren?</label>
+        <select id="convertTo" class="tts-select">
+          <option value="jpg">🖼️ JPG Afbeelding</option>
+          <option value="png">🖼️ PNG Afbeelding</option>
+          <option value="webp">🌐 WebP Afbeelding</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="url-input-group" style="flex-direction: column; align-items: stretch; gap: 12px;">
+      <input type="file" id="universalFileInput" accept="image/*,.txt" style="padding: 12px; border: 2px dashed var(--border-color); border-radius: 8px; cursor: pointer; background: var(--card-bg); color: var(--text-color); width: 100%;" />
+    </div>
+
+    <div style="margin-top: 20px; text-align: center;">
+      <button class="btn" onclick="executeUniversalConversion()">Start Conversie</button>
+    </div>
+
+    <div class="qr-preview-box" id="converterPreviewBox" style="margin-top: 20px; text-align: center;">
+      <p style="color: var(--text-muted); font-size: 14px; margin: 0;" id="convStatusText">Selecteer een bestand en klik op start...</p>
+    </div>
+  </main>
+
+  <script src="/script.js"></script>
+</body>
+</html>
