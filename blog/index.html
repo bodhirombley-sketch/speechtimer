@@ -50,9 +50,9 @@
       <p class="section-subtitle">Handige artikelen en tips voor studenten en contentmakers.</p>
     </div>
 
-    <!-- Overzicht / Lijst van blogs (Standaard zichtbaar) -->
-    <div id="blogList" style="display: flex; flex-direction: column; gap: 16px; margin-top: 20px;">
-      <div class="card" style="cursor: pointer; transition: transform 0.2s;" onclick="openBlogPost('blog1')">
+    <!-- Overzicht / Lijst van blogs (Aangepast ID naar blogListContainer) -->
+    <div id="blogListContainer" style="display: flex; flex-direction: column; gap: 16px; margin-top: 20px;">
+      <div class="card" style="cursor: pointer; transition: transform 0.2s;" onclick="openFullBlog()">
         <span style="font-size: 12px; color: var(--text-muted);">📅 7 Oktober 2026 • Leestijd: 3 min</span>
         <h3 style="margin: 8px 0 6px 0;">10 handige gratis online tools voor studenten en contentmakers</h3>
         <p style="font-size: 14px; color: var(--text-muted); margin: 0;">Ontdek 10 gratis online toepassingen die je helpen met school, schrijven, presentaties en content maken...</p>
@@ -60,9 +60,9 @@
       </div>
     </div>
 
-    <!-- Volledige Artikel (Standaard verborgen, wordt getoond bij klik) -->
-    <div id="blogFull1" style="display: none; margin-top: 20px;">
-      <button class="btn secondary" onclick="closeBlogPost()" style="margin-bottom: 20px;">← Terug naar overzicht</button>
+    <!-- Volledige Artikel (Aangepast ID naar blogFullContent en aangepaste functie) -->
+    <div id="blogFullContent" style="display: none; margin-top: 20px;">
+      <button class="btn secondary" onclick="closeFullBlog()" style="margin-bottom: 20px;">← Terug naar overzicht</button>
       
       <article class="blog-page card" style="padding: 30px;">
         <h2 style="margin-top:0;">10 handige gratis online tools voor studenten en contentmakers</h2>
@@ -104,20 +104,7 @@
     </div>
   </main>
 
-  <!-- Simpele script logica om te schakelen tussen overzicht en artikel -->
-  <script>
-    function openBlogPost(id) {
-      document.getElementById('blogList').style.display = 'none';
-      document.getElementById('blogFull1').style.display = 'block';
-      window.scrollTo(0, 0);
-    }
-    function closeBlogPost() {
-      document.getElementById('blogFull1').style.display = 'none';
-      document.getElementById('blogList').style.display = 'flex';
-      window.scrollTo(0, 0);
-    }
-  </script>
-
+  <!-- Hoofdscript laadt nu de juiste functies in voor blogListContainer en blogFullContent -->
   <script src="../script.js"></script>
 </body>
 </html>
