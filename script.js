@@ -1,5 +1,5 @@
 // ==========================================
-// EVERY-TOOL - HOOFDSCRIPT MET TAALFIX & COMPLEETE LOGICA
+// EVERY-TOOL - HOOFDSCRIPT MET DEFINITIEVE TAALFIX
 // ==========================================
 
 const translations = {
@@ -562,7 +562,7 @@ const translations = {
     faq2A: "No, todo el procesamiento se realiza localmente en tu navegador.",
     faq3Q: "¿Es gratuito?",
     faq3A: "Sí, todas las herramientas de esta plataforma son completamente gratuitas.",
-    faq4Q: "¿Qué tan confiable es el detector de IA?",
+    faq4Q: "¿Qué tan confiable is el detector de IA?",
     faq4A: "El detector analiza propiedades estadísticas. Ofrece una buena indicación pero no es una prueba definitiva.",
     faq5Q: "¿Puedo descargar el audio generado?",
     faq5A: "Sí, en la herramienta de Texto a Voz puedes descargar el archivo de audio (.WAV).",
@@ -629,7 +629,7 @@ const translations = {
     convLabelFrom: "¿Qué deseas convertir?",
     convLabelTo: "¿Convertir a?",
     convActionBtn: "Iniciar conversión",
-    convStatus: "Selecciona un archivo y haz clic en iniciar...",
+    convStatus: "Selecciona un archivo en haz clic en iniciar...",
     convAlert: "¡Selecciona un archivo primero!",
     convLoading: "⏳ Convirtiendo...",
     convSuccess: "✅ Convertido con éxito a",
@@ -668,46 +668,77 @@ let currentLang = 'nl';
 let currentTool = 'home';
 let currentQRUrl = '';
 
-// Functie om de pagina te vertalen op basis van de gekozen taal
+// ==========================================
+// ROBUUSTE VERTAALFUNCTIE VOOR ALLE PAGINA'S
+// ==========================================
 function vertaalPagina(taal) {
-  if (translations[taal]) {
-    setLanguage(taal);
-  } else {
-    console.log(`Pagina wordt vertaald naar: ${taal}`);
+  if (!translations[taal]) return;
+  currentLang = taal;
+  const t = translations[taal];
+
+  // 1. Vertaal alle elementen op basis van ID
+  document.querySelectorAll('[id]').forEach(el => {
+    const id = el.id;
+    if (t[id] !== undefined) {
+      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+        el.placeholder = t[id];
+      } else {
+        el.innerText = t[id];
+      }
+    }
+  });
+
+  // 2. Vertaal elementen met data-i18n
+  document.querySelectorAll('[data-i18n]').forEach(element => {
+    const key = element.getAttribute('data-i18n');
+    if (t[key]) {
+      element.textContent = t[key];
+    }
+  });
+
+  // 3. Vertaal placeholders met data-i18n-placeholder
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+    const key = element.getAttribute('data-i18n-placeholder');
+    if (t[key]) {
+      element.placeholder = t[key];
+    }
+  });
+
+  // 4. Overige specifieke elementen bijwerken
+  document.querySelectorAll('.clear-btn').forEach(btn => {
+    btn.innerText = t.clearText;
+  });
+
+  const searchBtn = document.getElementById('homeSearchBtn');
+  if (searchBtn) searchBtn.innerHTML = `<span>${t.searchBtn}</span> 🔍`;
+  
+  const convStatus = document.getElementById('converterStatusText');
+  if (convStatus && !convStatus.dataset.converted) {
+    convStatus.innerText = t.convStatus;
   }
 }
 
-// ------------------------------------------
+// ==========================================
 // DOM LOADED INITIALISATIE
-// ------------------------------------------
+// ==========================================
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Haal direct de opgeslagen taal op uit localStorage (met dubbele fallback)
-  const savedLang = localStorage.getItem('everyToolLang') || localStorage.getItem('gekozenTaal');
+  // 1. Haal direct de opgeslagen taal op uit localStorage (met fallback naar nl)
+  const savedLang = localStorage.getItem('everyToolLang') || localStorage.getItem('gekozenTaal') || 'nl';
   
-  if (savedLang && translations[savedLang]) {
+  if (translations[savedLang]) {
     currentLang = savedLang;
     const overlay = document.getElementById('languageOverlay');
     if (overlay) overlay.classList.add('hidden');
     vertaalPagina(savedLang);
   }
 
-  // 2. Beheer de taal-dropdown (als deze op de huidige pagina aanwezig is)
+  // 2. Beheer de taal-dropdown (indien aanwezig)
   const selector = document.getElementById('language-selector');
   if (selector) {
-    const opgeslagenTaal = localStorage.getItem('gekozenTaal') || localStorage.getItem('everyToolLang') || 'nl';
-    selector.value = opgeslagenTaal;
-    vertaalPagina(opgeslagenTaal);
-    
-    // Luister naar wijzigingen in de dropdown
+    selector.value = savedLang;
     selector.addEventListener('change', (e) => {
       const gekozenTaal = e.target.value;
-      currentLang = gekozenTaal;
-      
-      // Sla de keuze op in beide sleutels voor maximale compatibiliteit
-      localStorage.setItem('everyToolLang', gekozenTaal);
-      localStorage.setItem('gekozenTaal', gekozenTaal);
-      
-      vertaalPagina(gekozenTaal);
+      setLanguage(gekozenTaal);
     });
   }
 
@@ -750,18 +781,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Zoekfilter initialiseren (indien aanwezig)
   initSearchFilter();
   initTools();
 });
 
-// ------------------------------------------
+// ==========================================
 // ROUTING & NAVIGATIE
-// ------------------------------------------
+// ==========================================
 
 function handleRoute() {
-  const savedLang = localStorage.getItem('everyToolLang') || localStorage.getItem('gekozenTaal');
-  if (savedLang && translations[savedLang]) {
+  const savedLang = localStorage.getItem('everyToolLang') || localStorage.getItem('gekozenTaal') || 'nl';
+  if (translations[savedLang]) {
     currentLang = savedLang;
   }
   const hash = window.location.hash.replace('#', '');
@@ -787,6 +817,8 @@ function setInitialLanguage(lang) {
 function setLanguage(lang) {
   if (!translations[lang]) return;
   currentLang = lang;
+  
+  // Sla de taal op onder beide sleutels voor maximale compatibiliteit
   localStorage.setItem('everyToolLang', lang);
   localStorage.setItem('gekozenTaal', lang);
 
@@ -798,6 +830,8 @@ function setLanguage(lang) {
   const langBtn = document.getElementById(`langBtn${langCap}`);
   if (langBtn) langBtn.classList.add('active');
 
+  // Vertaal direct de huidige pagina of wissel van tool
+  vertaalPagina(lang);
   selectTool(currentTool, lang, true);
 }
 
@@ -887,6 +921,7 @@ function selectTool(toolId, lang, pushHistory = true) {
     window.history.pushState({ tool: toolId }, '', newHash);
   }
 
+  // Activeer tabblad indien aanwezig (op de homepage)
   document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
   const targetTab = document.getElementById('tab-' + toolId);
   if (targetTab) targetTab.classList.add('active');
@@ -909,58 +944,13 @@ function selectTool(toolId, lang, pushHistory = true) {
   const langBtn = document.getElementById(`langBtn${langCap}`);
   if (langBtn) langBtn.classList.add('active');
 
-  const t = translations[lang] || translations['nl'];
-
-  if (t.pageTitles && t.pageTitles[toolId]) {
-    document.title = t.pageTitles[toolId];
-  } else {
-    document.title = "Every-Tool | Gratis Online Handige Tools";
-  }
-
-  // Automatische vertaling van elementen met id's
-  document.querySelectorAll('[id]').forEach(el => {
-    const id = el.id;
-    if (t[id] !== undefined) {
-      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-        el.placeholder = t[id];
-      } else {
-        el.innerText = t[id];
-      }
-    }
-  });
-
-  // Zoek naar elementen met een data-i18n attribuut en vertaal ze automatisch
-  document.querySelectorAll('[data-i18n]').forEach(element => {
-    const key = element.getAttribute('data-i18n');
-    if (t[key]) {
-      element.textContent = t[key];
-    }
-  });
-
-  // Zoek naar placeholders indien van toepassing
-  document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
-    const key = element.getAttribute('data-i18n-placeholder');
-    if (t[key]) {
-      element.placeholder = t[key];
-    }
-  });
-
-  document.querySelectorAll('.clear-btn').forEach(btn => {
-    btn.innerText = t.clearText;
-  });
-
-  const searchBtn = document.getElementById('homeSearchBtn');
-  if (searchBtn) searchBtn.innerHTML = `<span>${t.searchBtn}</span> 🔍`;
-  
-  const convStatus = document.getElementById('converterStatusText');
-  if (convStatus && !convStatus.dataset.converted) {
-    convStatus.innerText = t.convStatus;
-  }
+  // Voer direct de vertaling uit voor de huidige pagina/tool
+  vertaalPagina(lang);
 }
 
-// ------------------------------------------
+// ==========================================
 // TOOL FUNCTIES (TIMER, CHECKER, AI, ETC.)
-// ------------------------------------------
+// ==========================================
 
 function initSearchFilter() {
   const searchInput = document.getElementById('search-tools') || document.getElementById('homeSearchInput');
