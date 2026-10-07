@@ -674,6 +674,10 @@ let currentQRUrl = '';
 function vertaalPagina(taal) {
   if (!translations[taal]) return;
   currentLang = taal;
+  
+  // Zorg dat het HTML lang-attribuut direct mee verandert
+  document.documentElement.lang = taal;
+
   const t = translations[taal];
 
   // 1. Vertaal alle elementen op basis van ID
