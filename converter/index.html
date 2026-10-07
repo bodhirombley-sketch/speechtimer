@@ -9,9 +9,9 @@
   <link rel="stylesheet" href="../style.css">
   <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>
   <script>
-    // Direct bij het laden van de pagina de opgeslagen taal toepassen om 'terugspringen' te voorkomen
+    // Direct bij het laden van de pagina de juiste opgeslagen taal toepassen om 'terugspringen' te voorkomen
     (function() {
-      const savedLang = localStorage.getItem('selectedLanguage') || 'nl';
+      const savedLang = localStorage.getItem('everyToolLang') || localStorage.getItem('gekozenTaal') || 'nl';
       document.documentElement.lang = savedLang;
     })();
   </script>
