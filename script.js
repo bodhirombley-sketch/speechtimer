@@ -654,7 +654,7 @@ const translations = {
       tts: "Generador de Texto a Voz | Every-Tool",
       translate: "Herramienta de Traducción Gratuita | Every-Tool",
       qr: "Generador de Códigos QR Gratuito | Every-Tool",
-      converter: "Conversor Universal de Archivos | Every-Tool",
+      converter: "Universeller Dateikonverter | Every-Tool",
       blog: "Blog y Artículos | Every-Tool"
     }
   }
@@ -869,6 +869,11 @@ function selectTool(toolId, lang, pushHistory = true) {
   if (convStatus && !convStatus.dataset.converted) {
     convStatus.innerText = t.convStatus;
   }
+
+  // Direct actieve statistieken / dynamische elementen verversen op basis van de nieuwe taal
+  if (toolId === 'timer') calcTimer();
+  if (toolId === 'checker') updateCheckerStats();
+  if (toolId === 'ai') checkAI();
 }
 
 function filterTools() {
