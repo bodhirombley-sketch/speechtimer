@@ -664,12 +664,37 @@ let currentLang = 'nl';
 let currentTool = 'home';
 let currentQRUrl = '';
 
+// Geïntegreerde functie om de pagina te vertalen op basis van de gekozen taal
+function vertaalPagina(taal) {
+  if (translations[taal]) {
+    setLanguage(taal);
+  } else {
+    console.log(`Pagina wordt vertaald naar: ${taal}`);
+  }
+}
+
 window.addEventListener('DOMContentLoaded', () => {
-  const savedLang = localStorage.getItem('everyToolLang');
+  // Ondersteuning voor zowel 'everyToolLang' als 'gekozenTaal' (uit jouw snippet)
+  const savedLang = localStorage.getItem('everyToolLang') || localStorage.getItem('gekozenTaal');
   if (savedLang && translations[savedLang]) {
     currentLang = savedLang;
     const overlay = document.getElementById('languageOverlay');
     if (overlay) overlay.classList.add('hidden');
+  }
+
+  // Jouw code voor #language-selector verwerkt binnen DOMContentLoaded
+  const selector = document.getElementById('language-selector');
+  if (selector) {
+    const opgeslagenTaal = localStorage.getItem('gekozenTaal') || localStorage.getItem('everyToolLang') || 'nl';
+    selector.value = opgeslagenTaal;
+    vertaalPagina(opgeslagenTaal);
+
+    selector.addEventListener('change', (event) => {
+      const gekozenTaal = event.target.value;
+      localStorage.setItem('gekozenTaal', gekozenTaal);
+      localStorage.setItem('everyToolLang', gekozenTaal);
+      vertaalPagina(gekozenTaal);
+    });
   }
 
   const savedTheme = localStorage.getItem('everyToolTheme');
@@ -710,7 +735,7 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 function handleRoute() {
-  const savedLang = localStorage.getItem('everyToolLang');
+  const savedLang = localStorage.getItem('everyToolLang') || localStorage.getItem('gekozenTaal');
   if (savedLang && translations[savedLang]) {
     currentLang = savedLang;
   }
@@ -738,6 +763,11 @@ function setLanguage(lang) {
   if (!translations[lang]) return;
   currentLang = lang;
   localStorage.setItem('everyToolLang', lang);
+  localStorage.setItem('gekozenTaal', lang);
+
+  // Synchroniseer eventuele dropdown als die aanwezig is
+  const selector = document.getElementById('language-selector');
+  if (selector) selector.value = lang;
 
   document.querySelectorAll('.lang-switcher-top button').forEach(b => b.classList.remove('active'));
   const langCap = lang.charAt(0).toUpperCase() + lang.slice(1);
@@ -826,6 +856,7 @@ function selectTool(toolId, lang, pushHistory = true) {
   currentTool = toolId;
   currentLang = lang;
   localStorage.setItem('everyToolLang', lang);
+  localStorage.setItem('gekozenTaal', lang);
 
   if (pushHistory) {
     const newHash = toolId === 'home' ? '#' : `#${toolId}`;
