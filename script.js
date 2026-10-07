@@ -694,7 +694,7 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 
   handleRoute();
-  window.addEventListener('popstate', handleRoute);
+  window.addEventListener('hashchange', handleRoute);
 
   document.addEventListener('keydown', (e) => {
     if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
@@ -710,13 +710,10 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 function handleRoute() {
-  const path = window.location.pathname.replace(/^\/+|\/+$/g, '');
   const hash = window.location.hash.replace('#', '');
   let toolId = 'home';
   
-  if (['timer', 'checker', 'ai', 'tts', 'translate', 'qr', 'converter', 'blog'].includes(path)) {
-    toolId = path;
-  } else if (['timer', 'checker', 'ai', 'tts', 'translate', 'qr', 'converter', 'blog'].includes(hash)) {
+  if (['timer', 'checker', 'ai', 'tts', 'translate', 'qr', 'converter', 'blog'].includes(hash)) {
     toolId = hash;
   }
   
@@ -732,7 +729,7 @@ function setInitialLanguage(lang) {
   localStorage.setItem('everyToolLang', lang);
   const overlay = document.getElementById('languageOverlay');
   if (overlay) overlay.classList.add('hidden');
-  selectTool(currentTool, lang);
+  selectTool(currentTool, lang, true);
 }
 
 function toggleDarkMode() {
@@ -816,8 +813,8 @@ function selectTool(toolId, lang, pushHistory = true) {
   localStorage.setItem('everyToolLang', lang);
 
   if (pushHistory) {
-    const newPath = toolId === 'home' ? '/' : `/${toolId}/`;
-    window.history.pushState({ tool: toolId }, '', newPath);
+    const newHash = toolId === 'home' ? '#' : `#${toolId}`;
+    window.history.pushState({ tool: toolId }, '', newHash);
   }
 
   document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
