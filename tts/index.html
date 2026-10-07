@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tekst-naar-Spraak & Audio Download | Every-Tool</title>
+  <meta name="description" content="Laat je tekst direct voorlezen in diverse talen of download de gegenereerde audio als WAV-bestand."/>
+  <link rel="canonical" href="https://every-tool.netlify.app/tts/"/>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body data-theme="light">
+  <header class="topbar">
+    <div class="topbar-left">
+      <a href="/" class="app-title" style="text-decoration:none; color:inherit;">Every-Tool</a>
+    </div>
+    <div class="topbar-right">
+      <button class="top-action-btn" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="section-header-wrapper">
+      <h2 class="section-title">Tekst-naar-Spraak</h2>
+      <p class="section-subtitle">Laat je tekst direct voorlezen of download de audio als bestand.</p>
+    </div>
+    <textarea id="text-tts" placeholder="Typ of plak hier je tekst om voor te lezen..." oninput="saveToLocal('text-tts', this.value)"></textarea>
+    <div style="display: flex; justify-content: flex-end; margin-bottom: 12px;">
+      <button class="btn clear-btn" onclick="clearTextArea('text-tts')">🗑️ Wis tekst</button>
+    </div>
+    
+    <div class="tts-controls-row">
+      <div class="tts-control-group">
+        <label for="voiceLangTts">Spraak Taal:</label>
+        <select id="voiceLangTts" class="tts-select">
+          <option value="nl-NL">🇳🇱 Nederlands</option>
+          <option value="en-US">🇬🇧 Engels</option>
+          <option value="de-DE">🇩🇪 Duits</option>
+          <option value="fr-FR">🇫🇷 Frans</option>
+          <option value="es-ES">🇪🇸 Spaans</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="action-bar">
+      <button class="btn" onclick="speakText()">🔊 Lees Hardop</button>
+      <button class="btn secondary" onclick="downloadAudioFile()">📥 Download Audio (.WAV)</button>
+      <button class="btn danger" onclick="stopSpeech()">⏹️ Stop</button>
+    </div>
+
+    <div class="translation-preview" id="ttsStatusBox">
+      <em>Status: Klaar om voor te lezen of te downloaden...</em>
+    </div>
+  </main>
+
+  <script src="/script.js"></script>
+</body>
+</html>
