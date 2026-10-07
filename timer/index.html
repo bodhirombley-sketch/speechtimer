@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Speech & Presentatie Timer | Every-Tool</title>
+  <meta name="description" content="Bereken direct hoe lang jouw presentatietekst duurt om voor te lezen en oefen live met de stopwatch."/>
+  <link rel="canonical" href="https://every-tool.netlify.app/timer/"/>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body data-theme="light">
+  <header class="topbar">
+    <div class="topbar-left">
+      <a href="/" class="app-title" style="text-decoration:none; color:inherit;">Every-Tool</a>
+    </div>
+    <div class="topbar-right">
+      <button class="top-action-btn" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="section-header-wrapper">
+      <h2 class="section-title">Speech & Presentatie Timer</h2>
+      <p class="section-subtitle">Bereken direct hoe lang jouw tekst duurt om voor te lezen.</p>
+    </div>
+    <textarea id="text-timer" placeholder="Plak hier je tekst..." oninput="handleTimerInput()"></textarea>
+    <div class="stats-bar">
+      <span id="stats-timer-text">Woorden: 0 | Tekens: 0</span>
+      <button class="btn clear-btn" onclick="clearTextArea('text-timer')">🗑️ Wis tekst</button>
+    </div>
+
+    <div class="card-grid">
+      <div class="card"><h4>🐢 Langzaam</h4><div class="val" id="timeSlow">00:00</div></div>
+      <div class="card" id="cardNorm"><h4>🚶 Normaal</h4><div class="val" id="timeNorm">00:00</div></div>
+      <div class="card"><h4>🐇 Snel</h4><div class="val" id="timeFast">00:00</div></div>
+    </div>
+
+    <div class="timer-box">
+      <h4 style="margin:0; font-size: 14px; text-transform: uppercase;">Oefen je speech live:</h4>
+      <div class="timer-display" id="stopwatch">00:00</div>
+      <div style="display: flex; justify-content: center; gap: 12px; margin-top: 18px; flex-wrap: wrap;">
+        <button class="btn" id="startBtn" onclick="startTimer()">Start</button>
+        <button class="btn danger" id="resetBtn" onclick="resetTimer()">Reset</button>
+      </div>
+    </div>
+  </main>
+
+  <script src="/script.js"></script>
+</body>
+</html>
