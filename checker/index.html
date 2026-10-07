@@ -7,6 +7,13 @@
   <meta name="description" content="Controleer automatisch op spelfouten en stijlfouten in je teksten met onze online grammatica checker."/>
   <link rel="canonical" href="https://every-tool.netlify.app/checker/"/>
   <link rel="stylesheet" href="../style.css">
+  <script>
+    // Direct bij het laden van de pagina de opgeslagen taal toepassen om 'terugspringen' te voorkomen
+    (function() {
+      const savedLang = localStorage.getItem('selectedLanguage') || 'nl';
+      document.documentElement.lang = savedLang;
+    })();
+  </script>
 </head>
 <body data-theme="light">
 
