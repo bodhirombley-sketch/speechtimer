@@ -4,64 +4,235 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Every-Tool | Gratis Online Handige Tools & Conversie</title>
+  
+  <meta name="google-site-verification" content="dRqlmVRgjVvYHjLUpZepsxuLzY7t73oeTPpBF2LJMho" />
+  <meta name="google-adsense-account" content="ca-pub-3253400496231224">
   <meta name="description" content="Gebruik Every Tool voor het snel converteren van bestanden, bewerken van tekst, genereren van codes en meer. Gratis, snel en zonder registratie."/>
+  <meta name="keywords" content="speech timer, grammatica checker, ai detector, qr code generator, online tools"/>
+  
+  <meta property="og:title" content="Every-Tool - Slimme Tools voor Tekst en Spraak"/>
+  <meta property="og:description" content="Optimaliseer je presentaties, controleer spelfouten of genereer QR-codes in een handomdraai."/>
+  <meta property="og:type" content="website"/>
   <link rel="canonical" href="https://every-tool.netlify.app/"/>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Every-Tool",
+    "url": "https://every-tool.netlify.app/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "All",
+    "browser": "Requires JavaScript. Powered by HTML5.",
+    "description": "Slimme online tools voor tekst, spraak en presentaties, inclusief Speech Timer, Grammatica Bot en AI Detector.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0"
+    }
+  }
+  </script>
+
+  <!-- CSS koppeling voor de homepagina -->
   <link rel="stylesheet" href="style.css">
+  
+  <script>
+    if (localStorage.getItem('everyToolLang')) {
+      document.write('<style>.language-overlay { display: none !important; }</style>');
+    }
+  </script>
+
   <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>
 </head>
 <body data-theme="light">
+
+  <!-- Taalselectie Overlay -->
+  <div class="language-overlay" id="languageOverlay">
+    <div class="language-modal">
+      <h2>Welkom / Welcome / Bienvenue</h2>
+      <p>Kies je taal om te starten / Choose your language to start:</p>
+      <div class="lang-grid">
+        <button class="lang-card-btn" onclick="setInitialLanguage('nl')">🇳🇱 Nederlands</button>
+        <button class="lang-card-btn" onclick="setInitialLanguage('en')">🇬🇧 English</button>
+        <button class="lang-card-btn" onclick="setInitialLanguage('de')">🇩🇪 Deutsch</button>
+        <button class="lang-card-btn" onclick="setInitialLanguage('fr')">🇫🇷 Français</button>
+        <button class="lang-card-btn" onclick="setInitialLanguage('es')">🇪🇸 Español</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Topbar Header met Menu en Knoppen -->
   <header class="topbar">
     <div class="topbar-left">
-      <a href="/" class="app-title" style="text-decoration:none; color:inherit;">Every-Tool</a>
+      <button class="hamburger-btn" onclick="toggleSidebar()" aria-label="Open menu">☰ Menu</button>
+      <div class="app-title" id="topTitle" onclick="selectTool('home', currentLang)">Every-Tool</div>
     </div>
+    
     <div class="topbar-right">
-      <button class="top-action-btn" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+      <button class="top-action-btn" onclick="toggleDarkMode()" id="darkModeBtn">🌙 Dark Mode</button>
+      <div class="lang-switcher-top">
+        <button id="langBtnNl" class="active" onclick="selectTool(currentTool, 'nl')">NL</button>
+        <button id="langBtnEn" onclick="selectTool(currentTool, 'en')">EN</button>
+        <button id="langBtnDe" onclick="selectTool(currentTool, 'de')">DE</button>
+        <button id="langBtnFr" onclick="selectTool(currentTool, 'fr')">FR</button>
+        <button id="langBtnEs" onclick="selectTool(currentTool, 'es')">ES</button>
+      </div>
+      <button class="top-action-btn" onclick="shareSite()" id="shareBtn">🔗 Deel</button>
     </div>
   </header>
 
-  <main class="container">
-    <section class="hero-section">
-      <span class="hero-tag">Meet Every-Tool</span>
-      <h1>Slimme tools voor al je tekst en spraak</h1>
-      <p>Optimaliseer je presentaties, controleer op spelfouten of analyseer zinsstructuren in een handomdraai.</p>
-    </section>
+  <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
 
-    <div class="card-grid" style="margin-top: 30px;">
-      <a href="timer/" class="card" style="text-decoration:none; color:inherit; display:block;">
-        <h3>⏱️ Speech & Presentatie Timer</h3>
-        <p style="font-size:14px; color:var(--text-muted);">Bereken direct de spreektijd van je tekst.</p>
-      </a>
-      <a href="checker/" class="card" style="text-decoration:none; color:inherit; display:block;">
-        <h3>✍️ Grammatica Bot</h3>
-        <p style="font-size:14px; color:var(--text-muted);">Controleer automatisch op spelfouten.</p>
-      </a>
-      <a href="ai/" class="card" style="text-decoration:none; color:inherit; display:block;">
-        <h3>🤖 AI-Tekst Detector</h3>
-        <p style="font-size:14px; color:var(--text-muted);">Analyseer zinsstructuur op AI-kenmerken.</p>
-      </a>
-      <a href="tts/" class="card" style="text-decoration:none; color:inherit; display:block;">
-        <h3>🔊 Tekst-naar-Spraak</h3>
-        <p style="font-size:14px; color:var(--text-muted);">Laat tekst voorlezen of download als audio.</p>
-      </a>
-      <a href="translate/" class="card" style="text-decoration:none; color:inherit; display:block;">
-        <h3>🌍 Vertaal Tool</h3>
-        <p style="font-size:14px; color:var(--text-muted);">Vertaal snel naar diverse talen.</p>
-      </a>
-      <a href="qr/" class="card" style="text-decoration:none; color:inherit; display:block;">
-        <h3>📱 QR Code Generator</h3>
-        <p style="font-size:14px; color:var(--text-muted);">Genereer direct QR-codes voor URL's.</p>
-      </a>
-      <a href="converter/" class="card" style="text-decoration:none; color:inherit; display:block;">
-        <h3>🔄 Universele Converter</h3>
-        <p style="font-size:14px; color:var(--text-muted);">Converteer afbeeldingen en bestanden.</p>
-      </a>
-      <a href="blog/" class="card" style="text-decoration:none; color:inherit; display:block;">
-        <h3>📰 Blog</h3>
-        <p style="font-size:14px; color:var(--text-muted);">Lees handige artikelen en tips.</p>
-      </a>
+  <!-- Navigatie Sidebar -->
+  <nav class="nav-sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h2 id="menuHeader">Kies een Tool</h2>
+      <button class="close-btn" onclick="toggleSidebar()" aria-label="Sluit menu">✕</button>
+    </div>
+
+    <div class="tool-group">
+      <a href="/" class="tool-btn" style="text-decoration:none; color:inherit;"><span id="menuHome">🏠 Overzicht / Home</span></a>
+    </div>
+
+    <div class="tool-group">
+      <a href="timer/" class="tool-btn" style="text-decoration:none; color:inherit;"><span id="menuTimer">⏱️ Speech & Presentatie</span></a>
+    </div>
+
+    <div class="tool-group">
+      <a href="checker/" class="tool-btn" style="text-decoration:none; color:inherit;"><span id="menuChecker">✍️ Grammatica Bot</span></a>
+    </div>
+
+    <div class="tool-group">
+      <a href="ai/" class="tool-btn" style="text-decoration:none; color:inherit;"><span id="menuAi">🤖 AI-Tekst Detector</span></a>
+    </div>
+
+    <div class="tool-group"><a href="tts/" class="tool-btn" style="text-decoration:none; color:inherit;"><span id="menuTts">🔊 Tekst-naar-Spraak</span></a></div>
+    <div class="tool-group"><a href="translate/" class="tool-btn" style="text-decoration:none; color:inherit;"><span id="menuTranslate">🌍 Vertaal Tool</span></a></div>
+    <div class="tool-group"><a href="qr/" class="tool-btn" style="text-decoration:none; color:inherit;"><span id="menuQr">📱 QR Code Generator</span></a></div>
+    <div class="tool-group"><a href="converter/" class="tool-btn" style="text-decoration:none; color:inherit;"><span id="menuConverter">🔄 Universele Converter</span></a></div>
+    <div class="tool-group"><a href="blog/" class="tool-btn" style="text-decoration:none; color:inherit;"><span id="menuBlog">📰 Blog</span></a></div>
+  </nav>
+
+  <!-- Hoofdinhoud Container (Homepagina met Hero, Zoekbalk en FAQ) -->
+  <main class="container">
+    <div id="tab-home" class="tab-content active" style="display: block;">
+      <section class="hero-section">
+        <span class="hero-tag" id="heroTag">Meet Every-Tool</span>
+        <h1 id="homeHeading">Slimme tools voor al je tekst en spraak</h1>
+        <p id="homeSub">Optimaliseer je presentaties, controleer op spelfouten of analyseer zinsstructuren in een handomdraai. Snel, veilig en betrouwbaar.</p>
+        
+        <div class="hero-search-wrapper">
+          <div class="hero-search-box">
+            <input type="text" id="homeSearchInput" placeholder="Typ om een tool te zoeken..." oninput="filterTools()" autocomplete="off">
+            <button class="hero-search-btn" id="homeSearchBtn" onclick="filterTools()"><span>Zoek</span> 🔍</button>
+          </div>
+          <div class="search-suggestions" id="searchSuggestions"></div>
+        </div>
+      </section>
+
+      <!-- De kaarten naar de losse mappen -->
+      <div class="card-grid" style="margin-top: 30px; margin-bottom: 30px;">
+        <a href="timer/" class="card" style="text-decoration:none; color:inherit; display:block;">
+          <h3>⏱️ Speech & Presentatie Timer</h3>
+          <p style="font-size:14px; color:var(--text-muted);">Bereken direct de spreektijd van je tekst.</p>
+        </a>
+        <a href="checker/" class="card" style="text-decoration:none; color:inherit; display:block;">
+          <h3>✍️ Grammatica Bot</h3>
+          <p style="font-size:14px; color:var(--text-muted);">Controleer automatisch op spelfouten.</p>
+        </a>
+        <a href="ai/" class="card" style="text-decoration:none; color:inherit; display:block;">
+          <h3>🤖 AI-Tekst Detector</h3>
+          <p style="font-size:14px; color:var(--text-muted);">Analyseer zinsstructuur op AI-kenmerken.</p>
+        </a>
+        <a href="tts/" class="card" style="text-decoration:none; color:inherit; display:block;">
+          <h3>🔊 Tekst-naar-Spraak</h3>
+          <p style="font-size:14px; color:var(--text-muted);">Laat tekst voorlezen of download als audio.</p>
+        </a>
+        <a href="translate/" class="card" style="text-decoration:none; color:inherit; display:block;">
+          <h3>🌍 Vertaal Tool</h3>
+          <p style="font-size:14px; color:var(--text-muted);">Vertaal snel naar diverse talen.</p>
+        </a>
+        <a href="qr/" class="card" style="text-decoration:none; color:inherit; display:block;">
+          <h3>📱 QR Code Generator</h3>
+          <p style="font-size:14px; color:var(--text-muted);">Genereer direct QR-codes voor URL's.</p>
+        </a>
+        <a href="converter/" class="card" style="text-decoration:none; color:inherit; display:block;">
+          <h3>🔄 Universele Converter</h3>
+          <p style="font-size:14px; color:var(--text-muted);">Converteer afbeeldingen en bestanden.</p>
+        </a>
+        <a href="blog/" class="card" style="text-decoration:none; color:inherit; display:block;">
+          <h3>📰 Blog</h3>
+          <p style="font-size:14px; color:var(--text-muted);">Lees handige artikelen en tips.</p>
+        </a>
+      </div>
+
+      <div class="home-single-section">
+        <section class="info-card">
+          <h3 id="aboutTitle">💡 Over Every-Tool & Onze Functionaliteiten</h3>
+          <p id="aboutText">Alle berekeningen vinden direct plaats in je eigen webbrowser (client-side), wat maximale privacy garandeert. Geen van je teksten wordt opgeslagen op externe servers.</p>
+        </section>
+
+        <section class="info-card faq-section-wrapper">
+          <h3 id="faqTitle">❓ Veelgestelde Vragen (FAQ)</h3>
+          <div id="faqListContainer" style="display: flex; flex-direction: column; gap: 12px;">
+            <div class="faq-item">
+              <details>
+                <summary id="faq1Q">Hoe werkt de Speech Timer?</summary>
+                <p id="faq1A">Plak je presentatietekst in de tool om direct je spreektijd te berekenen op basis van verschillende snelheden. <br><a href="timer/" style="color: var(--primary); font-weight: 600; text-decoration: none;">👉 Open Speech Timer direct</a></p>
+              </details>
+            </div>
+            <div class="faq-item">
+              <details>
+                <summary id="faq2Q">Worden mijn teksten opgeslagen?</summary>
+                <p id="faq2A">Nee, alle verwerking gebeurt lokaal in je browser via LocalStorage.</p>
+              </details>
+            </div>
+            <div class="faq-item">
+              <details>
+                <summary id="faq3Q">Is het gebruik van Every-Tool gratis?</summary>
+                <p id="faq3A">Ja, alle tools op dit platform zijn volledig gratis te gebruiken.</p>
+              </details>
+            </div>
+            <div class="faq-item">
+              <details>
+                <summary id="faq4Q">Hoe betrouwbaar is de AI-Tekst Detector?</summary>
+                <p id="faq4A">De detector kijkt naar statistische kenmerken en geeft een indicatie, maar geen 100% sluitend bewijs.</p>
+              </details>
+            </div>
+            <div class="faq-item">
+              <details>
+                <summary id="faq5Q">Kan ik de gegenereerde audio downloaden?</summary>
+                <p id="faq5A">Ja, je kunt direct het audiobestand (.WAV) opslaan op je apparaat.</p>
+              </details>
+            </div>
+            <div class="faq-item">
+              <details>
+                <summary id="faq6Q">Moet ik software installeren om deze tools te gebruiken?</summary>
+                <p id="faq6A">Nee, Every-Tool werkt volledig web-based in elke moderne browser.</p>
+              </details>
+            </div>
+            <div class="faq-item">
+              <details>
+                <summary id="faq7Q">Hoe werkt de Grammatica Bot?</summary>
+                <p id="faq7A">De bot scant automatisch je tekst op spelfouten en stijlfouten. <br><a href="checker/" style="color: var(--primary); font-weight: 600; text-decoration: none;">👉 Open Grammatica Bot direct</a></p>
+              </details>
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
   </main>
 
+  <!-- Advertentie Ruimte -->
+  <div class="ad-space" id="adSpace">Advertentie Ruimte (Google AdSense)</div>
+
+  <!-- Footer -->
+  <footer class="security-footer">
+    <div class="sec-item"><span class="sec-icon">🔒</span><span id="sec1">256-bit SSL-beveiliging</span></div>
+    <div class="sec-item"><span class="sec-icon">🛡</span><span id="sec2">100% Privacy - Lokale verwerking</span></div>
+    <div class="sec-item"><span class="sec-icon">⚡</span><span id="sec3">Direct resultaat</span></div>
+  </footer>
+
+  <!-- JavaScript koppeling -->
   <script src="script.js"></script>
 </body>
 </html>
