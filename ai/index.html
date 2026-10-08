@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AI-Tekst Detector & Indicator | Every-Tool</title>
-  <meta name="description" content="Analyseer zinsstructuur op AI-kenmerken en controleer de geschatte AI-waarschijnlijkheid van je tekst."/>
+  <title>AI-Tekst Detector | Every-Tool</title>
+  <meta name="description" content="Analyseer direct je tekst op AI-kenmerken en controleer of de inhoud door kunstmatige intelligentie geschreven lijkt te zijn."/>
   <link rel="canonical" href="https://every-tool.netlify.app/ai/"/>
   <link rel="stylesheet" href="../style.css">
   <script>
@@ -58,21 +58,29 @@
 
   <main class="container">
     <div class="section-header-wrapper">
-      <h2 class="section-title" id="t3Title">AI-Tekst Detector Indicator</h2>
-      <p class="section-subtitle" id="t3Sub">Analyseer zinsstructuur op AI-kenmerken.</p>
+      <h2 class="section-title" id="aiTitle">AI-Tekst Detector</h2>
+      <p class="section-subtitle" id="aiSub">Analyseer direct of een tekst kenmerken heeft van kunstmatige intelligentie.</p>
     </div>
-    <textarea id="text-ai" placeholder="Plak hier je tekst..." oninput="checkAI()"></textarea>
-    <div class="stats-bar">
-      <span id="stats-ai-text">Woorden: 0 | Tekens: 0</span>
+    
+    <textarea id="text-ai" placeholder="Plak hier je tekst om te analyseren..." oninput="saveToLocal('text-ai', this.value)"></textarea>
+    <div style="display: flex; justify-content: flex-end; margin-bottom: 12px;">
       <button class="btn clear-btn" onclick="clearTextArea('text-ai')">🗑️ Wis tekst</button>
     </div>
 
-    <div class="card" style="text-align: left;">
-      <h4 style="margin-bottom: 8px;" id="t3Score">Geschatte AI-waarschijnlijkheid</h4>
-      <div class="val" id="aiScore" style="margin-bottom: 12px;">0%</div>
-      <div class="ai-bar-bg"><div class="ai-bar-fill" id="aiBar"></div></div>
-      <p style="font-size:14px; color: var(--text-muted); margin-bottom: 0; font-weight: 500;" id="aiAnalysis">Voer minimaal 50 tekens in.</p>
+    <div class="action-bar">
+      <button class="btn" id="aiScanBtn" onclick="runAiDetection()">🤖 Analyseer Tekst</button>
     </div>
+
+    <div class="translation-preview" id="aiResultBox">
+      <em id="aiResultPlaceholder">Resultaat van de analyse verschijnt hier...</em>
+    </div>
+
+    <!-- UITGEBREIDE UITLEG SECTIE (Inclusief vertaalbare ID's) -->
+    <section class="info-card" style="margin-top: 40px; text-align: left;">
+      <h3 id="aiExplanationTitle" style="margin-top: 0; margin-bottom: 12px;">Hoe werkt de AI-Tekst Detector?</h3>
+      <p id="aiExplanationText1" style="color: var(--text-muted); line-height: 1.6; margin-bottom: 12px;">Kunstmatige intelligentie schrijft vaak volgens bepaalde statistische patronen, zinslengtes en voorspelbare woordkeuzes die sterk kunnen afwijken van menselijk schrijfgedrag. Onze detector scant je tekst op deze typische AI-kenmerken.</p>
+      <p id="aiExplanationText2" style="color: var(--text-muted); line-height: 1.6; margin-bottom: 0;">Of je nu content controleert voor school, werk of publicatie: deze tool geeft je direct een heldere indicatie van de waarschijnlijkheid dat de tekst gegenereerd is door een AI-systeem, zodat je inhoud met een gerust hart kunt controleren.</p>
+    </section>
   </main>
 
   <script src="../script.js"></script>
