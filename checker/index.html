@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Grammatica & Spelfout Bot | Every-Tool</title>
-  <meta name="description" content="Controleer automatisch op spelfouten en stijlfouten in je teksten met onze online grammatica checker."/>
+  <title>Grammatica Bot & Spelling Checker | Every-Tool</title>
+  <meta name="description" content="Controleer direct je teksten op spelfouten, grammaticaregels en stijlfouten met onze slimme Grammatica Bot."/>
   <link rel="canonical" href="https://every-tool.netlify.app/checker/"/>
   <link rel="stylesheet" href="../style.css">
   <script>
     // Direct bij het laden van de pagina de juiste opgeslagen taal toepassen om 'terugspringen' te voorkomen
     (function() {
-      const savedLang = localStorage.getItem('everyToolLang') || localStorage.getItem('gekozenTaal') || 'nl';
+      const savedLang = localStorage.getItem('everyToolLang') || 'nl';
       document.documentElement.lang = savedLang;
     })();
   </script>
@@ -58,24 +58,29 @@
 
   <main class="container">
     <div class="section-header-wrapper">
-      <h2 class="section-title" id="t2Title">Grammatica & Spelfout Bot</h2>
-      <p class="section-subtitle" id="t2Sub">Controleer automatisch op spelfouten via LanguageTool.</p>
+      <h2 class="section-title" id="checkerTitle">Grammatica Bot</h2>
+      <p class="section-subtitle" id="checkerSub">Controleer je tekst automatisch op spelfouten en stijlfouten.</p>
     </div>
-    <textarea id="text-checker" placeholder="Plak hier je tekst..." oninput="updateCheckerStats()"></textarea>
-    <div class="stats-bar">
-      <span id="stats-checker-text">Woorden: 0 | Tekens: 0</span>
+    
+    <textarea id="text-checker" placeholder="Plak hier je tekst om te controleren..." oninput="saveToLocal('text-checker', this.value)"></textarea>
+    <div style="display: flex; justify-content: flex-end; margin-bottom: 12px;">
       <button class="btn clear-btn" onclick="clearTextArea('text-checker')">🗑️ Wis tekst</button>
     </div>
 
     <div class="action-bar">
-      <button class="btn" id="btnClean" onclick="checkAndFixWithLanguageTool()">✨ Automatisch Herstellen</button>
-      <button class="btn" id="btnCopy" onclick="copyText('text-checker')">📋 Kopiëren</button>
+      <button class="btn" id="checkerScanBtn" onclick="runGrammarCheck()">✍️ Controleer Grammatica</button>
     </div>
 
-    <div class="issue-list">
-      <h4 id="t2Issues" style="margin-top:0; font-size:15px; font-weight: 700;">Gevonden Aandachtspunten:</h4>
-      <div id="issuesContainer" style="color: var(--text-muted); font-size: 14px;">Klik op 'Automatisch Herstellen' om te controleren.</div>
+    <div class="translation-preview" id="checkerResultBox">
+      <em id="checkerResultPlaceholder">Resultaten en suggesties verschijnen hier...</em>
     </div>
+
+    <!-- UITGEBREIDE UITLEG SECTIE (Inclusief vertaalbare ID's) -->
+    <section class="info-card" style="margin-top: 40px; text-align: left;">
+      <h3 id="checkerExplanationTitle" style="margin-top: 0; margin-bottom: 12px;">Hoe werkt de Grammatica Bot?</h3>
+      <p id="checkerExplanationText1" style="color: var(--text-muted); line-height: 1.6; margin-bottom: 12px;">Een foutje in je spelling, d/t-fouten of kromme zinnen zijn snel gemaakt, maar kunnen afleiden van je boodschap. Onze Grammatica Bot scant je tekst grondig op taalfouten, stijlonvolkomenheden en grammaticale onjuistheden.</p>
+      <p id="checkerExplanationText2" style="color: var(--text-muted); line-height: 1.6; margin-bottom: 0;">Of je nu een belangrijke e-mail, een verslag voor school of een zakelijk document schrijft: met deze tool zorg je ervoor dat je teksten er altijd professioneel, verzorgd en foutloos uitzien.</p>
+    </section>
   </main>
 
   <script src="../script.js"></script>
