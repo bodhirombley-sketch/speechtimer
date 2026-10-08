@@ -10,7 +10,7 @@
   <script>
     // Direct bij het laden van de pagina de juiste opgeslagen taal toepassen om 'terugspringen' te voorkomen
     (function() {
-      const savedLang = localStorage.getItem('everyToolLang') || localStorage.getItem('gekozenTaal') || 'nl';
+      const savedLang = localStorage.getItem('everyToolLang') || 'nl';
       document.documentElement.lang = savedLang;
     })();
   </script>
@@ -81,6 +81,13 @@
         <button class="btn danger" id="resetBtn" onclick="resetTimer()">Reset</button>
       </div>
     </div>
+
+    <!-- UITGEBREIDE UITLEG SECTIE (Inclusief vertaalbare ID's) -->
+    <section class="info-card" style="margin-top: 40px; text-align: left;">
+      <h3 id="toolExplanationTitle" style="margin-top: 0; margin-bottom: 12px;">Hoe werkt de Speech & Presentatie Timer?</h3>
+      <p id="toolExplanationText1" style="color: var(--text-muted); line-height: 1.6; margin-bottom: 12px;">Wanneer je een presentatie, pitch of speech voorbereidt, is het cruciaal om te weten hoe lang je spreektijd zal zijn. Te lang doorpraten kan ervoor zorgen dat je publiek de aandacht verliest, terwijl te kort praten betekent dat je waardevolle informatie mist.</p>
+      <p id="toolExplanationText2" style="color: var(--text-muted); line-height: 1.6; margin-bottom: 0;">Onze tool analyseert direct je geschreven tekst en berekent de precieze leestijd op basis van verschillende snelheden (langzaam, normaal en snel). Zo kun je je presentatie perfect timen en kom je nooit meer voor verrassingen te staan op het podium!</p>
+    </section>
   </main>
 
   <script src="../script.js"></script>
