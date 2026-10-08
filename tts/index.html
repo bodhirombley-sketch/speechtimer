@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="nl" id="html-root">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -24,6 +24,15 @@
     </div>
     
     <div class="topbar-right">
+      <!-- TAAL-SCHAKELAAR (EN, NL, DE, FR, ES in de juiste volgorde) -->
+      <div class="lang-switcher-top" style="display:inline-flex; gap:4px; margin-right: 10px;">
+        <button id="langBtnEn" onclick="setLanguage('en')" style="padding:4px 8px; cursor:pointer;">EN</button>
+        <button id="langBtnNl" onclick="setLanguage('nl')" class="active" style="padding:4px 8px; cursor:pointer;">NL</button>
+        <button id="langBtnDe" onclick="setLanguage('de')" style="padding:4px 8px; cursor:pointer;">DE</button>
+        <button id="langBtnFr" onclick="setLanguage('fr')" style="padding:4px 8px; cursor:pointer;">FR</button>
+        <button id="langBtnEs" onclick="setLanguage('es')" style="padding:4px 8px; cursor:pointer;">ES</button>
+      </div>
+
       <button class="top-action-btn" onclick="toggleDarkMode()" id="darkModeBtn">🌙 Dark Mode</button>
       <button class="top-action-btn" onclick="shareSite()" id="shareBtn">🔗 Deel</button>
     </div>
@@ -33,24 +42,24 @@
 
   <nav class="nav-sidebar" id="sidebar">
     <div class="sidebar-header">
-      <h2>Kies een Tool</h2>
+      <h2 id="menuHeader">Kies een Tool</h2>
       <button class="close-btn" onclick="toggleSidebar()" aria-label="Sluit menu">✕</button>
     </div>
-    <div class="tool-group"><a href="../" class="tool-btn" style="text-decoration:none; color:inherit;">🏠 Overzicht / Home</a></div>
-    <div class="tool-group"><a href="../timer/" class="tool-btn" style="text-decoration:none; color:inherit;">⏱️ Speech & Presentatie</a></div>
-    <div class="tool-group"><a href="../checker/" class="tool-btn" style="text-decoration:none; color:inherit;">✍️ Grammatica Bot</a></div>
-    <div class="tool-group"><a href="../ai/" class="tool-btn" style="text-decoration:none; color:inherit;">🤖 AI-Tekst Detector</a></div>
-    <div class="tool-group"><a href="./" class="tool-btn" style="text-decoration:none; color:inherit;">🔊 Tekst-naar-Spraak</a></div>
-    <div class="tool-group"><a href="../translate/" class="tool-btn" style="text-decoration:none; color:inherit;">🌍 Vertaal Tool</a></div>
-    <div class="tool-group"><a href="../qr/" class="tool-btn" style="text-decoration:none; color:inherit;">📱 QR Code Generator</a></div>
-    <div class="tool-group"><a href="../converter/" class="tool-btn" style="text-decoration:none; color:inherit;">🔄 Universele Converter</a></div>
-    <div class="tool-group"><a href="../blog/" class="tool-btn" style="text-decoration:none; color:inherit;">📰 Blog</a></div>
+    <div class="tool-group"><a href="../" class="tool-btn" id="menuHome" style="text-decoration:none; color:inherit;">🏠 Overzicht / Home</a></div>
+    <div class="tool-group"><a href="../timer/" class="tool-btn" id="menuTimer" style="text-decoration:none; color:inherit;">⏱️ Speech & Presentatie</a></div>
+    <div class="tool-group"><a href="../checker/" class="tool-btn" id="menuChecker" style="text-decoration:none; color:inherit;">✍️ Grammatica Bot</a></div>
+    <div class="tool-group"><a href="../ai/" class="tool-btn" id="menuAi" style="text-decoration:none; color:inherit;">🤖 AI-Tekst Detector</a></div>
+    <div class="tool-group"><a href="./" class="tool-btn" id="menuTts" style="text-decoration:none; color:inherit;">🔊 Tekst-naar-Spraak</a></div>
+    <div class="tool-group"><a href="../translate/" class="tool-btn" id="menuTranslate" style="text-decoration:none; color:inherit;">🌍 Vertaal Tool</a></div>
+    <div class="tool-group"><a href="../qr/" class="tool-btn" id="menuQr" style="text-decoration:none; color:inherit;">📱 QR Code Generator</a></div>
+    <div class="tool-group"><a href="../converter/" class="tool-btn" id="menuConverter" style="text-decoration:none; color:inherit;">🔄 Universele Converter</a></div>
+    <div class="tool-group"><a href="../blog/" class="tool-btn" id="menuBlog" style="text-decoration:none; color:inherit;">📰 Blog</a></div>
   </nav>
 
   <main class="container">
     <div class="section-header-wrapper">
-      <h2 class="section-title">Tekst-naar-Spraak</h2>
-      <p class="section-subtitle">Laat je tekst direct voorlezen of download de audio als bestand.</p>
+      <h2 class="section-title" id="ttsTitle">Tekst-naar-Spraak</h2>
+      <p class="section-subtitle" id="ttsSub">Laat je tekst direct voorlezen of download de audio als bestand.</p>
     </div>
     <textarea id="text-tts" placeholder="Typ of plak hier je tekst om voor te lezen..." oninput="saveToLocal('text-tts', this.value)"></textarea>
     <div style="display: flex; justify-content: flex-end; margin-bottom: 12px;">
@@ -59,25 +68,25 @@
     
     <div class="tts-controls-row">
       <div class="tts-control-group">
-        <label for="voiceLangTts">Spraak Taal:</label>
+        <label for="voiceLangTts" id="ttsLabelLang">Spraak Taal:</label>
         <select id="voiceLangTts" class="tts-select">
-          <option value="nl-NL">🇳🇱 Nederlands</option>
-          <option value="en-US">🇬🇧 Engels</option>
-          <option value="de-DE">🇩🇪 Duits</option>
-          <option value="fr-FR">🇫🇷 Frans</option>
-          <option value="es-ES">🇪🇸 Spaans</option>
+          <option value="nl-NL" id="optNl">🇳🇱 Nederlands</option>
+          <option value="en-US" id="optEn">🇬🇧 Engels</option>
+          <option value="de-DE" id="optDe">🇩🇪 Duits</option>
+          <option value="fr-FR" id="optFr">🇫🇷 Frans</option>
+          <option value="es-ES" id="optEs">🇪🇸 Spaans</option>
         </select>
       </div>
     </div>
 
     <div class="action-bar">
-      <button class="btn" onclick="speakText()">🔊 Lees Hardop</button>
-      <button class="btn secondary" onclick="downloadAudioFile()">📥 Download Audio (.WAV)</button>
-      <button class="btn danger" onclick="stopSpeech()">⏹️ Stop</button>
+      <button class="btn" id="speakBtn" onclick="speakText()">🔊 Lees Hardop</button>
+      <button class="btn secondary" id="downloadAudioBtn" onclick="downloadAudioFile()">📥 Download Audio (.WAV)</button>
+      <button class="btn danger" id="stopSpeechBtn" onclick="stopSpeech()">⏹️ Stop</button>
     </div>
 
     <div class="translation-preview" id="ttsStatusBox">
-      <em>Status: Klaar om voor te lezen of te downloaden...</em>
+      <em id="ttsStatusPlaceholder">Status: Klaar om voor te lezen of te downloaden...</em>
     </div>
   </main>
 
