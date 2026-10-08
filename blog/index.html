@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="nl" id="html-root">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -25,6 +25,15 @@
     </div>
     
     <div class="topbar-right">
+      <!-- TAAL-SCHAKELAAR (EN, NL, DE, FR, ES in de juiste volgorde) -->
+      <div class="lang-switcher-top" style="display:inline-flex; gap:4px; margin-right: 10px;">
+        <button id="langBtnEn" onclick="setLanguage('en')" style="padding:4px 8px; cursor:pointer;">EN</button>
+        <button id="langBtnNl" onclick="setLanguage('nl')" class="active" style="padding:4px 8px; cursor:pointer;">NL</button>
+        <button id="langBtnDe" onclick="setLanguage('de')" style="padding:4px 8px; cursor:pointer;">DE</button>
+        <button id="langBtnFr" onclick="setLanguage('fr')" style="padding:4px 8px; cursor:pointer;">FR</button>
+        <button id="langBtnEs" onclick="setLanguage('es')" style="padding:4px 8px; cursor:pointer;">ES</button>
+      </div>
+
       <button class="top-action-btn" onclick="toggleDarkMode()" id="darkModeBtn">🌙 Dark Mode</button>
       <button class="top-action-btn" onclick="shareSite()" id="shareBtn">🔗 Deel</button>
     </div>
@@ -35,19 +44,19 @@
   <!-- Navigatie Sidebar -->
   <nav class="nav-sidebar" id="sidebar">
     <div class="sidebar-header">
-      <h2>Kies een Tool</h2>
+      <h2 id="menuHeader">Kies een Tool</h2>
       <button class="close-btn" onclick="toggleSidebar()" aria-label="Sluit menu">✕</button>
     </div>
 
-    <div class="tool-group"><a href="../" class="tool-btn" style="text-decoration:none; color:inherit;">🏠 Overzicht / Home</a></div>
-    <div class="tool-group"><a href="../timer/" class="tool-btn" style="text-decoration:none; color:inherit;">⏱️ Speech & Presentatie</a></div>
-    <div class="tool-group"><a href="../checker/" class="tool-btn" style="text-decoration:none; color:inherit;">✍️ Grammatica Bot</a></div>
-    <div class="tool-group"><a href="../ai/" class="tool-btn" style="text-decoration:none; color:inherit;">🤖 AI-Tekst Detector</a></div>
-    <div class="tool-group"><a href="../tts/" class="tool-btn" style="text-decoration:none; color:inherit;">🔊 Tekst-naar-Spraak</a></div>
-    <div class="tool-group"><a href="../translate/" class="tool-btn" style="text-decoration:none; color:inherit;">🌍 Vertaal Tool</a></div>
-    <div class="tool-group"><a href="../qr/" class="tool-btn" style="text-decoration:none; color:inherit;">📱 QR Code Generator</a></div>
-    <div class="tool-group"><a href="../converter/" class="tool-btn" style="text-decoration:none; color:inherit;">🔄 Universele Converter</a></div>
-    <div class="tool-group"><a href="./" class="tool-btn" style="text-decoration:none; color:inherit;">📰 Blog</a></div>
+    <div class="tool-group"><a href="../" class="tool-btn" id="menuHome" style="text-decoration:none; color:inherit;">🏠 Overzicht / Home</a></div>
+    <div class="tool-group"><a href="../timer/" class="tool-btn" id="menuTimer" style="text-decoration:none; color:inherit;">⏱️ Speech & Presentatie</a></div>
+    <div class="tool-group"><a href="../checker/" class="tool-btn" id="menuChecker" style="text-decoration:none; color:inherit;">✍️ Grammatica Bot</a></div>
+    <div class="tool-group"><a href="../ai/" class="tool-btn" id="menuAi" style="text-decoration:none; color:inherit;">🤖 AI-Tekst Detector</a></div>
+    <div class="tool-group"><a href="../tts/" class="tool-btn" id="menuTts" style="text-decoration:none; color:inherit;">🔊 Tekst-naar-Spraak</a></div>
+    <div class="tool-group"><a href="../translate/" class="tool-btn" id="menuTranslate" style="text-decoration:none; color:inherit;">🌍 Vertaal Tool</a></div>
+    <div class="tool-group"><a href="../qr/" class="tool-btn" id="menuQr" style="text-decoration:none; color:inherit;">📱 QR Code Generator</a></div>
+    <div class="tool-group"><a href="../converter/" class="tool-btn" id="menuConverter" style="text-decoration:none; color:inherit;">🔄 Universele Converter</a></div>
+    <div class="tool-group"><a href="./" class="tool-btn" id="menuBlog" style="text-decoration:none; color:inherit;">📰 Blog</a></div>
   </nav>
 
   <!-- Hoofdinhoud Blog -->
@@ -57,19 +66,19 @@
       <p class="section-subtitle">Handige artikelen en tips voor studenten en contentmakers.</p>
     </div>
 
-    <!-- Overzicht / Lijst van blogs (Aangepast ID naar blogListContainer) -->
+    <!-- Overzicht / Lijst van blogs -->
     <div id="blogListContainer" style="display: flex; flex-direction: column; gap: 16px; margin-top: 20px;">
       <div class="card" style="cursor: pointer; transition: transform 0.2s;" onclick="openFullBlog()">
         <span style="font-size: 12px; color: var(--text-muted);">📅 7 Oktober 2026 • Leestijd: 3 min</span>
-        <h3 style="margin: 8px 0 6px 0;">10 handige gratis online tools voor studenten en contentmakers</h3>
-        <p style="font-size: 14px; color: var(--text-muted); margin: 0;">Ontdek 10 gratis online toepassingen die je helpen met school, schrijven, presentaties en content maken...</p>
+        <h3 id="blogTitle" style="margin: 8px 0 6px 0;">10 handige gratis online tools voor studenten en contentmakers</h3>
+        <p id="blogIntro" style="font-size: 14px; color: var(--text-muted); margin: 0;">Ontdek 10 gratis online toepassingen die je helpen met school, schrijven, presentaties en content maken...</p>
         <span style="display: inline-block; margin-top: 12px; color: var(--primary); font-weight: 600; font-size: 14px;">Lees artikel →</span>
       </div>
     </div>
 
-    <!-- Volledige Artikel (Aangepast ID naar blogFullContent en aangepaste functie) -->
+    <!-- Volledige Artikel -->
     <div id="blogFullContent" style="display: none; margin-top: 20px;">
-      <button class="btn secondary" onclick="closeFullBlog()" style="margin-bottom: 20px;">← Terug naar overzicht</button>
+      <button class="btn secondary" id="blogBackBtn" onclick="closeFullBlog()" style="margin-bottom: 20px;">← Terug naar overzicht</button>
       
       <article class="blog-page card" style="padding: 30px;">
         <h2 style="margin-top:0;">10 handige gratis online tools voor studenten en contentmakers</h2>
@@ -111,7 +120,6 @@
     </div>
   </main>
 
-  <!-- Hoofdscript laadt nu de juiste functies in voor blogListContainer en blogFullContent -->
   <script src="../script.js"></script>
 </body>
 </html>
