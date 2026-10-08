@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Online Vertaal Tool | Every-Tool</title>
-  <meta name="description" content="Vertaal je teksten snel en eenvoudig naar verschillende talen zoals Engels, Frans, Duits en Spaans."/>
+  <title>Vertaal Tool & Meertalige Assistent | Every-Tool</title>
+  <meta name="description" content="Vertaal snel en eenvoudig teksten tussen verschillende talen met onze handige vertaaltool."/>
   <link rel="canonical" href="https://every-tool.netlify.app/translate/"/>
   <link rel="stylesheet" href="../style.css">
   <script>
     // Direct bij het laden van de pagina de juiste opgeslagen taal toepassen om 'terugspringen' te voorkomen
     (function() {
-      const savedLang = localStorage.getItem('everyToolLang') || localStorage.getItem('gekozenTaal') || 'nl';
+      const savedLang = localStorage.getItem('everyToolLang') || 'nl';
       document.documentElement.lang = savedLang;
     })();
   </script>
@@ -59,34 +59,41 @@
   <main class="container">
     <div class="section-header-wrapper">
       <h2 class="section-title" id="translateTitle">Vertaal Tool</h2>
-      <p class="section-subtitle" id="translateSub">Vertaal je teksten snel naar verschillende talen.</p>
+      <p class="section-subtitle" id="translateSub">Vertaal snel en eenvoudig teksten naar verschillende talen.</p>
     </div>
-    <textarea id="text-translate" placeholder="Typ of plak hier de tekst die je wilt vertalen..." oninput="saveToLocal('text-translate', this.value)"></textarea>
+    
+    <textarea id="text-translate" placeholder="Typ of plak hier je te vertalen tekst..." oninput="saveToLocal('text-translate', this.value)"></textarea>
     <div style="display: flex; justify-content: flex-end; margin-bottom: 12px;">
       <button class="btn clear-btn" onclick="clearTextArea('text-translate')">🗑️ Wis tekst</button>
     </div>
-    
+
     <div class="tts-controls-row">
       <div class="tts-control-group">
-        <label for="targetLangTranslate" id="translateLabelLang">Kies doeltaal:</label>
+        <label for="targetLangTranslate" id="translateLabelLang">Doelstaal:</label>
         <select id="targetLangTranslate" class="tts-select">
-          <option value="nl" id="optNl">🇳🇱 Nederlands</option>
-          <option value="en" id="optEn">🇬🇧 Engels</option>
-          <option value="fr" id="optFr">🇫🇷 Frans</option>
-          <option value="de" id="optDe">🇩🇪 Duits</option>
-          <option value="es" id="optEs">🇪🇸 Español</option>
+          <option value="nl" id="trOptNl">🇳🇱 Nederlands</option>
+          <option value="en" id="trOptEn">🇬🇧 Engels</option>
+          <option value="de" id="trOptDe">🇩🇪 Duits</option>
+          <option value="fr" id="trOptFr">🇫🇷 Frans</option>
+          <option value="es" id="trOptEs">🇪🇸 Spaans</option>
         </select>
       </div>
     </div>
 
     <div class="action-bar">
-      <button class="btn" id="translateBtn" onclick="executeTranslation()">🌍 Vertaal Tekst</button>
-      <button class="btn secondary" id="btnCopy" onclick="copyText('translationResultBox')">📋 Kopiëren</button>
+      <button class="btn" id="translateBtn" onclick="runTranslation()">🌍 Vertaal Tekst</button>
     </div>
 
-    <div class="translation-preview" id="translationResultBox">
-      <em id="translatePreviewPlaceholder">Vertaalde tekst verschijnt hier...</em>
+    <div class="translation-preview" id="translateResultBox">
+      <em id="translateResultPlaceholder">De vertaling verschijnt hier...</em>
     </div>
+
+    <!-- UITGEBREIDE UITLEG SECTIE (Inclusief vertaalbare ID's) -->
+    <section class="info-card" style="margin-top: 40px; text-align: left;">
+      <h3 id="translateExplanationTitle" style="margin-top: 0; margin-bottom: 12px;">Hoe werkt de Vertaal Tool?</h3>
+      <p id="translateExplanationText1" style="color: var(--text-muted); line-height: 1.6; margin-bottom: 12px;">Of je nu communiceert met internationale partners, tekst leest in een vreemde taal of studeert voor een taalvak: snel en accuraat kunnen vertalen is onmisbaar in een verbonden wereld.</p>
+      <p id="translateExplanationText2" style="color: var(--text-muted); line-height: 1.6; margin-bottom: 0;">Met onze Vertaal Tool typ of plak je eenvoudig je tekst, selecteer je de gewenste doelstaal en zie je direct het resultaat. Zo overbrug je elk taalverschil in een handomdraai!</p>
+    </section>
   </main>
 
   <script src="../script.js"></script>
