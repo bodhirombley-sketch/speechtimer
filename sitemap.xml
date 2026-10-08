@@ -54,4 +54,10 @@
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
+<url>
+  <loc>https://jouw-website-url.nl/blog/the-hidden-world-of-the-ocean/</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
 </urlset>
+
