@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="nl" id="html-root">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -25,6 +25,15 @@
     </div>
     
     <div class="topbar-right">
+      <!-- TAAL-SCHAKELAAR (EN, NL, DE, FR, ES in de juiste volgorde) -->
+      <div class="lang-switcher-top" style="display:inline-flex; gap:4px; margin-right: 10px;">
+        <button id="langBtnEn" onclick="setLanguage('en')" style="padding:4px 8px; cursor:pointer;">EN</button>
+        <button id="langBtnNl" onclick="setLanguage('nl')" class="active" style="padding:4px 8px; cursor:pointer;">NL</button>
+        <button id="langBtnDe" onclick="setLanguage('de')" style="padding:4px 8px; cursor:pointer;">DE</button>
+        <button id="langBtnFr" onclick="setLanguage('fr')" style="padding:4px 8px; cursor:pointer;">FR</button>
+        <button id="langBtnEs" onclick="setLanguage('es')" style="padding:4px 8px; cursor:pointer;">ES</button>
+      </div>
+
       <button class="top-action-btn" onclick="toggleDarkMode()" id="darkModeBtn">🌙 Dark Mode</button>
       <button class="top-action-btn" onclick="shareSite()" id="shareBtn">🔗 Deel</button>
     </div>
@@ -34,41 +43,41 @@
 
   <nav class="nav-sidebar" id="sidebar">
     <div class="sidebar-header">
-      <h2>Kies een Tool</h2>
+      <h2 id="menuHeader">Kies een Tool</h2>
       <button class="close-btn" onclick="toggleSidebar()" aria-label="Sluit menu">✕</button>
     </div>
-    <div class="tool-group"><a href="../" class="tool-btn" style="text-decoration:none; color:inherit;">🏠 Overzicht / Home</a></div>
-    <div class="tool-group"><a href="../timer/" class="tool-btn" style="text-decoration:none; color:inherit;">⏱️ Speech & Presentatie</a></div>
-    <div class="tool-group"><a href="../checker/" class="tool-btn" style="text-decoration:none; color:inherit;">✍️ Grammatica Bot</a></div>
-    <div class="tool-group"><a href="../ai/" class="tool-btn" style="text-decoration:none; color:inherit;">🤖 AI-Tekst Detector</a></div>
-    <div class="tool-group"><a href="../tts/" class="tool-btn" style="text-decoration:none; color:inherit;">🔊 Tekst-naar-Spraak</a></div>
-    <div class="tool-group"><a href="../translate/" class="tool-btn" style="text-decoration:none; color:inherit;">🌍 Vertaal Tool</a></div>
-    <div class="tool-group"><a href="../qr/" class="tool-btn" style="text-decoration:none; color:inherit;">📱 QR Code Generator</a></div>
-    <div class="tool-group"><a href="./" class="tool-btn" style="text-decoration:none; color:inherit;">🔄 Universele Converter</a></div>
-    <div class="tool-group"><a href="../blog/" class="tool-btn" style="text-decoration:none; color:inherit;">📰 Blog</a></div>
+    <div class="tool-group"><a href="../" class="tool-btn" id="menuHome" style="text-decoration:none; color:inherit;">🏠 Overzicht / Home</a></div>
+    <div class="tool-group"><a href="../timer/" class="tool-btn" id="menuTimer" style="text-decoration:none; color:inherit;">⏱️ Speech & Presentatie</a></div>
+    <div class="tool-group"><a href="../checker/" class="tool-btn" id="menuChecker" style="text-decoration:none; color:inherit;">✍️ Grammatica Bot</a></div>
+    <div class="tool-group"><a href="../ai/" class="tool-btn" id="menuAi" style="text-decoration:none; color:inherit;">🤖 AI-Tekst Detector</a></div>
+    <div class="tool-group"><a href="../tts/" class="tool-btn" id="menuTts" style="text-decoration:none; color:inherit;">🔊 Tekst-naar-Spraak</a></div>
+    <div class="tool-group"><a href="../translate/" class="tool-btn" id="menuTranslate" style="text-decoration:none; color:inherit;">🌍 Vertaal Tool</a></div>
+    <div class="tool-group"><a href="../qr/" class="tool-btn" id="menuQr" style="text-decoration:none; color:inherit;">📱 QR Code Generator</a></div>
+    <div class="tool-group"><a href="./" class="tool-btn" id="menuConverter" style="text-decoration:none; color:inherit;">🔄 Universele Converter</a></div>
+    <div class="tool-group"><a href="../blog/" class="tool-btn" id="menuBlog" style="text-decoration:none; color:inherit;">📰 Blog</a></div>
   </nav>
 
   <main class="container">
     <div class="section-header-wrapper">
-      <h2 class="section-title">Universele Converter</h2>
-      <p class="section-subtitle">Converteer foto's, documenten of data eenvoudig naar een ander bestandsformaat.</p>
+      <h2 class="section-title" id="convTitle">Universele Converter</h2>
+      <p class="section-subtitle" id="convSub">Converteer foto's, documenten of data eenvoudig naar een ander bestandsformaat.</p>
     </div>
     
     <div class="tts-controls-row" style="margin-bottom: 20px;">
       <div class="tts-control-group" style="flex: 1;">
-        <label for="convertFrom">Wat wil je converteren?</label>
+        <label for="convertFrom" id="convLabelFrom">Wat wil je converteren?</label>
         <select id="convertFrom" class="tts-select" onchange="updateConverterUI()">
-          <option value="heic">📷 HEIC Afbeelding (Apple)</option>
-          <option value="image">🖼️ Standaard Afbeelding (PNG/JPG/WebP)</option>
-          <option value="txt">📄 Tekstbestand (.txt)</option>
+          <option value="heic" id="optHeic">📷 HEIC Afbeelding (Apple)</option>
+          <option value="image" id="optImg">🖼️ Standaard Afbeelding (PNG/JPG/WebP)</option>
+          <option value="txt" id="optTxt">📄 Tekstbestand (.txt)</option>
         </select>
       </div>
       <div class="tts-control-group" style="flex: 1;">
-        <label for="convertTo">Waar naartoe converteren?</label>
+        <label for="convertTo" id="convLabelTo">Waar naartoe converteren?</label>
         <select id="convertTo" class="tts-select">
-          <option value="jpg">🖼️ JPG Afbeelding</option>
-          <option value="png">🖼️ PNG Afbeelding</option>
-          <option value="webp">🌐 WebP Afbeelding</option>
+          <option value="jpg" id="optJpg">🖼️ JPG Afbeelding</option>
+          <option value="png" id="optPng">🖼️ PNG Afbeelding</option>
+          <option value="webp" id="optWebp">🌐 WebP Afbeelding</option>
         </select>
       </div>
     </div>
@@ -78,7 +87,7 @@
     </div>
 
     <div style="margin-top: 20px; text-align: center;">
-      <button class="btn" onclick="executeUniversalConversion()">Start Conversie</button>
+      <button class="btn" id="convActionBtn" onclick="executeUniversalConversion()">Start Conversie</button>
     </div>
 
     <div class="qr-preview-box" id="converterPreviewBox" style="margin-top: 20px; text-align: center;">
