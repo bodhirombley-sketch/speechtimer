@@ -10,7 +10,7 @@
   <script>
     // Direct bij het laden van de pagina de juiste opgeslagen taal toepassen om 'terugspringen' te voorkomen
     (function() {
-      const savedLang = localStorage.getItem('everyToolLang') || localStorage.getItem('gekozenTaal') || 'nl';
+      const savedLang = localStorage.getItem('everyToolLang') || 'nl';
       document.documentElement.lang = savedLang;
     })();
   </script>
@@ -88,6 +88,13 @@
     <div class="translation-preview" id="ttsStatusBox">
       <em id="ttsStatusPlaceholder">Status: Klaar om voor te lezen of te downloaden...</em>
     </div>
+
+    <!-- UITGEBREIDE UITLEG SECTIE (Inclusief vertaalbare ID's) -->
+    <section class="info-card" style="margin-top: 40px; text-align: left;">
+      <h3 id="ttsExplanationTitle" style="margin-top: 0; margin-bottom: 12px;">Hoe werkt de Tekst-naar-Spraak tool?</h3>
+      <p id="ttsExplanationText1" style="color: var(--text-muted); line-height: 1.6; margin-bottom: 12px;">Het omzetten van geschreven tekst naar gesproken woorden is ideaal om je eigen teksten te controleren op spelfouten, om luistervaardigheid te oefenen in een vreemde taal, of om documenten handsfree te beluisteren.</p>
+      <p id="ttsExplanationText2" style="color: var(--text-muted); line-height: 1.6; margin-bottom: 0;">Plak simpelweg je tekst in het invoerveld, kies de gewenste taal en klik op voorlezen of download direct het audiobestand. Zo breng je geschreven content in een handomdraai tot leven!</p>
+    </section>
   </main>
 
   <script src="../script.js"></script>
