@@ -3,21 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Blog & Artikelen | Every-Tool</title>
-  <meta name="description" content="Lees handige artikelen, tips en handleidingen over online tools, studententips en productiviteit."/>
+  <title>Blog & Handige Artikelen | Every-Tool</title>
+  <meta name="description" content="Lees handige artikelen, tips en updates over onze tools."/>
   <link rel="canonical" href="https://every-tool.netlify.app/blog/"/>
   <link rel="stylesheet" href="../style.css">
   <script>
     // Direct bij het laden van de pagina de juiste opgeslagen taal toepassen om 'terugspringen' te voorkomen
     (function() {
-      const savedLang = localStorage.getItem('everyToolLang') || localStorage.getItem('gekozenTaal') || 'nl';
+      const savedLang = localStorage.getItem('everyToolLang') || 'nl';
       document.documentElement.lang = savedLang;
     })();
   </script>
 </head>
 <body data-theme="light">
 
-  <!-- Topbar Header met Menu en Knoppen -->
   <header class="topbar">
     <div class="topbar-left">
       <button class="hamburger-btn" onclick="toggleSidebar()" aria-label="Open menu">☰ Menu</button>
@@ -41,13 +40,11 @@
 
   <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
 
-  <!-- Navigatie Sidebar -->
   <nav class="nav-sidebar" id="sidebar">
     <div class="sidebar-header">
       <h2 id="menuHeader">Kies een Tool</h2>
       <button class="close-btn" onclick="toggleSidebar()" aria-label="Sluit menu">✕</button>
     </div>
-
     <div class="tool-group"><a href="../" class="tool-btn" id="menuHome" style="text-decoration:none; color:inherit;">🏠 Overzicht / Home</a></div>
     <div class="tool-group"><a href="../timer/" class="tool-btn" id="menuTimer" style="text-decoration:none; color:inherit;">⏱️ Speech & Presentatie</a></div>
     <div class="tool-group"><a href="../checker/" class="tool-btn" id="menuChecker" style="text-decoration:none; color:inherit;">✍️ Grammatica Bot</a></div>
@@ -59,64 +56,15 @@
     <div class="tool-group"><a href="./" class="tool-btn" id="menuBlog" style="text-decoration:none; color:inherit;">📰 Blog</a></div>
   </nav>
 
-  <!-- Hoofdinhoud Blog -->
   <main class="container">
     <div class="section-header-wrapper">
-      <h2 class="section-title">Every-Tool Blog</h2>
-      <p class="section-subtitle">Handige artikelen en tips voor studenten en contentmakers.</p>
+      <h2 class="section-title" id="blogTitle">Blog & Nieuws</h2>
+      <p class="section-subtitle" id="blogSub">Handige artikelen, tips en updates over onze tools.</p>
     </div>
-
-    <!-- Overzicht / Lijst van blogs -->
-    <div id="blogListContainer" style="display: flex; flex-direction: column; gap: 16px; margin-top: 20px;">
-      <div class="card" style="cursor: pointer; transition: transform 0.2s;" onclick="openFullBlog()">
-        <span style="font-size: 12px; color: var(--text-muted);">📅 7 Oktober 2026 • Leestijd: 3 min</span>
-        <h3 id="blogTitle" style="margin: 8px 0 6px 0;">10 handige gratis online tools voor studenten en contentmakers</h3>
-        <p id="blogIntro" style="font-size: 14px; color: var(--text-muted); margin: 0;">Ontdek 10 gratis online toepassingen die je helpen met school, schrijven, presentaties en content maken...</p>
-        <span style="display: inline-block; margin-top: 12px; color: var(--primary); font-weight: 600; font-size: 14px;">Lees artikel →</span>
-      </div>
-    </div>
-
-    <!-- Volledige Artikel -->
-    <div id="blogFullContent" style="display: none; margin-top: 20px;">
-      <button class="btn secondary" id="blogBackBtn" onclick="closeFullBlog()" style="margin-bottom: 20px;">← Terug naar overzicht</button>
-      
-      <article class="blog-page card" style="padding: 30px;">
-        <h2 style="margin-top:0;">10 handige gratis online tools voor studenten en contentmakers</h2>
-        <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 20px;">📅 7 Oktober 2026</p>
-        
-        <p>Op zoek naar handige online tools zonder ingewikkelde installatie of abonnement? Op Every-Tool vind je verschillende gratis tools die je kunnen helpen met school, schrijven, content maken en dagelijkse taken.</p>
-        <p>In dit artikel zetten we 10 handige toepassingen op een rij.</p>
-
-        <h3>1. Tekst verbeteren</h3>
-        <p>Heb je een tekst geschreven, maar zitten er spelfouten of onduidelijke zinnen in? Een tekstverbeteringstool kan helpen om je tekst duidelijker en netter te maken.</p>
-
-        <h3>2. Grammatica controleren</h3>
-        <p>Een kleine grammaticafout kan ervoor zorgen dat een tekst minder professioneel overkomt. Met een grammaticacontrole kun je snel controleren of je zinnen correct zijn geschreven.</p>
-
-        <h3>3. Tekst naar spraak</h3>
-        <p>Wil je een tekst liever beluisteren dan lezen? Met een tekst-naar-spraak-tool kun je geschreven tekst laten voorlezen.</p>
-
-        <h3>4. QR-code maken</h3>
-        <p>Een QR-code is een snelle manier om iemand naar een website, tekst of andere informatie te sturen.</p>
-
-        <h3>5. Tekst vertalen</h3>
-        <p>Wanneer je informatie in een andere taal nodig hebt, kan een vertaaltool veel tijd besparen.</p>
-
-        <h3>6. Speech Timer</h3>
-        <p>Een speech of presentatie oefenen is een stuk makkelijker wanneer je weet hoe lang je tekst duurt.</p>
-
-        <h3>7. AI-tekst controleren</h3>
-        <p>AI wordt steeds vaker gebruikt om teksten te schrijven. Een AI-tekstindicator helpt je om patronen in teksten te herkennen.</p>
-
-        <h3>8. Tekst analyseren</h3>
-        <p>Soms wil je snel weten hoeveel woorden of tekens een tekst bevat voor een opdracht of essay.</p>
-
-        <h3>9. Handige tools voor contentmakers</h3>
-        <p>Maak je video's of artikelen? Kleine online hulpmiddelen besparen je dagelijks veel tijd.</p>
-
-        <h3>10. Alles op één plek</h3>
-        <p>Every-Tool brengt al deze functies samen in één moderne webapplicatie.</p>
-      </article>
+    
+    <!-- Lege staat wanneer er geen artikelen zijn -->
+    <div class="translation-preview" style="text-align: center; padding: 40px; margin-top: 20px;">
+      <p id="blogEmptyText" style="color: var(--text-muted); font-size: 16px; margin: 0;">Er zijn momenteel nog geen artikelen gepubliceerd. Kom later nog eens terug voor interessante updates en tips!</p>
     </div>
   </main>
 
