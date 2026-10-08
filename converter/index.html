@@ -3,15 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Universele Bestand & Afbeelding Converter | Every-Tool</title>
-  <meta name="description" content="Converteer eenvoudig HEIC-afbeeldingen, standaard afbeeldingen of tekstbestanden naar een ander formaat."/>
+  <title>Universele Converter & Bestandsbeheer | Every-Tool</title>
+  <meta name="description" content="Converteer eenvoudig en snel bestanden, afbeeldingen en documenten naar verschillende formaten."/>
   <link rel="canonical" href="https://every-tool.netlify.app/converter/"/>
   <link rel="stylesheet" href="../style.css">
-  <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>
   <script>
     // Direct bij het laden van de pagina de juiste opgeslagen taal toepassen om 'terugspringen' te voorkomen
     (function() {
-      const savedLang = localStorage.getItem('everyToolLang') || localStorage.getItem('gekozenTaal') || 'nl';
+      const savedLang = localStorage.getItem('everyToolLang') || 'nl';
       document.documentElement.lang = savedLang;
     })();
   </script>
@@ -59,40 +58,29 @@
 
   <main class="container">
     <div class="section-header-wrapper">
-      <h2 class="section-title" id="convTitle">Universele Converter</h2>
-      <p class="section-subtitle" id="convSub">Converteer foto's, documenten of data eenvoudig naar een ander bestandsformaat.</p>
+      <h2 class="section-title" id="converterTitle">Universele Converter</h2>
+      <p class="section-subtitle" id="converterSub">Converteer bestanden en afbeeldingen veilig en snel.</p>
     </div>
     
-    <div class="tts-controls-row" style="margin-bottom: 20px;">
-      <div class="tts-control-group" style="flex: 1;">
-        <label for="convertFrom" id="convLabelFrom">Wat wil je converteren?</label>
-        <select id="convertFrom" class="tts-select" onchange="updateConverterUI()">
-          <option value="heic" id="optHeic">📷 HEIC Afbeelding (Apple)</option>
-          <option value="image" id="optImg">🖼️ Standaard Afbeelding (PNG/JPG/WebP)</option>
-          <option value="txt" id="optTxt">📄 Tekstbestand (.txt)</option>
-        </select>
-      </div>
-      <div class="tts-control-group" style="flex: 1;">
-        <label for="convertTo" id="convLabelTo">Waar naartoe converteren?</label>
-        <select id="convertTo" class="tts-select">
-          <option value="jpg" id="optJpg">🖼️ JPG Afbeelding</option>
-          <option value="png" id="optPng">🖼️ PNG Afbeelding</option>
-          <option value="webp" id="optWebp">🌐 WebP Afbeelding</option>
-        </select>
+    <!-- Inhoud van de converter tool -->
+    <div class="translation-preview" style="text-align: center; padding: 30px;">
+      <p id="converterInstructions" style="color: var(--text-muted); margin-bottom: 20px;">Upload je bestand of afbeelding hieronder om te converteren naar het gewenste formaat.</p>
+      <input type="file" id="fileInput" style="margin-bottom: 15px;" />
+      <div class="action-bar" style="justify-content: center;">
+        <button class="btn" id="convertBtn" onclick="runConversion()">🔄 Converteer Bestand</button>
       </div>
     </div>
 
-    <div class="url-input-group" style="flex-direction: column; align-items: stretch; gap: 12px;">
-      <input type="file" id="universalFileInput" accept="image/*,.txt" style="padding: 12px; border: 2px dashed var(--border-color); border-radius: 8px; cursor: pointer; background: var(--card-bg); color: var(--text-color); width: 100%;" />
+    <div class="translation-preview" id="converterResultBox" style="margin-top: 20px;">
+      <em id="converterResultPlaceholder">Het geconverteerde bestand verschijnt hier...</em>
     </div>
 
-    <div style="margin-top: 20px; text-align: center;">
-      <button class="btn" id="convActionBtn" onclick="executeUniversalConversion()">Start Conversie</button>
-    </div>
-
-    <div class="qr-preview-box" id="converterPreviewBox" style="margin-top: 20px; text-align: center;">
-      <p style="color: var(--text-muted); font-size: 14px; margin: 0;" id="convStatusText">Selecteer een bestand en klik op start...</p>
-    </div>
+    <!-- UITGEBREIDE UITLEG SECTIE (Inclusief vertaalbare ID's) -->
+    <section class="info-card" style="margin-top: 40px; text-align: left;">
+      <h3 id="converterExplanationTitle" style="margin-top: 0; margin-bottom: 12px;">Hoe werkt de Universele Converter?</h3>
+      <p id="converterExplanationText1" style="color: var(--text-muted); line-height: 1.6; margin-bottom: 12px;">Het omzetten van bestanden naar een ander formaat (zoals afbeeldingen of documenten) is vaak nodig wanneer een specifiek programma een bestandstype niet ondersteunt of wanneer je bestanden wilt verkleinen voor gebruik op een website.</p>
+      <p id="converterExplanationText2" style="color: var(--text-muted); line-height: 1.6; margin-bottom: 0;">Met onze Universele Converter upload je eenvoudig je bestand, waarna het direct lokaal in je browser wordt omgezet. Zo hoef je geen zware software te installeren en blijven je gegevens optimaal beschermd!</p>
+    </section>
   </main>
 
   <script src="../script.js"></script>
