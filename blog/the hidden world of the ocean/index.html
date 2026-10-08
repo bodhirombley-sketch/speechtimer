@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="nl" id="html-root">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>De Verborgen Wereld van de Oceaan | Every-Tool Blog</title>
+  <meta name="description" content="Ontdek wat er zich allemaal afspeelt onder het wateroppervlak van de oceanen, van reusachtige walvissen tot mysterieuze diepzee-ecosystemen."/>
+  <link rel="canonical" href="https://every-tool.netlify.app/blog/het-verborgen-wereld-van-de-oceaan/"/>
+  <link rel="stylesheet" href="../../style.css">
+  <script>
+    (function() {
+      const savedLang = localStorage.getItem('everyToolLang') || 'nl';
+      document.documentElement.lang = savedLang;
+    })();
+  </script>
+</head>
+<body data-theme="light">
+
+  <header class="topbar">
+    <div class="topbar-left">
+      <button class="hamburger-btn" onclick="toggleSidebar()" aria-label="Open menu">☰ Menu</button>
+      <a href="../../" class="app-title" style="text-decoration:none; color:inherit;">Every-Tool</a>
+    </div>
+    
+    <div class="topbar-right">
+      <div class="lang-switcher-top" style="display:inline-flex; gap:4px; margin-right: 10px;">
+        <button id="langBtnEn" onclick="setLanguage('en')" style="padding:4px 8px; cursor:pointer;">EN</button>
+        <button id="langBtnNl" onclick="setLanguage('nl')" class="active" style="padding:4px 8px; cursor:pointer;">NL</button>
+        <button id="langBtnDe" onclick="setLanguage('de')" style="padding:4px 8px; cursor:pointer;">DE</button>
+        <button id="langBtnFr" onclick="setLanguage('fr')" style="padding:4px 8px; cursor:pointer;">FR</button>
+        <button id="langBtnEs" onclick="setLanguage('es')" style="padding:4px 8px; cursor:pointer;">ES</button>
+      </div>
+
+      <button class="top-action-btn" onclick="toggleDarkMode()" id="darkModeBtn">🌙 Dark Mode</button>
+      <button class="top-action-btn" onclick="shareSite()" id="shareBtn">🔗 Deel</button>
+    </div>
+  </header>
+
+  <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+  <nav class="nav-sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h2 id="menuHeader">Kies een Tool</h2>
+      <button class="close-btn" onclick="toggleSidebar()" aria-label="Sluit menu">✕</button>
+    </div>
+    <div class="tool-group"><a href="../../" class="tool-btn" id="menuHome" style="text-decoration:none; color:inherit;">🏠 Overzicht / Home</a></div>
+    <div class="tool-group"><a href="../../timer/" class="tool-btn" id="menuTimer" style="text-decoration:none; color:inherit;">⏱️ Speech & Presentatie</a></div>
+    <div class="tool-group"><a href="../../checker/" class="tool-btn" id="menuChecker" style="text-decoration:none; color:inherit;">✍️ Grammatica Bot</a></div>
+    <div class="tool-group"><a href="../../ai/" class="tool-btn" id="menuAi" style="text-decoration:none; color:inherit;">🤖 AI-Tekst Detector</a></div>
+    <div class="tool-group"><a href="../../tts/" class="tool-btn" id="menuTts" style="text-decoration:none; color:inherit;">🔊 Tekst-naar-Spraak</a></div>
+    <div class="tool-group"><a href="../../translate/" class="tool-btn" id="menuTranslate" style="text-decoration:none; color:inherit;">🌍 Vertaal Tool</a></div>
+    <div class="tool-group"><a href="../../qr/" class="tool-btn" id="menuQr" style="text-decoration:none; color:inherit;">📱 QR Code Generator</a></div>
+    <div class="tool-group"><a href="../../converter/" class="tool-btn" id="menuConverter" style="text-decoration:none; color:inherit;">🔄 Universele Converter</a></div>
+    <div class="tool-group"><a href="../" class="tool-btn" id="menuBlog" style="text-decoration:none; color:inherit;">📰 Blog</a></div>
+  </nav>
+
+  <main class="container" style="max-width: 800px; text-align: left;">
+    <p><a href="../" style="color: var(--primary); text-decoration: none; font-weight: bold;">← Terug naar het blogoverzicht</a></p>
+    
+    <article style="margin-top: 20px;">
+      <h1 style="font-size: 2.2rem; margin-bottom: 8px;">The Hidden World of the Ocean</h1>
+      <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 30px;">Gepubliceerd op 8 oktober 2026</p>
+      
+      <div style="line-height: 1.8; color: var(--text);">
+        <p>When we look at the sea, we usually see only the surface. A huge blue expanse that can stretch for miles on a sunny day, sometimes appearing calm and almost endless. Yet beneath that surface lies a world that is still largely unknown.</p>
+        <p>The oceans cover most of our planet and play an enormous role in life on Earth. They influence the climate, provide food, and create habitats for thousands of different animals and plants. From tiny plankton to enormous whales, the ocean contains an ecosystem that is incredibly large and complex.</p>
+
+        <h3 style="margin-top: 30px; color: var(--primary);">A World of Different Environments</h3>
+        <p>The ocean is not the same everywhere. Along the coast, there are shallow areas where sunlight can easily reach the seafloor. These areas can contain seagrass, coral reefs, and many other forms of marine life. As you move farther from the coast, the water gradually becomes deeper and the environment changes.</p>
+        <p>At great depths, the water becomes darker and colder. Eventually, sunlight cannot reach the bottom at all. Even so, many different organisms are able to survive there. Some animals have developed enormous eyes to capture as much available light as possible. Others can actually produce their own light. This phenomenon is known as bioluminescence.</p>
+        <p>One famous example is the anglerfish. It has a glowing structure that can be used to attract prey. For animals living in complete darkness, producing light can be an important way to find food or communicate.</p>
+
+        <h3 style="margin-top: 30px; color: var(--primary);">Giant Animals</h3>
+        <p>The ocean is also home to some of the largest animals that have ever lived on Earth. The blue whale can grow to enormous lengths and weigh many tons. Despite its gigantic size, it mainly eats tiny organisms such as krill.</p>
+        <p>Whales are a fascinating example of how unusual nature can be. An animal that is so large does not necessarily need to eat large prey. By filtering huge amounts of water, some whales can consume enough tiny organisms to provide energy for their enormous bodies.</p>
+        <p>But not every large ocean animal is a peaceful giant. The sea is also home to predators such as sharks, orcas, and giant squid. The deep ocean is especially interesting to scientists because new species are still being discovered there.</p>
+
+        <h3 style="margin-top: 30px; color: var(--primary);">The Mysterious Deep Sea</h3>
+        <p>One of the most extraordinary parts of the ocean is the deep sea. In some places, enormous underwater trenches reach several kilometers below the surface. Conditions there are extreme. The pressure is enormous, the water is cold, and there is almost no sunlight.</p>
+        <p>Yet animals have developed remarkable adaptations that allow them to survive.</p>
+        <p>Some species have soft bodies, highly specialized senses, or extremely slow metabolisms. There are even entire ecosystems surrounding what are known as hydrothermal vents.</p>
+        <p>These are places where extremely hot, mineral-rich water rises from the seafloor. Around these vents, bacteria and other organisms can survive without depending directly on sunlight like plants at the surface do. Instead, they can obtain energy from chemical substances.</p>
+
+        <h3 style="margin-top: 30px; color: var(--primary);">Why the Ocean Matters</h3>
+        <p>The ocean is important for much more than the animals that live in it. It also plays a major role in Earth's climate. Seas and oceans absorb heat and help distribute it around the planet. They also play an important part in the global carbon cycle.</p>
+        <p>Because of this, changes in the ocean can have major consequences. Rising ocean temperatures, pollution, overfishing, and damage to marine ecosystems can all affect life in the sea.</p>
+        <p>Plastic pollution is one example of a major problem. Marine animals can swallow pieces of waste or become trapped in them. Larger pieces of plastic can also slowly break down into smaller and smaller particles.</p>
+
+        <h3 style="margin-top: 30px; color: var(--primary);">A World We Still Do Not Fully Understand</h3>
+        <p>Perhaps the most amazing thing about the ocean is how much we still do not know. Even in an age of satellites, underwater robots, and advanced submarines, enormous areas of the deep sea remain difficult to explore.</p>
+        <p>Every new expedition can reveal something unexpected. Scientists may discover previously unknown animals, identify new ecosystems, or learn more about how the ocean affects our planet.</p>
+        <p>From the beach, the ocean may look like nothing more than a huge amount of water. But below the surface is a vast and complicated world.</p>
+        <p>And the more we explore it, the more obvious it becomes that the ocean probably still holds countless secrets.</p>
+      </div>
+    </article>
+  </main>
+
+  <script src="../../script.js"></script>
+</body>
+</html>
