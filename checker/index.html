@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Grammatica Bot & Spelling Checker | Every-Tool</title>
-  <meta name="description" content="Controleer direct je teksten op spelfouten, grammaticaregels en stijlfouten met onze slimme Grammatica Bot."/>
-  <link rel="canonical" href="https://every-tool.netlify.app/checker/"/>
+  <title>QR Code Generator | Every-Tool</title>
+  <meta name="description" content="Voer een URL in en genereer direct een professionele QR-code om te downloaden of te gebruiken."/>
+  <link rel="canonical" href="https://every-tool.netlify.app/qr/"/>
   <link rel="stylesheet" href="../style.css">
   <script>
     // Direct bij het laden van de pagina de juiste opgeslagen taal toepassen om 'terugspringen' te voorkomen
@@ -47,39 +47,34 @@
     </div>
     <div class="tool-group"><a href="../" class="tool-btn" id="menuHome" style="text-decoration:none; color:inherit;">🏠 Overzicht / Home</a></div>
     <div class="tool-group"><a href="../timer/" class="tool-btn" id="menuTimer" style="text-decoration:none; color:inherit;">⏱️ Speech & Presentatie</a></div>
-    <div class="tool-group"><a href="./" class="tool-btn" id="menuChecker" style="text-decoration:none; color:inherit;">✍️ Grammatica Bot</a></div>
+    <div class="tool-group"><a href="../checker/" class="tool-btn" id="menuChecker" style="text-decoration:none; color:inherit;">✍️ Grammatica Bot</a></div>
     <div class="tool-group"><a href="../ai/" class="tool-btn" id="menuAi" style="text-decoration:none; color:inherit;">🤖 AI-Tekst Detector</a></div>
     <div class="tool-group"><a href="../tts/" class="tool-btn" id="menuTts" style="text-decoration:none; color:inherit;">🔊 Tekst-naar-Spraak</a></div>
     <div class="tool-group"><a href="../translate/" class="tool-btn" id="menuTranslate" style="text-decoration:none; color:inherit;">🌍 Vertaal Tool</a></div>
-    <div class="tool-group"><a href="../qr/" class="tool-btn" id="menuQr" style="text-decoration:none; color:inherit;">📱 QR Code Generator</a></div>
+    <div class="tool-group"><a href="./" class="tool-btn" id="menuQr" style="text-decoration:none; color:inherit;">📱 QR Code Generator</a></div>
     <div class="tool-group"><a href="../converter/" class="tool-btn" id="menuConverter" style="text-decoration:none; color:inherit;">🔄 Universele Converter</a></div>
     <div class="tool-group"><a href="../blog/" class="tool-btn" id="menuBlog" style="text-decoration:none; color:inherit;">📰 Blog</a></div>
   </nav>
 
   <main class="container">
     <div class="section-header-wrapper">
-      <h2 class="section-title" id="checkerTitle">Grammatica Bot</h2>
-      <p class="section-subtitle" id="checkerSub">Controleer je tekst automatisch op spelfouten en stijlfouten.</p>
+      <h2 class="section-title" id="qrTitle">QR Code Generator</h2>
+      <p class="section-subtitle" id="qrSub">Voer een URL in om direct een QR-code te genereren.</p>
     </div>
-    
-    <textarea id="text-checker" placeholder="Plak hier je tekst om te controleren..." oninput="saveToLocal('text-checker', this.value)"></textarea>
-    <div style="display: flex; justify-content: flex-end; margin-bottom: 12px;">
-      <button class="btn clear-btn" onclick="clearTextArea('text-checker')">🗑️ Wis tekst</button>
+    <div class="url-input-group">
+      <input type="url" id="qrUrlInput" placeholder="https://jouwwebsite.nl" oninput="generateQRFromInput()" />
+      <button class="btn clear-btn" onclick="clearTextArea('qrUrlInput')" style="padding: 10px 14px;" id="qrClearBtn">🗑 Wis</button>
+      <button class="btn" id="qrGenBtn" onclick="generateQRFromInput()">Genereer</button>
     </div>
-
-    <div class="action-bar">
-      <button class="btn" id="checkerScanBtn" onclick="runGrammarCheck()">✍️ Controleer Grammatica</button>
-    </div>
-
-    <div class="translation-preview" id="checkerResultBox">
-      <em id="checkerResultPlaceholder">Resultaten en suggesties verschijnen hier...</em>
+    <div class="qr-preview-box" id="qrPreviewBox">
+      <p style="color: var(--text-muted); font-size: 14px; margin: 0;" id="qrPlaceholder">Vul een URL in...</p>
     </div>
 
     <!-- UITGEBREIDE UITLEG SECTIE (Inclusief vertaalbare ID's) -->
     <section class="info-card" style="margin-top: 40px; text-align: left;">
-      <h3 id="checkerExplanationTitle" style="margin-top: 0; margin-bottom: 12px;">Hoe werkt de Grammatica Bot?</h3>
-      <p id="checkerExplanationText1" style="color: var(--text-muted); line-height: 1.6; margin-bottom: 12px;">Een foutje in je spelling, d/t-fouten of kromme zinnen zijn snel gemaakt, maar kunnen afleiden van je boodschap. Onze Grammatica Bot scant je tekst grondig op taalfouten, stijlonvolkomenheden en grammaticale onjuistheden.</p>
-      <p id="checkerExplanationText2" style="color: var(--text-muted); line-height: 1.6; margin-bottom: 0;">Of je nu een belangrijke e-mail, een verslag voor school of een zakelijk document schrijft: met deze tool zorg je ervoor dat je teksten er altijd professioneel, verzorgd en foutloos uitzien.</p>
+      <h3 id="qrExplanationTitle" style="margin-top: 0; margin-bottom: 12px;">Hoe werkt de QR Code Generator?</h3>
+      <p id="qrExplanationText1" style="color: var(--text-muted); line-height: 1.6; margin-bottom: 12px;">QR-codes bieden een snelle en eenvoudige manier om fysieke dragers (zoals posters, flyers of presentaties) te verbinden met online content. Mensen hoeven alleen maar hun smartphonecamera te gebruiken om direct naar de juiste website te gaan.</p>
+      <p id="qrExplanationText2" style="color: var(--text-muted); line-height: 1.6; margin-bottom: 0;">Met onze QR Code Generator typ of plak je eenvoudig een webadres, waarna de code zich direct voor je ogen vormt. Zo maak je in een handomdraai professionele en direct bruikbare QR-codes voor al je projecten.</p>
     </section>
   </main>
 
