@@ -5,10 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Blog & Handige Artikelen | Every-Tool</title>
   <meta name="description" content="Lees handige artikelen, tips en updates over onze tools en interessante onderwerpen."/>
-  <link rel="canonical" href="https://every-tool.netlify.app/blog/"/>
   <link rel="stylesheet" href="../style.css">
   <script>
-    // Direct bij het laden van de pagina de juiste opgeslagen taal toepassen om 'terugspringen' te voorkomen
     (function() {
       const savedLang = localStorage.getItem('everyToolLang') || 'nl';
       document.documentElement.lang = savedLang;
@@ -24,7 +22,6 @@
     </div>
     
     <div class="topbar-right">
-      <!-- TAAL-SCHAKELAAR (EN, NL, DE, FR, ES in de juiste volgorde) -->
       <div class="lang-switcher-top" style="display:inline-flex; gap:4px; margin-right: 10px;">
         <button id="langBtnEn" onclick="setLanguage('en')" style="padding:4px 8px; cursor:pointer;">EN</button>
         <button id="langBtnNl" onclick="setLanguage('nl')" class="active" style="padding:4px 8px; cursor:pointer;">NL</button>
@@ -62,8 +59,8 @@
       <p class="section-subtitle" id="blogSub">Handige artikelen, tips en updates over onze tools.</p>
     </div>
     
-    <!-- Artikel Kaart: The Hidden World of the Ocean -->
-    <div class="translation-preview" style="text-align: left; padding: 20px; margin-top: 20px; cursor: pointer;" onclick="location.href='the-hidden-world-of-the-ocean/'">
+    <!-- Artikel Kaart die verwijst naar het losse HTML-bestand -->
+    <div class="translation-preview" style="text-align: left; padding: 20px; margin-top: 20px; cursor: pointer;" onclick="location.href='the-hidden-world-of-the-ocean.html'">
       <h3 style="margin-top: 0; color: var(--primary);">The Hidden World of the Ocean</h3>
       <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 10px;">Ontdek wat er zich allemaal afspeelt onder het wateroppervlak van de oceanen, van reusachtige walvissen tot mysterieuze diepzee-ecosystemen.</p>
       <span style="font-size: 13px; font-weight: bold;">Lees artikel →</span>
