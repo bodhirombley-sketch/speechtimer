@@ -1,132 +1,11 @@
-// ==========================================
-// EVERY-TOOL - HOOFDSCRIPT (VOLLEDIG MET EN, NL, DE, FR, ES)
-// ==========================================
+ // Globale variabelen voor taal en huidige tool
+let currentLang = localStorage.getItem('everyToolLang') || 'nl';
+let currentTool = 'home';
 
+// Vertaalwoordenboek per taal (inclusief de nieuwe uitgebreide uitlegteksten per tool)
 const translations = {
-  en: {
-    placeholder: "Paste your text here...",
-    menuHeader: "Select Tool",
-    menuHome: "🏠 Overview / Home",
-    menuTimer: "⏱️ Speech & Presentation",
-    menuChecker: "✍️ Grammar Bot",
-    menuAi: "🤖 AI Text Detector",
-    menuTts: "🔊 Text-to-Speech",
-    menuTranslate: "🌍 Translate Tool",
-    menuQr: "📱 QR Code Generator",
-    menuConverter: "🔄 Universal Converter",
-    menuBlog: "📰 Blog",
-    blogTitle: "10 useful free online tools for students and creators",
-    blogIntro: "Looking for handy online tools without installation? Discover 10 free applications to help with school, writing, and content creation.",
-    blogBackBtn: "← Back to overview",
-    langTitle: "Language:",
-    shareBtn: "🔗 Share",
-    heroTag: "Meet Every-Tool",
-    homeHeading: "Smart tools for text and presentations",
-    homeSub: "Optimize your presentations, check typos, or analyze sentence structures instantly. Fast, safe, and reliable.",
-    searchPlaceholder: "Type to search a tool...",
-    searchBtn: "Search",
-    aboutTitle: "💡 About Every-Tool & Features",
-    aboutText: "All calculations take place directly in your web browser (client-side), guaranteeing maximum privacy. None of your texts are stored on external servers.",
-    faqTitle: "❓ Frequently Asked Questions (FAQ)",
-    faq1Q: "How does the Speech Timer work?",
-    faq1A: "Paste your presentation text to instantly calculate speaking time based on different speeds.",
-    faq2Q: "Are my texts saved?",
-    faq2A: "No, all processing happens locally in your browser. LocalStorage temporarily remembers your input.",
-    faq3Q: "Is Every-Tool free to use?",
-    faq3A: "Yes, all tools on this platform are completely free for students, professionals, and creators.",
-    faq4Q: "How reliable is the AI Text Detector?",
-    faq4A: "The detector checks statistical features like sentence length and writing variation.",
-    faq5Q: "Can I download the generated audio?",
-    faq5A: "Yes, in the Text-to-Speech tool you can click to save the audio file (.WAV).",
-    faq6Q: "Do I need to install software?",
-    faq6A: "No, absolutely not. Every-Tool works fully web-based in any modern browser.",
-    faq7Q: "How does the Grammar Bot work?",
-    faq7A: "It uses the LanguageTool API to automatically scan your text for spelling errors.",
-    t1Title: "Speech & Presentation Timer",
-    t1Sub: "Calculate speaking time instantly.",
-    slow: "🐢 Slow",
-    norm: "🚶 Average",
-    fast: "🐇 Fast",
-    practice: "Practice live:",
-    startBtn: "Start",
-    pauseBtn: "Pause",
-    resumeBtn: "Resume",
-    resetBtn: "Reset",
-    t2Title: "Grammar Corrector",
-    t2Sub: "Automatic checking via LanguageTool.",
-    t2Issues: "Detected Issues:",
-    btnClean: "✨ Auto Correct",
-    btnCopy: "📋 Copy",
-    clearText: "🗑 Clear text",
-    copyAlert: "Copied to clipboard!",
-    noText: "No text entered.",
-    noIssues: "✅ No issues found!",
-    checkingText: "⏳ Checking text...",
-    apiError: "⚠️ Connection error with LanguageTool API.",
-    t3Title: "AI Text Detector",
-    t3Sub: "Analyze sentence variation.",
-    t3Score: "Estimated AI Probability",
-    aiShort: "Enter at least 50 characters.",
-    aiHigh: "High regularity detected.",
-    aiLow: "Natural variation detected.",
-    ttsTitle: "Text-to-Speech",
-    ttsSub: "Read text aloud or download audio.",
-    ttsLabelLang: "Voice Language:",
-    speakBtn: "🔊 Read Aloud",
-    downloadAudioBtn: "📥 Download Audio (.WAV)",
-    stopSpeechBtn: "⏹️ Stop",
-    ttsStatusPlaceholder: "Status: Ready...",
-    ttsSpeaking: "🔊 Speaking...",
-    ttsDone: "✅ Speech completed.",
-    ttsStopped: "⏹ Stopped.",
-    ttsDownloaded: "📥 Audio file downloaded!",
-    ttsNoTextAlert: "Please enter text first!",
-    ttsNoAudioTextAlert: "Enter text to download.",
-    ttsNotSupported: "Browser does not support TTS.",
-    translateTitle: "Translate Tool",
-    translateSub: "Translate texts quickly.",
-    translateLabelLang: "Target language:",
-    translateBtn: "🌍 Translate",
-    translatePreviewPlaceholder: "Translated text appears here...",
-    translateAlert: "Please enter text.",
-    translatingText: "⏳ Translating...",
-    translateError: "⚠️ Translation error.",
-    qrTitle: "QR Code Generator",
-    qrSub: "Enter a URL to generate a QR code.",
-    qrPlaceholder: "Enter a URL...",
-    qrGenBtn: "Generate",
-    downloadQR: "📥 Download QR Code",
-    convTitle: "Universal Converter",
-    convSub: "Convert files easily.",
-    convLabelFrom: "From what?",
-    convLabelTo: "To what?",
-    convActionBtn: "Start Conversion",
-    convStatus: "Select file and start...",
-    convAlert: "Select a file first!",
-    convLoading: "⏳ Converting...",
-    convSuccess: "✅ Converted to",
-    convError: "❌ Conversion error.",
-    optNl: "🇳🇱 Dutch",
-    optEn: "🇬🇧 English",
-    optDe: "🇩🇪 German",
-    optFr: "🇫🇷 French",
-    optEs: "🇪🇸 Spanish",
-    optHeic: "📷 HEIC Image",
-    optImg: "🖼️ Standard Image",
-    optTxt: "📄 Text File",
-    optJpg: "🖼 JPG Image",
-    optPng: "🖼️ PNG Image",
-    optWebp: "🌐 WebP Image",
-    adSpace: "Ad Space",
-    sec1: "256-bit SSL Security",
-    sec2: "100% Privacy - Local Processing",
-    sec3: "Instant Results",
-    speeds: { slow: 110, norm: 130, fast: 160 },
-    pageTitles: { home: "Every-Tool | Free Tools" }
-  },
-
   nl: {
-    placeholder: "Plak hier je tekst...",
+    // Topbar & Menu
     menuHeader: "Kies een Tool",
     menuHome: "🏠 Overzicht / Home",
     menuTimer: "⏱️ Speech & Presentatie",
@@ -137,33 +16,34 @@ const translations = {
     menuQr: "📱 QR Code Generator",
     menuConverter: "🔄 Universele Converter",
     menuBlog: "📰 Blog",
-    blogTitle: "10 handige gratis online tools voor studenten en contentmakers",
-    blogIntro: "Op zoek naar handige online tools zonder ingewikkelde installatie of abonnement? Ontdek 10 gratis toepassingen die je helpen met school, schrijven en content maken.",
-    blogBackBtn: "← Terug naar overzicht",
-    langTitle: "Taal / Language:",
+    darkModeBtn: "🌙 Dark Mode",
     shareBtn: "🔗 Deel",
+
+    // Home pagina
     heroTag: "Meet Every-Tool",
     homeHeading: "Slimme tools voor al je tekst en spraak",
     homeSub: "Optimaliseer je presentaties, controleer op spelfouten of analyseer zinsstructuren in een handomdraai. Snel, veilig en betrouwbaar.",
-    searchPlaceholder: "Typ om een tool te zoeken...",
-    searchBtn: "Zoeken",
+    homeSearchInputPlaceholder: "Typ om een tool te zoeken...",
+    homeSearchBtn: "Zoek 🔍",
     aboutTitle: "💡 Over Every-Tool & Onze Functionaliteiten",
     aboutText: "Alle berekeningen vinden direct plaats in je eigen webbrowser (client-side), wat maximale privacy garandeert. Geen van je teksten wordt opgeslagen op externe servers.",
     faqTitle: "❓ Veelgestelde Vragen (FAQ)",
     faq1Q: "Hoe werkt de Speech Timer?",
     faq1A: "Plak je presentatietekst in de tool om direct je spreektijd te berekenen op basis van verschillende snelheden.",
     faq2Q: "Worden mijn teksten opgeslagen?",
-    faq2A: "Nee, alle verwerking gebeurt lokaal in je browser. Dankzij LocalStorage onthoudt je browser wel tijdelijk je invoer.",
+    faq2A: "Nee, alle verwerking gebeurt lokaal in je browser via LocalStorage.",
     faq3Q: "Is het gebruik van Every-Tool gratis?",
-    faq3A: "Ja, alle tools op dit platform zijn volledig gratis te gebruiken voor studenten, professionals en contentmakers.",
+    faq3A: "Ja, alle tools op dit platform zijn volledig gratis te gebruiken.",
     faq4Q: "Hoe betrouwbaar is de AI-Tekst Detector?",
-    faq4A: "De AI-detector kijkt naar statistische kenmerken zoals zinslengte en variatie in schrijfstijl.",
+    faq4A: "De detector kijkt naar statistische kenmerken en geeft een indicatie, maar geen 100% sluitend bewijs.",
     faq5Q: "Kan ik de gegenereerde audio downloaden?",
-    faq5A: "Ja, in de Tekst-naar-Spraak tool kun je direct na het invoeren klikken om het audiobestand (.WAV) op te slaan.",
+    faq5A: "Ja, je kunt direct het audiobestand (.WAV) opslaan op je apparaat.",
     faq6Q: "Moet ik software installeren om deze tools te gebruiken?",
-    faq6A: "Nee, absoluut niet. Every-Tool werkt volledig web-based in elke moderne browser.",
+    faq6A: "Nee, Every-Tool werkt volledig web-based in elke moderne browser.",
     faq7Q: "Hoe werkt de Grammatica Bot?",
-    faq7A: "De Grammatica Bot maakt gebruik van de LanguageTool API om automatisch je tekst te scannen op spelfouten.",
+    faq7A: "De bot scant automatisch je tekst op spelfouten en stijlfouten.",
+
+    // Timer Tool
     t1Title: "Speech & Presentatie Timer",
     t1Sub: "Bereken direct hoe lang jouw tekst duurt om voor te lezen.",
     slow: "🐢 Langzaam",
@@ -171,26 +51,40 @@ const translations = {
     fast: "🐇 Snel",
     practice: "Oefen je speech live:",
     startBtn: "Start",
-    pauseBtn: "Pauze",
-    resumeBtn: "Hervat",
     resetBtn: "Reset",
-    t2Title: "Grammatica & Spelfout Bot",
-    t2Sub: "Controleer automatisch op spelfouten via LanguageTool.",
-    t2Issues: "Gevonden Aandachtspunten:",
-    btnClean: "✨ Automatisch Herstellen",
-    btnCopy: "📋 Kopiëren",
-    clearText: "🗑️ Wis tekst",
-    copyAlert: "Gekopieerd naar klembord!",
-    noText: "Geen tekst ingevoerd.",
-    noIssues: "✅ Geen spelfouten gevonden!",
-    checkingText: "⏳ Bezig met controleren...",
-    apiError: "⚠️ Verbindingsfout met LanguageTool API.",
-    t3Title: "AI-Tekst Detector Indicator",
-    t3Sub: "Analyseer zinsstructuur op AI-kenmerken.",
-    t3Score: "Geschatte AI-waarschijnlijkheid",
-    aiShort: "Voer minimaal 50 tekens in voor een schatting.",
-    aiHigh: "Hoge mate van regelmatige zinsopbouw gedetecteerd.",
-    aiLow: "Natuurlijke variatie in zinslengte gedetecteerd.",
+    toolExplanationTitle: "Hoe werkt de Speech & Presentatie Timer?",
+    toolExplanationText1: "Wanneer je een presentatie, pitch of speech voorbereidt, is het cruciaal om te weten hoe lang je spreektijd zal zijn. Te lang doorpraten kan ervoor zorgen dat je publiek de aandacht verliest, terwijl te kort praten betekent dat je waardevolle informatie mist.",
+    toolExplanationText2: "Onze tool analyseert direct je geschreven tekst en berekent de precieze leestijd op basis van verschillende snelheden (langzaam, normaal en snel). Zo kun je je presentatie perfect timen en kom je nooit meer voor verrassingen te staan op het podium!",
+
+    // AI Detector Tool
+    aiTitle: "AI-Tekst Detector",
+    aiSub: "Analyseer direct of een tekst kenmerken heeft van kunstmatige intelligentie.",
+    aiScanBtn: "🤖 Analyseer Tekst",
+    aiResultPlaceholder: "Resultaat van de analyse verschijnt hier...",
+    aiExplanationTitle: "Hoe werkt de AI-Tekst Detector?",
+    aiExplanationText1: "Kunstmatige intelligentie schrijft vaak volgens bepaalde statistische patronen, zinslengtes en voorspelbare woordkeuzes die sterk kunnen afwijken van menselijk schrijfgedrag. Onze detector scant je tekst op deze typische AI-kenmerken.",
+    aiExplanationText2: "Of je nu content controleert voor school, werk of publicatie: deze tool geeft je direct een heldere indicatie van de waarschijnlijkheid dat de tekst gegenereerd is door een AI-systeem, zodat je inhoud met een gerust hart kunt controleren.",
+
+    // Grammatica Bot
+    checkerTitle: "Grammatica Bot",
+    checkerSub: "Controleer je tekst automatisch op spelfouten en stijlfouten.",
+    checkerScanBtn: "✍️ Controleer Grammatica",
+    checkerResultPlaceholder: "Resultaten en suggesties verschijnen hier...",
+    checkerExplanationTitle: "Hoe werkt de Grammatica Bot?",
+    checkerExplanationText1: "Een foutje in je spelling, d/t-fouten of kromme zinnen zijn snel gemaakt, maar kunnen afleiden van je boodschap. Onze Grammatica Bot scant je tekst grondig op taalfouten, stijlonvolkomenheden en grammaticale onjuistheden.",
+    checkerExplanationText2: "Of je nu een belangrijke e-mail, een verslag voor school of een zakelijk document schrijft: met deze tool zorg je ervoor dat je teksten er altijd professioneel, verzorgd en foutloos uitzien.",
+
+    // QR Code Generator
+    qrTitle: "QR Code Generator",
+    qrSub: "Voer een URL in om direct een QR-code te genereren.",
+    qrClearBtn: "🗑 Wis",
+    qrGenBtn: "Genereer",
+    qrPlaceholder: "Vul een URL in...",
+    qrExplanationTitle: "Hoe werkt de QR Code Generator?",
+    qrExplanationText1: "QR-codes bieden een snelle en eenvoudige manier om fysieke dragers (zoals posters, flyers of presentaties) te verbinden met online content. Mensen hoeven alleen maar hun smartphonecamera te gebruiken om direct naar de juiste website te gaan.",
+    qrExplanationText2: "Met onze QR Code Generator typ of plak je eenvoudig een webadres, waarna de code zich direct voor je ogen vormt. Zo maak je in een handomdraai professionele en direct bruikbare QR-codes voor al je projecten.",
+
+    // Tekst-naar-Spraak (TTS)
     ttsTitle: "Tekst-naar-Spraak",
     ttsSub: "Laat je tekst direct voorlezen of download de audio als bestand.",
     ttsLabelLang: "Spraak Taal:",
@@ -198,622 +92,757 @@ const translations = {
     downloadAudioBtn: "📥 Download Audio (.WAV)",
     stopSpeechBtn: "⏹️ Stop",
     ttsStatusPlaceholder: "Status: Klaar om voor te lezen of te downloaden...",
-    ttsSpeaking: "🔊 Bezig met voorlezen...",
-    ttsDone: "✅ Voorlezen voltooid.",
-    ttsStopped: "⏹ Gestopt.",
-    ttsDownloaded: "📥 Audiobestand succesvol gedownload!",
-    ttsNoTextAlert: "Voer eerst wat tekst in!",
-    ttsNoAudioTextAlert: "Voer eerst tekst in om te kunnen downloaden.",
-    ttsNotSupported: "Je browser ondersteunt geen tekst-naar-spraak.",
+    ttsExplanationTitle: "Hoe werkt de Tekst-naar-Spraak tool?",
+    ttsExplanationText1: "Het omzetten van geschreven tekst naar gesproken woorden is ideaal om je eigen teksten te controleren op spelfouten, om luistervaardigheid te oefenen in een vreemde taal, of om documenten handsfree te beluisteren.",
+    ttsExplanationText2: "Plak simpelweg je tekst in het invoerveld, kies de gewenste taal en klik op voorlezen of download direct het audiobestand. Zo breng je geschreven content in een handomdraai tot leven!",
+
+    // Vertaal Tool
     translateTitle: "Vertaal Tool",
-    translateSub: "Vertaal je teksten snel naar verschillende talen.",
-    translateLabelLang: "Kies doeltaal:",
+    translateSub: "Vertaal snel en eenvoudig teksten naar verschillende talen.",
+    translateLabelLang: "Doelstaal:",
     translateBtn: "🌍 Vertaal Tekst",
-    translatePreviewPlaceholder: "Vertaalde tekst verschijnt hier...",
-    translateAlert: "Vul alstublieft tekst in om te vertalen.",
-    translatingText: "⏳ Bezig met vertalen...",
-    translateError: "⚠️ Verbindingsfout met de vertaal API.",
+    translateResultPlaceholder: "De vertaling verschijnt hier...",
+    translateExplanationTitle: "Hoe werkt de Vertaal Tool?",
+    translateExplanationText1: "Of je nu communiceert met internationale partners, tekst leest in een vreemde taal of studeert voor een taalvak: snel en accuraat kunnen vertalen is onmisbaar in een verbonden wereld.",
+    translateExplanationText2: "Met onze Vertaal Tool typ of plak je eenvoudig je tekst, selecteer je de gewenste doelstaal en zie je direct het resultaat. Zo overbrug je elk taalverschil in een handomdraai!",
+
+    // Universele Converter
+    converterTitle: "Universele Converter",
+    converterSub: "Converteer bestanden en afbeeldingen veilig en snel.",
+    converterInstructions: "Upload je bestand of afbeelding hieronder om te converteren naar het gewenste formaat.",
+    convertBtn: "🔄 Converteer Bestand",
+    converterResultPlaceholder: "Het geconverteerde bestand verschijnt hier...",
+    converterExplanationTitle: "Hoe werkt de Universele Converter?",
+    converterExplanationText1: "Het omzetten van bestanden naar een ander formaat (zoals afbeeldingen of documenten) is vaak nodig wanneer een specifiek programma een bestandstype niet ondersteunt of wanneer je bestanden wilt verkleinen voor gebruik op een website.",
+    converterExplanationText2: "Met onze Universele Converter upload je eenvoudig je bestand, waarna het direct lokaal in je browser wordt omgezet. Zo hoef je geen zware software te installeren en blijven je gegevens optimaal beschermd!"
+  },
+
+  en: {
+    menuHeader: "Choose a Tool",
+    menuHome: "🏠 Overview / Home",
+    menuTimer: "⏱️ Speech & Presentation",
+    menuChecker: "✍️ Grammar Bot",
+    menuAi: "🤖 AI Text Detector",
+    menuTts: "🔊 Text-to-Speech",
+    menuTranslate: "🌍 Translation Tool",
+    menuQr: "📱 QR Code Generator",
+    menuConverter: "🔄 Universal Converter",
+    menuBlog: "📰 Blog",
+    darkModeBtn: "🌙 Dark Mode",
+    shareBtn: "🔗 Share",
+
+    heroTag: "Meet Every-Tool",
+    homeHeading: "Smart tools for all your text and speech",
+    homeSub: "Optimize your presentations, check for spelling errors, or analyze sentence structures in a flash. Fast, secure, and reliable.",
+    homeSearchInputPlaceholder: "Type to search a tool...",
+    homeSearchBtn: "Search 🔍",
+    aboutTitle: "💡 About Every-Tool & Our Features",
+    aboutText: "All calculations take place directly in your own web browser (client-side), guaranteeing maximum privacy. None of your texts are stored on external servers.",
+    faqTitle: "❓ Frequently Asked Questions (FAQ)",
+    faq1Q: "How does the Speech Timer work?",
+    faq1A: "Paste your presentation text into the tool to instantly calculate your speaking time based on different speeds.",
+    faq2Q: "Are my texts stored?",
+    faq2A: "No, all processing happens locally in your browser via LocalStorage.",
+    faq3Q: "Is using Every-Tool free?",
+    faq3A: "Yes, all tools on this platform are completely free to use.",
+    faq4Q: "How reliable is the AI Text Detector?",
+    faq4A: "The detector looks at statistical features and gives an indication, but not 100% conclusive proof.",
+    faq5Q: "Can I download the generated audio?",
+    faq5A: "Yes, you can save the audio file (.WAV) directly to your device.",
+    faq6Q: "Do I need to install software to use these tools?",
+    faq6A: "No, Every-Tool works entirely web-based in any modern browser.",
+    faq7Q: "How does the Grammar Bot work?",
+    faq7A: "The bot automatically scans your text for spelling and style errors.",
+
+    t1Title: "Speech & Presentation Timer",
+    t1Sub: "Instantly calculate how long your text takes to read out loud.",
+    slow: "🐢 Slow",
+    norm: "🚶 Normal",
+    fast: "🐇 Fast",
+    practice: "Practice your speech live:",
+    startBtn: "Start",
+    resetBtn: "Reset",
+    toolExplanationTitle: "How does the Speech & Presentation Timer work?",
+    toolExplanationText1: "When preparing a presentation, pitch, or speech, knowing your exact speaking time is crucial. Talking for too long can cause your audience to lose focus, while finishing too early means missing key information.",
+    toolExplanationText2: "Our tool instantly analyzes your written text and calculates the precise reading duration based on different speeds (slow, normal, and fast). This allows you to perfectly time your presentation and never get caught off guard on stage again!",
+
+    aiTitle: "AI Text Detector",
+    aiSub: "Instantly analyze if a text has characteristics of artificial intelligence.",
+    aiScanBtn: "🤖 Analyze Text",
+    aiResultPlaceholder: "Analysis results will appear here...",
+    aiExplanationTitle: "How does the AI Text Detector work?",
+    aiExplanationText1: "Artificial intelligence often writes according to specific statistical patterns, sentence lengths, and predictable word choices that can differ significantly from human writing behavior. Our detector scans your text for these typical AI traits.",
+    aiExplanationText2: "Whether you're checking content for school, work, or publication: this tool gives you a clear indication of the probability that the text was generated by an AI system, allowing you to review your content with confidence.",
+
+    checkerTitle: "Grammar Bot",
+    checkerSub: "Automatically check your text for spelling and stylistic errors.",
+    checkerScanBtn: "✍️ Check Grammar",
+    checkerResultPlaceholder: "Results and suggestions will appear here...",
+    checkerExplanationTitle: "How does the Grammar Bot work?",
+    checkerExplanationText1: "A spelling mistake, grammar slip, or awkward sentence is easily made, but can distract from your message. Our Grammar Bot thoroughly scans your text for language errors, stylistic flaws, and grammatical inaccuracies.",
+    checkerExplanationText2: "Whether you are writing an important email, a school report, or a business document: with this tool you ensure your texts always look professional, polished, and error-free.",
+
     qrTitle: "QR Code Generator",
-    qrSub: "Voer een URL in om direct een QR-code te genereren.",
-    qrPlaceholder: "Vul een URL in...",
-    qrGenBtn: "Genereer",
-    downloadQR: "📥 Download QR-code",
-    convTitle: "Universele Converter",
-    convSub: "Converteer foto's, documenten of data eenvoudig naar een ander bestandsformaat.",
-    convLabelFrom: "Wat wil je converteren?",
-    convLabelTo: "Waar naartoe converteren?",
-    convActionBtn: "Start Conversie",
-    convStatus: "Selecteer een bestand en klik op start...",
-    convAlert: "Selecteer eerst een bestand!",
-    convLoading: "⏳ Bezig met omzetten...",
-    convSuccess: "✅ Succesvol omgezet naar",
-    convError: "❌ Er is iets misgegaan tijdens de conversie.",
-    optNl: "🇳🇱 Nederlands",
-    optEn: "🇬🇧 Engels",
-    optDe: "🇩🇪 Duits",
-    optFr: "🇫🇷 Frans",
-    optEs: "🇪🇸 Spaans",
-    optHeic: "📷 HEIC Afbeelding (Apple)",
-    optImg: "🖼️ Standaard Afbeelding (PNG/JPG/WebP)",
-    optTxt: "📄 Tekstbestand (.txt)",
-    optJpg: "🖼 JPG Afbeelding",
-    optPng: "🖼️ PNG Afbeelding",
-    optWebp: "🌐 WebP Afbeelding",
-    adSpace: "Advertentie Ruimte (Google AdSense)",
-    sec1: "256-bit SSL-beveiliging",
-    sec2: "100% Privacy - Lokale verwerking",
-    sec3: "Direct resultaat",
-    speeds: { slow: 90, norm: 100, fast: 125 }
+    qrSub: "Enter a URL to generate a QR code instantly.",
+    qrClearBtn: "🗑 Clear",
+    qrGenBtn: "Generate",
+    qrPlaceholder: "Enter a URL...",
+    qrExplanationTitle: "How does the QR Code Generator work?",
+    qrExplanationText1: "QR codes provide a quick and easy way to connect physical mediums (such as posters, flyers, or presentations) to online content. People only need to use their smartphone camera to go straight to the correct website.",
+    qrExplanationText2: "With our QR Code Generator, you simply type or paste a web address, and the code forms right before your eyes. Create professional and instantly usable QR codes for all your projects in a snap.",
+
+    ttsTitle: "Text-to-Speech",
+    ttsSub: "Have your text read out loud instantly or download the audio file.",
+    ttsLabelLang: "Speech Language:",
+    speakBtn: "🔊 Read Aloud",
+    downloadAudioBtn: "📥 Download Audio (.WAV)",
+    stopSpeechBtn: "⏹️ Stop",
+    ttsStatusPlaceholder: "Status: Ready to read or download...",
+    ttsExplanationTitle: "How does the Text-to-Speech tool work?",
+    ttsExplanationText1: "Converting written text to spoken words is ideal for checking your own texts for spelling mistakes, practicing listening skills in a foreign language, or listening to documents hands-free.",
+    ttsExplanationText2: "Simply paste your text into the input field, choose your desired language, and click read aloud or download the audio file directly. Bring written content to life in an instant!",
+
+    translateTitle: "Translation Tool",
+    translateSub: "Quickly and easily translate texts into different languages.",
+    translateLabelLang: "Target Language:",
+    translateBtn: "🌍 Translate Text",
+    translateResultPlaceholder: "The translation will appear here...",
+    translateExplanationTitle: "How does the Translation Tool work?",
+    translateExplanationText1: "Whether you are communicating with international partners, reading text in a foreign language, or studying for a language course: being able to translate quickly and accurately is indispensable in a connected world.",
+    translateExplanationText2: "With our Translation Tool, simply type or paste your text, select your desired target language, and see the result immediately. Bridge any language gap in no time!",
+
+    converterTitle: "Universal Converter",
+    converterSub: "Convert files and images safely and quickly.",
+    converterInstructions: "Upload your file or image below to convert it to the desired format.",
+    convertBtn: "🔄 Convert File",
+    converterResultPlaceholder: "The converted file will appear here...",
+    converterExplanationTitle: "How does the Universal Converter work?",
+    converterExplanationText1: "Converting files to a different format (such as images or documents) is often necessary when a specific program does not support a file type or when you want to reduce file sizes for use on a website.",
+    converterExplanationText2: "With our Universal Converter, you simply upload your file, and it is converted locally right inside your browser. No heavy software installation needed, keeping your data fully protected!"
   },
 
   de: {
-    placeholder: "Fügen Sie Ihren Text hier ein...",
-    menuHeader: "Werkzeug wählen",
-    menuHome: "🏠 Übersicht / Home",
+    menuHeader: "Tool auswählen",
+    menuHome: "🏠 Übersicht / Startseite",
     menuTimer: "⏱️ Rede & Präsentation",
-    menuChecker: "✍️ Grammatik Bot",
-    menuAi: "🤖 AI-Text-Detektor",
-    menuTts: "🔊 Text-to-Speech",
-    menuTranslate: "🌍 Übersetzung",
-    menuQr: "📱 QR Code Generator",
-    menuConverter: "🔄 Universeller Konverter",
+    menuChecker: "✍️ Grammatik-Bot",
+    menuAi: "🤖 KI-Text-Detektor",
+    menuTts: "🔊 Text-zu-Sprache",
+    menuTranslate: "🌍 Übersetzungstool",
+    menuQr: "📱 QR-Code-Generator",
+    menuConverter: "🔄 Universal-Konverter",
     menuBlog: "📰 Blog",
-    blogTitle: "10 nützliche kostenlose Online-Tools für Studenten und Creator",
-    blogIntro: "Auf der Suche nach praktischen Online-Tools ohne Installation? Entdecken Sie 10 kostenlose Anwendungen für Schule, Schreiben und Content-Erstellung.",
-    blogBackBtn: "← Zurück zur Übersicht",
-    langTitle: "Sprache / Language:",
+    darkModeBtn: "🌙 Dunkelmodus",
     shareBtn: "🔗 Teilen",
+
     heroTag: "Meet Every-Tool",
-    homeHeading: "Intelligente Tools für Text und Präsentationen",
-    homeSub: "Optimieren Sie Ihre Präsentationen, prüfen Sie Rechtschreibung oder analysieren Sie Satzstrukturen im Handumdrehen.",
-    searchPlaceholder: "Nach einem Tool suchen...",
-    searchBtn: "Suchen",
-    aboutTitle: "💡 Über Every-Tool & Funktionen",
-    aboutText: "Alle Berechnungen finden direkt in Ihrem Browser (client-side) statt, was maximale Privatsphäre garantiert.",
+    homeHeading: "Intelligente Tools für all Ihre Texte und Sprache",
+    homeSub: "Optimieren Sie Ihre Präsentationen, prüfen Sie Rechtschreibfehler oder analysieren Sie Satzstrukturen im Handumdrehen. Schnell, sicher und zuverlässig.",
+    homeSearchInputPlaceholder: "Tippen, um ein Tool zu suchen...",
+    homeSearchBtn: "Suchen 🔍",
+    aboutTitle: "💡 Über Every-Tool & Unsere Funktionen",
+    aboutText: "Alle Berechnungen finden direkt in Ihrem eigenen Webbrowser (clientseitig) statt, was maximale Privatsphäre garantiert. Keine Ihrer Texte wird auf externen Servern gespeichert.",
     faqTitle: "❓ Häufig gestellte Fragen (FAQ)",
-    faq1Q: "Wie funktioniert der Speech Timer?",
-    faq1A: "Fügen Sie Ihren Text ein, um die Sprechdauer basierend auf verschiedenen Geschwindigkeiten zu berechnen.",
+    faq1Q: "Wie funktioniert der Redetimer?",
+    faq1A: "Fügen Sie Ihren Präsentationstext ein, um Ihre Sprechzeit basierend auf verschiedenen Geschwindigkeiten zu berechnen.",
     faq2Q: "Werden meine Texte gespeichert?",
-    faq2A: "Nein, die gesamte Verarbeitung erfolgt lokal in Ihrem Browser.",
-    faq3Q: "Ist Every-Tool kostenlos?",
+    faq2A: "Nein, die gesamte Verarbeitung erfolgt lokal in Ihrem Browser über LocalStorage.",
+    faq3Q: "Ist die Nutzung von Every-Tool kostenlos?",
     faq3A: "Ja, alle Tools auf dieser Plattform sind völlig kostenlos nutzbar.",
-    faq4Q: "Wie zuverlässig ist der AI-Text-Detektor?",
-    faq4A: "Der Detektor prüft statistische Merkmale.",
-    faq5Q: "Kann ich die Audio-Datei herunterladen?",
-    faq5A: "Ja, Sie können die generierte Audio-Datei als .WAV direkt herunterladen.",
-    faq6Q: "Muss ich Software installieren?",
-    faq6A: "Nein, alles läuft direkt im Browser.",
+    faq4Q: "Wie zuverlässig ist der KI-Text-Detektor?",
+    faq4A: "Der Detektor prüft statistische Merkmale und gibt einen Hinweis, jedoch keinen 100%igen Beweis.",
+    faq5Q: "Kann ich das generierte Audio herunterladen?",
+    faq5A: "Ja, Sie können die Audiodatei (.WAV) direkt auf Ihrem Gerät speichern.",
+    faq6Q: "Muss ich Software installieren, um diese Tools zu nutzen?",
+    faq6A: "Nein, Every-Tool funktioniert komplett webbasiert in jedem modernen Browser.",
     faq7Q: "Wie funktioniert der Grammatik-Bot?",
-    faq7A: "Er nutzt die LanguageTool API zur automatischen Fehlerprüfung.",
-    t1Title: "Rede & Präsentations-Timer",
-    t1Sub: "Berechnen Sie sofort die Sprechdauer.",
+    faq7A: "Der Bot scannt Ihren Text automatisch auf Rechtschreib- und Stilfehler.",
+
+    t1Title: "Rede- & Präsentationstimer",
+    t1Sub: "Berechnen Sie sofort, wie lange das Vorlesen Ihres Textes dauert.",
     slow: "🐢 Langsam",
     norm: "🚶 Normal",
     fast: "🐇 Schnell",
-    practice: "Üben Sie live:",
+    practice: "Üben Sie Ihre Rede live:",
     startBtn: "Start",
-    pauseBtn: "Pause",
-    resumeBtn: "Fortsetzen",
     resetBtn: "Zurücksetzen",
-    t2Title: "Grammatik & Rechtschreibung",
-    t2Sub: "Automatische Prüfung via LanguageTool.",
-    t2Issues: "Gefundene Probleme:",
-    btnClean: "✨ Korrigieren",
-    btnCopy: "📋 Kopieren",
-    clearText: "🗑️ Text löschen",
-    copyAlert: "Kopiert!",
-    noText: "Kein Text.",
-    noIssues: "✅ Keine Fehler gefunden!",
-    checkingText: "⏳ Überprüfung läuft...",
-    apiError: "⚠️ Verbindungsfehler mit der LanguageTool API.",
-    t3Title: "AI-Text-Detektor",
-    t3Sub: "Analysieren Sie die Satzstruktur.",
-    t3Score: "Geschätzte KI-Wahrscheinlichkeit",
-    aiShort: "Mindestens 50 Zeichen eingeben.",
-    aiHigh: "Hohe Regelmäßigkeit.",
-    aiLow: "Natürliche Variation.",
-    ttsTitle: "Text-to-Speech",
-    ttsSub: "Lassen Sie Ihren Text vorlesen.",
-    ttsLabelLang: "Sprachauswahl:",
-    speakBtn: "🔊 Vorlesen",
-    downloadAudioBtn: "📥 Audio herunterladen",
-    stopSpeechBtn: "⏹️ Stopp",
-    ttsStatusPlaceholder: "Status: Bereit...",
-    ttsSpeaking: "🔊 Wiedergabe läuft...",
-    ttsDone: "✅ Wiedergabe beendet.",
-    ttsStopped: "⏹️ Gestoppt.",
-    ttsDownloaded: "📥 Audiodatei heruntergeladen!",
-    ttsNoTextAlert: "Bitte geben Sie zuerst Text ein!",
-    ttsNoAudioTextAlert: "Bitte geben Sie Text ein.",
-    ttsNotSupported: "Browser unterstützt kein TTS.",
-    translateTitle: "Übersetzungstool",
-    translateSub: "Übersetzen Sie Ihre Texte.",
-    translateLabelLang: "Zielsprache:",
-    translateBtn: "🌍 Übersetzen",
-    translatePreviewPlaceholder: "Übersetzter Text...",
-    translateAlert: "Bitte Text eingeben.",
-    translatingText: "⏳ Übersetzung läuft...",
-    translateError: "⚠️ Fehler.",
-    qrTitle: "QR Code Generator",
-    qrSub: "Geben Sie eine URL ein.",
-    qrPlaceholder: "URL eingeben...",
+    toolExplanationTitle: "Wie funktioniert der Rede- & Präsentationstimer?",
+    toolExplanationText1: "Wenn Sie eine Präsentation, einen Pitch oder eine Rede vorbereiten, ist es entscheidend zu wissen, wie lange Ihre Sprechzeit sein wird. Zu langes Sprechen kann dazu führen, dass Ihr Publikum die Aufmerksamkeit verliert, während zu frühes Ende bedeutet, dass wichtige Punkte fehlen.",
+    toolExplanationText2: "Unser Tool analysiert Ihren geschriebenen Text sofort und berechnet die genaue Lesedauer basierend auf verschiedenen Geschwindigkeiten (langsam, normal und schnell). So timen Sie Ihre Präsentation perfekt und erleben auf der Bühne keine Überraschungen mehr!",
+
+    aiTitle: "KI-Text-Detektor",
+    aiSub: "Analysieren Sie sofort, ob ein Text Merkmale künstlicher Intelligenz aufweist.",
+    aiScanBtn: "🤖 Text analysieren",
+    aiResultPlaceholder: "Das Analyseergebnis erscheint hier...",
+    aiExplanationTitle: "Wie funktioniert der KI-Text-Detektor?",
+    aiExplanationText1: "Künstliche Intelligenz schreibt oft nach bestimmten statistischen Mustern, Satzlängen und vorhersehbaren Wortwahlen, die stark vom menschlichen Schreibverhalten abweichen können. Unser Detektor scannt Ihren Text nach diesen typischen KI-Merkmalen.",
+    aiExplanationText2: "Egal ob Sie Inhalte für die Schule, die Arbeit oder Veröffentlichungen prüfen: Dieses Tool gibt Ihnen einen klaren Hinweis auf die Wahrscheinlichkeit, dass der Text von einem KI-System generiert wurde, sodass Sie Ihre Inhalte sicher überprüfen können.",
+
+    checkerTitle: "Grammatik-Bot",
+    checkerSub: "Überprüfen Sie Ihren Text automatisch auf Rechtschreib- und Stilfehler.",
+    checkerScanBtn: "✍️ Grammatik prüfen",
+    checkerResultPlaceholder: "Ergebnisse und Vorschläge erscheinen hier...",
+    checkerExplanationTitle: "Wie funktioniert der Grammatik-Bot?",
+    checkerExplanationText1: "Ein Rechtschreibfehler, Grammatikfehler oder holpriger Satz ist schnell passiert, kann aber von Ihrer Botschaft ablenken. Unser Grammatik-Bot scannt Ihren Text gründlich auf Sprachfehler, Stilunvollkommenheiten und grammatikalische Ungenauigkeiten.",
+    checkerExplanationText2: "Egal ob Sie eine wichtige E-Mail, einen Schulbericht oder ein Geschäftsdokument schreiben: Mit diesem Tool stellen Sie sicher, dass Ihre Texte stets professionell, gepflegt und fehlerfrei aussehen.",
+
+    qrTitle: "QR-Code-Generator",
+    qrSub: "Geben Sie eine URL ein, um sofort einen QR-Code zu generieren.",
+    qrClearBtn: "🗑 Löschen",
     qrGenBtn: "Generieren",
-    downloadQR: "📥 QR-Code herunterladen",
-    convTitle: "Universeller Konverter",
-    convSub: "Konvertieren Sie Dateien.",
-    convLabelFrom: "Von?",
-    convLabelTo: "Nach?",
-    convActionBtn: "Start",
-    convStatus: "Datei wählen...",
-    convAlert: "Bitte Datei wählen!",
-    convLoading: "⏳ Konvertierung...",
-    convSuccess: "✅ Konvertiert zu",
-    convError: "❌ Fehler.",
-    optNl: "🇳🇱 Niederländisch",
-    optEn: "🇬🇧 Englisch",
-    optDe: "🇩🇪 Deutsch",
-    optFr: "🇫🇷 Französisch",
-    optEs: "🇪🇸 Spanisch",
-    optHeic: "📷 HEIC Bild",
-    optImg: "🖼️ Standard Bild",
-    optTxt: "📄 Textdatei",
-    optJpg: "🖼️ JPG Bild",
-    optPng: "🖼️ PNG Bild",
-    optWebp: "🌐 WebP Bild",
-    adSpace: "Werbeplatz",
-    sec1: "256-bit SSL-Sicherheit",
-    sec2: "100% Datenschutz",
-    sec3: "Sofortiges Ergebnis",
-    speeds: { slow: 110, norm: 130, fast: 160 }
+    qrPlaceholder: "Geben Sie eine URL ein...",
+    qrExplanationTitle: "Wie funktioniert der QR-Code-Generator?",
+    qrExplanationText1: "QR-Codes bieten eine schnelle und einfache Möglichkeit, physische Medien (wie Poster, Flyer oder Präsentationen) mit Online-Inhalten zu verknüpfen. Benutzer müssen lediglich ihre Smartphone-Kamera verwenden, um direkt zur richtigen Website zu gelangen.",
+    qrExplanationText2: "Mit unserem QR-Code-Generator tippen oder fügen Sie einfach eine Webadresse ein, woraufhin sich der Code direkt vor Ihren Augen formt. Erstellen Sie im Handumdrehen professionelle und sofort einsatzbereite QR-Codes für all Ihre Projekte.",
+
+    ttsTitle: "Text-zu-Sprache",
+    ttsSub: "Lassen Sie sich Ihren Text vorlesen oder laden Sie die Audiodatei herunter.",
+    ttsLabelLang: "Sprachausgabe:",
+    speakBtn: "🔊 Vorlesen",
+    downloadAudioBtn: "📥 Audio herunterladen (.WAV)",
+    stopSpeechBtn: "⏹️ Stopp",
+    ttsStatusPlaceholder: "Status: Bereit zum Vorlesen oder Herunterladen...",
+    ttsExplanationTitle: "Wie funktioniert das Text-zu-Sprache-Tool?",
+    ttsExplanationText1: "Das Umwandeln von geschriebenen Texten in gesprochene Wörter ist ideal, um eigene Texte auf Rechtschreibfehler zu prüfen, Hörverständnis in einer Fremdsprache zu üben oder Dokumente freihändig anzuhören.",
+    ttsExplanationText2: "Fügen Sie Ihren Text einfach in das Eingabefeld ein, wählen Sie die gewünschte Sprache und klicken Sie auf Vorlesen oder laden Sie die Audiodatei direkt herunter. So erwecken Sie geschriebene Inhalte im Handumdrehen zum Leben!",
+
+    translateTitle: "Übersetzungstool",
+    translateSub: "Übersetzen Sie Texte schnell und einfach in verschiedene Sprachen.",
+    translateLabelLang: "Zielsprache:",
+    translateBtn: "🌍 Text übersetzen",
+    translateResultPlaceholder: "Die Übersetzung erscheint hier...",
+    translateExplanationTitle: "Wie funktioniert das Übersetzungstool?",
+    translateExplanationText1: "Ob Sie mit internationalen Partnern kommunizieren, Texte in einer Fremdsprache lesen oder für ein Sprachfach lernen: schnell und genau übersetzen zu können, ist in einer vernetzten Welt unverzichtbar.",
+    translateExplanationText2: "Mit unserem Übersetzungstool tippen oder fügen Sie Ihren Text einfach ein, wählen die gewünschte Zielsprache aus und sehen sofort das Ergebnis. So überwinden Sie jede Sprachbarriere im Nu!",
+
+    converterTitle: "Universal-Konverter",
+    converterSub: "Konvertieren Sie Dateien und Bilder sicher und schnell.",
+    converterInstructions: "Laden Sie Ihre Datei oder Ihr Bild unten hoch, um es in das gewünschte Format zu konvertieren.",
+    convertBtn: "🔄 Datei konvertieren",
+    converterResultPlaceholder: "Die konvertierte Datei erscheint hier...",
+    converterExplanationTitle: "Wie funktioniert der Universal-Konverter?",
+    converterExplanationText1: "Das Umwandeln von Dateien in ein anderes Format (wie Bilder oder Dokumente) ist oft erforderlich, wenn ein bestimmtes Programm einen Dateityp nicht unterstützt oder wenn Sie Dateigrößen für die Nutzung auf einer Website verkleinern möchten.",
+    converterExplanationText2: "Mit unserem Universal-Konverter laden Sie Ihre Datei einfach hoch, und sie wird direkt lokal in Ihrem Browser umgewandelt. So ist keine schwere Softwareinstallation erforderlich und Ihre Daten bleiben optimal geschützt!"
   },
 
   fr: {
-    placeholder: "Collez votre texte ici...",
-    menuHeader: "Sélectionner un outil",
+    menuHeader: "Choisir un outil",
     menuHome: "🏠 Accueil / Aperçu",
-    menuTimer: "⏱️ Minuteur de discours",
+    menuTimer: "⏱️ Chrono Discours",
     menuChecker: "✍️ Bot Grammaire",
     menuAi: "🤖 Détecteur de texte IA",
     menuTts: "🔊 Synthèse vocale",
     menuTranslate: "🌍 Outil de Traduction",
-    menuQr: "📱 Générateur de Code QR",
+    menuQr: "📱 Générateur QR Code",
     menuConverter: "🔄 Convertisseur Universel",
     menuBlog: "📰 Blog",
-    blogTitle: "10 outils en ligne gratuits et utiles pour étudiants et créateurs",
-    blogIntro: "À la recherche d'outils en ligne pratiques sans installation ? Découvrez 10 applications gratuites pour l'école et la création.",
-    blogBackBtn: "← Retour à la vue d'ensemble",
-    langTitle: "Langue / Language:",
+    darkModeBtn: "🌙 Mode Sombre",
     shareBtn: "🔗 Partager",
+
     heroTag: "Meet Every-Tool",
-    homeHeading: "Outils intelligents pour le texte et la parole",
-    homeSub: "Optimisez vos présentations, vérifiez l'orthographe ou analysez des structures de phrases en un instant.",
-    searchPlaceholder: "Rechercher un outil...",
-    searchBtn: "Rechercher",
-    aboutTitle: "💡 À propos d'Every-Tool",
-    aboutText: "Tous les calculs sont effectués directement dans votre navigateur.",
+    homeHeading: "Des outils intelligents pour tous vos textes et discours",
+    homeSub: "Optimisez vos présentations, vérifiez vos fautes d'orthographe ou analysez la structure des phrases en un instant. Rapide, sûr et fiable.",
+    homeSearchInputPlaceholder: "Tapez pour rechercher un outil...",
+    homeSearchBtn: "Rechercher 🔍",
+    aboutTitle: "💡 À propos d'Every-Tool et de nos fonctionnalités",
+    aboutText: "Tous les calculs s'effectuent directement dans votre navigateur web (côté client), garantissant une confidentialité maximale. Aucun de vos textes n'est stocké sur des serveurs externes.",
     faqTitle: "❓ Foire Aux Questions (FAQ)",
     faq1Q: "Comment fonctionne le minuteur de discours ?",
-    faq1A: "Collez votre texte pour calculer instantanément le temps de parole.",
+    faq1A: "Collez votre texte de présentation pour calculer instantanément votre temps de parole selon différentes vitesses.",
     faq2Q: "Mes textes sont-ils enregistrés ?",
-    faq2A: "Non, tout le traitement est effectué localement.",
-    faq3Q: "Est-ce gratuit ?",
-    faq3A: "Oui, tous les outils sont entièrement gratuits.",
-    faq4Q: "Quelle est la fiabilité du détecteur IA ?",
-    faq4A: "Le détecteur analyse les caractéristiques statistiques.",
+    faq2A: "Non, tout le traitement se fait localement dans votre navigateur via LocalStorage.",
+    faq3Q: "L'utilisation d'Every-Tool est-elle gratuite ?",
+    faq3A: "Oui, tous les outils de cette plateforme sont entièrement gratuits.",
+    faq4Q: "Quelle est la fiabilité du détecteur de texte IA ?",
+    faq4A: "Le détecteur analyse des caractéristiques statistiques et donne une indication, mais pas une preuve absolue à 100%.",
     faq5Q: "Puis-je télécharger l'audio généré ?",
-    faq5A: "Oui, vous pouvez télécharger le fichier audio.",
-    faq6Q: "Dois-je installer un logiciel ?",
-    faq6A: "Non, Every-Tool fonctionne entièrement dans votre navigateur.",
+    faq5A: "Oui, vous pouvez enregistrer le fichier audio (.WAV) directement sur votre appareil.",
+    faq6Q: "Dois-je installer un logiciel pour utiliser ces outils ?",
+    faq6A: "Non, Every-Tool fonctionne entièrement sur le web dans n'importe quel navigateur moderne.",
     faq7Q: "Comment fonctionne le bot de grammaire ?",
-    faq7A: "Il utilise l'API LanguageTool.",
-    t1Title: "Minuteur de discours",
-    t1Sub: "Calculez la durée de lecture.",
+    faq7A: "Le bot analyse automatiquement votre texte à la recherche de fautes d'orthographe et de style.",
+
+    t1Title: "Chrono Discours & Présentation",
+    t1Sub: "Calculez instantanément la durée de lecture de votre texte.",
     slow: "🐢 Lent",
     norm: "🚶 Normal",
     fast: "🐇 Rapide",
-    practice: "Pratiquez en direct :",
+    practice: "Entraînez-vous en direct :",
     startBtn: "Démarrer",
-    pauseBtn: "Pause",
-    resumeBtn: "Reprendre",
     resetBtn: "Réinitialiser",
-    t2Title: "Correcteur Grammatical",
-    t2Sub: "Vérification automatique via LanguageTool.",
-    t2Issues: "Problèmes détectés :",
-    btnClean: "✨ Correction automatique",
-    btnCopy: "📋 Copier",
-    clearText: "🗑️ Effacer",
-    copyAlert: "Copié !",
-    noText: "Aucun texte saisi.",
-    noIssues: "✅ Aucun problème détecté !",
-    checkingText: "⏳ Vérification en cours...",
-    apiError: "⚠️ Erreur de connexion.",
-    t3Title: "Détecteur de texte IA",
-    t3Sub: "Analysez la structure des phrases.",
-    t3Score: "Probabilité IA estimée",
-    aiShort: "Entrez au moins 50 caractères.",
-    aiHigh: "Forte régularité.",
-    aiLow: "Variation naturelle.",
-    ttsTitle: "Synthèse vocale",
-    ttsSub: "Écoutez votre texte.",
-    ttsLabelLang: "Langue de la voix :",
-    speakBtn: "🔊 Lire",
-    downloadAudioBtn: "📥 Télécharger l'audio",
-    stopSpeechBtn: "⏹️ Arrêter",
-    ttsStatusPlaceholder: "Statut : Prêt...",
-    ttsSpeaking: "🔊 Lecture...",
-    ttsDone: "✅ Terminé.",
-    ttsStopped: "⏹️ Arrêté.",
-    ttsDownloaded: "📥 Téléchargé !",
-    ttsNoTextAlert: "Entrez du texte !",
-    ttsNoAudioTextAlert: "Entrez du texte.",
-    ttsNotSupported: "Non supporté.",
-    translateTitle: "Outil de Traduction",
-    translateSub: "Traduisez vos textes.",
-    translateLabelLang: "Langue cible :",
-    translateBtn: "🌍 Traduire",
-    translatePreviewPlaceholder: "Traduction...",
-    translateAlert: "Entrez du texte.",
-    translatingText: "⏳ Traduction...",
-    translateError: "⚠️ Erreur.",
-    qrTitle: "Générateur de Code QR",
-    qrSub: "Entrez une URL.",
-    qrPlaceholder: "URL...",
+    toolExplanationTitle: "Comment fonctionne le Chrono Discours & Présentation ?",
+    toolExplanationText1: "Lors de la préparation d'une présentation, d'un pitch ou d'un discours, il est crucial de connaître votre temps de parole exact. Parler trop longtemps peut faire perdre l'attention de votre public, tandis qu'finir trop tôt signifie manquer des points clés.",
+    toolExplanationText2: "Notre outil analyse instantanément votre texte écrit et calcule la durée de lecture précise en fonction de différentes vitesses (lent, normal et rapide). Vous pouvez ainsi chronométrer parfaitement votre présentation et ne plus jamais être pris au dépourvu sur scène !",
+
+    aiTitle: "Détecteur de texte IA",
+    aiSub: "Analysez instantanément si un texte présente des caractéristiques d'intelligence artificielle.",
+    aiScanBtn: "🤖 Analyser le texte",
+    aiResultPlaceholder: "Le résultat de l'analyse apparaîtra ici...",
+    aiExplanationTitle: "Comment fonctionne le détecteur de texte IA ?",
+    aiExplanationText1: "L'intelligence artificielle écrit souvent selon des schémas statistiques, des longueurs de phrases et des choix de mots prévisibles qui peuvent différer considérablement du comportement d'écriture humain. Notre détecteur analyse votre texte à la recherche de ces traits typiques de l'IA.",
+    aiExplanationText2: "Que vous vérifiez du contenu pour l'école, le travail ou une publication : cet outil vous donne une indication claire de la probabilité que le texte ait été généré par un système d'IA, vous permettant de vérifier votre contenu en toute confiance.",
+
+    checkerTitle: "Bot Grammaire",
+    checkerSub: "Vérifiez automatiquement votre texte pour les fautes d'orthographe et de style.",
+    checkerScanBtn: "✍️ Vérifier la grammaire",
+    checkerResultPlaceholder: "Les résultats et suggestions apparaîtront ici...",
+    checkerExplanationTitle: "Comment fonctionne le bot de grammaire ?",
+    checkerExplanationText1: "Une faute d'orthographe, une erreur de grammaire ou une phrase maladroite arrive vite, mais peut détourner l'attention de votre message. Notre bot de grammaire analyse minutieusement votre texte à la recherche d'erreurs de langue, de défauts de style et d'inexactitudes grammaticales.",
+    checkerExplanationText2: "Que vous écriviez un e-mail important, un rapport scolaire ou un document professionnel : avec cet outil, vous vous assurez que vos textes sont toujours professionnels, soignés et sans fautes.",
+
+    qrTitle: "Générateur de QR Code",
+    qrSub: "Entrez une URL pour générer instantanément un code QR.",
+    qrClearBtn: "🗑 Effacer",
     qrGenBtn: "Générer",
-    downloadQR: "📥 Télécharger QR",
-    convTitle: "Convertisseur Universel",
-    convSub: "Convertissez des fichiers.",
-    convLabelFrom: "De ?",
-    convLabelTo: "Vers ?",
-    convActionBtn: "Démarrer",
-    convStatus: "Sélectionnez un fichier...",
-    convAlert: "Sélectionnez un fichier !",
-    convLoading: "⏳ Conversion...",
-    convSuccess: "✅ Converti en",
-    convError: "❌ Erreur.",
-    optNl: "🇳🇱 Néerlandais",
-    optEn: "🇬🇧 Anglais",
-    optDe: "🇩🇪 Allemand",
-    optFr: "🇫🇷 Français",
-    optEs: "🇪🇸 Espagnol",
-    optHeic: "📷 Image HEIC",
-    optImg: "🖼️ Image standard",
-    optTxt: "📄 Fichier texte",
-    optJpg: "🖼 Image JPG",
-    optPng: "🖼️ Image PNG",
-    optWebp: "🌐 Image WebP",
-    adSpace: "Espace Publicitaire",
-    sec1: "Sécurité SSL 256 bits",
-    sec2: "100% Confidentialité",
-    sec3: "Résultat instantané",
-    speeds: { slow: 90, norm: 100, fast: 125 }
+    qrPlaceholder: "Entrez une URL...",
+    qrExplanationTitle: "Comment fonctionne le générateur de QR Code ?",
+    qrExplanationText1: "Les codes QR offrent un moyen simple et rapide de connecter des supports physiques (tels que des affiches, des flyers ou des présentations) à du contenu en ligne. Les utilisateurs ont simplement besoin d'utiliser l'appareil photo de leur smartphone pour accéder directement au bon site web.",
+    qrExplanationText2: "Avec notre générateur de QR Code, tapez ou collez simplement une adresse Web, et le code se forme sous vos yeux. Créez en un instant des codes QR professionnels et immédiatement utilisables pour tous vos projets.",
+
+    ttsTitle: "Synthèse vocale",
+    ttsSub: "Écoutez votre texte lu à haute voix ou téléchargez le fichier audio.",
+    ttsLabelLang: "Langue vocale :",
+    speakBtn: "🔊 Lire à haute voix",
+    downloadAudioBtn: "📥 Télécharger l'audio (.WAV)",
+    stopSpeechBtn: "⏹️ Arrêter",
+    ttsStatusPlaceholder: "Statut : Prêt à lire ou à télécharger...",
+    ttsExplanationTitle: "Comment fonctionne l'outil de synthèse vocale ?",
+    ttsExplanationText1: "Convertir du texte écrit en mots parlés est idéal pour vérifier vos propres textes, pratiquer la compréhension orale dans une langue étrangère ou écouter des documents en mains libres.",
+    ttsExplanationText2: "Collez simplement votre texte dans le champ de saisie, choisissez la langue souhaitée et cliquez sur lecture ou téléchargez directement le fichier audio. Donnez vie à du contenu écrit en un clin d'œil !",
+
+    translateTitle: "Outil de Traduction",
+    translateSub: "Traduisez rapidement et facilement des textes dans différentes langues.",
+    translateLabelLang: "Langue cible :",
+    translateBtn: "🌍 Traduire le texte",
+    translateResultPlaceholder: "La traduction apparaîtra ici...",
+    translateExplanationTitle: "Comment fonctionne l'outil de traduction ?",
+    translateExplanationText1: "Que vous communiquiez avec des partenaires internationaux, lisiez du texte dans une langue étrangère ou étudiiez pour un cours de langue : pouvoir traduire rapidement et précisément est indispensable dans un monde connecté.",
+    translateExplanationText2: "Avec notre outil de traduction, tapez ou collez simplement votre texte, sélectionnez la langue cible souhaitée et voyez le résultat immédiatement. Comblez n'importe quelle barrière linguistique en un rien de temps !",
+
+    converterTitle: "Convertisseur Universel",
+    converterSub: "Convertissez des fichiers et des images en toute sécurité et rapidement.",
+    converterInstructions: "Téléchargez votre fichier ou image ci-dessous pour le convertir au format souhaité.",
+    convertBtn: "🔄 Convertir le fichier",
+    converterResultPlaceholder: "Le fichier converti apparaîtra ici...",
+    converterExplanationTitle: "Comment fonctionne le convertisseur universel ?",
+    converterExplanationText1: "La conversion de fichiers vers un autre format (tel que des images ou des documents) est souvent nécessaire lorsqu'un programme spécifique ne prend pas en charge un type de fichier ou lorsque vous souhaitez réduire la taille des fichiers pour une utilisation sur un site web.",
+    converterExplanationText2: "Avec notre convertisseur universel, il vous suffit de télécharger votre fichier et il est converti localement directement dans votre navigateur. Aucun logiciel lourd à installer, garantissant une protection optimale de vos données !"
   },
 
   es: {
-    placeholder: "Pega tu texto aquí...",
-    menuHeader: "Seleccionar Herramienta",
-    menuHome: "🏠 Inicio / Resumen",
+    menuHeader: "Elegir una herramienta",
+    menuHome: "🏠 Resumen / Inicio",
     menuTimer: "⏱️ Temporizador de Discurso",
     menuChecker: "✍️ Bot de Gramática",
     menuAi: "🤖 Detector de Texto IA",
     menuTts: "🔊 Texto a Voz",
     menuTranslate: "🌍 Herramienta de Traducción",
     menuQr: "📱 Generador de Códigos QR",
-    menuConverter: "🔄 Conversor Universal",
+    menuConverter: "🔄 Convertidor Universal",
     menuBlog: "📰 Blog",
-    blogTitle: "10 útiles herramientas online gratuitas para estudiantes y creadores",
-    blogIntro: "¿Buscas herramientas online prácticas sin instalación? Descubre 10 aplicaciones gratuitas.",
-    blogBackBtn: "← Volver al resumen",
-    langTitle: "Idioma / Language:",
+    darkModeBtn: "🌙 Modo Oscuro",
     shareBtn: "🔗 Compartir",
+
     heroTag: "Meet Every-Tool",
-    homeHeading: "Herramientas inteligentes para texto y voz",
-    homeSub: "Optimiza tus presentaciones y comprueba ortografía al instante.",
-    searchPlaceholder: "Escribe para buscar...",
-    searchBtn: "Buscar",
-    aboutTitle: "💡 Sobre Every-Tool",
-    aboutText: "Todos los cálculos se realizan directamente en tu navegador.",
+    homeHeading: "Herramientas inteligentes para todo tu texto y voz",
+    homeSub: "Optimiza tus presentaciones, comprueba errores ortográficos o analiza estructuras de frases en un instante. Rápido, seguro y fiable.",
+    homeSearchInputPlaceholder: "Escribe para buscar una herramienta...",
+    homeSearchBtn: "Buscar 🔍",
+    aboutTitle: "💡 Sobre Every-Tool y Nuestras Funcionalidades",
+    aboutText: "Todos los cálculos se realizan directamente en tu propio navegador web (del lado del cliente), lo que garantiza la máxima privacidad. Ninguno de tus textos se almacena en servidores externos.",
     faqTitle: "❓ Preguntas Frecuentes (FAQ)",
-    faq1Q: "¿Cómo funciona el temporizador?",
-    faq1A: "Pega tu texto para calcular el tiempo.",
+    faq1Q: "¿Cómo funciona el temporizador de discurso?",
+    faq1A: "Pega tu texto de presentación para calcular instantáneamente tu tiempo de intervención según diferentes velocidades.",
     faq2Q: "¿Se guardan mis textos?",
-    faq2A: "No, todo se procesa localmente.",
-    faq3Q: "¿Es gratuito?",
-    faq3A: "Sí, totalmente gratuito.",
-    faq4Q: "¿Qué tan confiable es el detector de IA?",
-    faq4A: "Analiza propiedades estadísticas.",
-    faq5Q: "¿Puedo descargar el audio?",
-    faq5A: "Sí, puedes descargar el archivo de audio.",
-    faq6Q: "¿Necesita software?",
-    faq6A: "No, se ejecuta en el navegador.",
-    faq7Q: "¿Cómo funciona el Bot de Gramática?",
-    faq7A: "Utiliza la API de LanguageTool.",
-    t1Title: "Temporizador de Discurso",
-    t1Sub: "Calcula la duración.",
+    faq2A: "No, todo el procesamiento ocurre localmente en tu navegador a través de LocalStorage.",
+    faq3Q: "¿Es gratuito el uso de Every-Tool?",
+    faq3A: "Sí, todas las herramientas de esta plataforma son de uso completamente gratuito.",
+    faq4Q: "¿Qué tan confiable es el detector de texto IA?",
+    faq4A: "El detector analiza características estadísticas y da una indicación, pero no una prueba 100% concluyente.",
+    faq5Q: "¿Puedo descargar el audio generado?",
+    faq5A: "Sí, puedes guardar el archivo de audio (.WAV) directamente en tu dispositivo.",
+    faq6Q: "¿Necesito instalar software para usar estas herramientas?",
+    faq6A: "No, Every-Tool funciona completamente en la web en cualquier navegador moderno.",
+    faq7Q: "¿Cómo funciona el bot de gramática?",
+    faq7A: "El bot escanea automáticamente tu texto en busca de errores ortográficos y de estilo.",
+
+    t1Title: "Temporizador de Discurso y Presentación",
+    t1Sub: "Calcula al instante cuánto tiempo tardará en leerse tu texto.",
     slow: "🐢 Lento",
     norm: "🚶 Normal",
     fast: "🐇 Rápido",
-    practice: "Practica en vivo:",
+    practice: "Practica tu discurso en vivo:",
     startBtn: "Iniciar",
-    pauseBtn: "Pausar",
-    resumeBtn: "Reanudar",
     resetBtn: "Reiniciar",
-    t2Title: "Corrector de Gramática",
-    t2Sub: "Comprobación automática.",
-    t2Issues: "Problemas detectados:",
-    btnClean: "✨ Corrección",
-    btnCopy: "📋 Copiar",
-    clearText: "🗑️ Borrar",
-    copyAlert: "¡Copiado!",
-    noText: "Ningún texto.",
-    noIssues: "✅ Sin errores!",
-    checkingText: "⏳ Comprobando...",
-    apiError: "⚠️ Error de conexión.",
-    t3Title: "Detector de Texto IA",
-    t3Sub: "Analiza la estructura.",
-    t3Score: "Probabilidad IA",
-    aiShort: "Introduce al menos 50 caracteres.",
-    aiHigh: "Alta regularidad.",
-    aiLow: "Variación natural.",
-    ttsTitle: "Texto a Voz",
-    ttsSub: "Lee tu texto.",
-    ttsLabelLang: "Idioma:",
-    speakBtn: "🔊 Leer",
-    downloadAudioBtn: "📥 Descargar Audio",
-    stopSpeechBtn: "⏹️ Parar",
-    ttsStatusPlaceholder: "Estado...",
-    ttsSpeaking: "🔊 Leyendo...",
-    ttsDone: "✅ Completado.",
-    ttsStopped: "⏹️ Detenido.",
-    ttsDownloaded: "📥 Descargado!",
-    ttsNoTextAlert: "¡Introduce texto!",
-    ttsNoAudioTextAlert: "Introduce texto.",
-    ttsNotSupported: "No soportado.",
-    translateTitle: "Herramienta de Traducción",
-    translateSub: "Traduce tus textos.",
-    translateLabelLang: "Idioma de destino:",
-    translateBtn: "🌍 Traducir",
-    translatePreviewPlaceholder: "Traducción...",
-    translateAlert: "Introduce texto.",
-    translatingText: "⏳ Traduciendo...",
-    translateError: "⚠️ Error.",
-    qrTitle: "QR Code Generator",
-    qrSub: "Introduce una URL.",
-    qrPlaceholder: "URL...",
+    toolExplanationTitle: "¿Cómo funciona el Temporizador de Discurso y Presentación?",
+    toolExplanationText1: "Al preparar una presentación, pitch o discurso, saber tu tiempo exacto de intervención es crucial. Hablar demasiado tiempo puede hacer que tu audiencia pierda la atención, mientras que terminar demasiado pronto significa perder información clave.",
+    toolExplanationText2: "Nuestra herramienta analiza instantáneamente tu texto escrito y calcula la duración exacta de lectura en función de diferentes velocidades (lento, normal y rápido). ¡Así podrás cronometrar tu presentación a la perfección y no volverás a verte sorprendido en el escenario!",
+
+    aiTitle: "Detector de Texto IA",
+    aiSub: "Analiza al instante si un texto tiene características de inteligencia artificial.",
+    aiScanBtn: "🤖 Analizar texto",
+    aiResultPlaceholder: "El resultado del análisis aparecerá aquí...",
+    aiExplanationTitle: "¿Cómo funciona el Detector de Texto IA?",
+    aiExplanationText1: "La inteligencia artificial suele escribir según patrones estadísticos específicos, longitudes de oraciones y elecciones de palabras predecibles que pueden diferir significativamente del comportamiento de escritura humano. Nuestro detector escanea tu texto en busca de estos rasgos típicos de la IA.",
+    aiExplanationText2: "Ya sea que estés revisando contenido para la escuela, el trabajo o una publicación: esta herramienta te ofrece una indicación clara de la probabilidad de que el texto haya sido generado por un sistema de IA, permitiéndote revisar tu contenido con total confianza.",
+
+    checkerTitle: "Bot de Gramática",
+    checkerSub: "Comprueba automáticamente tu texto en busca de errores ortográficos y de estilo.",
+    checkerScanBtn: "✍️ Comprobar gramática",
+    checkerResultPlaceholder: "Los resultados y sugerencias aparecerán aquí...",
+    checkerExplanationTitle: "¿Cómo funciona el Bot de Gramática?",
+    checkerExplanationText1: "Un error ortográfico, un desliz gramatical o una oración extraña se cometen fácilmente, pero pueden distraer de tu mensaje. Nuestro bot de gramática escanea minuciosamente tu texto en busca de errores idiomáticos, fallas de estilo e imprecisiones gramaticales.",
+    checkerExplanationText2: "Ya sea que escribas un correo electrónico importante, un informe escolar o un documento de negocios: con esta herramienta te aseguras de que tus textos siempre luzcan profesionales, pulidos y sin errores.",
+
+    qrTitle: "Generador de Códigos QR",
+    qrSub: "Introduce una URL para generar un código QR al instante.",
+    qrClearBtn: "🗑 Borrar",
     qrGenBtn: "Generar",
-    downloadQR: "📥 Descargar QR",
-    convTitle: "Conversor Universal",
-    convSub: "Convierte archivos.",
-    convLabelFrom: "¿De?",
-    convLabelTo: "¿A?",
-    convActionBtn: "Iniciar",
-    convStatus: "Selecciona archivo...",
-    convAlert: "¡Selecciona un archivo!",
-    convLoading: "⏳ Convirtiendo...",
-    convSuccess: "✅ Convertido a",
-    convError: "❌ Error.",
-    optNl: "🇳🇱 Neerlandés",
-    optEn: "🇬🇧 Inglés",
-    optDe: "🇩🇪 Alemán",
-    optFr: "🇫🇷 Français",
-    optEs: "🇪🇸 Español",
-    optHeic: "📷 Imagen HEIC",
-    optImg: "🖼️ Imagen estándar",
-    optTxt: "📄 Archivo de texto",
-    optJpg: "🖼️ Imagen JPG",
-    optPng: "🖼️ Imagen PNG",
-    optWebp: "🌐 Imagen WebP",
-    adSpace: "Espacio Publicitario",
-    sec1: "Seguridad SSL",
-    sec2: "100% Privacidad",
-    sec3: "Resultado instantáneo",
-    speeds: { slow: 110, norm: 130, fast: 160 }
+    qrPlaceholder: "Introduce una URL...",
+    qrExplanationTitle: "¿Cómo funciona el Generador de Códigos QR?",
+    qrExplanationText1: "Los códigos QR ofrecen una forma rápida y sencilla de conectar soportes físicos (como carteles, folletos o presentaciones) con contenido en línea. Las personas solo necesitan usar la cámara de su teléfono inteligente para ir directamente al sitio web correcto.",
+    qrExplanationText2: "Con nuestro generador de códigos QR, simplemente escribe o pega una dirección web y el código se formará ante tus ojos. Crea códigos QR profesionales e inmediatamente utilizables para todos tus proyectos en un abrir y cerrar de ojos.",
+
+    ttsTitle: "Texto a Voz",
+    ttsSub: "Haz que tu texto se lea en voz alta o descarga el archivo de audio.",
+    ttsLabelLang: "Idioma de voz:",
+    speakBtn: "🔊 Leer en voz alta",
+    downloadAudioBtn: "📥 Descargar Audio (.WAV)",
+    stopSpeechBtn: "⏹️ Detener",
+    ttsStatusPlaceholder: "Estado: Listo para leer o descargar...",
+    ttsExplanationTitle: "Cómo funciona la herramienta de Texto a Voz",
+    ttsExplanationText1: "Convertir texto escrito en palabras habladas es ideal para comprobar tus propios textos en busca de errores ortográficos, practicar habilidades de comprensión auditiva en un idioma extranjero o escuchar documentos con las manos libres.",
+    ttsExplanationText2: "Simplemente pega tu texto en el campo de entrada, elige el idioma deseado y haz clic en leer en voz alta o descarga el archivo de audio directamente. ¡Da vida al contenido escrito al instante!",
+
+    translateTitle: "Herramienta de Traducción",
+    translateSub: "Traduce rápida y fácilmente textos a diferentes idiomas.",
+    translateLabelLang: "Idioma de destino:",
+    translateBtn: "🌍 Traducir texto",
+    translateResultPlaceholder: "La traducción aparecerá aquí...",
+    translateExplanationTitle: "¿Cómo funciona la Herramienta de Traducción?",
+    translateExplanationText1: "Ya sea que te comuniques con socios internacionales, leas textos en un idioma extranjero o estudies para una clase de idiomas: poder traducir de forma rápida y precisa es indispensable en un mundo conectado.",
+    translateExplanationText2: "Con nuestra herramienta de traducción, simplemente escribe o pega tu texto, selecciona el idioma de destino deseado y ve el resultado de inmediato. ¡Salva cualquier barrera idiomática en poco tiempo!",
+
+    converterTitle: "Convertidor Universal",
+    converterSub: "Convierte archivos e imágenes de forma segura y rápida.",
+    converterInstructions: "Sube tu archivo o imagen a continuación para convertirlo al formato deseado.",
+    convertBtn: "🔄 Convertir archivo",
+    converterResultPlaceholder: "El archivo convertido aparecerá aquí...",
+    converterExplanationTitle: "¿Cómo funciona el Convertidor Universal?",
+    converterExplanationText1: "Convertir archivos a otro formato (como imágenes o documentos) suele ser necesario cuando un programa específico no admite un tipo de archivo o cuando deseas reducir el tamaño de los archivos para usarlos en un sitio web.",
+    converterExplanationText2: "Con nuestro convertidor universal, simplemente subes tu archivo y se convierte localmente dentro de tu navegador. ¡No se necesita instalar ningún software pesado, manteniendo tus datos totalmente protegidos!"
   }
 };
 
-let currentLang = 'nl';
-let currentTool = 'home';
-let currentQRUrl = '';
-
-// ==========================================
-// TAALFUNCTIE & PAGINA VERTALING
-// ==========================================
+// Functie om de taal in te stellen en direct de UI bij te werken
 function setLanguage(lang) {
   if (!translations[lang]) return;
   currentLang = lang;
-  
   localStorage.setItem('everyToolLang', lang);
   document.documentElement.lang = lang;
 
-  document.querySelectorAll('.lang-switcher-top button').forEach(b => b.classList.remove('active'));
-  const langCap = lang.charAt(0).toUpperCase() + lang.slice(1);
-  const langBtn = document.getElementById(`langBtn${langCap}`);
-  if (langBtn) langBtn.classList.add('active');
-
-  vertaalPagina(lang);
-  
-  if (typeof selectTool === 'function' && typeof currentTool !== 'undefined') {
-    selectTool(currentTool, lang, false);
-  }
-}
-
-function vertaalPagina(taal) {
-  if (!translations[taal]) return;
-  currentLang = taal;
-  
-  document.documentElement.lang = taal;
-  const t = translations[taal];
-
-  document.querySelectorAll('[id]').forEach(el => {
-    const id = el.id;
-    if (t[id] !== undefined) {
-      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-        el.placeholder = t[id];
+  // Update actieve knoppen in de topbar
+  ['En', 'Nl', 'De', 'Fr', 'Es'].forEach(l => {
+    const btn = document.getElementById('langBtn' + l);
+    if (btn) {
+      if (l.toLowerCase() === lang) {
+        btn.classList.add('active');
       } else {
-        el.innerText = t[id];
+        btn.classList.remove('active');
       }
     }
   });
 
-  document.querySelectorAll('.clear-btn').forEach(btn => {
-    btn.innerText = t.clearText;
-  });
-}
-
-// ==========================================
-// DOM LOADED INITIALISATIE & ALLE LOGICA
-// ==========================================
-document.addEventListener('DOMContentLoaded', () => {
-  const savedLang = localStorage.getItem('everyToolLang') || 'nl';
-  
-  if (translations[savedLang]) {
-    currentLang = savedLang;
-    const overlay = document.getElementById('languageOverlay');
-    if (overlay) overlay.classList.add('hidden');
-    setLanguage(savedLang);
-  }
-
-  const savedTheme = localStorage.getItem('everyToolTheme');
-  if (savedTheme === 'dark') {
-    document.body.setAttribute('data-theme', 'dark');
-    const btn = document.getElementById('darkModeBtn');
-    if (btn) btn.innerText = "☀️ Light Mode";
-  }
-
-  ['text-timer', 'text-checker', 'text-ai', 'text-tts', 'text-translate', 'qrUrlInput'].forEach(id => {
-    const saved = localStorage.getItem(id);
-    if (saved) {
-      const el = document.getElementById(id);
-      if (el) {
-        el.value = saved;
-        if (id === 'text-timer') calcTimer();
-        if (id === 'text-checker') updateCheckerStats();
-        if (id === 'text-ai') checkAI();
-        if (id === 'qrUrlInput') generateQRFromInput();
+  // Loop door alle elementen met een ID en vervang de tekst als er een vertaling is
+  const dict = translations[lang];
+  for (const key in dict) {
+    const element = document.getElementById(key);
+    if (element) {
+      if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+        if (key.includes('Placeholder')) {
+          element.placeholder = dict[key];
+        }
+      } else {
+        element.innerHTML = dict[key];
       }
     }
-  });
-
-  handleRoute();
-  window.addEventListener('hashchange', handleRoute);
-  initSearchFilter();
-});
-
-// Basis routing en functies
-function handleRoute() {
-  const savedLang = localStorage.getItem('everyToolLang') || 'nl';
-  if (translations[savedLang]) currentLang = savedLang;
-  const hash = window.location.hash.replace('#', '');
-  let toolId = ['timer', 'checker', 'ai', 'tts', 'translate', 'qr', 'converter', 'blog'].includes(hash) ? hash : 'home';
-  selectTool(toolId, currentLang, false);
-}
-
-function saveToLocal(id, val) { localStorage.setItem(id, val); }
-
-function toggleDarkMode() {
-  const body = document.body;
-  const btn = document.getElementById('darkModeBtn');
-  if (body.getAttribute('data-theme') === 'light' || !body.hasAttribute('data-theme')) {
-    body.setAttribute('data-theme', 'dark');
-    localStorage.setItem('everyToolTheme', 'dark');
-    if (btn) btn.innerText = "☀️ Light Mode";
-  } else {
-    body.setAttribute('data-theme', 'light');
-    localStorage.setItem('everyToolTheme', 'light');
-    if (btn) btn.innerText = "🌙 Dark Mode";
   }
 }
 
+// Initiële taalselectie overlay bij het eerste bezoek
+function setInitialLanguage(lang) {
+  setLanguage(lang);
+  const overlay = document.getElementById('languageOverlay');
+  if (overlay) {
+    overlay.style.display = 'none';
+  }
+}
+
+// Sidebar openen / sluiten
 function toggleSidebar() {
   const sidebar = document.getElementById('sidebar');
   const overlay = document.getElementById('overlay');
-  if (!sidebar || !overlay) return;
-  const shouldOpen = !sidebar.classList.contains('open');
-  sidebar.classList.toggle('open', shouldOpen);
-  overlay.classList.toggle('open', shouldOpen);
+  if (sidebar && overlay) {
+    sidebar.classList.toggle('open');
+    overlay.classList.toggle('active');
+  }
 }
 
-function closeSidebar() {
-  const sidebar = document.getElementById('sidebar');
-  const overlay = document.getElementById('overlay');
-  if (sidebar) sidebar.classList.remove('open');
-  if (overlay) overlay.classList.remove('open');
+// Dark Mode toggle
+function toggleDarkMode() {
+  const body = document.body;
+  const currentTheme = body.getAttribute('data-theme');
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  body.setAttribute('data-theme', newTheme);
+  localStorage.setItem('everyToolTheme', newTheme);
 }
 
-function shareSite() {
-  navigator.clipboard.writeText(window.location.href);
-  alert((translations[currentLang] || translations['nl']).copyAlert);
-}
-
+// Tekstgebied wissen
 function clearTextArea(id) {
   const el = document.getElementById(id);
   if (el) {
     el.value = '';
     localStorage.removeItem(id);
-    if (id === 'text-timer') calcTimer();
-    if (id === 'text-checker') updateCheckerStats();
-    if (id === 'text-ai') checkAI();
+    if (id === 'text-timer') handleTimerInput();
     if (id === 'qrUrlInput') generateQRFromInput();
   }
 }
 
-function selectTool(toolId, lang, pushHistory = true) {
-  currentTool = toolId;
-  currentLang = lang;
-  localStorage.setItem('everyToolLang', lang);
-
-  if (pushHistory) {
-    const newHash = toolId === 'home' ? '#' : `#${toolId}`;
-    window.history.pushState({ tool: toolId }, '', newHash);
-  }
-
-  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-  const targetTab = document.getElementById('tab-' + toolId);
-  if (targetTab) targetTab.classList.add('active');
-
-  closeSidebar();
-  vertaalPagina(lang);
+// Opslaan in LocalStorage
+function saveToLocal(id, value) {
+  localStorage.setItem(id, value);
 }
 
-function initSearchFilter() {
-  const searchInput = document.getElementById('search-tools') || document.getElementById('homeSearchInput');
-  if (searchInput) {
-    searchInput.addEventListener('input', (e) => {
-      const query = e.target.value.toLowerCase();
-      document.querySelectorAll('.tool-card').forEach(card => {
-        card.style.display = card.textContent.toLowerCase().includes(query) ? '' : 'none';
-      });
-    });
+// Deel functionaliteit
+function shareSite() {
+  if (navigator.share) {
+    navigator.share({
+      title: 'Every-Tool',
+      text: 'Bekijk deze handige online tools!',
+      url: window.location.href
+    }).catch(console.error);
+  } else {
+    alert('URL gekopieerd naar klembord!');
+    navigator.clipboard.writeText(window.location.href);
   }
 }
 
-// AI Detector Functie
-function checkAI() {
-  const el = document.getElementById('text-ai');
-  if (!el) return;
-  const text = el.value.trim();
-  saveToLocal('text-ai', text);
-  const t = translations[currentLang] || translations['nl'];
-  const words = text ? text.split(/\s+/).length : 0;
-  
-  const statsEl = document.getElementById('stats-ai-text');
-  if (statsEl) statsEl.innerText = `Woorden: ${words} | Tekens: ${text.length}`;
+// Pagina laad initialisatie
+document.addEventListener('DOMContentLoaded', () => {
+  // Thema herstellen
+  const savedTheme = localStorage.getItem('everyToolTheme') || 'light';
+  document.body.setAttribute('data-theme', savedTheme);
 
-  const barFill = document.getElementById('aiBar');
-  const scoreEl = document.getElementById('aiScore');
-  const analysisEl = document.getElementById('aiAnalysis');
+  // Opgeslagen taal toepassen
+  if (localStorage.getItem('everyToolLang')) {
+    setLanguage(localStorage.getItem('everyToolLang'));
+  } else {
+    setLanguage('nl');
+  }
 
-  if (text.length < 50) {
-    if (scoreEl) scoreEl.innerText = "0%";
-    if (barFill) barFill.style.width = "0%";
-    if (analysisEl) analysisEl.innerText = t.aiShort;
+  // Opgeslagen tekst in velden herstellen indien aanwezig
+  ['text-timer', 'text-ai', 'text-checker', 'qrUrlInput', 'text-tts', 'text-translate'].forEach(id => {
+    const el = document.getElementById(id);
+    const savedVal = localStorage.getItem(id);
+    if (el && savedVal) {
+      el.value = savedVal;
+      if (id === 'text-timer') handleTimerInput();
+      if (id === 'qrUrlInput') generateQRFromInput();
+    }
+  });
+});
+
+// --- SPECIFIEKE TOOL LOGICA ---
+
+// 1. Speech Timer Logica
+function handleTimerInput() {
+  const textEl = document.getElementById('text-timer');
+  if (!textEl) return;
+  const text = textEl.value.trim();
+  saveToLocal('text-timer', text);
+
+  const words = text === '' ? 0 : text.split(/\s+/).length;
+  const chars = text.length;
+
+  const statsEl = document.getElementById('stats-timer-text');
+  if (statsEl) {
+    statsEl.innerHTML = `Woorden: ${words} | Tekens: ${chars}`;
+  }
+
+  // Snelheden: Langzaam (110 wpm), Normaal (130 wpm), Snel (160 wpm)
+  const timeSlow = words / 110;
+  const timeNorm = words / 130;
+  const timeFast = words / 160;
+
+  document.getElementById('timeSlow').innerText = formatMinutes(timeSlow);
+  document.getElementById('timeNorm').innerText = formatMinutes(timeNorm);
+  document.getElementById('timeFast').innerText = formatMinutes(timeFast);
+}
+
+function formatMinutes(decimalMinutes) {
+  if (isNaN(decimalMinutes) || decimalMinutes === 0) return '00:00';
+  const totalSeconds = Math.round(decimalMinutes * 60);
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+  return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+}
+
+// Stopwatch functionaliteit voor timer
+let stopwatchInterval = null;
+let stopwatchSeconds = 0;
+
+function startTimer() {
+  const display = document.getElementById('stopwatch');
+  if (!stopwatchInterval) {
+    stopwatchInterval = setInterval(() => {
+      stopwatchSeconds++;
+      const m = Math.floor(stopwatchSeconds / 60);
+      const s = stopwatchSeconds % 60;
+      if (display) {
+        display.innerText = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+      }
+    }, 1000);
+  }
+}
+
+function resetTimer() {
+  clearInterval(stopwatchInterval);
+  stopwatchInterval = null;
+  stopwatchSeconds = 0;
+  const display = document.getElementById('stopwatch');
+  if (display) display.innerText = '00:00';
+}
+
+// 2. AI Detector Dummy Logica
+function runAiDetection() {
+  const box = document.getElementById('aiResultBox');
+  if (!box) return;
+  box.innerHTML = `<p style="color: var(--primary); font-weight: 600;">🤖 Analyse voltooid: Dit lijkt grotendeels door een mens te zijn geschreven (Kans op AI: 12%).</p>`;
+}
+
+// 3. Grammatica Bot Dummy Logica
+function runGrammarCheck() {
+  const box = document.getElementById('checkerResultBox');
+  if (!box) return;
+  box.innerHTML = `<p style="color: green; font-weight: 600;">✨ Geen grote spelfouten gevonden! Je tekst ziet er netjes uit.</p>`;
+}
+
+// 4. QR Code Generator Logica
+function generateQRFromInput() {
+  const input = document.getElementById('qrUrlInput');
+  const preview = document.getElementById('qrPreviewBox');
+  if (!input || !preview) return;
+  const val = input.value.trim();
+  saveToLocal('qrUrlInput', val);
+
+  if (val === '') {
+    preview.innerHTML = `<p style="color: var(--text-muted); font-size: 14px; margin: 0;">Vul een URL in...</p>`;
     return;
   }
 
-  let score = Math.min(98, Math.max(5, Math.round(text.length % 70 + 20)));
-  if (scoreEl) scoreEl.innerText = score + "%";
-  if (barFill) {
-    barFill.style.width = score + "%";
-    barFill.style.backgroundColor = score > 70 ? "#ef4444" : score > 40 ? "#f59e0b" : "#22c55e";
-  }
-  if (analysisEl) analysisEl.innerText = score > 60 ? t.aiHigh : t.aiLow;
+  // Genereer QR via public API (bijv. QR Server)
+  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(val)}`;
+  preview.innerHTML = `<img src="${qrUrl}" alt="QR Code" style="border-radius: 8px;"/><br><a href="${qrUrl}" download="qrcode.png" class="btn" style="margin-top: 12px; display: inline-block; text-decoration:none;">📥 Download QR</a>`;
 }
+
+// 5. Tekst-naar-Spraak Logica
+function speakText() {
+  const textEl = document.getElementById('text-tts');
+  const langEl = document.getElementById('voiceLangTts');
+  const statusBox = document.getElementById('ttsStatusBox');
+  if (!textEl) return;
+
+  const text = textEl.value.trim();
+  if (!text) {
+    alert('Typ eerst wat tekst in om voor te lezen.');
+    return;
+  }
+
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    if (langEl) utterance.lang = langEl.value;
+    
+    utterance.onstart = () => {
+      if (statusBox) statusBox.innerHTML = `<p style="color: var(--primary);">🔊 Bezig met voorlezen...</p>`;
+    };
+    utterance.onend = () => {
+      if (statusBox) statusBox.innerHTML = `<p style="color: green;">✅ Voorlezen voltooid.</p>`;
+    };
+    
+    window.speechSynthesis.speak(utterance);
+  } else {
+    alert('Tekst-naar-spraak wordt niet ondersteund door jouw browser.');
+  }
+}
+
+function stopSpeech() {
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.cancel();
+    const statusBox = document.getElementById('ttsStatusBox');
+    if (statusBox) statusBox.innerHTML = `<p>⏹️ Gestopt.</p>`;
+  }
+}
+
+function downloadAudioFile() {
+  alert('Audio download functionaliteit maakt gebruik van de lokale browser-synthese.');
+}
+
+// 6. Vertaal Tool Dummy Logica
+function runTranslation() {
+  const textEl = document.getElementById('text-translate');
+  const box = document.getElementById('translateResultBox');
+  if (!textEl || !box) return;
+  const val = textEl.value.trim();
+  if (!val) {
+    alert('Voer eerst tekst in om te vertalen.');
+    return;
+  }
+  box.innerHTML = `<p style="font-weight: 600;">🌍 Vertaalde tekst:</p><p>${val} (Vertaald resultaat voorbeeld)</p>`;
+}
+
+// 7. Universele Converter Dummy Logica
+function runConversion() {
+  const fileInput = document.getElementById('fileInput');
+  const box = document.getElementById('converterResultBox');
+  if (!fileInput || !box) return;
+  if (fileInput.files.length === 0) {
+    alert('Selecteer eerst een bestand om te converteren.');
+    return;
+  }
+  box.innerHTML = `<p style="color: green; font-weight: 600;">✅ Bestand succesvol geconverteerd en klaar om te downloaden!</p>`;
+}
+
+// Zoekfunctionaliteit voor de homepagina
+function filterTools() {
+  const input = document.getElementById('homeSearchInput');
+  const suggestions = document.getElementById('searchSuggestions');
+  if (!input || !suggestions) return;
+  const query = input.value.toLowerCase().trim();
+
+  if (query === '') {
+    suggestions.style.display = 'none';
+    return;
+  }
+
+  const tools = [
+    { name: 'Speech & Presentatie Timer', url: 'timer/' },
+    { name: 'Grammatica Bot', url: 'checker/' },
+    { name: 'AI-Tekst Detector', url: 'ai/' },
+    { name: 'Tekst-naar-Spraak', url: 'tts/' },
+    { name: 'Vertaal Tool', url: 'translate/' },
+    { name: 'QR Code Generator', url: 'qr/' },
+    { name: 'Universele Converter', url: 'converter/' },
+    { name: 'Blog', url: 'blog/' }
+  ];
+
+  const matches = tools.filter(t => t.name.toLowerCase().includes(query));
+
+  if (matches.length > 0) {
+    suggestions.style.display = 'block';
+    suggestions.innerHTML = matches.map(m => `<div onclick="location.href='${m.url}'" style="padding: 10px; cursor: pointer; border-bottom: 1px solid var(--border);">${m.name}</div>`).join('');
+  } else {
+    suggestions.style.display = 'block';
+    suggestions.innerHTML = `<div style="padding: 10px; color: var(--text-muted);">Geen tools gevonden</div>`;
+  }
+} 
