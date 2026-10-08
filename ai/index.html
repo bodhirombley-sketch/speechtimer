@@ -10,7 +10,7 @@
   <script>
     // Direct bij het laden van de pagina de juiste opgeslagen taal toepassen om 'terugspringen' te voorkomen
     (function() {
-      const savedLang = localStorage.getItem('everyToolLang') || localStorage.getItem('gekozenTaal') || 'nl';
+      const savedLang = localStorage.getItem('everyToolLang') || 'nl';
       document.documentElement.lang = savedLang;
     })();
   </script>
@@ -24,6 +24,15 @@
     </div>
     
     <div class="topbar-right">
+      <!-- TAAL-SCHAKELAAR (EN, NL, DE, FR, ES in de juiste volgorde) -->
+      <div class="lang-switcher-top" style="display:inline-flex; gap:4px; margin-right: 10px;">
+        <button id="langBtnEn" onclick="setLanguage('en')" style="padding:4px 8px; cursor:pointer;">EN</button>
+        <button id="langBtnNl" onclick="setLanguage('nl')" class="active" style="padding:4px 8px; cursor:pointer;">NL</button>
+        <button id="langBtnDe" onclick="setLanguage('de')" style="padding:4px 8px; cursor:pointer;">DE</button>
+        <button id="langBtnFr" onclick="setLanguage('fr')" style="padding:4px 8px; cursor:pointer;">FR</button>
+        <button id="langBtnEs" onclick="setLanguage('es')" style="padding:4px 8px; cursor:pointer;">ES</button>
+      </div>
+
       <button class="top-action-btn" onclick="toggleDarkMode()" id="darkModeBtn">🌙 Dark Mode</button>
       <button class="top-action-btn" onclick="shareSite()" id="shareBtn">🔗 Deel</button>
     </div>
@@ -33,24 +42,24 @@
 
   <nav class="nav-sidebar" id="sidebar">
     <div class="sidebar-header">
-      <h2>Kies een Tool</h2>
+      <h2 id="menuHeader">Kies een Tool</h2>
       <button class="close-btn" onclick="toggleSidebar()" aria-label="Sluit menu">✕</button>
     </div>
-    <div class="tool-group"><a href="../" class="tool-btn" style="text-decoration:none; color:inherit;">🏠 Overzicht / Home</a></div>
-    <div class="tool-group"><a href="../timer/" class="tool-btn" style="text-decoration:none; color:inherit;">⏱️ Speech & Presentatie</a></div>
-    <div class="tool-group"><a href="../checker/" class="tool-btn" style="text-decoration:none; color:inherit;">✍️ Grammatica Bot</a></div>
-    <div class="tool-group"><a href="./" class="tool-btn" style="text-decoration:none; color:inherit;">🤖 AI-Tekst Detector</a></div>
-    <div class="tool-group"><a href="../tts/" class="tool-btn" style="text-decoration:none; color:inherit;">🔊 Tekst-naar-Spraak</a></div>
-    <div class="tool-group"><a href="../translate/" class="tool-btn" style="text-decoration:none; color:inherit;">🌍 Vertaal Tool</a></div>
-    <div class="tool-group"><a href="../qr/" class="tool-btn" style="text-decoration:none; color:inherit;">📱 QR Code Generator</a></div>
-    <div class="tool-group"><a href="../converter/" class="tool-btn" style="text-decoration:none; color:inherit;">🔄 Universele Converter</a></div>
-    <div class="tool-group"><a href="../blog/" class="tool-btn" style="text-decoration:none; color:inherit;">📰 Blog</a></div>
+    <div class="tool-group"><a href="../" class="tool-btn" id="menuHome" style="text-decoration:none; color:inherit;">🏠 Overzicht / Home</a></div>
+    <div class="tool-group"><a href="../timer/" class="tool-btn" id="menuTimer" style="text-decoration:none; color:inherit;">⏱️ Speech & Presentatie</a></div>
+    <div class="tool-group"><a href="../checker/" class="tool-btn" id="menuChecker" style="text-decoration:none; color:inherit;">✍️ Grammatica Bot</a></div>
+    <div class="tool-group"><a href="./" class="tool-btn" id="menuAi" style="text-decoration:none; color:inherit;">🤖 AI-Tekst Detector</a></div>
+    <div class="tool-group"><a href="../tts/" class="tool-btn" id="menuTts" style="text-decoration:none; color:inherit;">🔊 Tekst-naar-Spraak</a></div>
+    <div class="tool-group"><a href="../translate/" class="tool-btn" id="menuTranslate" style="text-decoration:none; color:inherit;">🌍 Vertaal Tool</a></div>
+    <div class="tool-group"><a href="../qr/" class="tool-btn" id="menuQr" style="text-decoration:none; color:inherit;">📱 QR Code Generator</a></div>
+    <div class="tool-group"><a href="../converter/" class="tool-btn" id="menuConverter" style="text-decoration:none; color:inherit;">🔄 Universele Converter</a></div>
+    <div class="tool-group"><a href="../blog/" class="tool-btn" id="menuBlog" style="text-decoration:none; color:inherit;">📰 Blog</a></div>
   </nav>
 
   <main class="container">
     <div class="section-header-wrapper">
-      <h2 class="section-title">AI-Tekst Detector Indicator</h2>
-      <p class="section-subtitle">Analyseer zinsstructuur op AI-kenmerken.</p>
+      <h2 class="section-title" id="t3Title">AI-Tekst Detector Indicator</h2>
+      <p class="section-subtitle" id="t3Sub">Analyseer zinsstructuur op AI-kenmerken.</p>
     </div>
     <textarea id="text-ai" placeholder="Plak hier je tekst..." oninput="checkAI()"></textarea>
     <div class="stats-bar">
@@ -59,10 +68,10 @@
     </div>
 
     <div class="card" style="text-align: left;">
-      <h4 style="margin-bottom: 8px;">Geschatte AI-waarschijnlijkheid</h4>
+      <h4 style="margin-bottom: 8px;" id="t3Score">Geschatte AI-waarschijnlijkheid</h4>
       <div class="val" id="aiScore" style="margin-bottom: 12px;">0%</div>
       <div class="ai-bar-bg"><div class="ai-bar-fill" id="aiBar"></div></div>
-      <p style="font-size:14px; color: var(--text-muted); margin-bottom: 0; font-weight: 500;">Voer minimaal 50 tekens in.</p>
+      <p style="font-size:14px; color: var(--text-muted); margin-bottom: 0; font-weight: 500;" id="aiAnalysis">Voer minimaal 50 tekens in.</p>
     </div>
   </main>
 
