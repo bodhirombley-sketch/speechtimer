@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="nl" id="html-root">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -24,6 +24,15 @@
     </div>
     
     <div class="topbar-right">
+      <!-- TAAL-SCHAKELAAR (EN, NL, DE, FR, ES in de juiste volgorde) -->
+      <div class="lang-switcher-top" style="display:inline-flex; gap:4px; margin-right: 10px;">
+        <button id="langBtnEn" onclick="setLanguage('en')" style="padding:4px 8px; cursor:pointer;">EN</button>
+        <button id="langBtnNl" onclick="setLanguage('nl')" class="active" style="padding:4px 8px; cursor:pointer;">NL</button>
+        <button id="langBtnDe" onclick="setLanguage('de')" style="padding:4px 8px; cursor:pointer;">DE</button>
+        <button id="langBtnFr" onclick="setLanguage('fr')" style="padding:4px 8px; cursor:pointer;">FR</button>
+        <button id="langBtnEs" onclick="setLanguage('es')" style="padding:4px 8px; cursor:pointer;">ES</button>
+      </div>
+
       <button class="top-action-btn" onclick="toggleDarkMode()" id="darkModeBtn">🌙 Dark Mode</button>
       <button class="top-action-btn" onclick="shareSite()" id="shareBtn">🔗 Deel</button>
     </div>
@@ -33,24 +42,24 @@
 
   <nav class="nav-sidebar" id="sidebar">
     <div class="sidebar-header">
-      <h2>Kies een Tool</h2>
+      <h2 id="menuHeader">Kies een Tool</h2>
       <button class="close-btn" onclick="toggleSidebar()" aria-label="Sluit menu">✕</button>
     </div>
-    <div class="tool-group"><a href="../" class="tool-btn" style="text-decoration:none; color:inherit;">🏠 Overzicht / Home</a></div>
-    <div class="tool-group"><a href="./" class="tool-btn" style="text-decoration:none; color:inherit;">⏱️ Speech & Presentatie</a></div>
-    <div class="tool-group"><a href="../checker/" class="tool-btn" style="text-decoration:none; color:inherit;">✍️ Grammatica Bot</a></div>
-    <div class="tool-group"><a href="../ai/" class="tool-btn" style="text-decoration:none; color:inherit;">🤖 AI-Tekst Detector</a></div>
-    <div class="tool-group"><a href="../tts/" class="tool-btn" style="text-decoration:none; color:inherit;">🔊 Tekst-naar-Spraak</a></div>
-    <div class="tool-group"><a href="../translate/" class="tool-btn" style="text-decoration:none; color:inherit;">🌍 Vertaal Tool</a></div>
-    <div class="tool-group"><a href="../qr/" class="tool-btn" style="text-decoration:none; color:inherit;">📱 QR Code Generator</a></div>
-    <div class="tool-group"><a href="../converter/" class="tool-btn" style="text-decoration:none; color:inherit;">🔄 Universele Converter</a></div>
-    <div class="tool-group"><a href="../blog/" class="tool-btn" style="text-decoration:none; color:inherit;">📰 Blog</a></div>
+    <div class="tool-group"><a href="../" class="tool-btn" id="menuHome" style="text-decoration:none; color:inherit;">🏠 Overzicht / Home</a></div>
+    <div class="tool-group"><a href="./" class="tool-btn" id="menuTimer" style="text-decoration:none; color:inherit;">⏱️ Speech & Presentatie</a></div>
+    <div class="tool-group"><a href="../checker/" class="tool-btn" id="menuChecker" style="text-decoration:none; color:inherit;">✍️ Grammatica Bot</a></div>
+    <div class="tool-group"><a href="../ai/" class="tool-btn" id="menuAi" style="text-decoration:none; color:inherit;">🤖 AI-Tekst Detector</a></div>
+    <div class="tool-group"><a href="../tts/" class="tool-btn" id="menuTts" style="text-decoration:none; color:inherit;">🔊 Tekst-naar-Spraak</a></div>
+    <div class="tool-group"><a href="../translate/" class="tool-btn" id="menuTranslate" style="text-decoration:none; color:inherit;">🌍 Vertaal Tool</a></div>
+    <div class="tool-group"><a href="../qr/" class="tool-btn" id="menuQr" style="text-decoration:none; color:inherit;">📱 QR Code Generator</a></div>
+    <div class="tool-group"><a href="../converter/" class="tool-btn" id="menuConverter" style="text-decoration:none; color:inherit;">🔄 Universele Converter</a></div>
+    <div class="tool-group"><a href="../blog/" class="tool-btn" id="menuBlog" style="text-decoration:none; color:inherit;">📰 Blog</a></div>
   </nav>
 
   <main class="container">
     <div class="section-header-wrapper">
-      <h2 class="section-title">Speech & Presentatie Timer</h2>
-      <p class="section-subtitle">Bereken direct hoe lang jouw tekst duurt om voor te lezen.</p>
+      <h2 class="section-title" id="t1Title">Speech & Presentatie Timer</h2>
+      <p class="section-subtitle" id="t1Sub">Bereken direct hoe lang jouw tekst duurt om voor te lezen.</p>
     </div>
     <textarea id="text-timer" placeholder="Plak hier je tekst..." oninput="handleTimerInput()"></textarea>
     <div class="stats-bar">
@@ -59,13 +68,13 @@
     </div>
 
     <div class="card-grid">
-      <div class="card"><h4>🐢 Langzaam</h4><div class="val" id="timeSlow">00:00</div></div>
-      <div class="card" id="cardNorm"><h4>🚶 Normaal</h4><div class="val" id="timeNorm">00:00</div></div>
-      <div class="card"><h4>🐇 Snel</h4><div class="val" id="timeFast">00:00</div></div>
+      <div class="card"><h4 id="slow">🐢 Langzaam</h4><div class="val" id="timeSlow">00:00</div></div>
+      <div class="card" id="cardNorm"><h4 id="norm">🚶 Normaal</h4><div class="val" id="timeNorm">00:00</div></div>
+      <div class="card"><h4 id="fast">🐇 Snel</h4><div class="val" id="timeFast">00:00</div></div>
     </div>
 
     <div class="timer-box">
-      <h4 style="margin:0; font-size: 14px; text-transform: uppercase;">Oefen je speech live:</h4>
+      <h4 style="margin:0; font-size: 14px; text-transform: uppercase;" id="practice">Oefen je speech live:</h4>
       <div class="timer-display" id="stopwatch">00:00</div>
       <div style="display: flex; justify-content: center; gap: 12px; margin-top: 18px; flex-wrap: wrap;">
         <button class="btn" id="startBtn" onclick="startTimer()">Start</button>
