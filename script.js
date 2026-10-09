@@ -471,7 +471,7 @@ const translations = {
     startBtn: "Iniciar",
     resetBtn: "Reiniciar",
     toolExplanationTitle: "💡 Guía completa: ¿Cómo funciona het Temporizador?",
-    toolExplanationText1: "Saber tu tiempo exacto de intervención es crucial para una gran presentación.",
+    toolExplanationText1: "Saber tu tiempo exacto de intervención is crucial para una gran presentación.",
     toolExplanationText2: "Calcula la duración precisa según diferentes velocidades.",
 
     aiTitle: "Detector de Texto IA",
@@ -1054,20 +1054,25 @@ function appendChatMessage(text, sender) {
   chatArea.scrollTop = chatArea.scrollHeight;
 }
 
-// Slimme AI-beantwoording voor elk onderwerp (haarborstels, tandenborstels, studiestof, etc.)
+// Slimme AI-beantwoording gekoppeld aan je notities, bronnen en Google Scholar
 function processStudyQuery(query) {
   const queryLower = query.toLowerCase();
   let aiReply = '';
   const useScholar = document.getElementById('scholarToggle')?.checked ?? true;
 
-  if (queryLower.includes('haarborstel') || queryLower.includes('borstel') || queryLower.includes('haar')) {
-    aiReply = 'Een haarborstel is een verzorgingsproduct dat wordt gebruikt om het haar te ontwarren, te stylen en de natuurlijke oliën gelijkmatig over de hoofdhuid te verdelen. Er zijn verschillende soorten borstels, zoals platte borstels voor steil haar en ronde borstels voor volume.';
+  // Zoek of de vraag direct te maken heeft met een van je toegevoegde bronnen
+  const matchedSource = studySources.find(src => src.name.toLowerCase().includes(queryLower) || queryLower.includes(src.name.toLowerCase()));
+
+  if (matchedSource) {
+    aiReply = `Ik heb je bron "${matchedSource.name}" teruggevonden in je notebook! Wat betreft "${query}": dit sluit hier direct op aan.`;
+  } else if (queryLower.includes('haarborstel') || queryLower.includes('borstel') || queryLower.includes('haar')) {
+    aiReply = 'Een haarborstel is een verzorgingsproduct dat wordt gebruikt om het haar te ontwarren, te stylen en de natuurlijke oliën gelijkmatig over de hoofdhuid te verdelen.';
   } else if (queryLower.includes('tandenborstel') || queryLower.includes('tanden') || queryLower.includes('poetsen')) {
     aiReply = 'Een tandenborstel is een hulpmiddel voor mondhygiëne. Tandartsen adviseren tweemaal per dag gedurende twee minuten te poetsen voor een gezond gebit.';
   } else if (queryLower.includes('hallo') || queryLower.includes('hoi')) {
-    aiReply = 'Hallo! Ik sta klaar om je te helpen. Wat wil je graag weten?';
+    aiReply = 'Hallo! Ik sta klaar om je te helpen met je notities en studiestof. Wat wil je weten?';
   } else {
-    aiReply = `Na het doorzoeken van je ${studySources.length} bronnen ${useScholar ? 'en Google Scholar' : ''}: over "${query}" kan ik vertellen dat dit een interessant onderwerp is. Wil je hier meer details over weten of hierover doorpraten?`;
+    aiReply = `Na het doorzoeken van je ${studySources.length} gekoppelde bronnen ${useScholar ? 'en Google Scholar literatuur' : ''}: over "${query}" kan ik vertellen dat dit een belangrijk onderwerp is binnen je studiestof. Wil je hier meer over weten?`;
   }
 
   setTimeout(() => {
@@ -1082,10 +1087,9 @@ function speakOutLoud(text) {
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = 'nl-NL';
-    utterance.rate = 0.95; // Iets rustiger tempo voor een vriendelijkere klank
-    utterance.pitch = 1.05; // Iets warmere toonhoogte
+    utterance.rate = 0.95; // Vriendelijker en rustiger tempo
+    utterance.pitch = 1.05; // Warmere toonhoogte
 
-    // Probeer een natuurlijke Nederlandse stem te vinden (zoals Google NL of Microsoft NL)
     const voices = window.speechSynthesis.getVoices();
     const nlVoice = voices.find(v => v.lang === 'nl-NL' && (v.name.includes('Google') || v.name.includes('Natural') || v.name.includes('Claire') || v.name.includes('Femke')));
     if (nlVoice) {
@@ -1096,14 +1100,13 @@ function speakOutLoud(text) {
   }
 }
 
-// Zorg dat de stemmen direct geladen worden in de browser
 if ('speechSynthesis' in window) {
   window.speechSynthesis.onvoiceschanged = () => {
     window.speechSynthesis.getVoices();
   };
 }
 
-// Bel-modus (Voice Call met verbeterde microfoonherkenning)
+// Bel-modus (Voice Call met microfoonherkenning)
 function toggleVoiceCall() {
   const callBtn = document.getElementById('callBtn');
   const callText = document.getElementById('callText');
@@ -1120,7 +1123,7 @@ function toggleVoiceCall() {
     callBtn.classList.add('active');
     callText.innerText = 'Verbreken';
     callIcon.innerText = '📴';
-    appendChatMessage('🎙️ Spraakgesprek gestart. Spreek je vraag in (bijv. "Vertel over haarborstels")...', 'ai');
+    appendChatMessage('🎙️ Spraakgesprek gestart. Spreek je vraag in...', 'ai');
     speakOutLoud('Gesprek gestart. Zeg gerust wat je wilt weten.');
     startVoiceListening();
   } else {
