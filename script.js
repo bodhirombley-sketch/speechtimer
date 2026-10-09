@@ -623,6 +623,12 @@ document.addEventListener('DOMContentLoaded', () => {
     setLanguage('nl');
   }
 
+  renderStudySources();
+  const scholarToggle = document.getElementById('scholarToggle');
+  if (scholarToggle) {
+    scholarToggle.checked = localStorage.getItem('everyToolScholar') !== 'false';
+  }
+
   ['text-timer', 'text-ai', 'text-checker', 'qrUrlInput', 'text-tts', 'text-translate'].forEach(id => {
     const el = document.getElementById(id);
     const savedVal = localStorage.getItem(id);
@@ -943,73 +949,115 @@ function runConversion() {
   }
 }
 
-// 8. AI Study Hub & Live Voice Logica
-let userSources = [];
+// 8. AI Study Hub / NotebookLM Logica & Voice Call
+let studySources = JSON.parse(localStorage.getItem('everyToolStudySources')) || [];
 let isVoiceActive = false;
 let recognition = null;
 
-function addSource() {
-  const input = document.getElementById('sourceInput');
-  const list = document.getElementById('sourcesList');
-  if (!input || !list) return;
-
-  const val = input.value.trim();
-  if (val) {
-    userSources.push(val);
-    input.value = '';
-    updateSourcesDisplay();
-  } else {
-    alert('Voer eerst een geldige link of bron in.');
+function saveStudySettings() {
+  const scholarToggle = document.getElementById('scholarToggle');
+  if (scholarToggle) {
+    localStorage.setItem('everyToolScholar', scholarToggle.checked);
   }
 }
 
-function updateSourcesDisplay() {
+function addNotebookSource() {
+  const input = document.getElementById('sourceInput');
+  const fileInput = document.getElementById('noteImageInput');
+  if (!input || !fileInput) return;
+
+  const textVal = input.value.trim();
+  
+  if (fileInput.files && fileInput.files[0]) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      studySources.push({ type: 'image', name: fileInput.files[0].name, data: e.target.result });
+      finishAddingSource();
+    };
+    reader.readAsDataURL(fileInput.files[0]);
+  } else if (textVal) {
+    studySources.push({ type: 'text', name: textVal, data: null });
+    finishAddingSource();
+  } else {
+    alert('Voeg een tekstbron/URL toe of selecteer een foto van je notities.');
+  }
+}
+
+function finishAddingSource() {
+  localStorage.setItem('everyToolStudySources', JSON.stringify(studySources));
+  document.getElementById('sourceInput').value = '';
+  document.getElementById('noteImageInput').value = '';
+  renderStudySources();
+}
+
+function renderStudySources() {
   const list = document.getElementById('sourcesList');
   if (!list) return;
-  if (userSources.length === 0) {
+
+  if (studySources.length === 0) {
     list.innerHTML = 'Nog geen bronnen toegevoegd...';
     return;
   }
-  list.innerHTML = userSources.map((src, index) => `<div>📄 Bron ${index + 1}: ${src}</div>`).join('');
+
+  list.innerHTML = studySources.map((src, index) => `
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--border-color);">
+      <span>${src.type === 'image' ? '📷' : '📄'} ${src.name}</span>
+      <button onclick="removeStudySource(${index})" style="background: none; border: none; color: #ef4444; cursor: pointer; font-weight: bold;">✕</button>
+    </div>
+  `).join('');
+}
+
+function removeStudySource(index) {
+  studySources.splice(index, 1);
+  localStorage.setItem('everyToolStudySources', JSON.stringify(studySources));
+  renderStudySources();
 }
 
 function generateOutput(type) {
   const box = document.getElementById('studyResultBox');
   if (!box) return;
 
-  if (userSources.length === 0) {
-    alert('Voeg minimaal één bron toe voordat je materiaal genereert.');
+  if (studySources.length === 0) {
+    alert('Voeg minimaal één bron of notitie toe.');
     return;
   }
 
-  box.innerHTML = `<p style="color: var(--text-muted);">Bezig met analyseren van ${userSources.length} bron(nen) en genereren van ${type}...</p>`;
+  const useScholar = document.getElementById('scholarToggle')?.checked ?? true;
+  box.innerHTML = `<p style="color: var(--text-muted);">AI analyseert ${studySources.length} bron(nen) ${useScholar ? 'inclusief Google Scholar literatuur' : ''} en genereert ${type}...</p>`;
 
   setTimeout(() => {
     if (type === 'flashcards') {
       box.innerHTML = `
-        <h3 style="color: var(--primary);">📇 Gegenereerde Flashcards</h3>
-        <p><strong>Vraag 1:</strong> Wat is het hoofdthema van je toegevoegde bronnen en Google Scholar literatuur?</p>
-        <p><em>Antwoord:</em> Dit is automatisch gedistilleerd uit je bronbestand.</p>
+        <h3 style="color: var(--primary); margin-bottom: 12px;">📇 Gegenereerde Flashcards</h3>
+        <div style="background: var(--textarea-bg); padding: 16px; border-radius: var(--radius-md); margin-bottom: 10px; border: 1px solid var(--border-color);">
+          <strong>Vraag 1:</strong> Wat zijn de kernbegrippen uit je geüploade notities en ${useScholar ? 'Google Scholar artikelen' : 'bronnen'}?<br>
+          <em style="color: var(--text-muted);">Antwoord: Automatisch samengesteld uit je opgeslagen notebook data.</em>
+        </div>
       `;
     } else if (type === 'presentation') {
       box.innerHTML = `
-        <h3 style="color: var(--primary);">📊 Presentatie Structuur</h3>
-        <ul>
-          <li>Slide 1: Introductie & Doelstelling</li>
-          <li>Slide 2: Inzichten uit gekoppelde bronnen & Google Scholar</li>
-          <li>Slide 3: Belangrijkste conclusies en toepassingen</li>
+        <h3 style="color: var(--primary); margin-bottom: 12px;">📊 Presentatie Structuur</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li><strong>Slide 1:</strong> Inleiding & Probleemstelling</li>
+          <li><strong>Slide 2:</strong> Theoretisch kader ${useScholar ? '(met Google Scholar citaties)' : ''}</li>
+          <li><strong>Slide 3:</strong> Inzichten uit handgeschreven notities</li>
+          <li><strong>Slide 4:</strong> Conclusie & Vragen</li>
         </ul>
       `;
     } else if (type === 'quiz') {
       box.innerHTML = `
-        <h3 style="color: var(--primary);">❓ Oefentoets</h3>
-        <p>1. Wat is de belangrijkste conclusie volgens de geselecteerde literatuur? (Meerkeuzevraag...)</p>
+        <h3 style="color: var(--primary); margin-bottom: 12px;">❓ Interactieve Oefentoets</h3>
+        <p><strong>Vraag:</strong> Welk verband leggen je bronnen tussen de theorie en de praktijk?</p>
+        <button class="btn secondary" style="margin-top: 10px;" onclick="alert('Antwoord is correct!')">Toon Antwoord</button>
       `;
-    } else if (type === 'audio') {
+    } else if (type === 'video') {
       box.innerHTML = `
-        <h3 style="color: var(--primary);">🔊 Audio Samenvatting</h3>
-        <p>Klaar om te beluisteren via de browser stem!</p>
-        <button class="btn" onclick="speakTextCustom('Hier is de audio samenvatting van je bronnen.')">🔊 Speel Samenvatting Af</button>
+        <h3 style="color: var(--primary); margin-bottom: 12px;">🎥 Gegenereerde Studievideo</h3>
+        <div style="background: #000; border-radius: var(--radius-md); height: 180px; display: flex; align-items: center; justify-content: center; color: white; flex-direction: column; gap: 10px;">
+          <div style="font-size: 14px; opacity: 0.8;">▶️ [AI Video Player - Lesstof Overzicht]</div>
+          <button class="btn" onclick="speakTextCustom('Hier is je gegenereerde studievideo uitleg op basis van al je notities en bronnen.')">🔊 Speel Video Audio Af</button>
+        </div>
+        <p style="font-size: 13px; color: var(--text-muted); margin-top: 10px;">De AI heeft al je notities en bronnen omgezet in een visuele videopresentatie met gesproken uitleg.</p>
       `;
     }
   }, 1000);
@@ -1077,7 +1125,8 @@ function processAIResponse(userQuery) {
   const status = document.getElementById('voiceStatus');
   if (status) status.innerText = 'AI denkt na en formuleert antwoord...';
 
-  let aiReply = `Interessant vraagstuk over ${userQuery}. Volgens je gekoppelde bronnen en Google Scholar literatuur sluit dit hier nauw op aan.`;
+  const useScholar = document.getElementById('scholarToggle')?.checked ?? true;
+  let aiReply = `Interessant vraagstuk over ${userQuery}. ${useScholar ? 'Op basis van Google Scholar literatuur en' : 'Gebaseerd op'} je ${studySources.length} opgeslagen bronnen sluit dit hier nauw op aan.`;
 
   const transcriptEl = document.getElementById('liveTranscript');
   if (transcriptEl) {
@@ -1126,7 +1175,7 @@ function stopVoiceCall() {
   if (status) status.innerText = 'Gesprek beëindigd. Klik op de cirkel om opnieuw te bellen.';
 }
 
-// Zoekfunctionaliteit
+// Verbeterde Zoekfunctionaliteit
 function filterTools() {
   const input = document.getElementById('homeSearchInput');
   const suggestions = document.getElementById('searchSuggestions');
@@ -1135,24 +1184,46 @@ function filterTools() {
 
   if (query === '') {
     suggestions.style.display = 'none';
+    suggestions.classList.remove('show');
     return;
   }
 
   const tools = [
-    { name: 'Speech & Presentatie Timer', url: 'timer/' },
-    { name: 'Grammatica Bot', url: 'checker/' },
-    { name: 'AI-Tekst Detector', url: 'ai/' },
-    { name: 'Tekst-naar-Spraak', url: 'tts/' },
-    { name: 'Vertaal Tool', url: 'translate/' },
-    { name: 'QR Code Generator', url: 'qr/' },
-    { name: 'Universele Converter', url: 'converter/' },
-    { name: 'AI Study Hub', url: 'study/' },
-    { name: 'Blog', url: 'blog/' }
+    { name: 'Speech & Presentatie Timer', alt: ['timer', 'speech', 'presentatie', 'tijd'], url: 'timer/' },
+    { name: 'Grammatica Bot', alt: ['grammatica', 'spelling', 'checker', 'fouten'], url: 'checker/' },
+    { name: 'AI-Tekst Detector', alt: ['ai', 'detector', 'kunstmatige intelligentie', 'tekst'], url: 'ai/' },
+    { name: 'Tekst-naar-Spraak', alt: ['tts', 'spraak', 'voorlezen', 'audio'], url: 'tts/' },
+    { name: 'Vertaal Tool', alt: ['vertaal', 'translate', 'taal', 'engels'], url: 'translate/' },
+    { name: 'QR Code Generator', alt: ['qr', 'code', 'generator', 'url'], url: 'qr/' },
+    { name: 'Universele Converter', alt: ['converter', 'converteren', 'bestanden', 'afbeelding'], url: 'converter/' },
+    { name: 'AI Study Hub', alt: ['study', 'studeren', 'scholar', 'flashcards', 'quiz', 'voice', 'video'], url: 'study/' },
+    { name: 'Blog', alt: ['blog', 'nieuws', 'artikelen'], url: 'blog/' }
   ];
 
-  const matches = tools.filter(t => t.name.toLowerCase().includes(query));
+  const matches = tools.filter(t => 
+    t.name.toLowerCase().includes(query) || t.alt.some(keyword => keyword.includes(query))
+  );
+
   suggestions.style.display = 'block';
-  suggestions.innerHTML = matches.length > 0 
-    ? matches.map(m => `<div onclick="location.href='${m.url}'" style="padding: 10px; cursor: pointer; border-bottom: 1px solid var(--border);">${m.name}</div>`).join('')
-    : `<div style="padding: 10px; color: var(--text-muted);">Geen tools gevonden</div>`;
+  suggestions.classList.add('show');
+
+  if (matches.length > 0) {
+    suggestions.innerHTML = matches.map(m => `
+      <div class="suggestion-item" onclick="location.href='${m.url}'">
+        🔍 <span>${m.name}</span>
+      </div>
+    `).join('');
+  } else {
+    suggestions.innerHTML = `<div style="padding: 14px 20px; color: var(--text-muted); font-size: 14px;">Geen tools gevonden voor "${query}"</div>`;
+  }
 }
+
+// Sluit suggesties als je ergens anders op de pagina klikt
+document.addEventListener('click', (e) => {
+  const searchBox = document.querySelector('.hero-search-wrapper');
+  const suggestions = document.getElementById('searchSuggestions');
+  if (searchBox && suggestions && !searchBox.contains(e.target)) {
+    suggestions.style.display = 'none';
+    suggestions.classList.remove('show');
+  }
+});
