@@ -276,7 +276,7 @@ const translations = {
     aiResultPlaceholder: "Das Analyseergebnis erscheint hier...",
     aiExplanationTitle: "Wie funktioniert der KI-Text-Detektor?",
     aiExplanationText1: "KI-Modelle schreiben oft mit gleichmäßigen Satzlängen und wiederkehrenden Standardformulierungen, während Menschen mehr Abwechslung, Rhythmus und eigene Entscheidungen zeigen. Unser Detektor betrachtet drei Signale: wie eintönig die Satzlänge ist, wie viele typische KI-Formulierungen vorkommen und wie oft Gedankenstriche verwendet werden.",
-    aiExplanationText2: "Das Ergebnis ist eine Schätzung auf Basis des Schreibstils und kein Beweis. Ein von Menschen geschriebener Text kann KI-ähnlich wirken und umgekehrt, besonders bei kurzen oder formellen Texten. Alles läuft in Ihrem eigenen Browser, daher wird Ihr Text weder gesendet noch gespeichert.",
+    aiExplanationText2: "Das Ergebnis ist eine Schätzung auf Basis des Schreibstils und kein Beweis. Ein von Menschen geschriebener Text kann KI-ähnlich wirken und umgekehrt, besonders kurze, formelle oder fremdsprachige Texte. Verwenden Sie das Ergebnis nicht als einzige Entscheidungsgrundlage.",
 
     checkerTitle: "Grammatik-Bot",
     checkerSub: "Überprüfen Sie Ihren Text automatisch auf Rechtschreib- und Stilfehler.",
@@ -321,7 +321,7 @@ const translations = {
     convertBtn: "🔄 Datei konvertieren",
     converterResultPlaceholder: "Die konvertierte Datei erscheint hier...",
     converterExplanationTitle: "Wie funktioniert der Universal-Konverter?",
-    converterExplanationText1: "Das Umwandeln von Dateien in ein anderes Format (wie Bilder oder Dokumente) ist oft erforderlich, wenn ein bestimmtes Programm einen Dateityp nicht unterstützt oder wenn Sie Dateigrößen für die Nutzung auf einer Website verkleinern möchten.",
+    converterExplanationText1: "Das Umwandeln von Dateien in ein anderes Format (such als Bilder oder Dokumente) ist oft erforderlich, wenn ein bestimmtes Programm einen Dateityp nicht unterstützt oder wenn Sie Dateigrößen für die Nutzung auf einer Website verkleinern möchten.",
     converterExplanationText2: "Mit unserem Universal-Konverter laden Sie Ihre Datei einfach hoch, und sie wird direkt lokal in Ihrem Browser umgewandelt. So ist keine schwere Softwareinstallation erforderlich und Ihre Daten bleiben optimal geschützt!"
   },
 
@@ -484,7 +484,7 @@ const translations = {
     aiResultPlaceholder: "El resultado del análisis aparecerá aquí...",
     aiExplanationTitle: "¿Cómo funciona el Detector de Texto IA?",
     aiExplanationText1: "Los modelos de IA suelen escribir con longitudes de frase uniformes y fórmulas hechas recurrentes, mientras que las personas muestran más variación, ritmo y decisiones propias. Nuestro detector analiza tres señales: lo monótona que es la longitud de las frases, cuántas formulaciones típicas de IA aparecen y con qué frecuencia se usan guiones.",
-    aiExplanationText2: "El resultado es una estimación basada en el estilo de escritura, no una prueba. Un texto escrito por una persona puede parecer de IA y viceversa, sobre todo si es corto o formal. Todo ocurre en tu propio navegador, así que tu texto no se envía ni se guarda.",
+    aiExplanationText2: "El resultado es una estimación basada en el estilo de escritura, no una prueba. Un texto escrito por una persona puede parecer de IA y al revés, sobre todo si es corto, formal o está en un idioma no nativo. Todo ocurre en tu propio navegador, así que tu texto no se envía ni se guarda.",
 
     checkerTitle: "Bot de Gramática",
     checkerSub: "Comprueba automáticamente tu texto en busca de errores ortográficos y de estilo.",
@@ -714,26 +714,18 @@ function resetTimer() {
 }
 
 // 2. AI-Tekst Detector (heuristisch, volledig client-side)
-// Let op: dit is een schatting op basis van schrijfstijl, geen bewijs.
-
-// Typische AI-formuleringen (alle talen samen, zodat taaldetectie niet nodig is)
 const AI_STOCK_PHRASES = [
-  // NL
   'bovendien', 'daarnaast', 'kortom', 'al met al', 'het is belangrijk om', 'het is van belang',
   'het is essentieel', 'in de huidige digitale wereld', 'in de snel veranderende', 'een cruciale rol',
   'een breed scala', 'dit zorgt ervoor dat', 'in conclusie', 'samenvattend', 'tot slot', 'duiken we',
-  // EN
   'moreover', 'furthermore', 'in conclusion', 'in summary', 'it is important to', "it's important to",
   'it is worth noting', "it's worth noting", "in today's", 'ever-evolving', 'a crucial role', 'delve',
   'tapestry', 'in the realm of', 'a wide range of', 'additionally,', 'overall,', 'testament to',
-  // DE
   'darüber hinaus', 'zusammenfassend', 'es ist wichtig', 'eine entscheidende rolle', 'in der heutigen',
   'des weiteren', 'abschließend', 'eine vielzahl von', 'ein breites spektrum', 'insgesamt',
-  // FR
   'en outre', 'en conclusion', 'en résumé', 'il est important de', 'il est essentiel de',
   'un rôle crucial', "dans le monde d'aujourd'hui", "à l'ère numérique", 'une large gamme',
   'par ailleurs', 'en somme', 'il convient de noter', 'plongeons',
-  // ES
   'además,', 'en conclusión', 'en resumen', 'es importante', 'es fundamental', 'un papel crucial',
   'en el mundo actual', 'en la era digital', 'una amplia gama', 'cabe destacar', 'en definitiva',
   'es esencial', 'sumérgete'
@@ -798,7 +790,6 @@ function analyzeAiText(text) {
   const words = lower.match(/[\p{L}\p{N}'’-]+/gu) || [];
   const wordCount = words.length;
 
-  // Zinnen opsplitsen (ook op regeleinden)
   const sentences = (text.match(/[^.!?…\n]+[.!?…]*/g) || [])
     .map(s => s.trim())
     .filter(s => s.split(/\s+/).length >= 3);
@@ -806,7 +797,6 @@ function analyzeAiText(text) {
   const clamp = (x, a, b) => Math.min(b, Math.max(a, x));
   const signals = {};
 
-  // Signaal 1: eentonige zinslengte (lage variatie = AI-achtiger)
   if (sentences.length >= 6) {
     const lens = sentences.map(s => s.split(/\s+/).length);
     const mean = lens.reduce((a, b) => a + b, 0) / lens.length;
@@ -815,18 +805,15 @@ function analyzeAiText(text) {
     signals.burst = clamp((0.65 - cv) / 0.35, 0, 1);
   }
 
-  // Signaal 2: dichtheid van typische AI-formuleringen
   let phraseHits = 0;
   for (const p of AI_STOCK_PHRASES) {
     phraseHits += lower.split(p).length - 1;
   }
   signals.phrases = clamp((phraseHits / wordCount) * 100 / 2, 0, 1);
 
-  // Signaal 3: veel gedachtestreepjes (— of losse –)
   const dashes = (text.match(/—|\s–\s/g) || []).length;
   signals.dash = clamp((dashes / wordCount) * 100 / 0.8, 0, 1);
 
-  // Gewogen gemiddelde van de beschikbare signalen
   const weights = { burst: 0.45, phrases: 0.40, dash: 0.15 };
   let total = 0, weightSum = 0;
   for (const key in signals) {
@@ -835,7 +822,6 @@ function analyzeAiText(text) {
   }
   let score = (total / weightSum) * 100;
 
-  // Menselijke aanwijzingen verlagen de score
   const lowerStarts = sentences.filter(s => {
     const m = s.match(/\p{L}/u);
     return m && m[0] === m[0].toLowerCase() && m[0] !== m[0].toUpperCase();
@@ -879,11 +865,78 @@ function runAiDetection() {
     note(msg.local) + note(msg.disclaimer);
 }
 
-// 3. Grammatica Bot Dummy Logica
+// 3. Grammatica Bot Echte Logica (Client-side analyse)
 function runGrammarCheck() {
+  const input = document.getElementById('text-checker');
   const box = document.getElementById('checkerResultBox');
-  if (!box) return;
-  box.innerHTML = `<p style="color: green; font-weight: 600;">✨ Geen grote spelfouten gevonden! Je tekst ziet er netjes uit.</p>`;
+  if (!box || !input) return;
+
+  const text = input.value.trim();
+  if (!text) {
+    box.innerHTML = `<p style="color: var(--text-muted);">Typ of plak eerst een tekst om te controleren.</p>`;
+    return;
+  }
+
+  const words = text.match(/[\p{L}\p{N}'’-]+/gu) || [];
+  const wordCount = words.length;
+  const sentences = (text.match(/[^.!?…\n]+[.!?…]*/g) || []).map(s => s.trim()).filter(Boolean);
+
+  let issues = [];
+
+  // 1. Controle op dubbele woorden achter elkaar (bijv. "de de")
+  const doubleWords = text.match(/\b(\p{L}+)\s+\1\b/gi);
+  if (doubleWords) {
+    issues.push(`⚠️ Dubbel woord gevonden: <strong>${doubleWords.join(', ')}</strong>`);
+  }
+
+  // 2. Veelgemaakte spelfouten / stijlfouten woordenlijst
+  const commonMistakes = {
+    'wordt jou': 'Bedoel je "word je"?',
+    'nochtans': 'Dit is een erg formeel of verouderd woord.',
+    'hun hebben': 'Grammaticaal vaak afgeraden, beter is "zij hebben".',
+    'zowat': 'Controleer of dit informeel taalgebruik is.',
+    'als hun': 'Vaak beter "als zij".'
+  };
+
+  const lowerText = text.toLowerCase();
+  for (const [mistake, advice] of Object.entries(commonMistakes)) {
+    if (lowerText.includes(mistake)) {
+      issues.push(`🔍 Mogelijke stijlfout ("${mistake}"): ${advice}`);
+    }
+  }
+
+  // 3. Controle op te lange zinnen (meer dan 30 woorden in één zin)
+  sentences.forEach((s, index) => {
+    const sWords = s.split(/\s+/).length;
+    if (sWords > 30) {
+      issues.push(`💡 Zin ${index + 1} is erg lang (${sWords} woorden). Overweeg deze op te splitsen voor betere leesbaarheid.`);
+    }
+  });
+
+  // 4. Hoofdlettercontrole aan het begin van zinnen
+  sentences.forEach((s) => {
+    const firstChar = s.charAt(0);
+    if (firstChar && firstChar !== firstChar.toUpperCase() && /[\p{L}]/u.test(firstChar)) {
+      issues.push(`✍️ Een zin begint mogelijk met een kleine letter: "${s.substring(0, 20)}..."`);
+    }
+  });
+
+  // Resultaat tonen
+  if (issues.length === 0) {
+    box.innerHTML = `
+      <p style="color: green; font-weight: 600; margin-bottom: 8px;">✨ Geen opvallende spelfouten of stijlfouten gevonden!</p>
+      <p style="color: var(--text-muted); font-size: 13px; margin: 0;">Geanalyseerd: ${wordCount} woorden verdeeld over ${sentences.length} zinnen.</p>
+    `;
+  } else {
+    let html = `<p style="color: var(--primary); font-weight: 600; margin-bottom: 8px;">📝 Suggesties en verbeterpunten (${issues.length}):</p>`;
+    html += `<ul style="margin: 0; padding-left: 20px; line-height: 1.6;">`;
+    issues.forEach(issue => {
+      html += `<li style="margin-bottom: 6px;">${issue}</li>`;
+    });
+    html += `</ul>`;
+    html += `<p style="color: var(--text-muted); font-size: 12px; margin-top: 10px;">Analyse uitgevoerd in je browser (${wordCount} woorden).</p>`;
+    box.innerHTML = html;
+  }
 }
 
 // 4. QR Code Generator Logica
@@ -899,7 +952,6 @@ function generateQRFromInput() {
     return;
   }
 
-  // Genereer QR via public API (bijv. QR Server)
   const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(val)}`;
   preview.innerHTML = `<img src="${qrUrl}" alt="QR Code" style="border-radius: 8px;"/><br><a href="${qrUrl}" download="qrcode.png" class="btn" style="margin-top: 12px; display: inline-block; text-decoration:none;">📥 Download QR</a>`;
 }
