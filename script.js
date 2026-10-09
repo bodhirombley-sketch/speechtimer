@@ -623,7 +623,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setLanguage('nl');
   }
 
-  renderStudySources();
+  renderNotebookSources();
   const scholarToggle = document.getElementById('scholarToggle');
   if (scholarToggle) {
     scholarToggle.checked = localStorage.getItem('everyToolScholar') !== 'false';
@@ -961,109 +961,119 @@ function saveStudySettings() {
   }
 }
 
-function addNotebookSource() {
-  const input = document.getElementById('sourceInput');
-  const fileInput = document.getElementById('noteImageInput');
-  if (!input || !fileInput) return;
+function addUrlSource() {
+  const input = document.getElementById('sourceUrlInput');
+  if (!input) return;
+  const val = input.value.trim();
+  if (!val) {
+    alert('Voeg een geldige URL of YouTube link in.');
+    return;
+  }
+  const type = val.includes('youtube.com') || val.includes('youtu.be') ? '📺 YouTube' : '🌐 Website';
+  studySources.push({ type: type, name: val, data: null });
+  localStorage.setItem('everyToolStudySources', JSON.stringify(studySources));
+  input.value = '';
+  renderNotebookSources();
+  appendChatMessage(`Bronsite/Video "${val}" toegevoegd aan je notebook!`, 'ai');
+}
 
-  const textVal = input.value.trim();
-  
-  if (fileInput.files && fileInput.files[0]) {
+function handleNotebookFile(input) {
+  if (input.files && input.files[0]) {
+    const file = input.files[0];
     const reader = new FileReader();
     reader.onload = function(e) {
-      studySources.push({ type: 'image', name: fileInput.files[0].name, data: e.target.result });
-      finishAddingSource();
+      studySources.push({ type: '📄 Document/Notitie', name: file.name, data: e.target.result });
+      localStorage.setItem('everyToolStudySources', JSON.stringify(studySources));
+      renderNotebookSources();
+      appendChatMessage(`Document "${file.name}" toegevoegd als bron!`, 'ai');
     };
-    reader.readAsDataURL(fileInput.files[0]);
-  } else if (textVal) {
-    studySources.push({ type: 'text', name: textVal, data: null });
-    finishAddingSource();
-  } else {
-    alert('Voeg een tekstbron/URL toe of selecteer een foto van je notities.');
+    if (file.type.startsWith('image') || file.type.includes('pdf')) {
+      reader.readAsDataURL(file);
+    } else {
+      reader.readAsText(file);
+    }
   }
 }
 
-function finishAddingSource() {
-  localStorage.setItem('everyToolStudySources', JSON.stringify(studySources));
-  document.getElementById('sourceInput').value = '';
-  document.getElementById('noteImageInput').value = '';
-  renderStudySources();
+function handleChatFile(input) {
+  if (input.files && input.files[0]) {
+    const file = input.files[0];
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      studySources.push({ type: '📎 Bijlage', name: file.name, data: e.target.result });
+      localStorage.setItem('everyToolStudySources', JSON.stringify(studySources));
+      renderNotebookSources();
+      appendChatMessage(`Bijlage "${file.name}" toegevoegd en gekoppeld aan de chat.`, 'ai');
+    };
+    reader.readAsDataURL(file);
+  }
 }
 
-function renderStudySources() {
-  const list = document.getElementById('sourcesList');
-  if (!list) return;
+function renderNotebookSources() {
+  const container = document.getElementById('sourcesListContainer');
+  if (!container) return;
 
   if (studySources.length === 0) {
-    list.innerHTML = 'Nog geen bronnen toegevoegd...';
+    container.innerHTML = `<div style="font-size: 12px; color: var(--text-muted);">Nog geen bronnen...</div>`;
     return;
   }
 
-  list.innerHTML = studySources.map((src, index) => `
-    <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--border-color);">
-      <span>${src.type === 'image' ? '📷' : '📄'} ${src.name}</span>
-      <button onclick="removeStudySource(${index})" style="background: none; border: none; color: #ef4444; cursor: pointer; font-weight: bold;">✕</button>
+  container.innerHTML = studySources.map((src, index) => `
+    <div class="source-item">
+      <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 210px;" title="${src.name}">${src.type}: ${src.name}</span>
+      <button onclick="removeNotebookSource(${index})" style="background: none; border: none; color: #ef4444; cursor: pointer; font-weight: bold;">✕</button>
     </div>
   `).join('');
 }
 
-function removeStudySource(index) {
+function removeNotebookSource(index) {
   studySources.splice(index, 1);
   localStorage.setItem('everyToolStudySources', JSON.stringify(studySources));
-  renderStudySources();
+  renderNotebookSources();
 }
 
-function generateOutput(type) {
-  const box = document.getElementById('studyResultBox');
-  if (!box) return;
+function sendUserMessage() {
+  const input = document.getElementById('chatInput');
+  if (!input) return;
+  const text = input.value.trim();
+  if (!text) return;
 
-  if (studySources.length === 0) {
-    alert('Voeg minimaal één bron of notitie toe.');
-    return;
+  appendChatMessage(text, 'user');
+  input.value = '';
+
+  processStudyQuery(text);
+}
+
+function appendChatMessage(text, sender) {
+  const chatArea = document.getElementById('chatMessages');
+  if (!chatArea) return;
+  const bubble = document.createElement('div');
+  bubble.className = `chat-bubble ${sender}`;
+  bubble.innerHTML = text;
+  chatArea.appendChild(bubble);
+  chatArea.scrollTop = chatArea.scrollHeight;
+}
+
+function processStudyQuery(query) {
+  const queryLower = query.toLowerCase();
+  let aiReply = '';
+  const useScholar = document.getElementById('scholarToggle')?.checked ?? true;
+
+  if (queryLower.includes('tandenborstel') || queryLower.includes('tanden') || queryLower.includes('poetsen')) {
+    aiReply = 'Een tandenborstel is een essentieel hulpmiddel voor mondhygiëne. Je hebt handtandenborstels en elektrische tandenborstels. Tandartsen adviseren tweemaal per dag tweemaal te poetsen.';
+  } else if (queryLower.includes('hallo') || queryLower.includes('hoi')) {
+    aiReply = 'Hallo! Ik sta klaar om je te helpen met al je toegevoegde bronnen en notities.';
+  } else {
+    aiReply = `Op basis van je ${studySources.length} gekoppelde bronnen ${useScholar ? 'en Google Scholar literatuur' : ''}: over "${query}" kan ik vertellen dat dit direct aansluit bij je studiestof.`;
   }
 
-  const useScholar = document.getElementById('scholarToggle')?.checked ?? true;
-  box.innerHTML = `<p style="color: var(--text-muted);">AI analyseert ${studySources.length} bron(nen) ${useScholar ? 'inclusief Google Scholar literatuur' : ''} en genereert ${type}...</p>`;
-
   setTimeout(() => {
-    if (type === 'flashcards') {
-      box.innerHTML = `
-        <h3 style="color: var(--primary); margin-bottom: 12px;">📇 Gegenereerde Flashcards</h3>
-        <div style="background: var(--textarea-bg); padding: 16px; border-radius: var(--radius-md); margin-bottom: 10px; border: 1px solid var(--border-color);">
-          <strong>Vraag 1:</strong> Wat zijn de kernbegrippen uit je geüploade notities en ${useScholar ? 'Google Scholar artikelen' : 'bronnen'}?<br>
-          <em style="color: var(--text-muted);">Antwoord: Automatisch samengesteld uit je opgeslagen notebook data.</em>
-        </div>
-      `;
-    } else if (type === 'presentation') {
-      box.innerHTML = `
-        <h3 style="color: var(--primary); margin-bottom: 12px;">📊 Presentatie Structuur</h3>
-        <ul style="padding-left: 20px; line-height: 1.8;">
-          <li><strong>Slide 1:</strong> Inleiding & Probleemstelling</li>
-          <li><strong>Slide 2:</strong> Theoretisch kader ${useScholar ? '(met Google Scholar citaties)' : ''}</li>
-          <li><strong>Slide 3:</strong> Inzichten uit handgeschreven notities</li>
-          <li><strong>Slide 4:</strong> Conclusie & Vragen</li>
-        </ul>
-      `;
-    } else if (type === 'quiz') {
-      box.innerHTML = `
-        <h3 style="color: var(--primary); margin-bottom: 12px;">❓ Interactieve Oefentoets</h3>
-        <p><strong>Vraag:</strong> Welk verband leggen je bronnen tussen de theorie en de praktijk?</p>
-        <button class="btn secondary" style="margin-top: 10px;" onclick="alert('Antwoord is correct!')">Toon Antwoord</button>
-      `;
-    } else if (type === 'video') {
-      box.innerHTML = `
-        <h3 style="color: var(--primary); margin-bottom: 12px;">🎥 Gegenereerde Studievideo</h3>
-        <div style="background: #000; border-radius: var(--radius-md); height: 180px; display: flex; align-items: center; justify-content: center; color: white; flex-direction: column; gap: 10px;">
-          <div style="font-size: 14px; opacity: 0.8;">▶️ [AI Video Player - Lesstof Overzicht]</div>
-          <button class="btn" onclick="speakTextCustom('Hier is je gegenereerde studievideo uitleg op basis van al je notities en bronnen.')">🔊 Speel Video Audio Af</button>
-        </div>
-        <p style="font-size: 13px; color: var(--text-muted); margin-top: 10px;">De AI heeft al je notities en bronnen omgezet in een visuele videopresentatie met gesproken uitleg.</p>
-      `;
-    }
-  }, 1000);
+    appendChatMessage(aiReply, 'ai');
+    speakOutLoud(aiReply);
+  }, 400);
 }
 
-function speakTextCustom(text) {
+function speakOutLoud(text) {
   if ('speechSynthesis' in window) {
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(text);
@@ -1072,11 +1082,11 @@ function speakTextCustom(text) {
   }
 }
 
-// Slimme Live Voice Bellen Functie (met echte onderwerpsanalyse)
 function toggleVoiceCall() {
-  const circle = document.getElementById('voiceCircle');
-  const status = document.getElementById('voiceStatus');
-  
+  const callBtn = document.getElementById('callBtn');
+  const callText = document.getElementById('callText');
+  const callIcon = document.getElementById('callIcon');
+
   if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
     alert('Jouw browser ondersteunt geen spraakherkenning. Gebruik Google Chrome.');
     return;
@@ -1085,16 +1095,18 @@ function toggleVoiceCall() {
   isVoiceActive = !isVoiceActive;
 
   if (isVoiceActive) {
-    circle.classList.add('active');
-    circle.innerHTML = '🗣️';
-    status.innerText = 'Luistert... Zeg bijvoorbeeld: "Vertel over tandenborstels"';
-    startListening();
+    callBtn.classList.add('active');
+    callText.innerText = 'Verbreken';
+    callIcon.innerText = '📴';
+    appendChatMessage('🎙️ Spraakgesprek gestart. Spreek je vraag in...', 'ai');
+    speakOutLoud('Gesprek gestart. Zeg gerust waar je informatie over wilt hebben.');
+    startVoiceListening();
   } else {
     stopVoiceCall();
   }
 }
 
-function startListening() {
+function startVoiceListening() {
   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
   recognition = new SpeechRecognition();
   recognition.lang = 'nl-NL';
@@ -1103,16 +1115,12 @@ function startListening() {
 
   recognition.onresult = function(event) {
     const speechText = event.results[0][0].transcript;
-    const transcriptEl = document.getElementById('liveTranscript');
-    if (transcriptEl) {
-      transcriptEl.innerHTML = `Jij zei: "${speechText}"`;
-    }
-    processAIResponse(speechText);
+    appendChatMessage(speechText, 'user');
+    processStudyQuery(speechText);
   };
 
   recognition.onerror = function(event) {
     console.error('Spraakfout:', event.error);
-    stopVoiceCall();
   };
 
   recognition.onend = function() {
@@ -1128,59 +1136,11 @@ function startListening() {
   }
 }
 
-function processAIResponse(userQuery) {
-  const status = document.getElementById('voiceStatus');
-  if (status) status.innerText = 'AI zoekt informatie en formuleert antwoord...';
-
-  const queryLower = userQuery.toLowerCase();
-  let aiReply = '';
-
-  // Slimme trefwoordherkenning voor voorbeelden zoals tandenborstels
-  if (queryLower.includes('tandenborstel') || queryLower.includes('tanden')) {
-    aiReply = 'Een tandenborstel is een hulpmiddel voor mondhygiëne. Er zijn handtandenborstels en elektrische tandenborstels. Tandartsen adviseren om tweemaal per dag te poetsen gedurende twee minuten voor een optimaal resultaat tegen tandplak.';
-  } else if (queryLower.includes('hallo') || queryLower.includes('hoi')) {
-    aiReply = 'Hallo! Ik ben jouw AI Study assistent. Vraag me gerust iets over je studiestof, notities of wetenschappelijke artikelen.';
-  } else {
-    const useScholar = document.getElementById('scholarToggle')?.checked ?? true;
-    aiReply = `Je vroeg naar "${userQuery}". ${useScholar ? 'Volgens Google Scholar literatuur en' : 'Gebaseerd op'} je opgeslagen bronnen is dit een belangrijk onderwerp dat helpt bij je studievoortgang. Wil je hier flashcards of een oefentoets van maken?`;
-  }
-
-  const transcriptEl = document.getElementById('liveTranscript');
-  if (transcriptEl) {
-    transcriptEl.innerHTML += `<br><strong style="color: var(--primary);">AI:</strong> "${aiReply}"`;
-  }
-  
-  speakAIResponse(aiReply);
-}
-
-function speakAIResponse(text) {
-  if ('speechSynthesis' in window) {
-    window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'nl-NL';
-    utterance.rate = 1.0;
-    utterance.pitch = 1.0;
-    
-    const circle = document.getElementById('voiceCircle');
-    const status = document.getElementById('voiceStatus');
-
-    utterance.onstart = function() {
-      if (status) status.innerText = 'AI spreekt antwoord uit...';
-      if (circle) circle.classList.add('active');
-    };
-
-    utterance.onend = function() {
-      if (status) status.innerText = 'Luistert... (Spreek gerust verder)';
-    };
-
-    window.speechSynthesis.speak(utterance);
-  }
-}
-
 function stopVoiceCall() {
   isVoiceActive = false;
-  const circle = document.getElementById('voiceCircle');
-  const status = document.getElementById('voiceStatus');
+  const callBtn = document.getElementById('callBtn');
+  const callText = document.getElementById('callText');
+  const callIcon = document.getElementById('callIcon');
   
   if (recognition) {
     try { recognition.stop(); } catch(e) {}
@@ -1189,9 +1149,10 @@ function stopVoiceCall() {
     window.speechSynthesis.cancel();
   }
 
-  if (circle) circle.classList.remove('active');
-  if (circle) circle.innerHTML = '🎧';
-  if (status) status.innerText = 'Gesprek beëindigd. Klik op de cirkel om opnieuw te bellen.';
+  if (callBtn) callBtn.classList.remove('active');
+  if (callText) callText.innerText = 'Bel AI';
+  if (callIcon) callIcon.innerText = '📞';
+  appendChatMessage('📴 Spraakgesprek beëindigd.', 'ai');
 }
 
 // Verbeterde Zoekfunctionaliteit
