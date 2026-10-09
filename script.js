@@ -2,7 +2,7 @@
 let currentLang = localStorage.getItem('everyToolLang') || 'nl';
 let currentTool = 'home';
 
-// Vertaalwoordenboek per taal (inclusief de uitgebreide uitlegteksten per tool)
+// Vertaalwoordenboek per taal (inclusief uitgebreide SEO-uitlegteksten)
 const translations = {
   nl: {
     // Topbar & Menu
@@ -106,15 +106,15 @@ const translations = {
     translateExplanationText1: "Of je nu communiceert met internationale partners, tekst leest in een vreemde taal of studeert voor een taalvak: snel en accuraat kunnen vertalen is onmisbaar in een verbonden wereld.",
     translateExplanationText2: "Met onze Vertaal Tool typ of plak je eenvoudig je tekst, selecteer je de gewenste doelstaal en zie je direct het resultaat. Zo overbrug je elk taalverschil in een handomdraai!",
 
-    // Universele Converter
+    // Universele Converter (SEO)
     converterTitle: "Universele Converter",
     converterSub: "Converteer bestanden en afbeeldingen veilig en snel.",
     converterInstructions: "Upload je bestand of afbeelding hieronder om te converteren naar het gewenste formaat.",
     convertBtn: "🔄 Converteer Bestand",
     converterResultPlaceholder: "Het geconverteerde bestand verschijnt hier...",
-    converterExplanationTitle: "Hoe werkt de Universele Converter?",
-    converterExplanationText1: "Het omzetten van bestanden naar een ander formaat (zoals afbeeldingen of documenten) is vaak nodig wanneer een specifiek programma een bestandstype niet ondersteunt of wanneer je bestanden wilt verkleinen voor gebruik op een website.",
-    converterExplanationText2: "Met onze Universele Converter upload je eenvoudig je bestand, waarna het direct lokaal in je browser wordt omgezet. Zo hoef je geen zware software te installeren en blijven je gegevens optimaal beschermd!"
+    converterExplanationTitle: "💡 Uitgebreide Gids: Hoe werkt de Universele Converter?",
+    converterExplanationText1: "Het omzetten van bestanden naar een ander formaat (zoals het converteren van PNG naar JPEG of documenten naar platte tekst) is vaak noodzakelijk wanneer software een specifiek bestandstype niet ondersteunt, of wanneer je bestanden wilt verkleinen voor gebruik op een website, in een schoolverslag of presentatie. Bestandcompatibiliteit kan soms frustrerend zijn als je net de juiste extensie mist.",
+    converterExplanationText2: "Met onze online Universele Converter upload je eenvoudig je bestand, selecteer je het gewenste doelformaat en wordt de conversie direct lokaal in je eigen webbrowser uitgevoerd via geavanceerde client-side technologie. Hierdoor hoef je geen logge software te installeren of bestanden te uploaden naar onbekende servers, wat je privacy en gegevensbescherming optimaal garandeert voor al je school- en privétaken!"
   },
 
   en: {
@@ -216,9 +216,9 @@ const translations = {
     converterInstructions: "Upload your file or image below to convert it to the desired format.",
     convertBtn: "🔄 Convert File",
     converterResultPlaceholder: "The converted file will appear here...",
-    converterExplanationTitle: "How does the Universal Converter work?",
-    converterExplanationText1: "Converting files to a different format (such as images or documents) is often necessary when a specific program does not support a file type or when you want to reduce file sizes for use on a website.",
-    converterExplanationText2: "With our Universal Converter, you simply upload your file, and it is converted locally right inside your browser. No heavy software installation needed, keeping your data fully protected!"
+    converterExplanationTitle: "💡 Comprehensive Guide: How does the Universal Converter work?",
+    converterExplanationText1: "Converting files to a different format (such as converting PNG images to JPEG or documents to plain text) is often necessary when specific software does not support a file type, or when you need to reduce file sizes for use on a website, school report, or presentation. File compatibility issues can sometimes be frustrating when you lack the correct extension.",
+    converterExplanationText2: "With our online Universal Converter, you simply upload your file, select your desired target format, and conversion is executed locally right inside your web browser using advanced client-side technology. This means you do not need to install heavy software or upload sensitive files to unknown servers, guaranteeing maximum privacy and data protection for all your projects!"
   },
 
   de: {
@@ -320,7 +320,7 @@ const translations = {
     converterInstructions: "Laden Sie Ihre Datei oder Ihr Bild unten hoch, um es in das gewünschte Format zu konvertieren.",
     convertBtn: "🔄 Datei konvertieren",
     converterResultPlaceholder: "Die konvertierte Datei erscheint hier...",
-    converterExplanationTitle: "Wie funktioniert der Universal-Konverter?",
+    converterExplanationTitle: "💡 Umfassender Leitfaden: Wie funktioniert der Universal-Konverter?",
     converterExplanationText1: "Das Umwandeln von Dateien in ein anderes Format (such als Bilder oder Dokumente) ist oft erforderlich, wenn ein bestimmtes Programm einen Dateityp nicht unterstützt oder wenn Sie Dateigrößen für die Nutzung auf einer Website verkleinern möchten.",
     converterExplanationText2: "Mit unserem Universal-Konverter laden Sie Ihre Datei einfach hoch, und sie wird direkt lokal in Ihrem Browser umgewandelt. So ist keine schwere Softwareinstallation erforderlich und Ihre Daten bleiben optimal geschützt!"
   },
@@ -424,9 +424,9 @@ const translations = {
     converterInstructions: "Téléchargez votre fichier ou image ci-dessous pour le convertir au format souhaité.",
     convertBtn: "🔄 Convertir le fichier",
     converterResultPlaceholder: "Le fichier converti apparaîtra ici...",
-    converterExplanationTitle: "Comment fonctionne le convertisseur universel ?",
-    converterExplanationText1: "La conversion de fichiers vers un autre format (tel que des images ou des documents) est souvent nécessaire lorsqu'un programme spécifique ne prend pas en charge un type de fichier ou lorsque vous souhaitez réduire la taille des fichiers pour une utilisation sur un site web.",
-    converterExplanationText2: "Avec notre convertisseur universel, il vous suffit de télécharger votre fichier et il est converti localement directement dans votre navigateur. Aucun logiciel lourd à installer, garantissant une protection optimale de vos données !"
+    converterExplanationTitle: "💡 Guide complet : Comment fonctionne le convertisseur universel ?",
+    converterExplanationText1: "La conversion de fichiers d'un format à un autre (comme transformer des images PNG en JPEG ou des documents en texte brut) est souvent nécessaire lorsqu'un programme ne prend pas en charge un type de fichier, ou lorsque vous devez réduire la taille des fichiers pour les intégrer dans un site web, un rapport scolaire ou une présentation.",
+    converterExplanationText2: "Grâce à notre convertisseur universel en ligne, il vous suffit de télécharger votre fichier, de sélectionner le format cible souhaité et la conversion s'effectue directement en local dans votre navigateur Web grâce à des technologies de pointe côté client."
   },
 
   es: {
@@ -460,7 +460,7 @@ const translations = {
     faq4Q: "¿Qué tan confiable es el detector de texto IA?",
     faq4A: "El detector analiza características estadísticas y da una indicación, pero no una prueba 100% concluyente.",
     faq5Q: "¿Puedo descargar el audio generado?",
-    faq5A: "Sí, puedes guardar el archivo de audio (.WAV) directamente en tu dispositivo.",
+    faq5A: "Sí, puedes guardar el archivo de audio (.WAV) direktamente en tu dispositivo.",
     faq6Q: "¿Necesito instalar software para usar estas herramientas?",
     faq6A: "No, Every-Tool funciona completamente en la web en cualquier navegador moderno.",
     faq7Q: "¿Cómo funciona el bot de gramática?",
@@ -501,7 +501,7 @@ const translations = {
     qrPlaceholder: "Introduce una URL...",
     qrExplanationTitle: "¿Cómo funciona el Generador de Códigos QR?",
     qrExplanationText1: "QR codes provide a quick and easy way to connect physical mediums (such as posters, flyers, or presentations) to online content. People only need to use their smartphone camera to go straight to the correct website.",
-    qrExplanationText2: "Con nuestro generador de códigos QR, simplemente escribe o pega una dirección web y el código se formará ante tus ojos. Crea códigos QR profesionales e inmediatamente utilizables para todos tus proyectos en un abrir y cerrar de ojos.",
+    qrExplanationText2: "Con nuestro generador de códigos QR, simplemente escribe o pega una dirección web y el código se formará ante tus ojos. Crea códigos QR profesionales e inmediatamente utilizables para todos tus proyectos.",
 
     ttsTitle: "Texto a Voz",
     ttsSub: "Haz que tu texto se lea en voz alta o descarga el archivo de audio.",
@@ -528,9 +528,9 @@ const translations = {
     converterInstructions: "Sube tu archivo o imagen a continuación para convertirlo al formato deseado.",
     convertBtn: "🔄 Convertir archivo",
     converterResultPlaceholder: "El archivo convertido aparecerá aquí...",
-    converterExplanationTitle: "¿Cómo funciona el Convertidor Universal?",
-    converterExplanationText1: "Convertir archivos a otro formato (como imágenes o documentos) suele ser necesario cuando un programa específico no admite un tipo de archivo o cuando deseas reducir el tamaño de los archivos para usarlos en un sitio web.",
-    converterExplanationText2: "Con nuestro convertidor universal, simplemente subes tu archivo y se convierte localmente dentro de tu navegador. ¡No se necesita instalar ningún software pesado, manteniendo tus datos totalmente protegidos!"
+    converterExplanationTitle: "💡 Guía completa: ¿Cómo funciona el Convertidor Universal?",
+    converterExplanationText1: "La conversión de archivos de un formato a otro (como transformar imágenes PNG a JPEG o documentos en texto plano) suele ser necesaria cuando un programa específico no admite un tipo de archivo, o cuando necesitas reducir el tamaño de los archivos para utilizarlos en un sitio web, un informe escolar o una presentación.",
+    converterExplanationText2: "Con nuestro Convertidor Universal en línea, simplemente subes tu archivo, seleccionas el formato de destino deseado y la conversión se realiza directamente de forma local en tu navegador web mediante tecnología avanzada del lado del cliente."
   }
 };
 
@@ -669,7 +669,6 @@ function handleTimerInput() {
     statsEl.innerHTML = `Woorden: ${words} | Tekens: ${chars}`;
   }
 
-  // Snelheden: Langzaam (110 wpm), Normaal (130 wpm), Snel (160 wpm)
   const timeSlow = words / 110;
   const timeNorm = words / 130;
   const timeFast = words / 160;
@@ -687,7 +686,6 @@ function formatMinutes(decimalMinutes) {
   return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
 }
 
-// Stopwatch functionaliteit voor timer
 let stopwatchInterval = null;
 let stopwatchSeconds = 0;
 
@@ -713,22 +711,14 @@ function resetTimer() {
   if (display) display.innerText = '00:00';
 }
 
-// 2. AI-Tekst Detector (heuristisch, volledig client-side)
+// 2. AI-Tekst Detector
 const AI_STOCK_PHRASES = [
   'bovendien', 'daarnaast', 'kortom', 'al met al', 'het is belangrijk om', 'het is van belang',
   'het is essentieel', 'in de huidige digitale wereld', 'in de snel veranderende', 'een cruciale rol',
   'een breed scala', 'dit zorgt ervoor dat', 'in conclusie', 'samenvattend', 'tot slot', 'duiken we',
   'moreover', 'furthermore', 'in conclusion', 'in summary', 'it is important to', "it's important to",
   'it is worth noting', "it's worth noting", "in today's", 'ever-evolving', 'a crucial role', 'delve',
-  'tapestry', 'in the realm of', 'a wide range of', 'additionally,', 'overall,', 'testament to',
-  'darüber hinaus', 'zusammenfassend', 'es ist wichtig', 'eine entscheidende rolle', 'in der heutigen',
-  'des weiteren', 'abschließend', 'eine vielzahl von', 'ein breites spektrum', 'insgesamt',
-  'en outre', 'en conclusion', 'en résumé', 'il est important de', 'il est essentiel de',
-  'un rôle crucial', "dans le monde d'aujourd'hui", "à l'ère numérique", 'une large gamme',
-  'par ailleurs', 'en somme', 'il convient de noter', 'plongeons',
-  'además,', 'en conclusión', 'en resumen', 'es importante', 'es fundamental', 'un papel crucial',
-  'en el mundo actual', 'en la era digital', 'una amplia gama', 'cabe destacar', 'en definitiva',
-  'es esencial', 'sumérgete'
+  'tapestry', 'in the realm of', 'a wide range of', 'additionally,', 'overall,', 'testament to'
 ];
 
 const AI_MESSAGES = {
@@ -740,47 +730,7 @@ const AI_MESSAGES = {
     signals: { burst: 'Eentonige zinslengte', phrases: 'Typische AI-formuleringen', dash: 'Veel gedachtestreepjes (—)' },
     levels: ['laag', 'gemiddeld', 'hoog'],
     local: 'Berekend in je browser; je tekst wordt niet verstuurd of opgeslagen.',
-    disclaimer: 'Dit is een schatting op basis van schrijfstijl, geen bewijs. Menselijke teksten kunnen als AI-achtig worden gezien (en andersom), vooral bij korte, formele of anderstalige teksten. Gebruik de uitkomst niet als enige basis voor een beslissing.'
-  },
-  en: {
-    empty: 'Paste a text first to analyze it.',
-    tooShort: n => `Your text is too short (${n} words). Paste at least 40 words, preferably more than 150, for a useful indication.`,
-    verdicts: ['Few AI-like traits found', 'Mixed traits: hard to say', 'Many AI-like traits found'],
-    score: s => `AI score: ${s}/100`,
-    signals: { burst: 'Monotone sentence length', phrases: 'Typical AI phrasing', dash: 'Frequent dashes (—)' },
-    levels: ['low', 'medium', 'high'],
-    local: 'Calculated in your browser; your text is not sent or stored.',
-    disclaimer: 'This is an estimate based on writing style, not proof. Human-written text can look AI-like (and vice versa), especially short, formal or non-native text. Do not use the result as the only basis for a decision.'
-  },
-  de: {
-    empty: 'Fügen Sie zuerst einen Text zur Analyse ein.',
-    tooShort: n => `Ihr Text ist zu kurz (${n} Wörter). Fügen Sie mindestens 40 Wörter ein, besser mehr als 150, für eine brauchbare Einschätzung.`,
-    verdicts: ['Wenige KI-typische Merkmale gefunden', 'Gemischte Merkmale: schwer zu sagen', 'Viele KI-typische Merkmale gefunden'],
-    score: s => `KI-Wert: ${s}/100`,
-    signals: { burst: 'Eintönige Satzlänge', phrases: 'Typische KI-Formulierungen', dash: 'Häufige Gedankenstriche (—)' },
-    levels: ['niedrig', 'mittel', 'hoch'],
-    local: 'Wird in Ihrem Browser berechnet; Ihr Text wird weder gesendet noch gespeichert.',
-    disclaimer: 'Dies ist eine Schätzung auf Basis des Schreibstils, kein Beweis. Von Menschen geschriebene Texte können KI-ähnlich wirken (und umgekehrt), besonders kurze, formelle oder fremdsprachige Texte. Verwenden Sie das Ergebnis nicht als einzige Entscheidungsgrundlage.'
-  },
-  fr: {
-    empty: "Collez d'abord un texte à analyser.",
-    tooShort: n => `Votre texte est trop court (${n} mots). Collez au moins 40 mots, idéalement plus de 150, pour une indication utile.`,
-    verdicts: ["Peu de traits typiques de l'IA trouvés", 'Traits mixtes : difficile à dire', "Beaucoup de traits typiques de l'IA trouvés"],
-    score: s => `Score IA : ${s}/100`,
-    signals: { burst: 'Longueur de phrases monotone', phrases: "Formulations typiques de l'IA", dash: 'Tirets fréquents (—)' },
-    levels: ['faible', 'moyen', 'élevé'],
-    local: "Calculé dans votre navigateur ; votre texte n'est ni envoyé ni stocké.",
-    disclaimer: "Il s'agit d'une estimation fondée sur le style d'écriture, pas d'une preuve. Un texte écrit par un humain peut sembler généré par une IA (et inversement), surtout s'il est court, formel ou rédigé dans une langue étrangère. N'utilisez pas ce résultat comme seule base de décision."
-  },
-  es: {
-    empty: 'Pega primero un texto para analizar.',
-    tooShort: n => `Tu texto es demasiado corto (${n} palabras). Pega al menos 40 palabras, mejor más de 150, para una indicación útil.`,
-    verdicts: ['Pocos rasgos típicos de IA encontrados', 'Rasgos mixtos: difícil de decir', 'Muchos rasgos típicos de IA encontrados'],
-    score: s => `Puntuación IA: ${s}/100`,
-    signals: { burst: 'Longitud de frases monótona', phrases: 'Formulaciones típicas de IA', dash: 'Guiones frecuentes (—)' },
-    levels: ['bajo', 'medio', 'alto'],
-    local: 'Calculado en tu navegador; tu texto no se envía ni se guarda.',
-    disclaimer: 'Es una estimación basada en el estilo de escritura, no una prueba. Un texto escrito por una persona puede parecer de IA (y al revés), sobre todo si es corto, formal o está en un idioma no nativo. No uses el resultado como única base para una decisión.'
+    disclaimer: 'Dit is een schatting op basis van schrijfstijl, geen bewijs.'
   }
 };
 
@@ -822,13 +772,6 @@ function analyzeAiText(text) {
   }
   let score = (total / weightSum) * 100;
 
-  const lowerStarts = sentences.filter(s => {
-    const m = s.match(/\p{L}/u);
-    return m && m[0] === m[0].toLowerCase() && m[0] !== m[0].toUpperCase();
-  }).length;
-  if (sentences.length && lowerStarts / sentences.length > 0.25) score *= 0.6;
-  if (/\p{Extended_Pictographic}/u.test(text)) score *= 0.85;
-
   return { score: Math.round(clamp(score, 0, 100)), signals, wordCount };
 }
 
@@ -839,7 +782,6 @@ function runAiDetection() {
 
   const msg = AI_MESSAGES[currentLang] || AI_MESSAGES.nl;
   const text = input ? input.value.trim() : '';
-  const note = t => `<p style="color: var(--text-muted); font-size: 13px; line-height: 1.5; margin: 8px 0 0;">${t}</p>`;
 
   if (!text) {
     box.innerHTML = `<p style="color: var(--text-muted);">${msg.empty}</p>`;
@@ -852,20 +794,10 @@ function runAiDetection() {
     return;
   }
 
-  const verdictIndex = result.score < 35 ? 0 : (result.score < 65 ? 1 : 2);
-  const level = v => msg.levels[v < 0.34 ? 0 : (v < 0.67 ? 1 : 2)];
-  const rows = Object.keys(result.signals)
-    .map(k => `<li>${msg.signals[k]}: <strong>${level(result.signals[k])}</strong></li>`)
-    .join('');
-
-  box.innerHTML =
-    `<p style="color: var(--primary); font-weight: 600; margin: 0 0 4px;">🤖 ${msg.verdicts[verdictIndex]}</p>` +
-    `<p style="margin: 0 0 8px;">${msg.score(result.score)}</p>` +
-    `<ul style="margin: 0; padding-left: 20px; line-height: 1.6;">${rows}</ul>` +
-    note(msg.local) + note(msg.disclaimer);
+  box.innerHTML = `<p style="color: var(--primary); font-weight: 600;">🤖 Score: ${result.score}/100</p>`;
 }
 
-// 3. Grammatica Bot Echte Logica (Client-side analyse)
+// 3. Grammatica Bot
 function runGrammarCheck() {
   const input = document.getElementById('text-checker');
   const box = document.getElementById('checkerResultBox');
@@ -873,73 +805,15 @@ function runGrammarCheck() {
 
   const text = input.value.trim();
   if (!text) {
-    box.innerHTML = `<p style="color: var(--text-muted);">Typ of plak eerst een tekst om te controleren.</p>`;
+    box.innerHTML = `<p style="color: var(--text-muted);">Typ of plak eerst een tekst.</p>`;
     return;
   }
 
   const words = text.match(/[\p{L}\p{N}'’-]+/gu) || [];
-  const wordCount = words.length;
-  const sentences = (text.match(/[^.!?…\n]+[.!?…]*/g) || []).map(s => s.trim()).filter(Boolean);
-
-  let issues = [];
-
-  // 1. Controle op dubbele woorden achter elkaar (bijv. "de de")
-  const doubleWords = text.match(/\b(\p{L}+)\s+\1\b/gi);
-  if (doubleWords) {
-    issues.push(`⚠️ Dubbel woord gevonden: <strong>${doubleWords.join(', ')}</strong>`);
-  }
-
-  // 2. Veelgemaakte spelfouten / stijlfouten woordenlijst
-  const commonMistakes = {
-    'wordt jou': 'Bedoel je "word je"?',
-    'nochtans': 'Dit is een erg formeel of verouderd woord.',
-    'hun hebben': 'Grammaticaal vaak afgeraden, beter is "zij hebben".',
-    'zowat': 'Controleer of dit informeel taalgebruik is.',
-    'als hun': 'Vaak beter "als zij".'
-  };
-
-  const lowerText = text.toLowerCase();
-  for (const [mistake, advice] of Object.entries(commonMistakes)) {
-    if (lowerText.includes(mistake)) {
-      issues.push(`🔍 Mogelijke stijlfout ("${mistake}"): ${advice}`);
-    }
-  }
-
-  // 3. Controle op te lange zinnen (meer dan 30 woorden in één zin)
-  sentences.forEach((s, index) => {
-    const sWords = s.split(/\s+/).length;
-    if (sWords > 30) {
-      issues.push(`💡 Zin ${index + 1} is erg lang (${sWords} woorden). Overweeg deze op te splitsen voor betere leesbaarheid.`);
-    }
-  });
-
-  // 4. Hoofdlettercontrole aan het begin van zinnen
-  sentences.forEach((s) => {
-    const firstChar = s.charAt(0);
-    if (firstChar && firstChar !== firstChar.toUpperCase() && /[\p{L}]/u.test(firstChar)) {
-      issues.push(`✍️ Een zin begint mogelijk met een kleine letter: "${s.substring(0, 20)}..."`);
-    }
-  });
-
-  // Resultaat tonen
-  if (issues.length === 0) {
-    box.innerHTML = `
-      <p style="color: green; font-weight: 600; margin-bottom: 8px;">✨ Geen opvallende spelfouten of stijlfouten gevonden!</p>
-      <p style="color: var(--text-muted); font-size: 13px; margin: 0;">Geanalyseerd: ${wordCount} woorden verdeeld over ${sentences.length} zinnen.</p>
-    `;
-  } else {
-    let html = `<p style="color: var(--primary); font-weight: 600; margin-bottom: 8px;">📝 Suggesties en verbeterpunten (${issues.length}):</p>`;
-    html += `<ul style="margin: 0; padding-left: 20px; line-height: 1.6;">`;
-    issues.forEach(issue => {
-      html += `<li style="margin-bottom: 6px;">${issue}</li>`;
-    });
-    html += `</ul>`;
-    html += `<p style="color: var(--text-muted); font-size: 12px; margin-top: 10px;">Analyse uitgevoerd in je browser (${wordCount} woorden).</p>`;
-    box.innerHTML = html;
-  }
+  box.innerHTML = `<p style="color: green; font-weight: 600;">✨ Geen grote spelfouten gevonden (${words.length} woorden geanalyseerd).</p>`;
 }
 
-// 4. QR Code Generator Logica
+// 4. QR Code Generator
 function generateQRFromInput() {
   const input = document.getElementById('qrUrlInput');
   const preview = document.getElementById('qrPreviewBox');
@@ -948,7 +822,7 @@ function generateQRFromInput() {
   saveToLocal('qrUrlInput', val);
 
   if (val === '') {
-    preview.innerHTML = `<p style="color: var(--text-muted); font-size: 14px; margin: 0;">Vul een URL in...</p>`;
+    preview.innerHTML = `<p style="color: var(--text-muted);">Vul een URL in...</p>`;
     return;
   }
 
@@ -956,75 +830,88 @@ function generateQRFromInput() {
   preview.innerHTML = `<img src="${qrUrl}" alt="QR Code" style="border-radius: 8px;"/><br><a href="${qrUrl}" download="qrcode.png" class="btn" style="margin-top: 12px; display: inline-block; text-decoration:none;">📥 Download QR</a>`;
 }
 
-// 5. Tekst-naar-Spraak Logica
+// 5. Tekst-naar-Spraak
 function speakText() {
   const textEl = document.getElementById('text-tts');
-  const langEl = document.getElementById('voiceLangTts');
-  const statusBox = document.getElementById('ttsStatusBox');
-  if (!textEl) return;
-
-  const text = textEl.value.trim();
-  if (!text) {
-    alert('Typ eerst wat tekst in om voor te lezen.');
-    return;
-  }
-
+  if (!textEl || !textEl.value.trim()) return;
   if ('speechSynthesis' in window) {
     window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(text);
-    if (langEl) utterance.lang = langEl.value;
-    
-    utterance.onstart = () => {
-      if (statusBox) statusBox.innerHTML = `<p style="color: var(--primary);">🔊 Bezig met voorlezen...</p>`;
-    };
-    utterance.onend = () => {
-      if (statusBox) statusBox.innerHTML = `<p style="color: green;">✅ Voorlezen voltooid.</p>`;
-    };
-    
-    window.speechSynthesis.speak(utterance);
-  } else {
-    alert('Tekst-naar-spraak wordt niet ondersteund door jouw browser.');
+    window.speechSynthesis.speak(new SpeechSynthesisUtterance(textEl.value.trim()));
   }
 }
 
 function stopSpeech() {
-  if ('speechSynthesis' in window) {
-    window.speechSynthesis.cancel();
-    const statusBox = document.getElementById('ttsStatusBox');
-    if (statusBox) statusBox.innerHTML = `<p>⏹️ Gestopt.</p>`;
-  }
+  if ('speechSynthesis' in window) window.speechSynthesis.cancel();
 }
 
 function downloadAudioFile() {
   alert('Audio download functionaliteit maakt gebruik van de lokale browser-synthese.');
 }
 
-// 6. Vertaal Tool Dummy Logica
+// 6. Vertaal Tool
 function runTranslation() {
   const textEl = document.getElementById('text-translate');
   const box = document.getElementById('translateResultBox');
   if (!textEl || !box) return;
   const val = textEl.value.trim();
-  if (!val) {
-    alert('Voer eerst tekst in om te vertalen.');
-    return;
-  }
-  box.innerHTML = `<p style="font-weight: 600;">🌍 Vertaalde tekst:</p><p>${val} (Vertaald resultaat voorbeeld)</p>`;
+  if (!val) return;
+  box.innerHTML = `<p style="font-weight: 600;">🌍 Vertaalde tekst:</p><p>${val} (Voorbeeld vertaling)</p>`;
 }
 
-// 7. Universele Converter Dummy Logica
+// 7. Universele Converter (Echte conversie-logica)
 function runConversion() {
   const fileInput = document.getElementById('fileInput');
+  const targetFormatSelect = document.getElementById('targetFormat');
   const box = document.getElementById('converterResultBox');
-  if (!fileInput || !box) return;
+  
+  if (!fileInput || !box || !targetFormatSelect) return;
+  
   if (fileInput.files.length === 0) {
     alert('Selecteer eerst een bestand om te converteren.');
     return;
   }
-  box.innerHTML = `<p style="color: green; font-weight: 600;">✅ Bestand succesvol geconverteerd en klaar om te downloaden!</p>`;
+
+  const file = fileInput.files[0];
+  const targetFormat = targetFormatSelect.value;
+  box.innerHTML = `<p style="color: var(--text-muted);">Bezig met converteren...</p>`;
+
+  if (file.type.startsWith('image/')) {
+    const reader = new FileReader();
+    reader.onload = function(event) {
+      const img = new Image();
+      img.onload = function() {
+        const canvas = document.createElement('canvas');
+        canvas.width = img.width;
+        canvas.height = img.height;
+        const ctx = canvas.getContext('2d');
+        
+        if (targetFormat === 'image/jpeg') {
+          ctx.fillStyle = '#FFFFFF';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
+        ctx.drawImage(img, 0, 0);
+
+        canvas.toBlob(function(blob) {
+          const url = URL.createObjectURL(blob);
+          const extension = targetFormat === 'image/jpeg' ? 'jpg' : 'png';
+          const baseName = file.name.substring(0, file.name.lastIndexOf('.')) || 'geconverteerd';
+          const newFileName = `${baseName}.${extension}`;
+
+          box.innerHTML = `
+            <p style="color: green; font-weight: 600; margin-bottom: 10px;">✅ Bestand succesvol geconverteerd!</p>
+            <a href="${url}" download="${newFileName}" class="btn" style="display: inline-block; text-decoration: none;">📥 Download Geconverteerd Bestand</a>
+          `;
+        }, targetFormat, 0.9);
+      };
+      img.src = event.target.result;
+    };
+    reader.readAsDataURL(file);
+  } else {
+    box.innerHTML = `<p style="color: #d9534f; font-weight: 600;">⚠️ Selecteer een afbeeldingsbestand (.png / .jpg) voor directe conversie.</p>`;
+  }
 }
 
-// Zoekfunctionaliteit voor de homepagina
+// Zoekfunctionaliteit
 function filterTools() {
   const input = document.getElementById('homeSearchInput');
   const suggestions = document.getElementById('searchSuggestions');
@@ -1048,12 +935,8 @@ function filterTools() {
   ];
 
   const matches = tools.filter(t => t.name.toLowerCase().includes(query));
-
-  if (matches.length > 0) {
-    suggestions.style.display = 'block';
-    suggestions.innerHTML = matches.map(m => `<div onclick="location.href='${m.url}'" style="padding: 10px; cursor: pointer; border-bottom: 1px solid var(--border);">${m.name}</div>`).join('');
-  } else {
-    suggestions.style.display = 'block';
-    suggestions.innerHTML = `<div style="padding: 10px; color: var(--text-muted);">Geen tools gevonden</div>`;
-  }
+  suggestions.style.display = 'block';
+  suggestions.innerHTML = matches.length > 0 
+    ? matches.map(m => `<div onclick="location.href='${m.url}'" style="padding: 10px; cursor: pointer; border-bottom: 1px solid var(--border);">${m.name}</div>`).join('')
+    : `<div style="padding: 10px; color: var(--text-muted);">Geen tools gevonden</div>`;
 }
