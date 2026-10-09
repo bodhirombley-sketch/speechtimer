@@ -4,24 +4,65 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3253400496231224" crossorigin="anonymous"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AI Study Hub & Notebook AI | Every-Tool</title>
-  <meta name="description" content="Jouw persoonlijke AI Study Workspace: chat met je bronnen, doorzoek Google Scholar, upload notities, bel live met de AI en genereer studievideo's."/>
+  <title>AI Study Hub & Notebook LM | Every-Tool</title>
+  <meta name="description" content="Jouw persoonlijke AI Study Workspace: voeg websites, YouTube video's, notities en PDF's toe, chat met je bronnen en bel live met de AI."/>
   <link rel="canonical" href="https://every-tool.netlify.app/study/"/>
   <link rel="stylesheet" href="../style.css">
   <style>
-    .notebook-container {
-      display: flex;
-      flex-direction: column;
-      height: calc(100vh - 140px);
-      max-width: 1000px;
+    .notebook-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      height: calc(100vh - 130px);
+      max-width: 1200px;
       margin: 0 auto;
+    }
+    @media (min-width: 900px) {
+      .notebook-layout {
+        grid-template-columns: 300px 1fr;
+      }
+    }
+    /* Linker bronnen zijbalk (NotebookLM style) */
+    .sources-sidebar {
       background: var(--card-bg, #ffffff);
       border-radius: var(--radius-lg, 12px);
       border: 1px solid var(--border-color, #e2e8f0);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      overflow-y: auto;
+    }
+    .source-add-box {
+      background: var(--textarea-bg, #f8fafc);
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color, #e2e8f0);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .source-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 10px;
+      background: var(--textarea-bg, #f8fafc);
+      border-radius: 6px;
+      font-size: 13px;
+      border: 1px solid var(--border-color, #e2e8f0);
+    }
+    /* Rechter chat werkplaats */
+    .chat-workspace {
+      background: var(--card-bg, #ffffff);
+      border-radius: var(--radius-lg, 12px);
+      border: 1px solid var(--border-color, #e2e8f0);
+      display: flex;
+      flex-direction: column;
       overflow: hidden;
       box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     }
-    .notebook-topbar {
+    .chat-topbar {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -89,9 +130,7 @@
       cursor: pointer;
       transition: background 0.2s;
     }
-    .plus-btn:hover {
-      background: var(--border-color, #e2e8f0);
-    }
+    .plus-btn:hover { background: var(--border-color, #e2e8f0); }
     .call-btn-top {
       background: var(--primary, #6366f1);
       color: white;
@@ -105,9 +144,7 @@
       gap: 6px;
       font-size: 14px;
     }
-    .call-btn-top.active {
-      background: #ef4444;
-    }
+    .call-btn-top.active { background: #ef4444; }
     .toggle-container {
       display: flex;
       align-items: center;
@@ -133,12 +170,6 @@
     input:checked + .slider { background-color: var(--primary, #6366f1); }
     input:checked + .slider:before { transform: translateX(16px); }
   </style>
-  <script>
-    (function() {
-      const savedLang = localStorage.getItem('everyToolLang') || 'nl';
-      document.documentElement.lang = savedLang;
-    })();
-  </script>
 </head>
 <body data-theme="light">
 
@@ -173,42 +204,57 @@
   </nav>
 
   <main class="container" style="padding-top: 10px; padding-bottom: 20px;">
-    
-    <!-- Hoofd Notebook / ChatGPT Workspace -->
-    <div class="notebook-container">
+    <div class="notebook-layout">
       
-      <!-- Bovenste balk met Google Scholar toggle en Bel-knop -->
-      <div class="notebook-topbar">
-        <div class="toggle-container">
-          <span>🎓 Google Scholar</span>
-          <label class="switch">
-            <input type="checkbox" id="scholarToggle" checked onchange="saveStudySettings()">
-            <span class="slider"></span>
-          </label>
+      <!-- LINKER ZIJBALK: NOTEBOOK BRONNEN BEHEER -->
+      <div class="sources-sidebar">
+        <h3 style="font-size: 16px; margin-bottom: 4px;">📚 Bronnen (Notebook)</h3>
+        <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 10px;">Voeg al je studiemateriaal toe.</p>
+
+        <div class="source-add-box">
+          <label style="font-size: 12px; font-weight: 600;">Voeg Website / YouTube toe:</label>
+          <input type="text" id="sourceUrlInput" placeholder="Plak URL of YouTube link..." style="padding: 8px; font-size: 13px; border-radius: 6px; border: 1px solid var(--border-color);" />
+          <button class="btn" onclick="addUrlSource()" style="padding: 6px 12px; font-size: 13px;">➕ Voeg URL toe</button>
         </div>
-        <div style="font-size: 13px; color: var(--text-muted);" id="sourceCountBadge">0 bronnen / notities geladen</div>
-        <button class="call-btn-top" id="callBtn" onclick="toggleVoiceCall()">
-          <span id="callIcon">📞</span> <span id="callText">Bel AI</span>
-        </button>
+
+        <div class="source-add-box">
+          <label style="font-size: 12px; font-weight: 600;">Upload Bestand / Notitie / Foto:</label>
+          <input type="file" id="sourceFileInput" accept="image/*,.txt,.pdf" style="font-size: 12px;" onchange="handleNotebookFile(this)" />
+        </div>
+
+        <div style="font-weight: 600; font-size: 13px; margin-top: 10px;">Gekoppelde bronnen:</div>
+        <div id="sourcesListContainer" style="display: flex; flex-direction: column; gap: 6px; max-height: 250px; overflow-y: auto;">
+          <div style="font-size: 12px; color: var(--text-muted);">Nog geen bronnen...</div>
+        </div>
       </div>
 
-      <!-- Chat Berichten Veld (Notebook Style) -->
-      <div class="chat-messages-area" id="chatMessages">
-        <div class="chat-bubble ai">
-          👋 Hallo! Ik ben je AI Study Assistent. Vraag me gerust iets (bijvoorbeeld: <em>"Geef mij informatie over tandenborstels"</em>), upload hieronder je notities via het plusje, of start de bel-modus rechtsboven!
+      <!-- RECHTER KANT: CHAT WERKPLAATS -->
+      <div class="chat-workspace">
+        <div class="chat-topbar">
+          <div class="toggle-container">
+            <span>🎓 Google Scholar</span>
+            <label class="switch">
+              <input type="checkbox" id="scholarToggle" checked onchange="saveStudySettings()">
+              <span class="slider"></span>
+            </label>
+          </div>
+          <button class="call-btn-top" id="callBtn" onclick="toggleVoiceCall()">
+            <span id="callIcon">📞</span> <span id="callText">Bel AI</span>
+          </button>
         </div>
-      </div>
 
-      <!-- Onderste Typbar met Plusje voor Bestanden/Foto's -->
-      <div class="chat-input-bar">
-        <!-- Verborgen file input voor het plusje -->
-        <input type="file" id="hiddenFileInput" accept="image/*,.txt" style="display: none;" onchange="handleFileSelected(this)" />
-        
-        <button class="plus-btn" onclick="document.getElementById('hiddenFileInput').click()" title="Voeg notities of foto toe">+</button>
-        
-        <input type="text" id="chatInput" placeholder="Typ je vraag over de studiestof of tandenborstels..." onkeydown="if(event.key === 'Enter') sendUserMessage()" />
-        
-        <button class="btn" onclick="sendUserMessage()" style="padding: 10px 20px; border-radius: 20px;">Verstuur</button>
+        <div class="chat-messages-area" id="chatMessages">
+          <div class="chat-bubble ai">
+            👋 Welkom in je Notebook AI! Voeg links of notities toe aan de linkerzijde, typ je vraag hieronder (of gebruik het plusje voor bestanden), of start rechtsboven de bel-modus.
+          </div>
+        </div>
+
+        <div class="chat-input-bar">
+          <input type="file" id="chatFileInput" accept="image/*,.txt" style="display: none;" onchange="handleChatFile(this)" />
+          <button class="plus-btn" onclick="document.getElementById('chatFileInput').click()" title="Voeg bestand toe">+</button>
+          <input type="text" id="chatInput" placeholder="Typ je vraag..." onkeydown="if(event.key === 'Enter') sendUserMessage()" />
+          <button class="btn" onclick="sendUserMessage()" style="padding: 10px 20px; border-radius: 20px;">Verstuur</button>
+        </div>
       </div>
 
     </div>
