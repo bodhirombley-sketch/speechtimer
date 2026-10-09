@@ -5,70 +5,133 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AI Study Hub & Notebook AI | Every-Tool</title>
-  <meta name="description" content="Jouw persoonlijke AI Study Workspace: beheer bronnen, doorzoek Google Scholar, upload notities, bel live met de AI en genereer studievideo's."/>
+  <meta name="description" content="Jouw persoonlijke AI Study Workspace: chat met je bronnen, doorzoek Google Scholar, upload notities, bel live met de AI en genereer studievideo's."/>
   <link rel="canonical" href="https://every-tool.netlify.app/study/"/>
   <link rel="stylesheet" href="../style.css">
   <style>
-    .notebook-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 24px;
-    }
-    @media (min-width: 900px) {
-      .notebook-grid {
-        grid-template-columns: 320px 1fr;
-      }
-    }
-    .voice-circle {
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
-      background: var(--primary-gradient);
+    .notebook-container {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 30px;
-      cursor: pointer;
-      box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4);
-      margin: 10px auto;
-      transition: transform 0.2s ease;
+      flex-direction: column;
+      height: calc(100vh - 140px);
+      max-width: 1000px;
+      margin: 0 auto;
+      background: var(--card-bg, #ffffff);
+      border-radius: var(--radius-lg, 12px);
+      border: 1px solid var(--border-color, #e2e8f0);
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     }
-    .voice-circle.active {
-      animation: pulse-ring 1.5s infinite;
-    }
-    @keyframes pulse-ring {
-      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7); }
-      70% { transform: scale(1.05); box-shadow: 0 0 0 20px rgba(99, 102, 241, 0); }
-      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
-    }
-    .toggle-switch {
+    .notebook-topbar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: var(--textarea-bg);
+      padding: 12px 20px;
+      border-bottom: 1px solid var(--border-color, #e2e8f0);
+      background: var(--textarea-bg, #f8fafc);
+    }
+    .chat-messages-area {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .chat-bubble {
+      max-width: 80%;
       padding: 12px 16px;
-      border-radius: var(--radius-md);
-      border: 1px solid var(--border-color);
-      margin-bottom: 14px;
+      border-radius: 12px;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+    .chat-bubble.user {
+      background: var(--primary, #6366f1);
+      color: white;
+      align-self: flex-end;
+      border-bottom-right-radius: 2px;
+    }
+    .chat-bubble.ai {
+      background: var(--textarea-bg, #f1f5f9);
+      color: var(--text-color, #1e293b);
+      align-self: flex-start;
+      border-bottom-left-radius: 2px;
+      border: 1px solid var(--border-color, #e2e8f0);
+    }
+    .chat-input-bar {
+      display: flex;
+      align-items: center;
+      padding: 12px 16px;
+      border-top: 1px solid var(--border-color, #e2e8f0);
+      background: var(--card-bg, #ffffff);
+      gap: 10px;
+    }
+    .chat-input-bar input[type="text"] {
+      flex: 1;
+      padding: 12px 16px;
+      border-radius: 24px;
+      border: 1px solid var(--border-color, #cbd5e1);
+      background: var(--textarea-bg, #f8fafc);
+      color: var(--text-color, #1e293b);
+      outline: none;
+      font-size: 15px;
+    }
+    .plus-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--textarea-bg, #f1f5f9);
+      border: 1px solid var(--border-color, #cbd5e1);
+      color: var(--text-color, #64748b);
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .plus-btn:hover {
+      background: var(--border-color, #e2e8f0);
+    }
+    .call-btn-top {
+      background: var(--primary, #6366f1);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+    }
+    .call-btn-top.active {
+      background: #ef4444;
+    }
+    .toggle-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
     }
     .switch {
       position: relative;
       display: inline-block;
-      width: 48px;
-      height: 24px;
+      width: 36px;
+      height: 20px;
     }
     .switch input { opacity: 0; width: 0; height: 0; }
     .slider {
       position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
-      background-color: var(--border-color); transition: .3s; border-radius: 24px;
+      background-color: #cbd5e1; transition: .3s; border-radius: 20px;
     }
     .slider:before {
-      position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px;
+      position: absolute; content: ""; height: 14px; width: 14px; left: 3px; bottom: 3px;
       background-color: white; transition: .3s; border-radius: 50%;
     }
-    input:checked + .slider { background-color: var(--primary); }
-    input:checked + .slider:before { transform: translateX(24px); }
+    input:checked + .slider { background-color: var(--primary, #6366f1); }
+    input:checked + .slider:before { transform: translateX(16px); }
   </style>
   <script>
     (function() {
@@ -109,71 +172,45 @@
     <div class="tool-group"><a href="../blog/" class="tool-btn" style="text-decoration:none; color:inherit;">📰 Blog</a></div>
   </nav>
 
-  <main class="container">
-    <div class="section-header-wrapper">
-      <h2 class="section-title">🧠 AI Study Workspace (Notebook Mode)</h2>
-      <p class="section-subtitle">Beheer je bronnen, doorzoek Google Scholar, upload notities en genereer flashcards, presentaties of studievideo's.</p>
-    </div>
-
-    <div class="notebook-grid">
-      <!-- LINKER KOLOM: BRONNEN BEHEER & SCHAKELAARS -->
-      <div>
-        <div class="info-card" style="margin-bottom: 20px;">
-          <h3>📚 Mijn Notities & Bronnen</h3>
-          <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 14px;">Wordt automatisch opgeslagen in je browser.</p>
-          
-          <!-- Google Scholar Schakelaar -->
-          <div class="toggle-switch">
-            <span style="font-size: 14px; font-weight: 700;">🎓 Google Scholar</span>
-            <label class="switch">
-              <input type="checkbox" id="scholarToggle" checked onchange="saveStudySettings()">
-              <span class="slider"></span>
-            </label>
-          </div>
-
-          <!-- URL / Tekst Bron Toevoegen -->
-          <input type="text" id="sourceInput" placeholder="URL, YouTube of onderwerp..." style="margin-bottom: 10px; font-size: 14px; padding: 12px;" />
-          
-          <!-- Foto van Notities Uploaden -->
-          <label style="font-size: 13px; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 6px;">📷 Upload Foto Notities:</label>
-          <input type="file" id="noteImageInput" accept="image/*" style="margin-bottom: 12px; font-size: 13px;" />
-          
-          <button class="btn" style="width: 100%;" onclick="addNotebookSource()">➕ Bron Toevoegen</button>
-
-          <div id="sourcesList" style="margin-top: 15px; font-size: 14px; color: var(--text-muted); max-height: 200px; overflow-y: auto;">
-            Nog geen bronnen toegevoegd...
-          </div>
+  <main class="container" style="padding-top: 10px; padding-bottom: 20px;">
+    
+    <!-- Hoofd Notebook / ChatGPT Workspace -->
+    <div class="notebook-container">
+      
+      <!-- Bovenste balk met Google Scholar toggle en Bel-knop -->
+      <div class="notebook-topbar">
+        <div class="toggle-container">
+          <span>🎓 Google Scholar</span>
+          <label class="switch">
+            <input type="checkbox" id="scholarToggle" checked onchange="saveStudySettings()">
+            <span class="slider"></span>
+          </label>
         </div>
+        <div style="font-size: 13px; color: var(--text-muted);" id="sourceCountBadge">0 bronnen / notities geladen</div>
+        <button class="call-btn-top" id="callBtn" onclick="toggleVoiceCall()">
+          <span id="callIcon">📞</span> <span id="callText">Bel AI</span>
+        </button>
+      </div>
 
-        <!-- LIVE VOICE BEL-MODUS -->
-        <div class="info-card voice-container">
-          <h3 style="font-size: 16px; margin-bottom: 4px;">🎙️ Live AI Voice Call</h3>
-          <p class="voice-status" id="voiceStatus" style="font-size: 13px;">Klik om te bellen met je assistent</p>
-          <div class="voice-circle" id="voiceCircle" onclick="toggleVoiceCall()">🎧</div>
-          <div id="liveTranscript" style="font-size: 12px; font-style: italic; color: var(--text-muted); margin-top: 8px;">Spreek gerust...</div>
+      <!-- Chat Berichten Veld (Notebook Style) -->
+      <div class="chat-messages-area" id="chatMessages">
+        <div class="chat-bubble ai">
+          👋 Hallo! Ik ben je AI Study Assistent. Vraag me gerust iets (bijvoorbeeld: <em>"Geef mij informatie over tandenborstels"</em>), upload hieronder je notities via het plusje, of start de bel-modus rechtsboven!
         </div>
       </div>
 
-      <!-- RECHTER KOLOM: GENEREREN & WERKPLAATS -->
-      <div>
-        <div class="info-card" style="margin-bottom: 20px;">
-          <h3>⚡ Genereer Studiemateriaal</h3>
-          <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">Kies wat je wilt maken op basis van al je opgeslagen bronnen en notities.</p>
-          
-          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 16px;">
-            <button class="btn secondary" onclick="generateOutput('flashcards')">📇 Flashcards</button>
-            <button class="btn secondary" onclick="generateOutput('presentation')">📊 Presentatie</button>
-            <button class="btn secondary" onclick="generateOutput('quiz')">❓ Oefentoets</button>
-            <button class="btn" onclick="generateOutput('video')">🎥 Studievideo</button>
-          </div>
-        </div>
-
-        <!-- WERKPLAATS / RESULTAAT SCHERM -->
-        <div class="info-card" id="studyResultBox" style="min-height: 280px;">
-          <h3 style="color: var(--text-muted); font-size: 16px;">📄 Notebook Resultaat</h3>
-          <p style="color: var(--text-muted); font-size: 14px; margin-top: 10px;">Voeg links of foto's van je notities toe aan de linkerzijde en selecteer een optie om te starten.</p>
-        </div>
+      <!-- Onderste Typbar met Plusje voor Bestanden/Foto's -->
+      <div class="chat-input-bar">
+        <!-- Verborgen file input voor het plusje -->
+        <input type="file" id="hiddenFileInput" accept="image/*,.txt" style="display: none;" onchange="handleFileSelected(this)" />
+        
+        <button class="plus-btn" onclick="document.getElementById('hiddenFileInput').click()" title="Voeg notities of foto toe">+</button>
+        
+        <input type="text" id="chatInput" placeholder="Typ je vraag over de studiestof of tandenborstels..." onkeydown="if(event.key === 'Enter') sendUserMessage()" />
+        
+        <button class="btn" onclick="sendUserMessage()" style="padding: 10px 20px; border-radius: 20px;">Verstuur</button>
       </div>
+
     </div>
   </main>
 
