@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="nl" id="html-root">
+<head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3253400496231224" crossorigin="anonymous"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Study Hub & Live Voice AI | Every-Tool</title>
+  <meta name="description" content="Koppel Google Scholar, YouTube, Drive en notities en praat live met je AI-studieassistent."/>
+  <link rel="canonical" href="https://every-tool.netlify.app/study/"/>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    /* Extra styling specifiek voor de AI Study Hub en Voice Cirkel */
+    .voice-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .voice-circle {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), #6366f1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 36px;
+      cursor: pointer;
+      box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4);
+      transition: transform 0.2s ease;
+      margin: 15px 0;
+    }
+
+    .voice-circle.active {
+      animation: pulse-ring 1.5s infinite;
+    }
+
+    @keyframes pulse-ring {
+      0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7);
+      }
+      70% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 25px rgba(99, 102, 241, 0);
+      }
+      100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
+      }
+    }
+
+    .voice-status {
+      font-size: 15px;
+      color: var(--text-muted);
+    }
+  </style>
+  <script>
+    (function() {
+      const savedLang = localStorage.getItem('everyToolLang') || 'nl';
+      document.documentElement.lang = savedLang;
+    })();
+  </script>
+</head>
+<body data-theme="light">
+
+  <header class="topbar">
+    <div class="topbar-left">
+      <button class="hamburger-btn" onclick="toggleSidebar()" aria-label="Open menu">☰ Menu</button>
+      <a href="../" class="app-title" style="text-decoration:none; color:inherit;">Every-Tool</a>
+    </div>
+    
+    <div class="topbar-right">
+      <div class="lang-switcher-top" style="display:inline-flex; gap:4px; margin-right: 10px;">
+        <button id="langBtnEn" onclick="setLanguage('en')" style="padding:4px 8px; cursor:pointer;">EN</button>
+        <button id="langBtnNl" onclick="setLanguage('nl')" class="active" style="padding:4px 8px; cursor:pointer;">NL</button>
+        <button id="langBtnDe" onclick="setLanguage('de')" style="padding:4px 8px; cursor:pointer;">DE</button>
+        <button id="langBtnFr" onclick="setLanguage('fr')" style="padding:4px 8px; cursor:pointer;">FR</button>
+        <button id="langBtnEs" onclick="setLanguage('es')" style="padding:4px 8px; cursor:pointer;">ES</button>
+      </div>
+      <button class="top-action-btn" onclick="toggleDarkMode()" id="darkModeBtn">🌙 Dark Mode</button>
+      <button class="top-action-btn" onclick="shareSite()" id="shareBtn">🔗 Deel</button>
+    </div>
+  </header>
+
+  <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+  <nav class="nav-sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h2 id="menuHeader">Kies een Tool</h2>
+      <button class="close-btn" onclick="toggleSidebar()" aria-label="Sluit menu">✕</button>
+    </div>
+    <div class="tool-group"><a href="../" class="tool-btn" style="text-decoration:none; color:inherit;">🏠 Overzicht / Home</a></div>
+    <div class="tool-group"><a href="../timer/" class="tool-btn" style="text-decoration:none; color:inherit;">⏱️ Speech & Presentatie</a></div>
+    <div class="tool-group"><a href="../checker/" class="tool-btn" style="text-decoration:none; color:inherit;">✍️ Grammatica Bot</a></div>
+    <div class="tool-group"><a href="../ai/" class="tool-btn" style="text-decoration:none; color:inherit;">🤖 AI-Tekst Detector</a></div>
+    <div class="tool-group"><a href="../tts/" class="tool-btn" style="text-decoration:none; color:inherit;">🔊 Tekst-naar-Spraak</a></div>
+    <div class="tool-group"><a href="../translate/" class="tool-btn" style="text-decoration:none; color:inherit;">🌍 Vertaal Tool</a></div>
+    <div class="tool-group"><a href="../qr/" class="tool-btn" style="text-decoration:none; color:inherit;">📱 QR Code Generator</a></div>
+    <div class="tool-group"><a href="../converter/" class="tool-btn" style="text-decoration:none; color:inherit;">🔄 Universele Converter</a></div>
+    <div class="tool-group"><a href="./" class="tool-btn" style="text-decoration:none; color:inherit;">🧠 AI Study Hub</a></div>
+    <div class="tool-group"><a href="../blog/" class="tool-btn" style="text-decoration:none; color:inherit;">📰 Blog</a></div>
+  </nav>
+
+  <main class="container">
+    <div class="section-header-wrapper">
+      <h2 class="section-title">🧠 AI Study Hub & Live Voice</h2>
+      <p class="section-subtitle">Koppel Google Scholar, YouTube, notities en praat direct live met je AI-studieassistent.</p>
+    </div>
+
+    <!-- LIVE VOICE BEL-MODUS -->
+    <div class="translation-preview voice-container" style="margin-bottom: 25px;">
+      <h3 style="margin-top:0;">🎙️ Live Voice Study Call</h3>
+      <p class="voice-status" id="voiceStatus">Klik op de cirkel om een spraakgesprek te starten...</p>
+      
+      <div class="voice-circle" id="voiceCircle" onclick="toggleVoiceCall()" title="Klik om te praten">
+        🎧
+      </div>
+
+      <div id="liveTranscript" style="margin-top: 10px; font-style: italic; color: var(--text);">
+        "Jouw gesproken woorden verschijnen hier..."
+      </div>
+    </div>
+
+    <!-- BRONNEN TOEVOEGEN -->
+    <div class="translation-preview" style="padding: 25px; margin-bottom: 25px;">
+      <h3 style="margin-top:0;">1. Beheer je Studiebronnen</h3>
+      <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 15px;">Voeg Google Scholar artikelen, YouTube-video's, websites of foto's van notities toe als basis voor je AI.</p>
+      
+      <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+        <input type="text" id="sourceInput" placeholder="Plak YouTube URL, Google Scholar link of website..." style="flex: 1; min-width: 260px; padding: 10px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg); color: var(--text);" />
+        <button class="btn" onclick="addSource()">➕ Bron Toevoegen</button>
+      </div>
+      
+      <div id="sourcesList" style="margin-top: 15px; font-style: italic; color: var(--text-muted);">Nog geen bronnen toegevoegd...</div>
+    </div>
+
+    <!-- STUDIEMATERIAAL GENEREREN -->
+    <div class="translation-preview" style="padding: 25px;">
+      <h3 style="margin-top:0;">2. Genereer Studiemateriaal</h3>
+      <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 15px;">Laat de AI direct op basis van je gekoppelde bronnen leerhulpmiddelen samenstellen.</p>
+      
+      <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+        <button class="btn" onclick="generateOutput('flashcards')">📇 Flashcards</button>
+        <button class="btn" onclick="generateOutput('presentation')">📊 Presentatie Opzet</button>
+        <button class="btn" onclick="generateOutput('quiz')">❓ Oefentoets</button>
+        <button class="btn" onclick="generateOutput('audio')">🔊 Audio Samenvatting</button>
+      </div>
+    </div>
+
+    <!-- RESULTATEN BOX -->
+    <div class="translation-preview" id="studyResultBox" style="margin-top: 25px; padding: 25px;">
+      <em style="color: var(--text-muted);">Het gegenereerde studiemateriaal verschijnt hier...</em>
+    </div>
+
+    <!-- SEO UITLEG -->
+    <section class="info-card" style="margin-top: 40px; text-align: left;">
+      <h3>💡 Hoe werkt de AI Study Hub?</h3>
+      <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 12px;">Het vinden van betrouwbare informatie is essentieel voor goede schoolprestaties. Met de AI Study Hub verzamel je uitsluitend geverifieerde bronnen zoals wetenschappelijke literatuur via Google Scholar, educatieve YouTube-video's en je eigen handgeschreven notities.</p>
+      <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 0;">Vervolgens kun je niet alleen automatisch flashcards, presentaties en toetsen genereren, maar ook via de unieke **Live Voice-modus** direct praten met je assistent alsof je in een audiogesprek zit!</p>
+    </section>
+  </main>
+
+  <script src="../script.js"></script>
+</body>
+</html>
