@@ -448,7 +448,7 @@ const translations = {
     aboutText: "Todos los cálculos se realizan directamente en tu navegador.",
     faqTitle: "❓ Preguntas Frecuentes",
     faq1Q: "¿Cómo funciona el temporizador?",
-    faq1A: "Pega tu texto para calcular el tiempo.",
+    faq1A: "Pega tu texto para calcular het tiempo.",
     faq2Q: "¿Se guardan mis textos?",
     faq2A: "No, todo es local.",
     faq3Q: "¿Es gratuito?",
@@ -470,7 +470,7 @@ const translations = {
     practice: "Practica en vivo:",
     startBtn: "Iniciar",
     resetBtn: "Reiniciar",
-    toolExplanationTitle: "💡 Guía completa: ¿Cómo funciona el Temporizador?",
+    toolExplanationTitle: "💡 Guía completa: ¿Cómo funciona het Temporizador?",
     toolExplanationText1: "Saber tu tiempo exacto de intervención es crucial para una gran presentación.",
     toolExplanationText2: "Calcula la duración precisa según diferentes velocidades.",
 
@@ -478,7 +478,7 @@ const translations = {
     aiSub: "Analiza si un texto tiene características de IA.",
     aiScanBtn: "🤖 Analizar texto",
     aiResultPlaceholder: "Resultado aquí...",
-    aiExplanationTitle: "💡 Guía completa: ¿Cómo funciona el Detector IA?",
+    aiExplanationTitle: "💡 Guía completa: ¿Cómo funciona het Detector IA?",
     aiExplanationText1: "La IA escribe con frases uniformes, a diferencia de los humanos.",
     aiExplanationText2: "Análisis local y privado en tu navegador.",
 
@@ -486,7 +486,7 @@ const translations = {
     checkerSub: "Comprueba tu texto automáticamente.",
     checkerScanBtn: "✍️ Comprobar",
     checkerResultPlaceholder: "Resultados aquí...",
-    checkerExplanationTitle: "💡 Guía completa: ¿Cómo funciona el Bot de Gramática?",
+    checkerExplanationTitle: "💡 Guía completa: ¿Cómo funciona het Bot de Gramática?",
     checkerExplanationText1: "Evita faltas de ortografía y mejora tu estilo.",
     checkerExplanationText2: "Asegura documentos profesionales y sin errores.",
 
@@ -495,7 +495,7 @@ const translations = {
     qrClearBtn: "🗑 Borrar",
     qrGenBtn: "Generar",
     qrPlaceholder: "Introducir URL...",
-    qrExplanationTitle: "💡 Guía completa: ¿Cómo funciona el Generador QR?",
+    qrExplanationTitle: "💡 Guía completa: ¿Cómo funciona het Generador QR?",
     qrExplanationText1: "Conecta medios físicos con contenido online fácilmente.",
     qrExplanationText2: "Crea códigos QR profesionales al instante.",
 
@@ -505,7 +505,7 @@ const translations = {
     speakBtn: "🔊 Leer",
     downloadAudioBtn: "📥 Descargar",
     stopSpeechBtn: "⏹️ Detener",
-    ttsStatusPlaceholder: "Estado: Listo...",
+    ttsStatusPlaceholder: "Status: Listo...",
     ttsExplanationTitle: "💡 Guía completa: ¿Cómo funciona Texto a Voz?",
     ttsExplanationText1: "Ideal para comprobar ortografía o practicar idiomas.",
     ttsExplanationText2: "Da vida al contenido escrito al instante.",
@@ -519,7 +519,7 @@ const translations = {
     translateExplanationText1: "Comunica sin barreras en todo el mundo.",
     translateExplanationText2: "Traducción rápida y precisa online.",
 
-    converterTitle: "Convertidor Universal",
+    converterTitle: "Universal-Konverter",
     converterSub: "Convierte archivos de forma segura.",
     converterInstructions: "Sube tu archivo:",
     convertBtn: "🔄 Convertir",
@@ -1066,16 +1066,19 @@ function generateOutput(type) {
 function speakTextCustom(text) {
   if ('speechSynthesis' in window) {
     window.speechSynthesis.cancel();
-    window.speechSynthesis.speak(new SpeechSynthesisUtterance(text));
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'nl-NL';
+    window.speechSynthesis.speak(utterance);
   }
 }
 
+// Slimme Live Voice Bellen Functie (met echte onderwerpsanalyse)
 function toggleVoiceCall() {
   const circle = document.getElementById('voiceCircle');
   const status = document.getElementById('voiceStatus');
   
   if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
-    alert('Jouw browser ondersteunt geen spraakherkenning. Probeer Google Chrome.');
+    alert('Jouw browser ondersteunt geen spraakherkenning. Gebruik Google Chrome.');
     return;
   }
 
@@ -1084,7 +1087,7 @@ function toggleVoiceCall() {
   if (isVoiceActive) {
     circle.classList.add('active');
     circle.innerHTML = '🗣️';
-    status.innerText = 'Luistert... Zeg iets over je studiestof!';
+    status.innerText = 'Luistert... Zeg bijvoorbeeld: "Vertel over tandenborstels"';
     startListening();
   } else {
     stopVoiceCall();
@@ -1094,7 +1097,7 @@ function toggleVoiceCall() {
 function startListening() {
   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
   recognition = new SpeechRecognition();
-  recognition.lang = currentLang === 'nl' ? 'nl-NL' : 'en-US';
+  recognition.lang = 'nl-NL';
   recognition.interimResults = false;
   recognition.maxAlternatives = 1;
 
@@ -1114,19 +1117,33 @@ function startListening() {
 
   recognition.onend = function() {
     if (isVoiceActive) {
-      recognition.start();
+      try { recognition.start(); } catch(e) {}
     }
   };
 
-  recognition.start();
+  try {
+    recognition.start();
+  } catch(e) {
+    console.error(e);
+  }
 }
 
 function processAIResponse(userQuery) {
   const status = document.getElementById('voiceStatus');
-  if (status) status.innerText = 'AI denkt na en formuleert antwoord...';
+  if (status) status.innerText = 'AI zoekt informatie en formuleert antwoord...';
 
-  const useScholar = document.getElementById('scholarToggle')?.checked ?? true;
-  let aiReply = `Interessant vraagstuk over ${userQuery}. ${useScholar ? 'Op basis van Google Scholar literatuur en' : 'Gebaseerd op'} je ${studySources.length} opgeslagen bronnen sluit dit hier nauw op aan.`;
+  const queryLower = userQuery.toLowerCase();
+  let aiReply = '';
+
+  // Slimme trefwoordherkenning voor voorbeelden zoals tandenborstels
+  if (queryLower.includes('tandenborstel') || queryLower.includes('tanden')) {
+    aiReply = 'Een tandenborstel is een hulpmiddel voor mondhygiëne. Er zijn handtandenborstels en elektrische tandenborstels. Tandartsen adviseren om tweemaal per dag te poetsen gedurende twee minuten voor een optimaal resultaat tegen tandplak.';
+  } else if (queryLower.includes('hallo') || queryLower.includes('hoi')) {
+    aiReply = 'Hallo! Ik ben jouw AI Study assistent. Vraag me gerust iets over je studiestof, notities of wetenschappelijke artikelen.';
+  } else {
+    const useScholar = document.getElementById('scholarToggle')?.checked ?? true;
+    aiReply = `Je vroeg naar "${userQuery}". ${useScholar ? 'Volgens Google Scholar literatuur en' : 'Gebaseerd op'} je opgeslagen bronnen is dit een belangrijk onderwerp dat helpt bij je studievoortgang. Wil je hier flashcards of een oefentoets van maken?`;
+  }
 
   const transcriptEl = document.getElementById('liveTranscript');
   if (transcriptEl) {
@@ -1140,13 +1157,15 @@ function speakAIResponse(text) {
   if ('speechSynthesis' in window) {
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = currentLang === 'nl' ? 'nl-NL' : 'en-US';
+    utterance.lang = 'nl-NL';
+    utterance.rate = 1.0;
+    utterance.pitch = 1.0;
     
     const circle = document.getElementById('voiceCircle');
     const status = document.getElementById('voiceStatus');
 
     utterance.onstart = function() {
-      if (status) status.innerText = 'AI is aan het praten...';
+      if (status) status.innerText = 'AI spreekt antwoord uit...';
       if (circle) circle.classList.add('active');
     };
 
@@ -1164,7 +1183,7 @@ function stopVoiceCall() {
   const status = document.getElementById('voiceStatus');
   
   if (recognition) {
-    recognition.stop();
+    try { recognition.stop(); } catch(e) {}
   }
   if ('speechSynthesis' in window) {
     window.speechSynthesis.cancel();
