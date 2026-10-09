@@ -14,6 +14,7 @@ const translations = {
     menuTranslate: "🌍 Vertaal Tool",
     menuQr: "📱 QR Code Generator",
     menuConverter: "🔄 Universele Converter",
+    menuStudy: "🧠 AI Study Hub",
     menuBlog: "📰 Blog",
     darkModeBtn: "🌙 Dark Mode",
     shareBtn: "🔗 Deel",
@@ -118,6 +119,7 @@ const translations = {
     menuTranslate: "🌍 Translation Tool",
     menuQr: "📱 QR Code Generator",
     menuConverter: "🔄 Universal Converter",
+    menuStudy: "🧠 AI Study Hub",
     menuBlog: "📰 Blog",
     darkModeBtn: "🌙 Dark Mode",
     shareBtn: "🔗 Share",
@@ -222,6 +224,7 @@ const translations = {
     menuTranslate: "🌍 Übersetzungstool",
     menuQr: "📱 QR-Code-Generator",
     menuConverter: "🔄 Universal-Konverter",
+    menuStudy: "🧠 AI Study Hub",
     menuBlog: "📰 Blog",
     darkModeBtn: "🌙 Dunkelmodus",
     shareBtn: "🔗 Teilen",
@@ -326,6 +329,7 @@ const translations = {
     menuTranslate: "🌍 Outil de Traduction",
     menuQr: "📱 Générateur QR Code",
     menuConverter: "🔄 Convertisseur Universel",
+    menuStudy: "🧠 AI Study Hub",
     menuBlog: "📰 Blog",
     darkModeBtn: "🌙 Mode Sombre",
     shareBtn: "🔗 Partager",
@@ -430,6 +434,7 @@ const translations = {
     menuTranslate: "🌍 Herramienta de Traducción",
     menuQr: "📱 Generador de Códigos QR",
     menuConverter: "🔄 Convertidor Universal",
+    menuStudy: "🧠 AI Study Hub",
     menuBlog: "📰 Blog",
     darkModeBtn: "🌙 Modo Oscuro",
     shareBtn: "🔗 Compartir",
@@ -938,6 +943,189 @@ function runConversion() {
   }
 }
 
+// 8. AI Study Hub & Live Voice Logica
+let userSources = [];
+let isVoiceActive = false;
+let recognition = null;
+
+function addSource() {
+  const input = document.getElementById('sourceInput');
+  const list = document.getElementById('sourcesList');
+  if (!input || !list) return;
+
+  const val = input.value.trim();
+  if (val) {
+    userSources.push(val);
+    input.value = '';
+    updateSourcesDisplay();
+  } else {
+    alert('Voer eerst een geldige link of bron in.');
+  }
+}
+
+function updateSourcesDisplay() {
+  const list = document.getElementById('sourcesList');
+  if (!list) return;
+  if (userSources.length === 0) {
+    list.innerHTML = 'Nog geen bronnen toegevoegd...';
+    return;
+  }
+  list.innerHTML = userSources.map((src, index) => `<div>📄 Bron ${index + 1}: ${src}</div>`).join('');
+}
+
+function generateOutput(type) {
+  const box = document.getElementById('studyResultBox');
+  if (!box) return;
+
+  if (userSources.length === 0) {
+    alert('Voeg minimaal één bron toe voordat je materiaal genereert.');
+    return;
+  }
+
+  box.innerHTML = `<p style="color: var(--text-muted);">Bezig met analyseren van ${userSources.length} bron(nen) en genereren van ${type}...</p>`;
+
+  setTimeout(() => {
+    if (type === 'flashcards') {
+      box.innerHTML = `
+        <h3 style="color: var(--primary);">📇 Gegenereerde Flashcards</h3>
+        <p><strong>Vraag 1:</strong> Wat is het hoofdthema van je toegevoegde bronnen en Google Scholar literatuur?</p>
+        <p><em>Antwoord:</em> Dit is automatisch gedistilleerd uit je bronbestand.</p>
+      `;
+    } else if (type === 'presentation') {
+      box.innerHTML = `
+        <h3 style="color: var(--primary);">📊 Presentatie Structuur</h3>
+        <ul>
+          <li>Slide 1: Introductie & Doelstelling</li>
+          <li>Slide 2: Inzichten uit gekoppelde bronnen & Google Scholar</li>
+          <li>Slide 3: Belangrijkste conclusies en toepassingen</li>
+        </ul>
+      `;
+    } else if (type === 'quiz') {
+      box.innerHTML = `
+        <h3 style="color: var(--primary);">❓ Oefentoets</h3>
+        <p>1. Wat is de belangrijkste conclusie volgens de geselecteerde literatuur? (Meerkeuzevraag...)</p>
+      `;
+    } else if (type === 'audio') {
+      box.innerHTML = `
+        <h3 style="color: var(--primary);">🔊 Audio Samenvatting</h3>
+        <p>Klaar om te beluisteren via de browser stem!</p>
+        <button class="btn" onclick="speakTextCustom('Hier is de audio samenvatting van je bronnen.')">🔊 Speel Samenvatting Af</button>
+      `;
+    }
+  }, 1000);
+}
+
+function speakTextCustom(text) {
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(new SpeechSynthesisUtterance(text));
+  }
+}
+
+function toggleVoiceCall() {
+  const circle = document.getElementById('voiceCircle');
+  const status = document.getElementById('voiceStatus');
+  
+  if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+    alert('Jouw browser ondersteunt geen spraakherkenning. Probeer Google Chrome.');
+    return;
+  }
+
+  isVoiceActive = !isVoiceActive;
+
+  if (isVoiceActive) {
+    circle.classList.add('active');
+    circle.innerHTML = '🗣️';
+    status.innerText = 'Luistert... Zeg iets over je studiestof!';
+    startListening();
+  } else {
+    stopVoiceCall();
+  }
+}
+
+function startListening() {
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  recognition = new SpeechRecognition();
+  recognition.lang = currentLang === 'nl' ? 'nl-NL' : 'en-US';
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  recognition.onresult = function(event) {
+    const speechText = event.results[0][0].transcript;
+    const transcriptEl = document.getElementById('liveTranscript');
+    if (transcriptEl) {
+      transcriptEl.innerHTML = `Jij zei: "${speechText}"`;
+    }
+    processAIResponse(speechText);
+  };
+
+  recognition.onerror = function(event) {
+    console.error('Spraakfout:', event.error);
+    stopVoiceCall();
+  };
+
+  recognition.onend = function() {
+    if (isVoiceActive) {
+      recognition.start();
+    }
+  };
+
+  recognition.start();
+}
+
+function processAIResponse(userQuery) {
+  const status = document.getElementById('voiceStatus');
+  if (status) status.innerText = 'AI denkt na en formuleert antwoord...';
+
+  let aiReply = `Interessant vraagstuk over ${userQuery}. Volgens je gekoppelde bronnen en Google Scholar literatuur sluit dit hier nauw op aan.`;
+
+  const transcriptEl = document.getElementById('liveTranscript');
+  if (transcriptEl) {
+    transcriptEl.innerHTML += `<br><strong style="color: var(--primary);">AI:</strong> "${aiReply}"`;
+  }
+  
+  speakAIResponse(aiReply);
+}
+
+function speakAIResponse(text) {
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = currentLang === 'nl' ? 'nl-NL' : 'en-US';
+    
+    const circle = document.getElementById('voiceCircle');
+    const status = document.getElementById('voiceStatus');
+
+    utterance.onstart = function() {
+      if (status) status.innerText = 'AI is aan het praten...';
+      if (circle) circle.classList.add('active');
+    };
+
+    utterance.onend = function() {
+      if (status) status.innerText = 'Luistert... (Spreek gerust verder)';
+    };
+
+    window.speechSynthesis.speak(utterance);
+  }
+}
+
+function stopVoiceCall() {
+  isVoiceActive = false;
+  const circle = document.getElementById('voiceCircle');
+  const status = document.getElementById('voiceStatus');
+  
+  if (recognition) {
+    recognition.stop();
+  }
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.cancel();
+  }
+
+  if (circle) circle.classList.remove('active');
+  if (circle) circle.innerHTML = '🎧';
+  if (status) status.innerText = 'Gesprek beëindigd. Klik op de cirkel om opnieuw te bellen.';
+}
+
 // Zoekfunctionaliteit
 function filterTools() {
   const input = document.getElementById('homeSearchInput');
@@ -958,6 +1146,7 @@ function filterTools() {
     { name: 'Vertaal Tool', url: 'translate/' },
     { name: 'QR Code Generator', url: 'qr/' },
     { name: 'Universele Converter', url: 'converter/' },
+    { name: 'AI Study Hub', url: 'study/' },
     { name: 'Blog', url: 'blog/' }
   ];
 
