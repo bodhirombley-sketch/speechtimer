@@ -67,21 +67,33 @@
     <!-- Inhoud van de converter tool -->
     <div class="translation-preview" style="text-align: center; padding: 30px;">
       <p id="converterInstructions" style="color: var(--text-muted); margin-bottom: 20px;">Upload je bestand of afbeelding hieronder om te converteren naar het gewenste formaat.</p>
-      <input type="file" id="fileInput" style="margin-bottom: 15px;" />
+      
+      <input type="file" id="fileInput" style="margin-bottom: 15px; display: block; margin-left: auto; margin-right: auto;" />
+      
+      <!-- Keuzemenu voor doelformaat -->
+      <div style="margin-bottom: 20px;">
+        <label for="targetFormat" style="font-weight: 600; margin-right: 8px;">Converteer naar:</label>
+        <select id="targetFormat" style="padding: 6px 12px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg); color: var(--text);">
+          <option value="image/jpeg">JPEG Afbeelding (.jpg)</option>
+          <option value="image/png">PNG Afbeelding (.png)</option>
+          <option value="text/plain">Platte Tekst (.txt)</option>
+        </select>
+      </div>
+
       <div class="action-bar" style="justify-content: center;">
         <button class="btn" id="convertBtn" onclick="runConversion()">🔄 Converteer Bestand</button>
       </div>
     </div>
 
-    <div class="translation-preview" id="converterResultBox" style="margin-top: 20px;">
+    <div class="translation-preview" id="converterResultBox" style="margin-top: 20px; text-align: center;">
       <em id="converterResultPlaceholder">Het geconverteerde bestand verschijnt hier...</em>
     </div>
 
-    <!-- UITGEBREIDE UITLEG SECTIE (Inclusief vertaalbare ID's) -->
+    <!-- UITGEBREIDE UITLEG SECTIE -->
     <section class="info-card" style="margin-top: 40px; text-align: left;">
       <h3 id="converterExplanationTitle" style="margin-top: 0; margin-bottom: 12px;">Hoe werkt de Universele Converter?</h3>
       <p id="converterExplanationText1" style="color: var(--text-muted); line-height: 1.6; margin-bottom: 12px;">Het omzetten van bestanden naar een ander formaat (zoals afbeeldingen of documenten) is vaak nodig wanneer een specifiek programma een bestandstype niet ondersteunt of wanneer je bestanden wilt verkleinen voor gebruik op een website.</p>
-      <p id="converterExplanationText2" style="color: var(--text-muted); line-height: 1.6; margin-bottom: 0;">Met onze Universele Converter upload je eenvoudig je bestand, waarna het direct lokaal in je browser wordt omgezet. Zo hoef je geen zware software te installeren en blijven je gegevens optimaal beschermd!</p>
+      <p id="converterExplanationText2" style="color: var(--text-muted); line-height: 1.6; margin-bottom: 0;">Met onze Universele Converter upload je eenvoudig je bestand, kies je het gewenste formaat en wordt het direct lokaal in je browser omgezet. Zo hoef je geen zware software te installeren en blijven je gegevens optimaal beschermd!</p>
     </section>
   </main>
 
