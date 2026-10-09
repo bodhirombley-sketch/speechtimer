@@ -2,7 +2,7 @@
 let currentLang = localStorage.getItem('everyToolLang') || 'nl';
 let currentTool = 'home';
 
-// Vertaalwoordenboek per taal (inclusief de nieuwe uitgebreide uitlegteksten per tool)
+// Vertaalwoordenboek per taal (inclusief de uitgebreide uitlegteksten per tool)
 const translations = {
   nl: {
     // Topbar & Menu
@@ -500,7 +500,7 @@ const translations = {
     qrGenBtn: "Generar",
     qrPlaceholder: "Introduce una URL...",
     qrExplanationTitle: "¿Cómo funciona el Generador de Códigos QR?",
-    qrExplanationText1: "Los códigos QR ofrecen una forma rápida y sencilla de conectar soportes físicos (como carteles, folletos o presentaciones) con contenido en línea. Las personas solo necesitan usar la cámara de su teléfono inteligente para ir directamente al sitio web correcto.",
+    qrExplanationText1: "QR codes provide a quick and easy way to connect physical mediums (such as posters, flyers, or presentations) to online content. People only need to use their smartphone camera to go straight to the correct website.",
     qrExplanationText2: "Con nuestro generador de códigos QR, simplemente escribe o pega una dirección web y el código se formará ante tus ojos. Crea códigos QR profesionales e inmediatamente utilizables para todos tus proyectos en un abrir y cerrar de ojos.",
 
     ttsTitle: "Texto a Voz",
