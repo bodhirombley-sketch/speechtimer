@@ -1,19 +1,74 @@
 <!DOCTYPE html>
 <html lang="nl" id="html-root">
 <head>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3253400496231224"
-     crossorigin="anonymous"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3253400496231224" crossorigin="anonymous"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AI-Tekst Detector | Every-Tool</title>
-  <meta name="description" content="Analyseer direct je tekst op AI-kenmerken en controleer of de inhoud door kunstmatige intelligentie geschreven lijkt te zijn."/>
+  <title>Gratis AI-Tekst Detector – Check je tekst direct | Every-Tool</title>
+  <meta name="description" content="Controleer gratis of een tekst door AI is geschreven. Plak je tekst en krijg direct een indicatie. Privé: je tekst blijft in je eigen browser."/>
   <link rel="canonical" href="https://every-tool.netlify.app/ai/"/>
+
+  <!-- Delen op social media -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="Every-Tool"/>
+  <meta property="og:locale" content="nl_NL"/>
+  <meta property="og:title" content="Gratis AI-Tekst Detector – Check je tekst direct"/>
+  <meta property="og:description" content="Controleer gratis of een tekst door AI is geschreven. Alles draait in je eigen browser."/>
+  <meta property="og:url" content="https://every-tool.netlify.app/ai/"/>
+  <meta name="twitter:card" content="summary"/>
+
+  <!-- Gestructureerde data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "AI-Tekst Detector",
+        "url": "https://every-tool.netlify.app/ai/",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any (webbrowser)",
+        "inLanguage": "nl",
+        "description": "Gratis online tool die een tekst analyseert op kenmerken van door AI geschreven tekst.",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is de AI-Tekst Detector gratis?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Ja, je kunt hem onbeperkt gratis gebruiken, zonder account." }
+          },
+          {
+            "@type": "Question",
+            "name": "Wordt mijn tekst naar een server gestuurd?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Nee. De analyse gebeurt in je eigen browser. Je tekst wordt alleen lokaal in je browser bewaard zodat je hem niet kwijtraakt, en je kunt hem wissen met de knop 'Wis tekst'." }
+          },
+          {
+            "@type": "Question",
+            "name": "Kan de detector ChatGPT-teksten herkennen?",
+            "acceptedAnswer": { "@type": "Answer", "text": "De detector kijkt naar algemene stijlkenmerken van AI-tekst, niet naar één specifiek model. Teksten van ChatGPT, Claude of Gemini worden op dezelfde manier beoordeeld. Het resultaat is een indicatie, geen bewijs." }
+          },
+          {
+            "@type": "Question",
+            "name": "Hoe lang moet mijn tekst zijn?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Minimaal 40 woorden, maar hoe langer de tekst, hoe betrouwbaarder de indicatie. Probeer liefst meer dan 150 woorden." }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
   <link rel="stylesheet" href="../style.css">
   <script>
-    // Direct bij het laden van de pagina de juiste opgeslagen taal toepassen om 'terugspringen' te voorkomen
+    // Direct bij het laden de opgeslagen taal toepassen om 'terugspringen' te voorkomen
     (function() {
-      const savedLang = localStorage.getItem('everyToolLang') || 'nl';
-      document.documentElement.lang = savedLang;
+      try {
+        const savedLang = localStorage.getItem('everyToolLang') || 'nl';
+        document.documentElement.lang = savedLang;
+      } catch (e) {}
     })();
   </script>
 </head>
@@ -21,36 +76,35 @@
 
   <header class="topbar">
     <div class="topbar-left">
-      <button class="hamburger-btn" onclick="toggleSidebar()" aria-label="Open menu">☰ Menu</button>
+      <button type="button" class="hamburger-btn" onclick="toggleSidebar()" aria-label="Open menu">☰ Menu</button>
       <a href="../" class="app-title" style="text-decoration:none; color:inherit;">Every-Tool</a>
     </div>
-    
+
     <div class="topbar-right">
-      <!-- TAAL-SCHAKELAAR (EN, NL, DE, FR, ES in de juiste volgorde) -->
-      <div class="lang-switcher-top" style="display:inline-flex; gap:4px; margin-right: 10px;">
-        <button id="langBtnEn" onclick="setLanguage('en')" style="padding:4px 8px; cursor:pointer;">EN</button>
-        <button id="langBtnNl" onclick="setLanguage('nl')" class="active" style="padding:4px 8px; cursor:pointer;">NL</button>
-        <button id="langBtnDe" onclick="setLanguage('de')" style="padding:4px 8px; cursor:pointer;">DE</button>
-        <button id="langBtnFr" onclick="setLanguage('fr')" style="padding:4px 8px; cursor:pointer;">FR</button>
-        <button id="langBtnEs" onclick="setLanguage('es')" style="padding:4px 8px; cursor:pointer;">ES</button>
+      <div class="lang-switcher-top" role="group" aria-label="Taal / Language" style="display:inline-flex; gap:4px; margin-right: 10px;">
+        <button type="button" id="langBtnEn" onclick="setLanguage('en')" lang="en" style="padding:4px 8px; cursor:pointer;">EN</button>
+        <button type="button" id="langBtnNl" onclick="setLanguage('nl')" lang="nl" class="active" style="padding:4px 8px; cursor:pointer;">NL</button>
+        <button type="button" id="langBtnDe" onclick="setLanguage('de')" lang="de" style="padding:4px 8px; cursor:pointer;">DE</button>
+        <button type="button" id="langBtnFr" onclick="setLanguage('fr')" lang="fr" style="padding:4px 8px; cursor:pointer;">FR</button>
+        <button type="button" id="langBtnEs" onclick="setLanguage('es')" lang="es" style="padding:4px 8px; cursor:pointer;">ES</button>
       </div>
 
-      <button class="top-action-btn" onclick="toggleDarkMode()" id="darkModeBtn">🌙 Dark Mode</button>
-      <button class="top-action-btn" onclick="shareSite()" id="shareBtn">🔗 Deel</button>
+      <button type="button" class="top-action-btn" onclick="toggleDarkMode()" id="darkModeBtn">🌙 Dark Mode</button>
+      <button type="button" class="top-action-btn" onclick="shareSite()" id="shareBtn">🔗 Deel</button>
     </div>
   </header>
 
   <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
 
-  <nav class="nav-sidebar" id="sidebar">
+  <nav class="nav-sidebar" id="sidebar" aria-label="Tools">
     <div class="sidebar-header">
       <h2 id="menuHeader">Kies een Tool</h2>
-      <button class="close-btn" onclick="toggleSidebar()" aria-label="Sluit menu">✕</button>
+      <button type="button" class="close-btn" onclick="toggleSidebar()" aria-label="Sluit menu">✕</button>
     </div>
     <div class="tool-group"><a href="../" class="tool-btn" id="menuHome" style="text-decoration:none; color:inherit;">🏠 Overzicht / Home</a></div>
-    <div class="tool-group"><a href="../timer/" class="tool-btn" id="menuTimer" style="text-decoration:none; color:inherit;">⏱️ Speech & Presentatie</a></div>
+    <div class="tool-group"><a href="../timer/" class="tool-btn" id="menuTimer" style="text-decoration:none; color:inherit;">⏱️ Speech &amp; Presentatie</a></div>
     <div class="tool-group"><a href="../checker/" class="tool-btn" id="menuChecker" style="text-decoration:none; color:inherit;">✍️ Grammatica Bot</a></div>
-    <div class="tool-group"><a href="./" class="tool-btn" id="menuAi" style="text-decoration:none; color:inherit;">🤖 AI-Tekst Detector</a></div>
+    <div class="tool-group"><a href="./" class="tool-btn" id="menuAi" aria-current="page" style="text-decoration:none; color:inherit;">🤖 AI-Tekst Detector</a></div>
     <div class="tool-group"><a href="../tts/" class="tool-btn" id="menuTts" style="text-decoration:none; color:inherit;">🔊 Tekst-naar-Spraak</a></div>
     <div class="tool-group"><a href="../translate/" class="tool-btn" id="menuTranslate" style="text-decoration:none; color:inherit;">🌍 Vertaal Tool</a></div>
     <div class="tool-group"><a href="../qr/" class="tool-btn" id="menuQr" style="text-decoration:none; color:inherit;">📱 QR Code Generator</a></div>
@@ -60,28 +114,53 @@
 
   <main class="container">
     <div class="section-header-wrapper">
-      <h2 class="section-title" id="aiTitle">AI-Tekst Detector</h2>
+      <h1 class="section-title" id="aiTitle">AI-Tekst Detector</h1>
       <p class="section-subtitle" id="aiSub">Analyseer direct of een tekst kenmerken heeft van kunstmatige intelligentie.</p>
     </div>
-    
+
+    <label for="text-ai" style="position:absolute; left:-9999px;">Tekst om te analyseren</label>
     <textarea id="text-ai" placeholder="Plak hier je tekst om te analyseren..." oninput="saveToLocal('text-ai', this.value)"></textarea>
     <div style="display: flex; justify-content: flex-end; margin-bottom: 12px;">
-      <button class="btn clear-btn" onclick="clearTextArea('text-ai')">🗑️ Wis tekst</button>
+      <button type="button" class="btn clear-btn" onclick="clearTextArea('text-ai')">🗑️ Wis tekst</button>
     </div>
 
     <div class="action-bar">
-      <button class="btn" id="aiScanBtn" onclick="runAiDetection()">🤖 Analyseer Tekst</button>
+      <button type="button" class="btn" id="aiScanBtn" onclick="runAiDetection()">🤖 Analyseer Tekst</button>
     </div>
 
-    <div class="translation-preview" id="aiResultBox">
+    <div class="translation-preview" id="aiResultBox" role="status" aria-live="polite">
       <em id="aiResultPlaceholder">Resultaat van de analyse verschijnt hier...</em>
     </div>
 
-    <!-- UITGEBREIDE UITLEG SECTIE (Inclusief vertaalbare ID's) -->
+    <noscript><p>Deze tool heeft JavaScript nodig om de tekst in je browser te analyseren.</p></noscript>
+
+    <!-- Uitleg (zichtbaar voor bezoekers en zoekmachines) -->
     <section class="info-card" style="margin-top: 40px; text-align: left;">
-      <h3 id="aiExplanationTitle" style="margin-top: 0; margin-bottom: 12px;">Hoe werkt de AI-Tekst Detector?</h3>
-      <p id="aiExplanationText1" style="color: var(--text-muted); line-height: 1.6; margin-bottom: 12px;">Kunstmatige intelligentie schrijft vaak volgens bepaalde statistische patronen, zinslengtes en voorspelbare woordkeuzes die sterk kunnen afwijken van menselijk schrijfgedrag. Onze detector scant je tekst op deze typische AI-kenmerken.</p>
-      <p id="aiExplanationText2" style="color: var(--text-muted); line-height: 1.6; margin-bottom: 0;">Of je nu content controleert voor school, werk of publicatie: deze tool geeft je direct een heldere indicatie van de waarschijnlijkheid dat de tekst gegenereerd is door een AI-systeem, zodat je inhoud met een gerust hart kunt controleren.</p>
+      <h2 id="aiExplanationTitle" style="margin-top: 0; margin-bottom: 12px; font-size: 1.2em;">Hoe werkt de AI-Tekst Detector?</h2>
+      <p id="aiExplanationText1" style="color: var(--text-muted); line-height: 1.6; margin-bottom: 12px;">AI-modellen schrijven vaak met gelijkmatige zinslengtes en terugkerende standaardformuleringen, terwijl mensen meer variatie, ritme en eigenzinnige keuzes laten zien. Onze detector kijkt naar drie signalen: hoe eentonig de zinslengte is, hoeveel typische AI-formuleringen er voorkomen en hoe vaak gedachtestreepjes worden gebruikt.</p>
+      <p id="aiExplanationText2" style="color: var(--text-muted); line-height: 1.6; margin-bottom: 0;">Het resultaat is een schatting op basis van schrijfstijl en geen bewijs. Een menselijke tekst kan als AI-achtig worden gezien en andersom, vooral bij korte of formele teksten. Alles gebeurt in je eigen browser, dus je tekst wordt niet naar een server gestuurd.</p>
+    </section>
+
+    <!-- Extra uitleg in het Nederlands; wordt niet door setLanguage() overschreven -->
+    <section class="info-card" lang="nl" style="margin-top: 20px; text-align: left; color: var(--text-muted); line-height: 1.6;">
+      <h2 style="margin-top: 0; font-size: 1.2em;">Zo gebruik je de AI-detector</h2>
+      <ol>
+        <li>Plak of typ je tekst in het veld (minimaal 40 woorden, liefst meer dan 150).</li>
+        <li>Klik op "Analyseer Tekst".</li>
+        <li>Lees de score en bekijk per signaal hoe het scoort.</li>
+      </ol>
+
+      <h2 style="font-size: 1.2em;">Waarom een tekst controleren?</h2>
+      <p>Docenten willen inleveropdrachten beoordelen, studenten willen weten hoe hun tekst overkomt, en redacteuren en marketeers willen weten of ingestuurde content echt eigen werk is. Een snelle check geeft een aanwijzing om een tekst nog eens kritisch te lezen.</p>
+
+      <h2 style="font-size: 1.2em;">Hoe betrouwbaar is het resultaat?</h2>
+      <p>Geen enkele AI-detector is zeker. Deze tool beoordeelt alleen schrijfstijl en geeft een indicatie, geen bewijs. Korte, formele of anderstalige teksten kunnen ten onrechte als AI-achtig worden gezien, en een bewerkte AI-tekst kan menselijk lijken. Gebruik de uitkomst dus nooit als enige basis om iemand te beschuldigen of een beslissing te nemen.</p>
+
+      <h2 style="font-size: 1.2em;">Veelgestelde vragen</h2>
+      <details><summary><strong>Is de AI-Tekst Detector gratis?</strong></summary><p>Ja, je kunt hem onbeperkt gratis gebruiken, zonder account.</p></details>
+      <details><summary><strong>Wordt mijn tekst naar een server gestuurd?</strong></summary><p>Nee. De analyse gebeurt in je eigen browser. Je tekst wordt alleen lokaal in je browser bewaard zodat je hem niet kwijtraakt, en je kunt hem wissen met de knop "Wis tekst".</p></details>
+      <details><summary><strong>Kan de detector ChatGPT-teksten herkennen?</strong></summary><p>De detector kijkt naar algemene stijlkenmerken van AI-tekst, niet naar één specifiek model. Teksten van ChatGPT, Claude of Gemini worden op dezelfde manier beoordeeld. Het resultaat is een indicatie, geen bewijs.</p></details>
+      <details><summary><strong>Hoe lang moet mijn tekst zijn?</strong></summary><p>Minimaal 40 woorden, maar hoe langer de tekst, hoe betrouwbaarder de indicatie. Probeer liefst meer dan 150 woorden.</p></details>
     </section>
   </main>
 
