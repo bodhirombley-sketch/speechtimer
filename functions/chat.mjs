@@ -1,3 +1,4 @@
+
 // Netlify Function: stuurt de vraag + bronnen naar de Claude API.
 // De API-sleutel staat ALLEEN in Netlify (Environment variable ANTHROPIC_API_KEY), nooit in de browsercode.
 export const config = { path: '/api/chat' };
@@ -73,14 +74,19 @@ export default async (request) => {
       headers: { 'content-type': 'application/json', 'x-api-key': apiKey, 'anthropic-version': '2023-06-01' },
       body: JSON.stringify({ model: MODEL, max_tokens: body.voice ? 400 : 1200, system, messages })
     });
-  } catch {
-    return json({ error: 'De AI is tijdelijk niet bereikbaar.' }, 502);
+  } catch (e) {
+    console.error('Anthropic API niet bereikbaar', e);
+    const debug = process.env.DEBUG_ERRORS === '1' ? ' [' + String(e && e.message) + ']' : '';
+    return json({ error: 'De AI is tijdelijk niet bereikbaar.' + debug }, 502);
   }
 
   if (!res.ok) {
-    console.error('Anthropic API fout', res.status, (await res.text()).slice(0, 500));
-    if (res.status === 429) return json({ error: 'Het is even druk. Probeer het over een minuut opnieuw.' }, 429);
-    return json({ error: 'De AI gaf een fout terug. Probeer het later opnieuw.' }, 502);
+    const detail = (await res.text()).slice(0, 500);
+    console.error('Anthropic API fout', res.status, detail);
+    // Alleen tijdens het testen: zet in Netlify DEBUG_ERRORS=1 om de echte foutmelding in de chat te zien
+    const debug = process.env.DEBUG_ERRORS === '1' ? ' [' + res.status + '] ' + detail : '';
+    if (res.status === 429) return json({ error: 'Het is even druk. Probeer het over een minuut opnieuw.' + debug }, 429);
+    return json({ error: 'De AI gaf een fout terug. Probeer het later opnieuw.' + debug }, 502);
   }
 
   const data = await res.json();
