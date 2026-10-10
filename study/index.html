@@ -4,8 +4,8 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3253400496231224" crossorigin="anonymous"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AI Study Hub & Notebook LM | Every-Tool</title>
-  <meta name="description" content="Jouw persoonlijke AI Study Workspace: voeg websites, YouTube video's, notities en PDF's toe, chat met je bronnen en bel live met de AI."/>
+  <title>AI Study Hub – Chat met je eigen studiebronnen | Every-Tool</title>
+  <meta name="description" content="Voeg websites, PDF's, afbeeldingen en notities toe en stel er vragen over aan een AI-studieassistent. Ook via spraak."/>
   <link rel="canonical" href="https://every-tool.netlify.app/study/"/>
   <link rel="stylesheet" href="../style.css">
   <style>
@@ -204,6 +204,7 @@
   </nav>
 
   <main class="container" style="padding-top: 10px; padding-bottom: 20px;">
+    <h1 style="position:absolute; left:-9999px;">AI Study Hub</h1>
     <div class="notebook-layout">
       
       <!-- LINKER ZIJBALK: NOTEBOOK BRONNEN BEHEER -->
@@ -212,17 +213,18 @@
         <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 10px;">Voeg al je studiemateriaal toe.</p>
 
         <div class="source-add-box">
-          <label style="font-size: 12px; font-weight: 600;">Voeg Website / YouTube toe:</label>
-          <input type="text" id="sourceUrlInput" placeholder="Plak URL of YouTube link..." style="padding: 8px; font-size: 13px; border-radius: 6px; border: 1px solid var(--border-color);" />
+          <label for="sourceUrlInput" style="font-size: 12px; font-weight: 600;">Voeg website toe:</label>
+          <input type="text" id="sourceUrlInput" placeholder="Plak de link van een webpagina..." style="padding: 8px; font-size: 13px; border-radius: 6px; border: 1px solid var(--border-color);" />
           <button class="btn" onclick="addUrlSource()" style="padding: 6px 12px; font-size: 13px;">➕ Voeg URL toe</button>
         </div>
 
         <div class="source-add-box">
-          <label style="font-size: 12px; font-weight: 600;">Upload Bestand / Notitie / Foto:</label>
+          <label for="sourceFileInput" style="font-size: 12px; font-weight: 600;">Upload .txt, PDF of foto (max. 3 MB):</label>
           <input type="file" id="sourceFileInput" accept="image/*,.txt,.pdf" style="font-size: 12px;" onchange="handleNotebookFile(this)" />
         </div>
 
         <div style="font-weight: 600; font-size: 13px; margin-top: 10px;">Gekoppelde bronnen:</div>
+        <p style="font-size: 11px; color: var(--text-muted); margin: 0;">Je vragen en bronnen worden naar een AI-dienst gestuurd om antwoord te geven.</p>
         <div id="sourcesListContainer" style="display: flex; flex-direction: column; gap: 6px; max-height: 250px; overflow-y: auto;">
           <div style="font-size: 12px; color: var(--text-muted);">Nog geen bronnen...</div>
         </div>
@@ -232,7 +234,7 @@
       <div class="chat-workspace">
         <div class="chat-topbar">
           <div class="toggle-container">
-            <span>🎓 Google Scholar</span>
+            <span>🎓 Wetenschappelijke tips</span>
             <label class="switch">
               <input type="checkbox" id="scholarToggle" checked onchange="saveStudySettings()">
               <span class="slider"></span>
@@ -252,7 +254,7 @@
         <div class="chat-input-bar">
           <input type="file" id="chatFileInput" accept="image/*,.txt" style="display: none;" onchange="handleChatFile(this)" />
           <button class="plus-btn" onclick="document.getElementById('chatFileInput').click()" title="Voeg bestand toe">+</button>
-          <input type="text" id="chatInput" placeholder="Typ je vraag..." onkeydown="if(event.key === 'Enter') sendUserMessage()" />
+          <input type="text" id="chatInput" aria-label="Typ je vraag" placeholder="Typ je vraag..." onkeydown="if(event.key === 'Enter') sendUserMessage()" />
           <button class="btn" onclick="sendUserMessage()" style="padding: 10px 20px; border-radius: 20px;">Verstuur</button>
         </div>
       </div>
