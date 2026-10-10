@@ -949,86 +949,109 @@ function runConversion() {
   }
 }
 
-// 8. AI Study Hub / NotebookLM Logica & Vriendelijke Spraak-assistent
-let studySources = JSON.parse(localStorage.getItem('everyToolStudySources')) || [];
+// 8. AI Study Hub (echte AI via Netlify Functions: /api/chat en /api/fetch-url)
+let studySources = [];
+try { studySources = (JSON.parse(localStorage.getItem('everyToolStudySources')) || []).filter(s => s && s.text); } catch (e) { studySources = []; }
+let chatHistory = [];
 let isVoiceActive = false;
+let isSpeaking = false;
+let isThinking = false;
 let recognition = null;
+let currentUtterance = null;
+const MAX_FILE_BYTES = 3 * 1024 * 1024;
+const SPEECH_LANGS = { nl: 'nl-NL', en: 'en-US', de: 'de-DE', fr: 'fr-FR', es: 'es-ES' };
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
+function persistSources() {
+  // Alleen tekstbronnen worden bewaard; PDF's en afbeeldingen blijven in het geheugen (localStorage is te klein)
+  try {
+    localStorage.setItem('everyToolStudySources', JSON.stringify(studySources.filter(s => s.text).map(s => ({ kind: s.kind, name: s.name, text: s.text.slice(0, 60000) }))));
+  } catch (e) { /* opslag vol: bronnen blijven wel in dit venster beschikbaar */ }
+}
 
 function saveStudySettings() {
   const scholarToggle = document.getElementById('scholarToggle');
-  if (scholarToggle) {
-    localStorage.setItem('everyToolScholar', scholarToggle.checked);
-  }
+  if (scholarToggle) localStorage.setItem('everyToolScholar', scholarToggle.checked);
 }
 
-function addUrlSource() {
+async function addUrlSource() {
   const input = document.getElementById('sourceUrlInput');
   if (!input) return;
   const val = input.value.trim();
-  if (!val) {
-    alert('Voeg een geldige URL of YouTube link in.');
+  if (!val) { alert('Voeg een geldige URL in.'); return; }
+  if (/youtube\.com|youtu\.be/i.test(val)) {
+    appendChatMessage('YouTube-video\'s kan ik nog niet automatisch lezen. Upload het transcript als .txt-bestand via "Upload Bestand".', 'ai');
     return;
   }
-  const type = val.includes('youtube.com') || val.includes('youtu.be') ? '📺 YouTube' : '🌐 Website';
-  studySources.push({ type: type, name: val, data: null });
-  localStorage.setItem('everyToolStudySources', JSON.stringify(studySources));
-  input.value = '';
-  renderNotebookSources();
-  appendChatMessage(`Bronsite/Video "${val}" toegevoegd aan je notebook!`, 'ai');
+  appendChatMessage('Pagina ophalen...', 'ai');
+  try {
+    const res = await fetch('/api/fetch-url', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ url: val }) });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Ophalen mislukt');
+    studySources.push({ kind: 'url', name: data.title || val, text: data.text });
+    persistSources();
+    input.value = '';
+    renderNotebookSources();
+    appendChatMessage(`Website "${data.title || val}" toegevoegd als bron.`, 'ai');
+  } catch (e) {
+    appendChatMessage('⚠️ ' + e.message, 'ai');
+  }
+}
+
+function addFileAsSource(file) {
+  if (!file) return;
+  if (file.size > MAX_FILE_BYTES) { appendChatMessage('⚠️ Dit bestand is groter dan 3 MB. Kies een kleiner bestand.', 'ai'); return; }
+  const reader = new FileReader();
+  const isPdf = file.type === 'application/pdf';
+  const isImage = /^image\/(png|jpeg|gif|webp)$/.test(file.type);
+  reader.onload = e => {
+    if (isPdf || isImage) {
+      studySources.push({ kind: isPdf ? 'pdf' : 'image', name: file.name, mediaType: file.type, base64: String(e.target.result).split(',')[1] });
+      appendChatMessage(`"${file.name}" toegevoegd. Let op: PDF's en afbeeldingen blijven alleen bewaard zolang dit venster open is.`, 'ai');
+    } else {
+      studySources.push({ kind: 'text', name: file.name, text: String(e.target.result) });
+      appendChatMessage(`"${file.name}" toegevoegd als bron.`, 'ai');
+    }
+    persistSources();
+    renderNotebookSources();
+  };
+  if (isPdf || isImage) reader.readAsDataURL(file);
+  else if (/\.(txt|md)$/i.test(file.name) || file.type.startsWith('text/')) reader.readAsText(file);
+  else appendChatMessage('⚠️ Dit bestandstype wordt niet ondersteund. Gebruik .txt, PDF of een afbeelding.', 'ai');
 }
 
 function handleNotebookFile(input) {
-  if (input.files && input.files[0]) {
-    const file = input.files[0];
-    const reader = new FileReader();
-    reader.onload = function(e) {
-      studySources.push({ type: '📄 Document/Notitie', name: file.name, data: e.target.result });
-      localStorage.setItem('everyToolStudySources', JSON.stringify(studySources));
-      renderNotebookSources();
-      appendChatMessage(`Document "${file.name}" toegevoegd als bron!`, 'ai');
-    };
-    if (file.type.startsWith('image') || file.type.includes('pdf')) {
-      reader.readAsDataURL(file);
-    } else {
-      reader.readAsText(file);
-    }
-  }
+  if (input.files && input.files[0]) addFileAsSource(input.files[0]);
+  input.value = '';
 }
 
 function handleChatFile(input) {
-  if (input.files && input.files[0]) {
-    const file = input.files[0];
-    const reader = new FileReader();
-    reader.onload = function(e) {
-      studySources.push({ type: '📎 Bijlage', name: file.name, data: e.target.result });
-      localStorage.setItem('everyToolStudySources', JSON.stringify(studySources));
-      renderNotebookSources();
-      appendChatMessage(`Bijlage "${file.name}" toegevoegd en gekoppeld aan de chat.`, 'ai');
-    };
-    reader.readAsDataURL(file);
-  }
+  if (input.files && input.files[0]) addFileAsSource(input.files[0]);
+  input.value = '';
 }
 
 function renderNotebookSources() {
   const container = document.getElementById('sourcesListContainer');
   if (!container) return;
-
   if (studySources.length === 0) {
-    container.innerHTML = `<div style="font-size: 12px; color: var(--text-muted);">Nog geen bronnen...</div>`;
+    container.innerHTML = '<div style="font-size: 12px; color: var(--text-muted);">Nog geen bronnen...</div>';
     return;
   }
-
+  const icons = { url: '🌐', pdf: '📄', image: '🖼️', text: '📝' };
   container.innerHTML = studySources.map((src, index) => `
     <div class="source-item">
-      <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 210px;" title="${src.name}">${src.type}: ${src.name}</span>
-      <button onclick="removeNotebookSource(${index})" style="background: none; border: none; color: #ef4444; cursor: pointer; font-weight: bold;">✕</button>
+      <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 210px;" title="${escapeHtml(src.name)}">${icons[src.kind] || '📎'} ${escapeHtml(src.name)}</span>
+      <button onclick="removeNotebookSource(${index})" aria-label="Verwijder bron" style="background: none; border: none; color: #ef4444; cursor: pointer; font-weight: bold;">✕</button>
     </div>
   `).join('');
 }
 
 function removeNotebookSource(index) {
   studySources.splice(index, 1);
-  localStorage.setItem('everyToolStudySources', JSON.stringify(studySources));
+  persistSources();
   renderNotebookSources();
 }
 
@@ -1036,146 +1059,145 @@ function sendUserMessage() {
   const input = document.getElementById('chatInput');
   if (!input) return;
   const text = input.value.trim();
-  if (!text) return;
-
+  if (!text || isThinking) return;
   appendChatMessage(text, 'user');
   input.value = '';
-
   processStudyQuery(text);
 }
 
 function appendChatMessage(text, sender) {
   const chatArea = document.getElementById('chatMessages');
-  if (!chatArea) return;
+  if (!chatArea) return null;
   const bubble = document.createElement('div');
   bubble.className = `chat-bubble ${sender}`;
-  bubble.innerHTML = text;
+  bubble.style.whiteSpace = 'pre-wrap';
+  bubble.textContent = text; // textContent: voorkomt dat tekst als HTML wordt uitgevoerd
   chatArea.appendChild(bubble);
   chatArea.scrollTop = chatArea.scrollHeight;
+  return bubble;
 }
 
-// Slimme AI-beantwoording gekoppeld aan je notities, bronnen en Google Scholar
-function processStudyQuery(query) {
-  const queryLower = query.toLowerCase();
-  let aiReply = '';
-  const useScholar = document.getElementById('scholarToggle')?.checked ?? true;
+// Zoekt (gratis, zonder sleutel) wetenschappelijke publicaties via OpenAlex; alleen titels als tip
+async function searchLiterature(query) {
+  try {
+    const res = await fetch('https://api.openalex.org/works?search=' + encodeURIComponent(query.slice(0, 200)) + '&per_page=3&select=title,publication_year,doi');
+    if (!res.ok) return '';
+    const data = await res.json();
+    return (data.results || []).map(w => `- ${w.title} (${w.publication_year})${w.doi ? ' ' + w.doi : ''}`).join('\n');
+  } catch (e) { return ''; }
+}
 
-  // Zoek of de vraag direct te maken heeft met een van je toegevoegde bronnen
-  const matchedSource = studySources.find(src => src.name.toLowerCase().includes(queryLower) || queryLower.includes(src.name.toLowerCase()));
-
-  if (matchedSource) {
-    aiReply = `Ik heb je bron "${matchedSource.name}" teruggevonden in je notebook! Wat betreft "${query}": dit sluit hier direct op aan.`;
-  } else if (queryLower.includes('haarborstel') || queryLower.includes('borstel') || queryLower.includes('haar')) {
-    aiReply = 'Een haarborstel is een verzorgingsproduct dat wordt gebruikt om het haar te ontwarren, te stylen en de natuurlijke oliën gelijkmatig over de hoofdhuid te verdelen.';
-  } else if (queryLower.includes('tandenborstel') || queryLower.includes('tanden') || queryLower.includes('poetsen')) {
-    aiReply = 'Een tandenborstel is een hulpmiddel voor mondhygiëne. Tandartsen adviseren tweemaal per dag gedurende twee minuten te poetsen voor een gezond gebit.';
-  } else if (queryLower.includes('hallo') || queryLower.includes('hoi')) {
-    aiReply = 'Hallo! Ik sta klaar om je te helpen met je notities en studiestof. Wat wil je weten?';
-  } else {
-    aiReply = `Na het doorzoeken van je ${studySources.length} gekoppelde bronnen ${useScholar ? 'en Google Scholar literatuur' : ''}: over "${query}" kan ik vertellen dat dit een belangrijk onderwerp is binnen je studiestof. Wil je hier meer over weten?`;
+async function processStudyQuery(query) {
+  if (isThinking) return;
+  isThinking = true;
+  chatHistory.push({ role: 'user', content: query });
+  const bubble = appendChatMessage('…', 'ai');
+  try {
+    const useScholar = document.getElementById('scholarToggle')?.checked ?? true;
+    const literature = useScholar ? await searchLiterature(query) : '';
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        messages: chatHistory.slice(-12),
+        sources: studySources.map(s => ({ name: s.name, text: s.text, base64: s.base64, mediaType: s.mediaType })),
+        literature,
+        voice: isVoiceActive
+      })
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(data.error || 'Er ging iets mis. Probeer het opnieuw.');
+    bubble.textContent = data.reply;
+    chatHistory.push({ role: 'assistant', content: data.reply });
+    if (isVoiceActive) speakOutLoud(data.reply);
+  } catch (e) {
+    chatHistory.pop();
+    if (bubble) bubble.textContent = '⚠️ ' + e.message;
+    if (isVoiceActive) resumeListening();
+  } finally {
+    isThinking = false;
   }
-
-  setTimeout(() => {
-    appendChatMessage(aiReply, 'ai');
-    speakOutLoud(aiReply);
-  }, 400);
 }
 
-// Vriendelijkere en natuurlijkere stem selecteren uit de browser
 function speakOutLoud(text) {
-  if ('speechSynthesis' in window) {
-    window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'nl-NL';
-    utterance.rate = 0.95; // Vriendelijker en rustiger tempo
-    utterance.pitch = 1.05; // Warmere toonhoogte
-
-    const voices = window.speechSynthesis.getVoices();
-    const nlVoice = voices.find(v => v.lang === 'nl-NL' && (v.name.includes('Google') || v.name.includes('Natural') || v.name.includes('Claire') || v.name.includes('Femke')));
-    if (nlVoice) {
-      utterance.voice = nlVoice;
-    }
-
-    window.speechSynthesis.speak(utterance);
-  }
+  if (!('speechSynthesis' in window)) { if (isVoiceActive) resumeListening(); return; }
+  window.speechSynthesis.cancel();
+  const lang = SPEECH_LANGS[currentLang] || 'nl-NL';
+  const u = new SpeechSynthesisUtterance(String(text).replace(/[*_#`>~]/g, ''));
+  u.lang = lang; u.rate = 0.95; u.pitch = 1.05;
+  const voices = window.speechSynthesis.getVoices();
+  const voice = voices.find(v => v.lang === lang && /Google|Natural|Online/i.test(v.name)) || voices.find(v => v.lang === lang);
+  if (voice) u.voice = voice;
+  currentUtterance = u;
+  isSpeaking = true;
+  try { if (recognition) recognition.stop(); } catch (e) {}   // niet naar jezelf luisteren
+  u.onend = u.onerror = () => {
+    if (currentUtterance !== u) return;
+    isSpeaking = false;
+    if (isVoiceActive) resumeListening();
+  };
+  window.speechSynthesis.speak(u);
 }
 
 if ('speechSynthesis' in window) {
-  window.speechSynthesis.onvoiceschanged = () => {
-    window.speechSynthesis.getVoices();
-  };
+  window.speechSynthesis.onvoiceschanged = () => { window.speechSynthesis.getVoices(); };
 }
 
-// Bel-modus (Voice Call met microfoonherkenning)
 function toggleVoiceCall() {
-  const callBtn = document.getElementById('callBtn');
-  const callText = document.getElementById('callText');
-  const callIcon = document.getElementById('callIcon');
-
   if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
     alert('Jouw browser ondersteunt geen spraakherkenning. Gebruik Google Chrome.');
     return;
   }
-
   isVoiceActive = !isVoiceActive;
-
   if (isVoiceActive) {
-    callBtn.classList.add('active');
-    callText.innerText = 'Verbreken';
-    callIcon.innerText = '📴';
+    document.getElementById('callBtn').classList.add('active');
+    document.getElementById('callText').innerText = 'Verbreken';
+    document.getElementById('callIcon').innerText = '📴';
     appendChatMessage('🎙️ Spraakgesprek gestart. Spreek je vraag in...', 'ai');
+    setupRecognition();
     speakOutLoud('Gesprek gestart. Zeg gerust wat je wilt weten.');
-    startVoiceListening();
   } else {
     stopVoiceCall();
   }
 }
 
-function startVoiceListening() {
-  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-  recognition = new SpeechRecognition();
-  recognition.lang = 'nl-NL';
+function setupRecognition() {
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  recognition = new SR();
+  recognition.lang = SPEECH_LANGS[currentLang] || 'nl-NL';
   recognition.interimResults = false;
   recognition.maxAlternatives = 1;
-
-  recognition.onresult = function(event) {
+  recognition.onresult = event => {
     const speechText = event.results[0][0].transcript;
+    if (isThinking || isSpeaking) return;
     appendChatMessage(speechText, 'user');
     processStudyQuery(speechText);
   };
-
-  recognition.onerror = function(event) {
-    console.error('Spraakfout:', event.error);
-  };
-
-  recognition.onend = function() {
-    if (isVoiceActive) {
-      try { recognition.start(); } catch(e) {}
+  recognition.onerror = event => {
+    if (event.error === 'not-allowed' || event.error === 'service-not-allowed') {
+      appendChatMessage('⚠️ Microfoon geblokkeerd. Geef toestemming in je browser en probeer opnieuw.', 'ai');
+      stopVoiceCall();
     }
   };
+  recognition.onend = () => { if (isVoiceActive && !isSpeaking && !isThinking) resumeListening(); };
+}
 
-  try {
-    recognition.start();
-  } catch(e) {
-    console.error(e);
-  }
+function resumeListening() {
+  if (!isVoiceActive || !recognition || isSpeaking) return;
+  try { recognition.start(); } catch (e) { /* luistert al */ }
 }
 
 function stopVoiceCall() {
   isVoiceActive = false;
+  isSpeaking = false;
+  currentUtterance = null;
+  if (recognition) { try { recognition.stop(); } catch (e) {} }
+  if ('speechSynthesis' in window) window.speechSynthesis.cancel();
   const callBtn = document.getElementById('callBtn');
-  const callText = document.getElementById('callText');
-  const callIcon = document.getElementById('callIcon');
-  
-  if (recognition) {
-    try { recognition.stop(); } catch(e) {}
-  }
-  if ('speechSynthesis' in window) {
-    window.speechSynthesis.cancel();
-  }
-
   if (callBtn) callBtn.classList.remove('active');
+  const callText = document.getElementById('callText');
   if (callText) callText.innerText = 'Bel AI';
+  const callIcon = document.getElementById('callIcon');
   if (callIcon) callIcon.innerText = '📞';
   appendChatMessage('📴 Spraakgesprek beëindigd.', 'ai');
 }
