@@ -10,8 +10,8 @@
      crossorigin="anonymous"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tekst-naar-Spraak & Audio Download | Every-Tool</title>
-  <meta name="description" content="Laat je tekst direct voorlezen in diverse talen of download de gegenereerde audio als WAV-bestand."/>
+  <title>Tekst-naar-spraak: laat je tekst voorlezen | Every-Tool</title>
+  <meta name="description" content="Laat een tekst gratis voorlezen met de stem van je eigen browser. Geen account, niets te installeren, je tekst blijft op je apparaat."/>
   <link rel="canonical" href="https://every-tool.netlify.app/tts/"/>
   <link rel="stylesheet" href="../style.css">
   <script>
@@ -65,8 +65,8 @@
 
   <main class="container">
     <div class="section-header-wrapper">
-      <h2 class="section-title" id="ttsTitle">Tekst-naar-Spraak</h2>
-      <p class="section-subtitle" id="ttsSub">Laat je tekst direct voorlezen of download de audio als bestand.</p>
+      <h1 class="section-title" id="ttsTitle">Tekst-naar-Spraak</h1>
+      <p class="section-subtitle" id="ttsSub">Laat je tekst direct voorlezen.</p>
     </div>
     <textarea id="text-tts" placeholder="Typ of plak hier je tekst om voor te lezen..." oninput="saveToLocal('text-tts', this.value)"></textarea>
     <div style="display: flex; justify-content: flex-end; margin-bottom: 12px;">
@@ -88,19 +88,38 @@
 
     <div class="action-bar">
       <button class="btn" id="speakBtn" onclick="speakText()">🔊 Lees Hardop</button>
-      <button class="btn secondary" id="downloadAudioBtn" onclick="downloadAudioFile()">📥 Download Audio (.WAV)</button>
       <button class="btn danger" id="stopSpeechBtn" onclick="stopSpeech()">⏹️ Stop</button>
     </div>
 
     <div class="translation-preview" id="ttsStatusBox">
-      <em id="ttsStatusPlaceholder">Status: Klaar om voor te lezen of te downloaden...</em>
+      <em id="ttsStatusPlaceholder">Status: Klaar om voor te lezen...</em>
     </div>
 
     <!-- UITGEBREIDE UITLEG SECTIE (Inclusief vertaalbare ID's) -->
-    <section class="info-card" style="margin-top: 40px; text-align: left;">
-      <h3 id="ttsExplanationTitle" style="margin-top: 0; margin-bottom: 12px;">Hoe werkt de Tekst-naar-Spraak tool?</h3>
-      <p id="ttsExplanationText1" style="color: var(--text-muted); line-height: 1.6; margin-bottom: 12px;">Het omzetten van geschreven tekst naar gesproken woorden is ideaal om je eigen teksten te controleren op spelfouten, om luistervaardigheid te oefenen in een vreemde taal, of om documenten handsfree te beluisteren.</p>
-      <p id="ttsExplanationText2" style="color: var(--text-muted); line-height: 1.6; margin-bottom: 0;">Plak simpelweg je tekst in het invoerveld, kies de gewenste taal en klik op voorlezen of download direct het audiobestand. Zo breng je geschreven content in een handomdraai tot leven!</p>
+    <section class="info-card" lang="nl" style="margin-top: 40px; text-align: left; color: var(--text-muted); line-height: 1.6;">
+      <h2 style="margin-top: 0; font-size: 1.2em;">Hoe werkt Tekst-naar-Spraak?</h2>
+      <p>Met deze tool laat je een tekst hardop voorlezen. Hij gebruikt de ingebouwde spraakfunctie van je browser en apparaat, dus je hoeft niets te installeren en er is geen account nodig.</p>
+
+      <h2 style="font-size: 1.2em;">Zo gebruik je de tool</h2>
+      <ol>
+        <li>Plak of typ je tekst in het veld.</li>
+        <li>Kies de taal van de stem (Nederlands, Engels, Duits, Frans of Spaans).</li>
+        <li>Klik op "Lees Hardop" en luister mee. Met "Stop" breek je het voorlezen af.</li>
+      </ol>
+
+      <h2 style="font-size: 1.2em;">Wanneer is dit handig?</h2>
+      <p>Om je eigen tekst te beluisteren (je hoort fouten en moeilijke zinnen sneller), om lange teksten te volgen terwijl je iets anders doet, of als leeshulp.</p>
+
+      <h2 style="font-size: 1.2em;">Goed om te weten</h2>
+      <p>Welke stemmen beschikbaar zijn en hoe natuurlijk ze klinken, hangt af van je browser en apparaat. Chrome, Edge en Safari hebben elk eigen stemmen. Het opslaan van de spraak als audiobestand is niet mogelijk.</p>
+
+      <h2 style="font-size: 1.2em;">Privacy</h2>
+      <p>De spraak wordt in je eigen browser gemaakt. Je tekst wordt alleen op je eigen apparaat bewaard zodat je hem niet kwijtraakt.</p>
+
+      <h2 style="font-size: 1.2em;">Veelgestelde vragen</h2>
+      <details><summary><strong>Kan ik de audio downloaden?</strong></summary><p>Nee, de tool speelt de tekst alleen af. Het opslaan als audiobestand is niet beschikbaar.</p></details>
+      <details><summary><strong>Waarom klinkt de stem anders op mijn telefoon?</strong></summary><p>Elke browser en elk apparaat heeft eigen stemmen. De tool gebruikt wat jouw apparaat aanbiedt.</p></details>
+      <details><summary><strong>Is het gratis?</strong></summary><p>Ja, zonder account en zonder limiet.</p></details>
     </section>
   </main>
 
