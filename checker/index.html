@@ -10,8 +10,8 @@
      crossorigin="anonymous"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Grammatica Bot & Spelling Checker | Every-Tool</title>
-  <meta name="description" content="Controleer direct je teksten op spelfouten, grammaticaregels en stijlfouten met onze slimme Grammatica Bot."/>
+  <title>Gratis tekstcontrole: dubbele woorden en lange zinnen | Every-Tool</title>
+  <meta name="description" content="Controleer je tekst op dubbele woorden, zeer lange zinnen en zinnen die met een kleine letter beginnen. Gratis en direct in je browser."/>
   <link rel="canonical" href="https://every-tool.netlify.app/checker/"/>
   <link rel="stylesheet" href="../style.css">
   <script>
@@ -65,8 +65,8 @@
 
   <main class="container">
     <div class="section-header-wrapper">
-      <h2 class="section-title" id="checkerTitle">Grammatica Bot</h2>
-      <p class="section-subtitle" id="checkerSub">Controleer je tekst automatisch op spelfouten en stijlfouten.</p>
+      <h1 class="section-title" id="checkerTitle">Grammatica Bot</h1>
+      <p class="section-subtitle" id="checkerSub">Controleer je tekst op dubbele woorden, lange zinnen en kleine beginletters.</p>
     </div>
     
     <textarea id="text-checker" placeholder="Plak hier je tekst om te controleren..." oninput="saveToLocal('text-checker', this.value)"></textarea>
@@ -83,10 +83,30 @@
     </div>
 
     <!-- UITGEBREIDE UITLEG SECTIE (Inclusief vertaalbare ID's) -->
-    <section class="info-card" style="margin-top: 40px; text-align: left;">
-      <h3 id="checkerExplanationTitle" style="margin-top: 0; margin-bottom: 12px;">Hoe werkt de Grammatica Bot?</h3>
-      <p id="checkerExplanationText1" style="color: var(--text-muted); line-height: 1.6; margin-bottom: 12px;">Een foutje in je spelling, d/t-fouten of kromme zinnen zijn snel gemaakt, maar kunnen afleiden van je boodschap. Onze Grammatica Bot scant je tekst grondig op taalfouten, stijlonvolkomenheden en grammaticale onjuistheden.</p>
-      <p id="checkerExplanationText2" style="color: var(--text-muted); line-height: 1.6; margin-bottom: 0;">Of je nu een belangrijke e-mail, een verslag voor school of een zakelijk document schrijft: met deze tool zorg je ervoor dat je teksten er altijd professioneel, verzorgd en foutloos uitzien.</p>
+    <section class="info-card" lang="nl" style="margin-top: 40px; text-align: left; color: var(--text-muted); line-height: 1.6;">
+      <h2 style="margin-top: 0; font-size: 1.2em;">Wat controleert deze tool?</h2>
+      <p>Deze tool doet een snelle basiscontrole van je tekst. Hij zoekt drie dingen: woorden die dubbel achter elkaar staan ("de de"), zinnen van meer dan 30 woorden en zinnen die met een kleine letter beginnen. Je krijgt een lijst met suggesties om je tekst netter en leesbaarder te maken.</p>
+
+      <h2 style="font-size: 1.2em;">Zo gebruik je de tool</h2>
+      <ol>
+        <li>Plak of typ je tekst in het veld.</li>
+        <li>Klik op de controleknop.</li>
+        <li>Loop de suggesties langs en pas je tekst aan waar het nodig is.</li>
+      </ol>
+
+      <h2 style="font-size: 1.2em;">Wanneer is dit handig?</h2>
+      <p>Als laatste check voordat je een werkstuk, e-mail of blog verstuurt. Dubbele woorden en loodzware zinnen vallen je zelf vaak niet meer op.</p>
+
+      <h2 style="font-size: 1.2em;">Goed om te weten</h2>
+      <p>Dit is geen volledige spellingcontrole en geen grammaticacontrole. De tool kent geen woordenboek en vindt dus geen typefouten zoals "gebruiker" in plaats van "gebruikers", en ook geen werkwoordsfouten. Gebruik daarvoor ook de spellingcontrole van je tekstverwerker.</p>
+
+      <h2 style="font-size: 1.2em;">Privacy</h2>
+      <p>De controle gebeurt in je browser. Je tekst wordt alleen op je eigen apparaat bewaard zodat je hem niet kwijtraakt.</p>
+
+      <h2 style="font-size: 1.2em;">Veelgestelde vragen</h2>
+      <details><summary><strong>Vindt de tool spelfouten?</strong></summary><p>Nee, alleen dubbele woorden, zeer lange zinnen en zinnen die met een kleine letter beginnen.</p></details>
+      <details><summary><strong>Waarom is een lange zin een probleem?</strong></summary><p>Zinnen van meer dan 30 woorden zijn voor veel lezers lastig te volgen. Splitsen maakt je tekst meestal duidelijker.</p></details>
+      <details><summary><strong>Werkt het ook voor andere talen?</strong></summary><p>De drie controles werken in elke taal die hoofdletters gebruikt, maar de tool is gemaakt voor Nederlandse teksten.</p></details>
     </section>
   </main>
 
