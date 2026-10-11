@@ -83,10 +83,14 @@ export default async (request) => {
   if (!res.ok) {
     const detail = (await res.text()).slice(0, 500);
     console.error('Anthropic API fout', res.status, detail);
-    // Alleen tijdens het testen: zet in Netlify DEBUG_ERRORS=1 om de echte foutmelding in de chat te zien
-    const debug = process.env.DEBUG_ERRORS === '1' ? ' [' + res.status + '] ' + detail : '';
-    if (res.status === 429) return json({ error: 'Het is even druk. Probeer het over een minuut opnieuw.' + debug }, 429);
-    return json({ error: 'De AI gaf een fout terug. Probeer het later opnieuw.' + debug }, 502);
+    // Korte foutcode (geen geheimen) zodat je kunt zien wat er misgaat, bijv. "fout 401: authentication_error"
+    let type = '';
+    try { type = (JSON.parse(detail).error || {}).type || ''; } catch (e) {}
+    const code = ' (fout ' + res.status + (type ? ': ' + type : '') + ')';
+    // Alleen tijdens het testen: DEBUG_ERRORS=1 toont ook de volledige melding van de API
+    const debug = process.env.DEBUG_ERRORS === '1' ? ' ' + detail : '';
+    if (res.status === 429) return json({ error: 'Het is even druk. Probeer het over een minuut opnieuw.' + code + debug }, 429);
+    return json({ error: 'De AI gaf een fout terug. Probeer het later opnieuw.' + code + debug }, 502);
   }
 
   const data = await res.json();
