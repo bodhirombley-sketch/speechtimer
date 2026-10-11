@@ -10,8 +10,8 @@
      crossorigin="anonymous"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Vertaal Tool & Meertalige Assistent | Every-Tool</title>
-  <meta name="description" content="Vertaal snel en eenvoudig teksten tussen verschillende talen met onze handige vertaaltool."/>
+  <title>Gratis vertaler vanuit het Nederlands | Every-Tool</title>
+  <meta name="description" content="Vertaal korte teksten gratis vanuit het Nederlands naar Engels, Duits, Frans of Spaans. Snel, zonder account en zonder installatie."/>
   <link rel="canonical" href="https://every-tool.netlify.app/translate/"/>
   <link rel="stylesheet" href="../style.css">
   <script>
@@ -65,7 +65,7 @@
 
   <main class="container">
     <div class="section-header-wrapper">
-      <h2 class="section-title" id="translateTitle">Vertaal Tool</h2>
+      <h1 class="section-title" id="translateTitle">Vertaal Tool</h1>
       <p class="section-subtitle" id="translateSub">Vertaal snel en eenvoudig teksten naar verschillende talen.</p>
     </div>
     
@@ -76,8 +76,8 @@
 
     <div class="tts-controls-row">
       <div class="tts-control-group">
-        <label for="targetLangTranslate" id="translateLabelLang">Doelstaal:</label>
-        <select id="targetLangTranslate" class="tts-select">
+        <label for="targetLangSelect" id="translateLabelLang">Doelstaal:</label>
+        <select id="targetLangSelect" class="tts-select">
           <option value="nl" id="trOptNl">🇳🇱 Nederlands</option>
           <option value="en" id="trOptEn">🇬🇧 Engels</option>
           <option value="de" id="trOptDe">🇩🇪 Duits</option>
@@ -96,10 +96,30 @@
     </div>
 
     <!-- UITGEBREIDE UITLEG SECTIE (Inclusief vertaalbare ID's) -->
-    <section class="info-card" style="margin-top: 40px; text-align: left;">
-      <h3 id="translateExplanationTitle" style="margin-top: 0; margin-bottom: 12px;">Hoe werkt de Vertaal Tool?</h3>
-      <p id="translateExplanationText1" style="color: var(--text-muted); line-height: 1.6; margin-bottom: 12px;">Of je nu communiceert met internationale partners, tekst leest in een vreemde taal of studeert voor een taalvak: snel en accuraat kunnen vertalen is onmisbaar in een verbonden wereld.</p>
-      <p id="translateExplanationText2" style="color: var(--text-muted); line-height: 1.6; margin-bottom: 0;">Met onze Vertaal Tool typ of plak je eenvoudig je tekst, selecteer je de gewenste doelstaal en zie je direct het resultaat. Zo overbrug je elk taalverschil in een handomdraai!</p>
+    <section class="info-card" lang="nl" style="margin-top: 40px; text-align: left; color: var(--text-muted); line-height: 1.6;">
+      <h2 style="margin-top: 0; font-size: 1.2em;">Hoe werkt de Vertaal Tool?</h2>
+      <p>Met de Vertaal Tool zet je een Nederlandse tekst om naar een andere taal. Kies de doeltaal, plak je tekst en je ziet direct de vertaling. Het is bedoeld voor korte teksten, zoals een zin, een e-mail of een bijschrift.</p>
+
+      <h2 style="font-size: 1.2em;">Zo gebruik je de tool</h2>
+      <ol>
+        <li>Typ of plak je Nederlandse tekst.</li>
+        <li>Kies de doeltaal: Engels, Duits, Frans of Spaans.</li>
+        <li>Klik op "Vertaal Tekst" en lees het resultaat.</li>
+      </ol>
+
+      <h2 style="font-size: 1.2em;">Wanneer is dit handig?</h2>
+      <p>Voor een snelle vertaling van een korte tekst, bijvoorbeeld voor een bericht aan iemand in het buitenland of om te begrijpen wat een zin in een andere taal ongeveer betekent.</p>
+
+      <h2 style="font-size: 1.2em;">Goed om te weten</h2>
+      <p>Dit is een automatische vertaling en kan fouten bevatten, vooral bij idioom, humor en vakjargon. Laat belangrijke teksten (contracten, sollicitaties, officiële brieven) altijd nakijken door iemand die de taal beheerst. De gratis vertaaldienst heeft een daggrens, dus lange teksten of veel verzoeken kunnen mislukken.</p>
+
+      <h2 style="font-size: 1.2em;">Privacy</h2>
+      <p>Let op: een vertaling gebeurt niet alleen in je browser. Je tekst wordt naar de externe vertaaldienst MyMemory gestuurd. Plak hier dus geen vertrouwelijke of persoonlijke gegevens.</p>
+
+      <h2 style="font-size: 1.2em;">Veelgestelde vragen</h2>
+      <details><summary><strong>Kan ik ook vanuit een andere taal vertalen?</strong></summary><p>Nee, de bron is nu altijd Nederlands.</p></details>
+      <details><summary><strong>Is de vertaling altijd correct?</strong></summary><p>Nee. Het is een automatische vertaling, handig als hulp maar niet foutloos.</p></details>
+      <details><summary><strong>Wordt mijn tekst opgeslagen?</strong></summary><p>Je tekst wordt voor de vertaling naar MyMemory gestuurd. Hoe die dienst daarmee omgaat, bepaalt zij zelf. Gebruik de tool daarom niet voor gevoelige teksten.</p></details>
     </section>
   </main>
 
