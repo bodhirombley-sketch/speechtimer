@@ -10,8 +10,8 @@
      crossorigin="anonymous"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Speech & Presentatie Timer | Every-Tool</title>
-  <meta name="description" content="Bereken direct hoe lang jouw presentatietekst duurt om voor te lezen en oefen live met de stopwatch."/>
+  <title>Speech Timer: hoe lang duurt je presentatie? | Every-Tool</title>
+  <meta name="description" content="Plak je tekst en zie direct hoe lang je speech duurt bij langzaam, normaal en snel spreken. Met stopwatch om te oefenen. Gratis, in je browser."/>
   <link rel="canonical" href="https://every-tool.netlify.app/timer/"/>
   <link rel="stylesheet" href="../style.css">
   <script>
@@ -65,7 +65,7 @@
 
   <main class="container">
     <div class="section-header-wrapper">
-      <h2 class="section-title" id="t1Title">Speech & Presentatie Timer</h2>
+      <h1 class="section-title" id="t1Title">Speech & Presentatie Timer</h1>
       <p class="section-subtitle" id="t1Sub">Bereken direct hoe lang jouw tekst duurt om voor te lezen.</p>
     </div>
     <textarea id="text-timer" placeholder="Plak hier je tekst..." oninput="handleTimerInput()"></textarea>
@@ -90,10 +90,30 @@
     </div>
 
     <!-- UITGEBREIDE UITLEG SECTIE (Inclusief vertaalbare ID's) -->
-    <section class="info-card" style="margin-top: 40px; text-align: left;">
-      <h3 id="toolExplanationTitle" style="margin-top: 0; margin-bottom: 12px;">Hoe werkt de Speech & Presentatie Timer?</h3>
-      <p id="toolExplanationText1" style="color: var(--text-muted); line-height: 1.6; margin-bottom: 12px;">Wanneer je een presentatie, pitch of speech voorbereidt, is het cruciaal om te weten hoe lang je spreektijd zal zijn. Te lang doorpraten kan ervoor zorgen dat je publiek de aandacht verliest, terwijl te kort praten betekent dat je waardevolle informatie mist.</p>
-      <p id="toolExplanationText2" style="color: var(--text-muted); line-height: 1.6; margin-bottom: 0;">Onze tool analyseert direct je geschreven tekst en berekent de precieze leestijd op basis van verschillende snelheden (langzaam, normaal en snel). Zo kun je je presentatie perfect timen en kom je nooit meer voor verrassingen te staan op het podium!</p>
+    <section class="info-card" lang="nl" style="margin-top: 40px; text-align: left; color: var(--text-muted); line-height: 1.6;">
+      <h2 style="margin-top: 0; font-size: 1.2em;">Hoe werkt de Speech Timer?</h2>
+      <p>De Speech Timer telt de woorden en tekens van je tekst en rekent uit hoe lang het voorlezen duurt. Hij gebruikt drie tempo's: langzaam (110 woorden per minuut), normaal (130) en snel (160). Zo weet je vooraf of je spreekbeurt, presentatie of pitch binnen de tijd blijft.</p>
+
+      <h2 style="font-size: 1.2em;">Zo gebruik je de tool</h2>
+      <ol>
+        <li>Plak of typ je tekst in het veld.</li>
+        <li>Lees de geschatte tijd bij langzaam, normaal en snel spreken.</li>
+        <li>Start de stopwatch en oefen hardop om je werkelijke tijd te meten.</li>
+      </ol>
+
+      <h2 style="font-size: 1.2em;">Wanneer is dit handig?</h2>
+      <p>Voor een spreekbeurt of presentatie op school, een toespraak, een pitch of een video-script. Je past je tekst aan tot de tijd klopt, zonder steeds opnieuw te hoeven timen.</p>
+
+      <h2 style="font-size: 1.2em;">Goed om te weten</h2>
+      <p>De tijden zijn schattingen. Pauzes, slides, humor en het moment dat je even naar adem hapt worden niet meegeteld. Meet daarom altijd een keer met de stopwatch terwijl je echt oefent.</p>
+
+      <h2 style="font-size: 1.2em;">Privacy</h2>
+      <p>De berekening gebeurt in je browser. Je tekst wordt alleen op je eigen apparaat bewaard zodat je hem niet kwijtraakt.</p>
+
+      <h2 style="font-size: 1.2em;">Veelgestelde vragen</h2>
+      <details><summary><strong>Hoeveel woorden per minuut is normaal?</strong></summary><p>Deze tool rekent met 130 woorden per minuut als normaal tempo. Dat is een gangbaar gemiddelde voor een rustige presentatie.</p></details>
+      <details><summary><strong>Worden pauzes meegeteld?</strong></summary><p>Nee. Wil je pauzes meenemen, tel er dan een paar seconden bij op of gebruik de stopwatch tijdens een oefenronde.</p></details>
+      <details><summary><strong>Is de Speech Timer gratis?</strong></summary><p>Ja, zonder account en zonder limiet.</p></details>
     </section>
   </main>
 
