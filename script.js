@@ -63,7 +63,7 @@ const translations = {
     aiExplanationText2: "Onze detector kijkt lokaal naar statistische kenmerken zoals zinslengtevariatie en AI-woorden. Het resultaat is een betrouwbare schatting, maar geen 100% sluitend bewijs. Alles gebeurt direct in je eigen webbrowser.",
 
     checkerTitle: "Grammatica Bot",
-    checkerSub: "Controleer je tekst automatisch op spelfouten en stijlfouten.",
+    checkerSub: "Controleer je tekst op dubbele woorden, lange zinnen en kleine beginletters.",
     checkerScanBtn: "✍️ Controleer Grammatica",
     checkerResultPlaceholder: "Resultaten en suggesties verschijnen hier...",
     checkerExplanationTitle: "💡 Uitgebreide Gids: Hoe werkt de Grammatica Bot?",
@@ -80,12 +80,12 @@ const translations = {
     qrExplanationText2: "Met onze QR Code Generator typ of plak je eenvoudig een webadres, waarna de code zich direct voor je ogen vormt. Zo maak je in een handomdraai professionele en direct bruikbare QR-codes voor al je projecten.",
 
     ttsTitle: "Tekst-naar-Spraak",
-    ttsSub: "Laat je tekst direct voorlezen of download de audio als bestand.",
+    ttsSub: "Laat je tekst direct voorlezen.",
     ttsLabelLang: "Spraak Taal:",
     speakBtn: "🔊 Lees Hardop",
     downloadAudioBtn: "📥 Download Audio (.WAV)",
     stopSpeechBtn: "⏹️ Stop",
-    ttsStatusPlaceholder: "Status: Klaar om voor te lezen of te downloaden...",
+    ttsStatusPlaceholder: "Status: Klaar om voor te lezen...",
     ttsExplanationTitle: "💡 Uitgebreide Gids: Hoe werkt de Tekst-naar-Spraak tool?",
     ttsExplanationText1: "Het omzetten van geschreven tekst naar gesproken woorden is ideaal om je eigen teksten te controleren op spelfouten, om luistervaardigheid te oefenen in een vreemde taal, of om documenten handsfree te beluisteren.",
     ttsExplanationText2: "Plak simpelweg je tekst in het invoerveld, kies de gewenste taal en klik op voorlezen. Zo breng je geschreven content in een handomdraai tot leven via je browser!",
@@ -168,7 +168,7 @@ const translations = {
     aiExplanationText2: "Our detector looks at statistical features locally in your browser to give a reliable estimate without storing data.",
 
     checkerTitle: "Grammar Bot",
-    checkerSub: "Automatically check your text for spelling and stylistic errors.",
+    checkerSub: "Check your text for repeated words, very long sentences and lowercase sentence starts.",
     checkerScanBtn: "✍️ Check Grammar",
     checkerResultPlaceholder: "Results and suggestions will appear here...",
     checkerExplanationTitle: "💡 Comprehensive Guide: How does the Grammar Bot work?",
@@ -185,12 +185,12 @@ const translations = {
     qrExplanationText2: "Type or paste a web address to instantly form a professional QR code.",
 
     ttsTitle: "Text-to-Speech",
-    ttsSub: "Have your text read out loud instantly or download the audio file.",
+    ttsSub: "Have your text read out loud instantly.",
     ttsLabelLang: "Speech Language:",
     speakBtn: "🔊 Read Aloud",
     downloadAudioBtn: "📥 Download Audio (.WAV)",
     stopSpeechBtn: "⏹️ Stop",
-    ttsStatusPlaceholder: "Status: Ready to read or download...",
+    ttsStatusPlaceholder: "Status: Ready to read...",
     ttsExplanationTitle: "💡 Comprehensive Guide: How does the Text-to-Speech tool work?",
     ttsExplanationText1: "Converting written text to spoken words is ideal for checking spelling or practicing listening skills in a foreign language.",
     ttsExplanationText2: "Paste your text, choose the language, and bring content to life instantly.",
@@ -273,7 +273,7 @@ const translations = {
     aiExplanationText2: "Der Detektor prüft dies lokal in Ihrem Browser.",
 
     checkerTitle: "Grammatik-Bot",
-    checkerSub: "Überprüfen Sie Ihren Text automatisch.",
+    checkerSub: "Prüfen Sie Ihren Text auf doppelte Wörter, sehr lange Sätze und kleine Satzanfänge.",
     checkerScanBtn: "✍️ Grammatik prüfen",
     checkerResultPlaceholder: "Ergebnisse erscheinen hier...",
     checkerExplanationTitle: "💡 Umfassender Leitfaden: Wie funktioniert der Grammatik-Bot?",
@@ -378,7 +378,7 @@ const translations = {
     aiExplanationText2: "Analyse locale et sécurisée dans votre navigateur.",
 
     checkerTitle: "Bot Grammaire",
-    checkerSub: "Vérifiez votre texte automatiquement.",
+    checkerSub: "Vérifiez votre texte : mots répétés, phrases très longues et phrases commençant par une minuscule.",
     checkerScanBtn: "✍️ Vérifier",
     checkerResultPlaceholder: "Résultats ici...",
     checkerExplanationTitle: "💡 Guide complet : Comment fonctionne le Bot Grammaire ?",
@@ -483,7 +483,7 @@ const translations = {
     aiExplanationText2: "Análisis local y privado en tu navegador.",
 
     checkerTitle: "Bot de Gramática",
-    checkerSub: "Comprueba tu texto automáticamente.",
+    checkerSub: "Comprueba tu texto: palabras repetidas, frases muy largas y frases que empiezan con minúscula.",
     checkerScanBtn: "✍️ Comprobar",
     checkerResultPlaceholder: "Resultados aquí...",
     checkerExplanationTitle: "💡 Guía completa: ¿Cómo funciona het Bot de Gramática?",
@@ -808,7 +808,7 @@ function runGrammarCheck() {
   });
 
   if (issues.length === 0) {
-    box.innerHTML = `<p style="color: green; font-weight: 600;">✨ Geen opvallende spelfouten of stijlfouten gevonden! (${wordCount} woorden)</p>`;
+    box.innerHTML = `<p style="color: green; font-weight: 600;">✨ Geen dubbele woorden, zeer lange zinnen of kleine beginletters gevonden. (${wordCount} woorden) Let op: dit is geen volledige spellingcontrole.</p>`;
   } else {
     let html = `<p style="color: var(--primary); font-weight: 600; margin-bottom: 8px;">📝 Suggesties (${issues.length}):</p><ul style="margin: 0; padding-left: 20px;">`;
     issues.forEach(issue => { html += `<li style="margin-bottom: 4px;">${issue}</li>`; });
@@ -840,7 +840,10 @@ function speakText() {
   if (!textEl || !textEl.value.trim()) return;
   if ('speechSynthesis' in window) {
     window.speechSynthesis.cancel();
-    window.speechSynthesis.speak(new SpeechSynthesisUtterance(textEl.value.trim()));
+    const u = new SpeechSynthesisUtterance(textEl.value.trim());
+    const langSel = document.getElementById('voiceLangTts');
+    if (langSel) u.lang = langSel.value;
+    window.speechSynthesis.speak(u);
   }
 }
 
