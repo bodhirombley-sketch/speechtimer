@@ -513,7 +513,7 @@ textarea:focus, input:focus { border-color: var(--primary); box-shadow: 0 0 0 4p
 }
 
 .section-header-wrapper { margin-bottom: 28px; }
-h2.section-title { font-size: 30px; font-weight: 800; color: var(--text-color); margin: 0 0 8px 0; letter-spacing: -0.8px; }
+h1.section-title, h2.section-title { font-size: 30px; font-weight: 800; color: var(--text-color); margin: 0 0 8px 0; letter-spacing: -0.8px; }
 .section-subtitle { color: var(--text-muted); font-size: 16px; margin: 0; font-weight: 500; }
 
 /* Blog Styling */
